@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Global.cpp" />
+    <ClCompile Include="transtest.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ExportSparseCloud.h" />
+    <ClInclude Include="Global.h" />
+    <ClInclude Include="MatchImages.h" />
+    <ClInclude Include="MVSEngine.h" />
+    <ClInclude Include="PresetConfigureImages.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="StructureFromMotion.h" />
+    <ClInclude Include="StructureFromPoses.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="J3DEngine.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="C:\Users\Administrator\Desktop\J3DEngine.ico" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{876553CC-6603-4752-B10D-EDEE46B76701}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>My3DReconstructionConsole</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <ProjectName>J3DEngine</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>false</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NOMINMAX;_USE_MATH_DEFINES;OPENMVG_USE_AVX2;__SSE2__;__SSE3__;__SSSE3__;__SSE4_1__;__SSE4_2__;__AVX__;__FMA__;__BMI2__;__AVX2__;OPENMVG_USE_OPENMP;CMAKE_INTDIR="Debug";DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>false</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\openMVS\openMVG\src;C:\openMVS\openMVG\src\third_party\eigen;C:\openMVS\openMVG\src\dependencies\cereal\include;C:\openMVS\openMVG\src\third_party\lemon;C:\openMVS\build\openMVG\third_party\lemon;C:\openMVS\openMVG\src\third_party\flann\src\cpp;C:\openMVS\openMVG\src\third_party\stlplus3;\filesystemSimplified;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <OpenMPSupport>true</OpenMPSupport>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>C:\openMVS\build\openMVG\Windows-AMD64-Release\Debug\openMVG_matching.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Debug\openMVG_fast.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Debug\openMVG_geometry.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Debug\openMVG_features.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Debug\openMVG_matching_image_collection.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Debug\openMVG_multiview.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Debug\openMVG_sfm.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Debug\openMVG_system.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Debug\openMVG_image.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Debug\openMVG_exif.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Debug\openMVG_stlplus.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Debug\openMVG_jpeg.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Debug\openMVG_png.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Debug\openMVG_tiff.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Debug\openMVG_zlib.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Debug\openMVG_lInftyComputerVision.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Debug\openMVG_lemon.lib;C:\openMVS\build\openMVG\third_party\ceres-solver\lib\Debug\openMVG_ceres-debug.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Debug\openMVG_cxsparse.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Debug\openMVG_linearProgramming.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Debug\openMVG_numeric.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Debug\lib_clp.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Debug\lib_OsiClpSolver.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Debug\lib_CoinUtils.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Debug\lib_Osi.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Debug\openMVG_easyexif.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Debug\vlsift.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;J3DMVSEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>F:\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <SDLCheck>false</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;OPENMVG_USE_AVX2;__SSE2__;__SSE3__;__SSSE3__;__SSE4_1__;__SSE4_2__;__AVX__;__FMA__;__BMI2__;__AVX2__;OPENMVG_USE_OPENMP;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>false</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\openMVS\openMVG\src;C:\openMVS\openMVG\src\third_party\eigen;C:\openMVS\openMVG\src\dependencies\cereal\include;C:\openMVS\openMVG\src\third_party\lemon;C:\openMVS\build\openMVG\third_party\lemon;C:\openMVS\openMVG\src\third_party\flann\src\cpp;C:\openMVS\openMVG\src\openMVG;C:\openMVS\openMVG\src\third_party\stlplus3;\filesystemSimplified;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>true</OpenMPSupport>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <UseFullPaths>false</UseFullPaths>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <AdditionalDependencies>C:\openMVS\build\openMVG\Windows-AMD64-Release\Release\openMVG_matching.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Release\openMVG_fast.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Release\openMVG_geometry.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Release\openMVG_features.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Release\openMVG_matching_image_collection.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Release\openMVG_multiview.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Release\openMVG_sfm.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Release\openMVG_system.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Release\openMVG_image.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Release\openMVG_exif.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Release\openMVG_stlplus.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Release\openMVG_jpeg.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Release\openMVG_png.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Release\openMVG_tiff.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Release\openMVG_zlib.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Release\openMVG_lInftyComputerVision.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Release\openMVG_lemon.lib;C:\openMVS\build\openMVG\third_party\ceres-solver\lib\Release\openMVG_ceres.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Release\openMVG_cxsparse.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Release\openMVG_linearProgramming.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Release\openMVG_numeric.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Release\lib_clp.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Release\lib_OsiClpSolver.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Release\lib_CoinUtils.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Release\lib_Osi.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Release\openMVG_easyexif.lib;C:\openMVS\build\openMVG\Windows-AMD64-Release\Release\vlsift.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;J3DMVSEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ProgramDatabaseFile>C:/openMVS/build/openMVG/Windows-AMD64-Release/Release/openMVG_main_ComputeMatches.pdb</ProgramDatabaseFile>
+      <ImportLibrary>C:/openMVS/build/openMVG/Windows-AMD64-Release/Release/openMVG_main_ComputeMatches.lib</ImportLibrary>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <AdditionalLibraryDirectories>F:\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog_SFM</class>
+ <widget class="QDialog" name="Dialog_SFM">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>491</width>
+    <height>257</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>三维重建配置</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>J3D_GUI.ico</normaloff>J3D_GUI.ico</iconset>
+  </property>
+  <widget class="QPushButton" name="pushButton_browseInputDir">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>50</y>
+     <width>41</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>浏览</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_18">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>20</y>
+     <width>171</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>三维重建参数设置:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_inputDir">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>50</y>
+     <width>331</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_15">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>50</y>
+     <width>81</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>匹配数据路径:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_20">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>80</y>
+     <width>81</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>结果输出路径:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_OutputDir">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>80</y>
+     <width>331</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_browseOutputDir">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>80</y>
+     <width>41</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>浏览</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_21">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>110</y>
+     <width>111</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>空中三角测量方法:</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox_triangulationMethod">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>110</y>
+     <width>231</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="currentIndex">
+    <number>3</number>
+   </property>
+   <item>
+    <property name="text">
+     <string>DIRECT_LINEAR_TRANSFORM</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>L1_ANGULAR</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>LINFINITY_ANGULAR</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>INVERSE_DEPTH_WEIGHTED_MIDPOINT</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QComboBox" name="comboBox_resectionMethod">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>140</y>
+     <width>231</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="currentIndex">
+    <number>3</number>
+   </property>
+   <item>
+    <property name="text">
+     <string>DLT_6POINTS</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>P3P_KE_CVPR17</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>P3P_KNEIP_CVPR11</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>P3P_NORDBERG_ECCV18</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>UP2P_KUKELOVA_ACCV10</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="label_22">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>140</y>
+     <width>111</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>计算后方交会方法:</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_OK">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>200</y>
+     <width>81</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>确定</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_CANCEL">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>200</y>
+     <width>81</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>取消</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

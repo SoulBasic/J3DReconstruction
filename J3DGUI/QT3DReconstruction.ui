@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QT3DReconstructionClass</class>
+ <widget class="QMainWindow" name="QT3DReconstructionClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1768</width>
+    <height>993</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>J3DGUI</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>J3D_GUI.ico</normaloff>J3D_GUI.ico</iconset>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QTextBrowser" name="textBrowser">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>10</y>
+      <width>521</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>71</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>输出日志</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_engine">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>10</y>
+      <width>171</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>微软雅黑</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="text">
+     <string>Engine</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>900</y>
+      <width>111</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>当前程序运行状况：</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_process">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>900</y>
+      <width>391</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>微软雅黑</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>等待任务</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QProgressBar" name="progressBar">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>900</y>
+      <width>741</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="value">
+     <number>0</number>
+    </property>
+   </widget>
+   <widget class="j3dviewer" name="J3DViewerWidget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>40</y>
+      <width>1660</width>
+      <height>830</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1768</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>三维重建</string>
+    </property>
+    <addaction name="actionMatchFeature"/>
+    <addaction name="actionSFM"/>
+    <addaction name="actionDenseCloud"/>
+    <addaction name="action_reconstrctMesh"/>
+   </widget>
+   <widget class="QMenu" name="menu_3">
+    <property name="title">
+     <string>文件</string>
+    </property>
+    <addaction name="action_viewMVS"/>
+    <addaction name="action_viewPLY"/>
+    <addaction name="action_addSensorWidth"/>
+   </widget>
+   <addaction name="menu_3"/>
+   <addaction name="menu_2"/>
+  </widget>
+  <action name="actionMatchFeature">
+   <property name="text">
+    <string>特征匹配</string>
+   </property>
+  </action>
+  <action name="actionSFM">
+   <property name="text">
+    <string>SFM</string>
+   </property>
+  </action>
+  <action name="actionDenseCloud">
+   <property name="text">
+    <string>密集点云生成</string>
+   </property>
+  </action>
+  <action name="action_viewMVS">
+   <property name="text">
+    <string>预览稀疏点云(MVS)</string>
+   </property>
+   <property name="visible">
+    <bool>false</bool>
+   </property>
+  </action>
+  <action name="action_addSensorWidth">
+   <property name="text">
+    <string>添加相机传感器参数</string>
+   </property>
+  </action>
+  <action name="action_viewPLY">
+   <property name="text">
+    <string>打开PLY文件</string>
+   </property>
+  </action>
+  <action name="action_reconstrctMesh">
+   <property name="text">
+    <string>三角网模型重建</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>j3dviewer</class>
+   <extends>QWidget</extends>
+   <header location="global">j3dviewer.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+ <slots>
+  <slot>btn_onclick()</slot>
+ </slots>
+</ui>
