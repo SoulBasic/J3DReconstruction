@@ -9,6 +9,7 @@
 #include "Global.h"
 #include <qfiledialog.h>
 #include <direct.h>
+#include <math.h>
 
 namespace Ui {
 class Dialog_MatchFeature;

@@ -25,6 +25,9 @@ void Dialog_MatchFeature::on_btn_OK_clicked()
 	else
 		Global::connectEngine();
 
+	
+
+
 	if (ui->lineEdit_kMatrix->text() == "")
 	{
 		if (QMessageBox::warning(this, "未输入本征矩阵 ", "忽略本征矩阵参数 ", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) != QMessageBox::Yes)

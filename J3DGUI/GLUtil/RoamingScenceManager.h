@@ -3,7 +3,12 @@
 #include "Position3D.h"
 #include "Matrix4D.h"
 #include "GL/glew.h"
+#include "GLFW/glfw3.h"
 #include "GLUT.H"
+#include "lpng/png.h"
+#include "zlib/zlib.h"
+#include <stdarg.h>
+#include <math.h>
 #ifndef ROAMINGSCENCEMANAGER_H
 #define ROAMINGSCENCEMANAGER_H
 
@@ -14,7 +19,8 @@ class RoamingScenceManager
 public:
     RoamingScenceManager();
     ~RoamingScenceManager();
-
+	GLuint read_png_file(const char* file_name);
+	void initPng(const char* fileName);
     void init();
     void render();
     void executeRotateOperation(int x, int y);

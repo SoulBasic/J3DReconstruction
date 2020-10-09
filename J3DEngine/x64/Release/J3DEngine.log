@@ -1,0 +1,364 @@
+﻿  Global.cpp
+  transtest.cpp
+C:\openMVS\openMVG\src\openMVG/image/sample.hpp(403): warning C4244: “return”: 从“const openMVG::image::RealPixel<float>::real_type”转换到“openMVG::image::RealPixel<float>::base_type”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/geodesy/geodesy.hpp(94): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/geodesy/geodesy.hpp(94): warning C4244: “初始化”: 从“double”转换到“const int”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/image/image_filtering.hpp(320): warning C4244: “初始化”: 从“double”转换到“size_t”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/features/sift/sift_DescriptorExtractor.hpp(135): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/features/sift/sift_DescriptorExtractor.hpp(135): warning C4267: “初始化”: 从“size_t”转换到“const int”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/features/sift/sift_DescriptorExtractor.hpp(166): warning C4305: “+=”: 从“double”到“float”截断
+C:\openMVS\openMVG\src\openMVG/features/sift/sift_DescriptorExtractor.hpp(174): warning C4305: “-=”: 从“double”到“float”截断
+C:\openMVS\openMVG\src\openMVG/features/sift/sift_DescriptorExtractor.hpp(219): warning C4305: “参数”: 从“double”到“float”截断
+C:\openMVS\openMVG\src\openMVG/features/sift/sift_KeypointExtractor.hpp(97): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/features/sift/sift_KeypointExtractor.hpp(97): warning C4267: “初始化”: 从“size_t”转换到“const int”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/features/sift/sift_KeypointExtractor.hpp(131): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/features/sift/sift_KeypointExtractor.hpp(135): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/features/sift/sift_KeypointExtractor.hpp(136): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/features/sift/sift_KeypointExtractor.hpp(137): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/features/sift/sift_KeypointExtractor.hpp(138): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/features/sift/sift_KeypointExtractor.hpp(139): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/features/sift/sift_KeypointExtractor.hpp(140): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/features/sift/sift_KeypointExtractor.hpp(141): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/features/sift/sift_KeypointExtractor.hpp(142): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/features/sift/sift_KeypointExtractor.hpp(144): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/features/sift/sift_KeypointExtractor.hpp(145): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/features/sift/sift_KeypointExtractor.hpp(146): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/features/sift/sift_KeypointExtractor.hpp(147): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/features/sift/sift_KeypointExtractor.hpp(148): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/features/sift/sift_KeypointExtractor.hpp(149): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/features/sift/sift_KeypointExtractor.hpp(150): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/features/sift/sift_KeypointExtractor.hpp(151): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/features/sift/sift_KeypointExtractor.hpp(152): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/features/sift/sift_KeypointExtractor.hpp(154): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/features/sift/sift_KeypointExtractor.hpp(155): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/features/sift/sift_KeypointExtractor.hpp(156): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/features/sift/sift_KeypointExtractor.hpp(157): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/features/sift/sift_KeypointExtractor.hpp(158): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/features/sift/sift_KeypointExtractor.hpp(159): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/features/sift/sift_KeypointExtractor.hpp(160): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/features/sift/sift_KeypointExtractor.hpp(161): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/features/sift/sift_KeypointExtractor.hpp(162): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/features/sift/sift_KeypointExtractor.hpp(203): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/features/sift/sift_KeypointExtractor.hpp(203): warning C4267: “初始化”: 从“size_t”转换到“const int”，可能丢失数据
+e:\work\jwl3d\j3dengine\PresetConfigureImages.h(234): warning C4267: “参数”: 从“size_t”转换到“unsigned long”，可能丢失数据
+e:\work\jwl3d\j3dengine\PresetConfigureImages.h(357): warning C4267: “参数”: 从“size_t”转换到“openMVG::IndexT”，可能丢失数据
+e:\work\jwl3d\j3dengine\PresetConfigureImages.h(384): warning C4267: “参数”: 从“size_t”转换到“openMVG::IndexT”，可能丢失数据
+e:\work\jwl3d\j3dengine\PresetConfigureImages.h(548): warning C4267: “参数”: 从“size_t”转换到“unsigned long”，可能丢失数据
+C:\openMVS\openMVG\src\third_party\lemon\lemon/list_graph.h(104): warning C4267: “return”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\third_party\lemon\lemon/list_graph.h(105): warning C4267: “return”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\third_party\lemon\lemon/list_graph.h(175): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\third_party\lemon\lemon/list_graph.h(196): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\third_party\lemon\lemon/list_graph.h(585): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\third_party\lemon\lemon/list_graph.h(604): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\third_party\lemon\lemon/list_graph.h(635): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\third_party\lemon\lemon/list_graph.h(654): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\third_party\lemon\lemon/list_graph.h(874): warning C4267: “return”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\third_party\lemon\lemon/list_graph.h(875): warning C4267: “return”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\third_party\lemon\lemon/list_graph.h(876): warning C4267: “return”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\third_party\lemon\lemon/list_graph.h(1025): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\third_party\lemon\lemon/list_graph.h(1046): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\third_party\lemon\lemon/list_graph.h(1397): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\third_party\lemon\lemon/list_graph.h(1416): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\third_party\lemon\lemon/list_graph.h(1447): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\third_party\lemon\lemon/list_graph.h(1466): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\third_party\lemon\lemon/list_graph.h(1722): warning C4267: “return”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\third_party\lemon\lemon/list_graph.h(1725): warning C4267: “return”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\third_party\lemon\lemon/list_graph.h(1726): warning C4267: “return”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\third_party\lemon\lemon/list_graph.h(1897): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\third_party\lemon\lemon/list_graph.h(1925): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\third_party\lemon\lemon/list_graph.h(1953): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\third_party\lemon\lemon/list_graph.h(2302): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\third_party\lemon\lemon/list_graph.h(2321): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\third_party\lemon\lemon/list_graph.h(2352): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\third_party\lemon\lemon/list_graph.h(2371): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/sfm/pipelines/sfm_features_provider.hpp(42): warning C4267: “参数”: 从“size_t”转换到“unsigned long”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/sfm/pipelines/sfm_regions_provider.hpp(99): warning C4267: “参数”: 从“size_t”转换到“unsigned long”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/matching_image_collection/Pair_Builder.hpp(66): warning C4267: “初始化”: 从“size_t”转换到“openMVG::IndexT”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/matching_image_collection/Pair_Builder.hpp(66): warning C4267: “初始化”: 从“size_t”转换到“const openMVG::IndexT”，可能丢失数据
+e:\work\jwl3d\j3dengine\MatchImages.h(398): warning C4267: “参数”: 从“size_t”转换到“const int”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/tracks/tracks.hpp(105): warning C4267: “参数”: 从“size_t”转换到“const unsigned int”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/tracks/tracks.hpp(369): warning C4267: “参数”: 从“size_t”转换到“const unsigned int”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/tracks/tracks.hpp(389): warning C4267: “参数”: 从“size_t”转换到“const unsigned int”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/tracks/tracks.hpp(391): warning C4267: “参数”: 从“size_t”转换到“const unsigned int”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/tracks/tracks.hpp(395): warning C4267: “参数”: 从“size_t”转换到“const unsigned int”，可能丢失数据
+e:\work\jwl3d\j3dengine\ExportSparseCloud.h(82): warning C4267: “=”: 从“size_t”转换到“unsigned int”，可能丢失数据
+e:\work\jwl3d\j3dengine\ExportSparseCloud.h(97): warning C4267: “=”: 从“size_t”转换到“uint32_t”，可能丢失数据
+e:\work\jwl3d\j3dengine\ExportSparseCloud.h(115): warning C4267: “参数”: 从“size_t”转换到“unsigned long”，可能丢失数据
+e:\work\jwl3d\j3dengine\ExportSparseCloud.h(169): warning C4101: “e”: 未引用的局部变量
+C:\openMVS\openMVG\src\openMVG/robust_estimation/guided_matching.hpp(219): warning C4267: “参数”: 从“size_t”转换到“const openMVG::IndexT”，可能丢失数据
+  C:\openMVS\openMVG\src\openMVG/matching_image_collection/F_ACRobust.hpp(148): note: 参见对正在编译的函数 模板 实例化“void openMVG::geometry_aware::GuidedMatching<openMVG::Mat3,openMVG::fundamental::kernel::EpipolarDistanceError>(const ModelArg &,const openMVG::cameras::IntrinsicBase *,const openMVG::features::Regions &,const openMVG::cameras::IntrinsicBase *,const openMVG::features::Regions &,double,double,openMVG::matching::IndMatches &)”的引用
+          with
+          [
+              ModelArg=openMVG::Mat3
+          ]
+C:\openMVS\openMVG\src\openMVG/robust_estimation/guided_matching.hpp(43): warning C4018: “<”: 有符号/无符号不匹配
+  C:\openMVS\openMVG\src\openMVG/matching_image_collection/H_ACRobust.hpp(179): note: 参见对正在编译的函数 模板 实例化“void openMVG::geometry_aware::GuidedMatching<openMVG::Mat3,openMVG::homography::kernel::AsymmetricError>(const ModelArg &,const openMVG::Mat &,const openMVG::Mat &,double,openMVG::matching::IndMatches &)”的引用
+          with
+          [
+              ModelArg=openMVG::Mat3
+          ]
+C:\openMVS\openMVG\src\openMVG/robust_estimation/guided_matching.hpp(47): warning C4018: “<”: 有符号/无符号不匹配
+C:\openMVS\openMVG\src\openMVG/robust_estimation/guided_matching.hpp(55): warning C4267: “参数”: 从“size_t”转换到“const openMVG::IndexT”，可能丢失数据
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\include\utility(174): warning C4267: “初始化”: 从“size_t”转换到“_Ty1”，可能丢失数据
+          with
+          [
+              _Ty1=openMVG::IndexT
+          ]
+  C:\openMVS\openMVG\src\openMVG/matching/pairwiseAdjacencyDisplay.hpp(45): note: 参见对正在编译的函数 模板 实例化“std::pair<openMVG::IndexT,openMVG::IndexT>::pair<size_t&,size_t&,0>(_Other1,_Other2) noexcept”的引用
+          with
+          [
+              _Other1=size_t &,
+              _Other2=size_t &
+          ]
+  C:\openMVS\openMVG\src\openMVG/matching/pairwiseAdjacencyDisplay.hpp(45): note: 参见对正在编译的函数 模板 实例化“std::pair<openMVG::IndexT,openMVG::IndexT>::pair<size_t&,size_t&,0>(_Other1,_Other2) noexcept”的引用
+          with
+          [
+              _Other1=size_t &,
+              _Other2=size_t &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\include\utility(174): warning C4267: “初始化”: 从“size_t”转换到“_Ty2”，可能丢失数据
+          with
+          [
+              _Ty2=openMVG::IndexT
+          ]
+C:\openMVS\openMVG\src\openMVG/matching_image_collection/GeometricFilter.hpp(78): warning C4267: “参数”: 从“size_t”转换到“unsigned long”，可能丢失数据
+  e:\work\jwl3d\j3dengine\MatchImages.h(326): note: 参见对正在编译的函数 模板 实例化“void openMVG::matching_image_collection::ImageCollectionGeometricFilter::Robust_model_estimation<openMVG::matching_image_collection::GeometricFilter_HMatrix_AC>(const GeometryFunctor &,const openMVG::matching::PairWiseMatches &,const bool,const double,C_Progress *)”的引用
+          with
+          [
+              GeometryFunctor=openMVG::matching_image_collection::GeometricFilter_HMatrix_AC
+          ]
+C:\openMVS\openMVG\src\openMVG/cameras/Camera_undistort_image.hpp(56): warning C4244: “参数”: 从“const double”转换到“int”，可能丢失数据
+  e:\work\jwl3d\j3dengine\ExportSparseCloud.h(154): note: 参见对正在编译的函数 模板 实例化“void openMVG::cameras::UndistortImage<openMVG::image::Image<openMVG::image::RGBColor>>(const Image &,const openMVG::cameras::IntrinsicBase *,Image &,openMVG::image::Rgb<unsigned char>)”的引用
+          with
+          [
+              Image=openMVG::image::Image<openMVG::image::RGBColor>
+          ]
+C:\openMVS\openMVG\src\openMVG/cameras/Camera_undistort_image.hpp(58): warning C4244: “参数”: 从“const double”转换到“const float”，可能丢失数据
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\include\memory(1801): warning C4244: “参数”: 从“double”转换到“unsigned int”，可能丢失数据
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\include\memory(1866): note: 参见对正在编译的函数 模板 实例化“std::_Ref_count_obj<_Ty>::_Ref_count_obj<double&,double&,double&,double&,double&>(double &,double &,double &,double &,double &)”的引用
+          with
+          [
+              _Ty=openMVG::cameras::Pinhole_Intrinsic
+          ]
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\include\memory(1866): note: 参见对正在编译的函数 模板 实例化“std::_Ref_count_obj<_Ty>::_Ref_count_obj<double&,double&,double&,double&,double&>(double &,double &,double &,double &,double &)”的引用
+          with
+          [
+              _Ty=openMVG::cameras::Pinhole_Intrinsic
+          ]
+  e:\work\jwl3d\j3dengine\PresetConfigureImages.h(326): note: 参见对正在编译的函数 模板 实例化“std::shared_ptr<openMVG::cameras::Pinhole_Intrinsic> std::make_shared<openMVG::cameras::Pinhole_Intrinsic,double&,double&,double&,double&,double&>(double &,double &,double &,double &,double &)”的引用
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\include\memory(1801): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\include\memory(1866): note: 参见对正在编译的函数 模板 实例化“std::_Ref_count_obj<_Ty>::_Ref_count_obj<double&,double&,double&,double&,double&,double>(double &,double &,double &,double &,double &,double &&)”的引用
+          with
+          [
+              _Ty=openMVG::cameras::Pinhole_Intrinsic_Radial_K1
+          ]
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\include\memory(1866): note: 参见对正在编译的函数 模板 实例化“std::_Ref_count_obj<_Ty>::_Ref_count_obj<double&,double&,double&,double&,double&,double>(double &,double &,double &,double &,double &,double &&)”的引用
+          with
+          [
+              _Ty=openMVG::cameras::Pinhole_Intrinsic_Radial_K1
+          ]
+  e:\work\jwl3d\j3dengine\PresetConfigureImages.h(330): note: 参见对正在编译的函数 模板 实例化“std::shared_ptr<openMVG::cameras::Pinhole_Intrinsic_Radial_K1> std::make_shared<openMVG::cameras::Pinhole_Intrinsic_Radial_K1,double&,double&,double&,double&,double&,double>(double &,double &,double &,double &,double &,double &&)”的引用
+C:\openMVS\openMVG\src\openMVG/matching_image_collection/E_ACRobust_Angular.hpp(118): warning C4267: “参数”: 从“size_t”转换到“const unsigned int”，可能丢失数据
+  C:\openMVS\openMVG\src\openMVG/matching_image_collection/GeometricFilter.hpp(102): note: 参见对正在编译的函数 模板 实例化“bool openMVG::matching_image_collection::GeometricFilter_ESphericalMatrix_AC_Angular<false>::Robust_estimation<openMVG::sfm::Regions_Provider>(const openMVG::sfm::SfM_Data *,const std::shared_ptr<openMVG::sfm::Regions_Provider> &,const openMVG::Pair,const openMVG::matching::IndMatches &,openMVG::matching::IndMatches &)”的引用
+  C:\openMVS\openMVG\src\openMVG/matching_image_collection/GeometricFilter.hpp(97): note: 参见对正在编译的函数 模板 实例化“bool openMVG::matching_image_collection::GeometricFilter_ESphericalMatrix_AC_Angular<false>::Robust_estimation<openMVG::sfm::Regions_Provider>(const openMVG::sfm::SfM_Data *,const std::shared_ptr<openMVG::sfm::Regions_Provider> &,const openMVG::Pair,const openMVG::matching::IndMatches &,openMVG::matching::IndMatches &)”的引用
+  e:\work\jwl3d\j3dengine\MatchImages.h(365): note: 参见对正在编译的函数 模板 实例化“void openMVG::matching_image_collection::ImageCollectionGeometricFilter::Robust_model_estimation<openMVG::matching_image_collection::GeometricFilter_ESphericalMatrix_AC_Angular<false>>(const GeometryFunctor &,const openMVG::matching::PairWiseMatches &,const bool,const double,C_Progress *)”的引用
+          with
+          [
+              GeometryFunctor=openMVG::matching_image_collection::GeometricFilter_ESphericalMatrix_AC_Angular<false>
+          ]
+C:\openMVS\openMVG\src\openMVG/matching/metric_hamming.hpp(86): warning C4267: “+=”: 从“size_t”转换到“openMVG::matching::Hamming<unsigned char>::ResultType”，可能丢失数据
+  C:\openMVS\openMVG\src\openMVG/matching/metric_hamming.hpp(99): note: 参见对正在编译的函数 模板 实例化“openMVG::matching::Hamming<unsigned char>::ResultType openMVG::matching::Hamming<unsigned char>::popcntLoop<uint64_t>(const U *,const U *,size_t) const”的引用
+          with
+          [
+              U=uint64_t
+          ]
+  C:\openMVS\openMVG\src\openMVG/matching/metric_hamming.hpp(99): note: 参见对正在编译的函数 模板 实例化“openMVG::matching::Hamming<unsigned char>::ResultType openMVG::matching::Hamming<unsigned char>::popcntLoop<uint64_t>(const U *,const U *,size_t) const”的引用
+          with
+          [
+              U=uint64_t
+          ]
+  C:\openMVS\openMVG\src\openMVG/features/binary_regions.hpp(117): note: 参见对正在编译的函数 模板 实例化“openMVG::matching::Hamming<unsigned char>::ResultType openMVG::matching::Hamming<unsigned char>::operator ()<const unsigned char*,const unsigned char*>(Iterator1,Iterator2,size_t) const”的引用
+          with
+          [
+              Iterator1=const unsigned char *,
+              Iterator2=const unsigned char *
+          ]
+  C:\openMVS\openMVG\src\openMVG/features/binary_regions.hpp(117): note: 参见对正在编译的函数 模板 实例化“openMVG::matching::Hamming<unsigned char>::ResultType openMVG::matching::Hamming<unsigned char>::operator ()<const unsigned char*,const unsigned char*>(Iterator1,Iterator2,size_t) const”的引用
+          with
+          [
+              Iterator1=const unsigned char *,
+              Iterator2=const unsigned char *
+          ]
+  C:\openMVS\openMVG\src\openMVG/features/binary_regions.hpp(109): note: 编译 类 模板 成员函数 "double openMVG::features::Binary_Regions<openMVG::features::SIOPointFeature,64>::SquaredDescriptorDistance(size_t,const openMVG::features::Regions *,size_t) const" 时
+  C:\openMVS\openMVG\src\openMVG/features/regions_factory.hpp(34): note: 参见对正在编译的 类 模板 实例化 "openMVG::features::Binary_Regions<openMVG::features::SIOPointFeature,64>" 的引用
+C:\openMVS\openMVG\src\openMVG/robust_estimation/robust_estimator_ACRansac.hpp(338): warning C4267: “初始化”: 从“size_t”转换到“unsigned int”，可能丢失数据
+  C:\openMVS\openMVG\src\openMVG/matching_image_collection/H_ACRobust.hpp(95): note: 参见对正在编译的函数 模板 实例化“std::pair<double,double> openMVG::robust::ACRANSAC<KernelType>(const Kernel &,std::vector<unsigned int,std::allocator<_Ty>> &,const unsigned int,Eigen::Matrix<double,3,3,0,3,3> *,double,bool)”的引用
+          with
+          [
+              Kernel=KernelType,
+              _Ty=uint32_t
+          ]
+  C:\openMVS\openMVG\src\openMVG/matching_image_collection/GeometricFilter.hpp(102): note: 参见对正在编译的函数 模板 实例化“bool openMVG::matching_image_collection::GeometricFilter_HMatrix_AC::Robust_estimation<openMVG::sfm::Regions_Provider>(const openMVG::sfm::SfM_Data *,const std::shared_ptr<openMVG::sfm::Regions_Provider> &,const openMVG::Pair,const openMVG::matching::IndMatches &,openMVG::matching::IndMatches &)”的引用
+  e:\work\jwl3d\j3dengine\MatchImages.h(326): note: 参见对正在编译的函数 模板 实例化“void openMVG::matching_image_collection::ImageCollectionGeometricFilter::Robust_model_estimation<openMVG::matching_image_collection::GeometricFilter_HMatrix_AC>(const GeometryFunctor &,const openMVG::matching::PairWiseMatches &,const bool,const double,C_Progress *)”的引用
+          with
+          [
+              GeometryFunctor=openMVG::matching_image_collection::GeometricFilter_HMatrix_AC
+          ]
+C:\openMVS\openMVG\src\openMVG/robust_estimation/robust_estimator_ACRansac.hpp(338): warning C4267: “初始化”: 从“size_t”转换到“const unsigned int”，可能丢失数据
+C:\openMVS\openMVG\src\openMVG/robust_estimation/robust_estimator_ACRansac.hpp(446): warning C4018: “>”: 有符号/无符号不匹配
+C:\openMVS\openMVG\src\openMVG/robust_estimation/robust_estimator_ACRansac.hpp(141): warning C4267: “参数”: 从“size_t”转换到“uint32_t”，可能丢失数据
+  C:\openMVS\openMVG\src\openMVG/robust_estimation/robust_estimator_ACRansac.hpp(129): note: 编译 类 模板 成员函数 "openMVG::robust::acransac_nfa_internal::NFA_Interface<Kernel>::NFA_Interface(const Kernel &,const double,const bool)" 时
+          with
+          [
+              Kernel=KernelType
+          ]
+  C:\openMVS\openMVG\src\openMVG/robust_estimation/robust_estimator_ACRansac.hpp(357): note: 参见对正在编译的函数 模板 实例化“openMVG::robust::acransac_nfa_internal::NFA_Interface<Kernel>::NFA_Interface(const Kernel &,const double,const bool)”的引用
+          with
+          [
+              Kernel=KernelType
+          ]
+  C:\openMVS\openMVG\src\openMVG/robust_estimation/robust_estimator_ACRansac.hpp(357): note: 参见对正在编译的 类 模板 实例化 "openMVG::robust::acransac_nfa_internal::NFA_Interface<Kernel>" 的引用
+          with
+          [
+              Kernel=KernelType
+          ]
+  C:\openMVS\openMVG\src\openMVG/matching_image_collection/E_ACRobust_Angular.hpp(118): note: 参见对正在编译的函数 模板 实例化“std::pair<double,double> openMVG::robust::ACRANSAC<KernelType>(const Kernel &,std::vector<unsigned int,std::allocator<_Ty>> &,const unsigned int,Eigen::Matrix<double,3,3,0,3,3> *,double,bool)”的引用
+          with
+          [
+              Kernel=KernelType,
+              _Ty=uint32_t
+          ]
+C:\openMVS\openMVG\src\openMVG/robust_estimation/robust_estimator_ACRansac.hpp(224): warning C4267: “+=”: 从“size_t”转换到“unsigned int”，可能丢失数据
+  C:\openMVS\openMVG\src\openMVG/robust_estimation/robust_estimator_ACRansac.hpp(197): note: 编译 类 模板 成员函数 "bool openMVG::robust::acransac_nfa_internal::NFA_Interface<Kernel>::ComputeNFA_and_inliers(std::vector<unsigned int,std::allocator<_Ty>> &,std::pair<double,double> &)" 时
+          with
+          [
+              Kernel=KernelType,
+              _Ty=uint32_t
+          ]
+  C:\openMVS\openMVG\src\openMVG/robust_estimation/robust_estimator_ACRansac.hpp(419): note: 参见对正在编译的函数 模板 实例化“bool openMVG::robust::acransac_nfa_internal::NFA_Interface<Kernel>::ComputeNFA_and_inliers(std::vector<unsigned int,std::allocator<_Ty>> &,std::pair<double,double> &)”的引用
+          with
+          [
+              Kernel=KernelType,
+              _Ty=uint32_t
+          ]
+C:\openMVS\openMVG\src\openMVG/robust_estimation/rand_sampling.hpp(86): warning C4267: “初始化”: 从“size_t”转换到“SamplingType”，可能丢失数据
+          with
+          [
+              SamplingType=uint32_t
+          ]
+  C:\openMVS\openMVG\src\openMVG/robust_estimation/robust_estimator_ACRansac.hpp(386): note: 参见对正在编译的函数 模板 实例化“bool openMVG::robust::UniformSample<unsigned int,std::mt19937,uint32_t>(const size_t,RandomGeneratorT &,std::vector<unsigned int,std::allocator<_Ty>> *,std::vector<_Ty,std::allocator<_Ty>> *)”的引用
+          with
+          [
+              RandomGeneratorT=std::mt19937,
+              _Ty=uint32_t
+          ]
+C:\openMVS\openMVG\src\openMVG/robust_estimation/rand_sampling.hpp(86): warning C4267: “初始化”: 从“size_t”转换到“const SamplingType”，可能丢失数据
+          with
+          [
+              SamplingType=uint32_t
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\include\utility(241): warning C4267: “初始化”: 从“size_t”转换到“_Ty2”，可能丢失数据
+          with
+          [
+              _Ty2=uint32_t
+          ]
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\include\xmemory0(881): note: 参见对正在编译的函数 模板 实例化“std::pair<const _Kty,_Ty>::pair<unsigned int,unsigned __int64,0>(std::pair<unsigned int,unsigned __int64> &&) noexcept”的引用
+          with
+          [
+              _Kty=uint32_t,
+              _Ty=uint32_t
+          ]
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\include\xmemory0(881): note: 参见对正在编译的函数 模板 实例化“std::pair<const _Kty,_Ty>::pair<unsigned int,unsigned __int64,0>(std::pair<unsigned int,unsigned __int64> &&) noexcept”的引用
+          with
+          [
+              _Kty=uint32_t,
+              _Ty=uint32_t
+          ]
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\include\xtree(984): note: 参见对正在编译的函数 模板 实例化“void std::_Default_allocator_traits<_Alloc>::construct<_Ty,std::pair<unsigned int,unsigned __int64>>(_Alloc &,_Objty *const ,std::pair<unsigned int,unsigned __int64> &&)”的引用
+          with
+          [
+              _Alloc=std::allocator<std::_Tree_node<std::pair<const uint32_t,uint32_t>,std::_Default_allocator_traits<std::allocator<std::pair<const uint32_t,uint32_t>>>::void_pointer>>,
+              _Ty=std::pair<const uint32_t,uint32_t>,
+              _Objty=std::pair<const uint32_t,uint32_t>
+          ]
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\include\xtree(983): note: 参见对正在编译的函数 模板 实例化“void std::_Default_allocator_traits<_Alloc>::construct<_Ty,std::pair<unsigned int,unsigned __int64>>(_Alloc &,_Objty *const ,std::pair<unsigned int,unsigned __int64> &&)”的引用
+          with
+          [
+              _Alloc=std::allocator<std::_Tree_node<std::pair<const uint32_t,uint32_t>,std::_Default_allocator_traits<std::allocator<std::pair<const uint32_t,uint32_t>>>::void_pointer>>,
+              _Ty=std::pair<const uint32_t,uint32_t>,
+              _Objty=std::pair<const uint32_t,uint32_t>
+          ]
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\include\xtree(1155): note: 参见对正在编译的函数 模板 实例化“std::_Tree_node<_Ty,std::_Default_allocator_traits<_Alloc>::void_pointer> *std::_Tree_comp_alloc<_Traits>::_Buynode<std::pair<unsigned int,unsigned __int64>>(std::pair<unsigned int,unsigned __int64> &&)”的引用
+          with
+          [
+              _Ty=std::pair<const uint32_t,uint32_t>,
+              _Alloc=std::allocator<std::pair<const uint32_t,uint32_t>>,
+              _Traits=std::_Tmap_traits<uint32_t,uint32_t,std::less<openMVG::IndexT>,std::allocator<std::pair<const uint32_t,uint32_t>>,false>
+          ]
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\include\xtree(1155): note: 参见对正在编译的函数 模板 实例化“std::_Tree_node<_Ty,std::_Default_allocator_traits<_Alloc>::void_pointer> *std::_Tree_comp_alloc<_Traits>::_Buynode<std::pair<unsigned int,unsigned __int64>>(std::pair<unsigned int,unsigned __int64> &&)”的引用
+          with
+          [
+              _Ty=std::pair<const uint32_t,uint32_t>,
+              _Alloc=std::allocator<std::pair<const uint32_t,uint32_t>>,
+              _Traits=std::_Tmap_traits<uint32_t,uint32_t,std::less<openMVG::IndexT>,std::allocator<std::pair<const uint32_t,uint32_t>>,false>
+          ]
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\include\map(213): note: 参见对正在编译的函数 模板 实例化“std::pair<std::_Tree_iterator<std::_Tree_val<std::_Tree_simple_types<_Ty>>>,bool> std::_Tree<std::_Tmap_traits<_Kty,unsigned int,_Pr,_Alloc,false>>::emplace<std::pair<unsigned int,unsigned __int64>>(std::pair<unsigned int,unsigned __int64> &&)”的引用
+          with
+          [
+              _Ty=std::pair<const uint32_t,uint32_t>,
+              _Kty=uint32_t,
+              _Pr=std::less<openMVG::IndexT>,
+              _Alloc=std::allocator<std::pair<const uint32_t,uint32_t>>
+          ]
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\include\map(213): note: 参见对正在编译的函数 模板 实例化“std::pair<std::_Tree_iterator<std::_Tree_val<std::_Tree_simple_types<_Ty>>>,bool> std::_Tree<std::_Tmap_traits<_Kty,unsigned int,_Pr,_Alloc,false>>::emplace<std::pair<unsigned int,unsigned __int64>>(std::pair<unsigned int,unsigned __int64> &&)”的引用
+          with
+          [
+              _Ty=std::pair<const uint32_t,uint32_t>,
+              _Kty=uint32_t,
+              _Pr=std::less<openMVG::IndexT>,
+              _Alloc=std::allocator<std::pair<const uint32_t,uint32_t>>
+          ]
+  e:\work\jwl3d\j3dengine\ExportSparseCloud.h(66): note: 参见对正在编译的函数 模板 实例化“std::pair<std::_Tree_iterator<std::_Tree_val<std::_Tree_simple_types<_Ty>>>,bool> std::map<uint32_t,uint32_t,std::less<openMVG::IndexT>,std::allocator<_Ty>>::insert<std::pair<unsigned int,unsigned __int64>,void>(_Valty &&)”的引用
+          with
+          [
+              _Ty=std::pair<const uint32_t,uint32_t>,
+              _Valty=std::pair<unsigned int,unsigned __int64>
+          ]
+  e:\work\jwl3d\j3dengine\ExportSparseCloud.h(66): note: 参见对正在编译的函数 模板 实例化“std::pair<std::_Tree_iterator<std::_Tree_val<std::_Tree_simple_types<_Ty>>>,bool> std::map<uint32_t,uint32_t,std::less<openMVG::IndexT>,std::allocator<_Ty>>::insert<std::pair<unsigned int,unsigned __int64>,void>(_Valty &&)”的引用
+          with
+          [
+              _Ty=std::pair<const uint32_t,uint32_t>,
+              _Valty=std::pair<unsigned int,unsigned __int64>
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\include\utility(174): warning C4267: “初始化”: 从“size_t”转换到“_Ty2”，可能丢失数据
+          with
+          [
+              _Ty2=uint32_t
+          ]
+  C:\openMVS\openMVG\src\openMVG/robust_estimation/robust_estimator_ACRansac.hpp(283): note: 参见对正在编译的函数 模板 实例化“std::pair<double,uint32_t>::pair<double,size_t&,0>(_Other1 &&,_Other2) noexcept”的引用
+          with
+          [
+              _Other1=double,
+              _Other2=size_t &
+          ]
+  C:\openMVS\openMVG\src\openMVG/robust_estimation/robust_estimator_ACRansac.hpp(280): note: 参见对正在编译的函数 模板 实例化“std::pair<double,uint32_t>::pair<double,size_t&,0>(_Other1 &&,_Other2) noexcept”的引用
+          with
+          [
+              _Other1=double,
+              _Other2=size_t &
+          ]
+  C:\openMVS\openMVG\src\openMVG/robust_estimation/robust_estimator_ACRansac.hpp(197): note: 编译 类 模板 成员函数 "bool openMVG::robust::acransac_nfa_internal::NFA_Interface<Kernel>::ComputeNFA_and_inliers(std::vector<unsigned int,std::allocator<_Ty>> &,std::pair<double,double> &)" 时
+          with
+          [
+              Kernel=KernelType,
+              _Ty=uint32_t
+          ]
+  C:\openMVS\openMVG\src\openMVG/robust_estimation/robust_estimator_ACRansac.hpp(419): note: 参见对正在编译的函数 模板 实例化“bool openMVG::robust::acransac_nfa_internal::NFA_Interface<Kernel>::ComputeNFA_and_inliers(std::vector<unsigned int,std::allocator<_Ty>> &,std::pair<double,double> &)”的引用
+          with
+          [
+              Kernel=KernelType,
+              _Ty=uint32_t
+          ]
+  正在生成代码...
+    正在创建库 C:/openMVS/build/openMVG/Windows-AMD64-Release/Release/openMVG_main_ComputeMatches.lib 和对象 C:/openMVS/build/openMVG/Windows-AMD64-Release/Release/openMVG_main_ComputeMatches.exp
+  J3DEngine.vcxproj -> E:\Work\JWL3D\x64\Release\J3DEngine.exe

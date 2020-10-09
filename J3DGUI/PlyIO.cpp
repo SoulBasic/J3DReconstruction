@@ -1,13 +1,21 @@
 #include "PlyIO.h"
 
 PlyIO::PlyIO(char* fileName) {
+	this->vertex_N = 0;
+	this->face_N = 0;
 	this->fileName = fileName;
 	this->type = getPlyFileType();
 	this->available = false;
+	this->textureFileName = "";
+	std::string fn(fileName);
+	fn = fn.substr(0, fn.find_last_of('/'));
+	this->workDir = fn;
+
 }
 PlyIO::~PlyIO() {
-	delete fileName;
-
+	cout <<"vertexN=" <<this->vertex_N;
+	if (this->vertex_N > 0) { delete[] vertex; }
+	if (this->face_N > 0) { delete[] faces; }
 }
 
 int PlyIO::getPlyFileType()
@@ -62,6 +70,8 @@ int PlyIO::getTypeBytesLength(std::string type) {
 		return 2;
 	else if (type == "int32")
 		return 4;
+	else if (type == "int")
+		return 4;
 	else if (type == "uint32")
 		return 8;
 	else if (type == "float")
@@ -84,9 +94,14 @@ bool PlyIO::readHeaderRB() {
 	if (readValueRB() != "ply")
 		return false;
 	std::string value = "";
+
 	do {
 		value = readValueRB();
+		if (value == "TextureFile") {
+			this->textureFileName = this->workDir + "/" + readValueRB();
+		}
 	} while (value != "element");
+
 	readValueRB();
 	value = readValueRB();
 	this->vertex_N = atoi(value.c_str());
@@ -113,10 +128,11 @@ bool PlyIO::readHeaderRB() {
 			length = getTypeBytesLength(readValueRB());
 			if (length != -1)
 				face_types.push_back(length);
+
+
 		} while (length != -1);
-		value = readValueRB();
-		if (value == "end_header")
-			return true;
+		while ("end_header" != readValueRB()) {}
+		return true;
 	}
 	return false;
 }
@@ -324,6 +340,7 @@ bool PlyIO::open()
 			vertex[i].x = p[0];
 			vertex[i].y = p[1];
 			vertex[i].z = p[2];
+			
 			if (haveColors) {
 				vertex[i].r = ((float)k[0]) / 255;
 				vertex[i].g = ((float)k[1]) / 255;
@@ -332,24 +349,46 @@ bool PlyIO::open()
 			}
 
 		}
+		delete[] p;
 		int dummy;
 		int indexs[3];
+		float uvs[6] = { 0,0,0,0,0,0 };
 		indexs[0] = 0;
 		indexs[1] = 0;
 		indexs[2] = 0;
-		for (int i = 0; i < face_N; i++) {
+		//if (this->textureFileName != "") {
+		//	std::string t = this->workDir + "/" + this->textureFileName;
+		//	CreateTextureFromPng(t.c_str());
+		//}
+		for (int i = 0; i < face_N; i++) 
+		{
 			fread((void*)(&dummy), 1, 1, file);
 
 			for (int j = 0; j < 3; j++) {
 				fread((void*)(&indexs[j]), 4, 1, file);
 			}
+
 			faces[i].v1 = indexs[0];
 			faces[i].v2 = indexs[1];
 			faces[i].v3 = indexs[2];
+
+			if (this->textureFileName != "") {
+				fread((void*)(&dummy), 1, 1, file);
+				for (int t = 0; t < 6; t++) {
+					fread((void*)(&uvs[t]), 4, 1, file);
+				}
+				vertex[indexs[0]].u = uvs[0];
+				vertex[indexs[0]].u = uvs[1];
+				vertex[indexs[1]].u = uvs[2];
+				vertex[indexs[1]].u = uvs[3];
+				vertex[indexs[2]].u = uvs[4];
+				vertex[indexs[2]].u = uvs[5];
+			}
+
 			calculateNormal(faces[i]);
 			//qDebug("法向量：%f %f %f", faces[i].normal[0], faces[i].normal[1], faces[i].normal[2]);
 		}
-
+		fclose(file);
 	}
 	else
 	{
@@ -358,6 +397,7 @@ bool PlyIO::open()
 	}
 	std::cout << "加载完成 \n" << std::endl;
 	this->available = true;
+	
 	return true;
 
 
@@ -365,16 +405,35 @@ bool PlyIO::open()
 }
 
 GLvoid PlyIO::render() {
-
+	
 	if (face_N > 0) {
 		glBegin(GL_TRIANGLES);
-		for (int i = 0; i < face_N; i++)
-		{
-			glNormal3f(faces[i].normal[0], faces[i].normal[1], faces[i].normal[2]);
-			glVertex3f(vertex[faces[i].v1].x, vertex[faces[i].v1].y, vertex[faces[i].v1].z);
-			glVertex3f(vertex[faces[i].v2].x, vertex[faces[i].v2].y, vertex[faces[i].v2].z);
-			glVertex3f(vertex[faces[i].v3].x, vertex[faces[i].v3].y, vertex[faces[i].v3].z);
+
+		if (this->textureFileName != "") {
+			for (int i = 0; i < face_N; i++)
+			{
+				glNormal3f(faces[i].normal[0], faces[i].normal[1], faces[i].normal[2]);
+
+				glTexCoord2f(vertex[faces[i].v1].u, vertex[faces[i].v1].v);
+				glVertex3f(vertex[faces[i].v1].x, vertex[faces[i].v1].y, vertex[faces[i].v1].z);
+
+				glTexCoord2f(vertex[faces[i].v2].u, vertex[faces[i].v2].v);
+				glVertex3f(vertex[faces[i].v2].x, vertex[faces[i].v2].y, vertex[faces[i].v2].z);
+
+				glTexCoord2f(vertex[faces[i].v3].u, vertex[faces[i].v3].v);
+				glVertex3f(vertex[faces[i].v3].x, vertex[faces[i].v3].y, vertex[faces[i].v3].z);
+			}
 		}
+		else {
+			for (int i = 0; i < face_N; i++)
+			{
+				glNormal3f(faces[i].normal[0], faces[i].normal[1], faces[i].normal[2]);
+				glVertex3f(vertex[faces[i].v1].x, vertex[faces[i].v1].y, vertex[faces[i].v1].z);
+				glVertex3f(vertex[faces[i].v2].x, vertex[faces[i].v2].y, vertex[faces[i].v2].z);
+				glVertex3f(vertex[faces[i].v3].x, vertex[faces[i].v3].y, vertex[faces[i].v3].z);
+			}
+		}
+
 
 		glEnd();
 		glEnable(GL_LIGHTING);   //开关:使用光

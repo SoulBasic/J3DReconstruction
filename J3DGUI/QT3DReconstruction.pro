@@ -15,13 +15,8 @@ UI_DIR += .
 RCC_DIR += .
 include(QT3DReconstruction.pri)
 
-HEADERS += \
-    Dialog_ReconstructMesh.h \
-    j3dviewer.h
+HEADERS +=
 
-SOURCES += \
-    Dialog_ReconstructMesh.cpp \
-    j3dviewer.cpp
+SOURCES +=
 
-FORMS += \
-    dialog_reconstructmesh.ui
+FORMS +=

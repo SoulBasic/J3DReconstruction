@@ -7,13 +7,19 @@ j3dviewer::j3dviewer(QWidget *parent)
 {
 	this->setFocusPolicy(Qt::StrongFocus);
 	manager = new RoamingScenceManager();
-	ply = new PlyIO("");
-	//ply->open();
+	this->ply = Global::ply;
 }
 
 void j3dviewer::initializeGL()
 {
 	manager->init();
+
+}
+
+void j3dviewer::initializeTexture() {
+	if (this->ply->textureFileName.length() != 0) {
+		manager->initPng(this->ply->textureFileName.c_str());
+	}
 }
 
 void j3dviewer::paintGL()
@@ -63,6 +69,7 @@ void j3dviewer::wheelEvent(QWheelEvent *e)
 }
 
 
-void j3dviewer::setPly(PlyIO*ply) {
-	this->ply = ply;
+void j3dviewer::setPly() {
+	this->ply = Global::ply;
+	this->initializeTexture();
 }

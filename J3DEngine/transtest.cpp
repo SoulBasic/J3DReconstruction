@@ -6,7 +6,6 @@
 #include "MatchImages.h"
 #include "StructureFromMotion.h"
 #include "StructureFromPoses.h"
-#include "ExportDensifyCloud.h"
 #include "ExportSparseCloud.h"
 #include <algorithm>
 #include <direct.h>
@@ -48,8 +47,9 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		return;
 	}
 
-	switch (msg){
-	case CMD_MATCHFEATURES:{
+	switch (msg) 
+	{
+	case CMD_MATCHFEATURES: {
 		Global::process = PROCESSWORKING;
 		Global::saveProcess();
 		std::string imagesInputDir;
@@ -177,7 +177,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		
 	}
 	break;
-	case CMD_SFMANDSFP:{
+	case CMD_SFMANDSFP: {
 		Global::process = PROCESSWORKING;
 		Global::saveProcess();
 		std::string matchesDir, sfmOutputDir;
@@ -268,14 +268,14 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		}
 		std::cout << "\n任务完成" << std::endl;
 		Global::process = PROCESSCLOSE;
-		
+
 	}
 	break;
-	case CMD_EXPORTDENSECLOUD:{
+	case CMD_EXPORTDENSECLOUD: {
 		Global::process = PROCESSWORKING;
 		Global::saveProcess();
 		std::string densifyInputDir, densifyOutputDir, densifyWorkingDir;
-		
+
 
 		ifstream cmdCache;
 		cmdCache.open(("C:\\ProgramData\\J3DEngine\\cmdCache.tmp"), ios::in | ios::_Nocreate);
@@ -322,8 +322,8 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		Global::process = STATE_RETURN;
 		return;
 	}
-
-	case CMD_RECONSTRUCTMESH:{
+	break;
+	case CMD_RECONSTRUCTMESH: {
 		Global::process = PROCESSWORKING;
 		Global::saveProcess();
 		std::string reconstructMeshInputDir, reconstructMeshOutputDir, reconstructMeshWorkingDir;
@@ -370,7 +370,52 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		cmd[8] = (char*)reconstructMeshWorkingDir.data();
 		Global::process = !MVSEngine::ReconstructMesh(9, cmd);
 	}
+	break;
+	case CMD_TEXTUREMESH: {
+		Global::process = PROCESSWORKING;
+		Global::saveProcess();
+		std::string textureMeshInputDir, textureMeshOutputDir, textureMeshWorkingDir;
+		ifstream cmdCache;
+		cmdCache.open(("C:\\ProgramData\\J3DEngine\\cmdCache.tmp"), ios::in | ios::_Nocreate);
+		if (!cmdCache)
+		{
+			MessageBoxA(NULL, "任务失败,无法获取任务参数", "错误", MB_OK);
+			Global::process = PROCESSERROR;
+			break;
+		}
 
+		std::string temp;
+		getline(cmdCache, temp);
+		if (temp != "texturemesh")
+		{
+			MessageBoxA(NULL, "任务失败,无法获取任务参数", "错误", MB_OK);
+			Global::process = PROCESSERROR;
+			break;
+		}
+
+		getline(cmdCache, temp);
+		textureMeshInputDir = temp;
+
+		getline(cmdCache, temp);
+		textureMeshWorkingDir = temp;
+
+		getline(cmdCache, temp);
+		textureMeshOutputDir = temp;
+
+
+		cmdCache.close();
+		char* cmd[7];
+		char t[200];
+		GetModuleFileNameA(NULL, t, 200);
+		cmd[0] = t;
+		cmd[1] = "-i";
+		cmd[2] = (char*)textureMeshInputDir.data();
+		cmd[3] = "-o";
+		cmd[4] = (char*)textureMeshOutputDir.data();
+		cmd[5] = "-w";
+		cmd[6] = (char*)textureMeshWorkingDir.data();
+		Global::process = !MVSEngine::TextureMesh(7, cmd);
+	}
 	}
 
 	return;
@@ -403,8 +448,8 @@ int main()
 	}
 
 	std::cout << "\n-----------------------------------" << std::endl;
-	std::cout << "          欢迎使用J3DEngine          " << std::endl;
-	std::cout << "            程序初始化成功            " << std::endl;
+	std::cout << "        欢迎使用J3DEngine V1.1        " << std::endl;
+	std::cout << "            程序初始化成功             " << std::endl;
 	std::cout << "        请使用J3DGUI程序发起指令       " << std::endl;
 	std::cout << "     @Basic All rights reserved    " << std::endl;
 	std::cout << "-----------------------------------" << std::endl;

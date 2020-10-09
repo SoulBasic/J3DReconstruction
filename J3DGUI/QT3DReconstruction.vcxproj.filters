@@ -45,6 +45,12 @@
     <QtMoc Include="Dialog_ReconstructMesh.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="dialog_texturemesh.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="dialog_addsensorwidth.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -81,6 +87,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PlyIO.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dialog_texturemesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dialog_addsensorwidth.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -129,6 +141,12 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="dialog_reconstructmesh.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="dialog_texturemesh.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="dialog_addsensorwidth.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

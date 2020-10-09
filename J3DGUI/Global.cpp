@@ -13,7 +13,16 @@ QString Global::densifyWorkingDir = "";
 QString Global::reconstructMeshInputDir = "";
 QString Global::reconstructMeshOutputDir = "";
 QString Global::reconstructMeshWorkingDir = "";
+QString Global::textureMeshInputDir = "";
+QString Global::textureMeshOutputDir = "";
+QString Global::textureMeshWorkingDir = "";
+QString Global::processETA = "";
+PlyIO* Global::ply = new PlyIO("");
 bool Global::tasking = false;
+int Global::process = PROCESSWORKING;
+int Global::processProject = 0;
+int Global::processState = 0;
+
 void Global::connectEngine()
 {
 	QFile file("C:\\ProgramData\\J3DEngine\\ProgramCache.tmp");
@@ -30,6 +39,7 @@ void Global::connectEngine()
 	}
 	return;
 }
+
 DWORD Global::GetProcessidFromName(char* name)
 {
 	PROCESSENTRY32 pe;
@@ -62,9 +72,7 @@ DWORD Global::GetProcessidFromName(char* name)
 	return id;
 }
 
-int Global::process = PROCESSWORKING;
-int Global::processProject = 0;
-int Global::processState = 0;
+
 bool Global::getProcessMsg()
 {
 	QFile Processcache("C:\\ProgramData\\J3DEngine\\ProcessCache.tmp");
@@ -76,16 +84,27 @@ bool Global::getProcessMsg()
 		Global::process = str.toInt();
 		buf = Processcache.readLine();
 		str = buf;
-		qDebug("%d", buf.size());
-		if (buf.size() == 21)
-			str = "8";
-		Global::processProject = str.toInt();
-		buf = Processcache.readLine();
-		str = QString(buf);
+		qDebug("%s  = %d ", str,buf.size());
+		if (buf.size() == 21) {
+			Global::processProject = DENSE;
+		}
+		else if (buf.size() == 17) {
+			Global::processProject = DENSEFUSE;
+		}
+		else if (buf.size() == 16) {
+			Global::processProject = REMESH;
+		}
+		else if (buf.size() == 18) {
+			Global::processProject = TEXTURE;
+		}
+		str = Processcache.readLine();
 		Global::processState = str.toInt();
+		str = Processcache.readLine();
+		Global::processETA = str;
 		Processcache.close();
 		return true;
 	}
 	else
 		return false;
 }
+

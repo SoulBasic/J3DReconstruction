@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>三角网模型重建</string>
   </property>
   <widget class="QLabel" name="label_18">
    <property name="geometry">
@@ -114,7 +114,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>密集点云文件(.mvs):</string>
+    <string>密集点云文件目录:</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit_inputDir">

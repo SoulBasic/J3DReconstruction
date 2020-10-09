@@ -6,17 +6,17 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>487</width>
+    <width>502</width>
     <height>189</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>密集点云生成</string>
   </property>
   <widget class="QLineEdit" name="lineEdit_inputDir">
    <property name="geometry">
     <rect>
-     <x>120</x>
+     <x>130</x>
      <y>40</y>
      <width>301</width>
      <height>20</height>
@@ -26,9 +26,9 @@
   <widget class="QPushButton" name="pushButton_browseInputDir">
    <property name="geometry">
     <rect>
-     <x>430</x>
+     <x>440</x>
      <y>40</y>
-     <width>41</width>
+     <width>51</width>
      <height>23</height>
     </rect>
    </property>
@@ -65,9 +65,9 @@
   <widget class="QPushButton" name="pushButton_browseOutputDir">
    <property name="geometry">
     <rect>
-     <x>430</x>
+     <x>440</x>
      <y>80</y>
-     <width>41</width>
+     <width>51</width>
      <height>23</height>
     </rect>
    </property>
@@ -78,7 +78,7 @@
   <widget class="QLineEdit" name="lineEdit_OutputDir">
    <property name="geometry">
     <rect>
-     <x>120</x>
+     <x>130</x>
      <y>80</y>
      <width>301</width>
      <height>20</height>

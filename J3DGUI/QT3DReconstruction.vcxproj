@@ -87,42 +87,46 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <AdditionalOptions>/utf-8  /SAFESEH:NO %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories>E:\OpenGL\glew-2.1.0\include;E:\OpenGL\glfw-3.3.2.bin.WIN32\include;E:\OpenGL\glut;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>E:\OpenGL\glew-2.1.0\include;E:\OpenGL\glfw-3.3.2.bin.WIN32\include;E:\OpenGL\glut;E:\libpng;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_NO_DEBUG;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <QtUic>
       <ExecutionDescription>Uic'ing %(Identity)...</ExecutionDescription>
     </QtUic>
     <Link>
-      <AdditionalLibraryDirectories>$(Qt_LIBPATH_);E:\OpenGL\glew-2.1.0\lib\Release\Win32;E:\OpenGL\glfw-3.3.2.bin.WIN32\lib-vc2017;E:\OpenGL\glut;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>$(Qt_LIBS_);odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(Qt_LIBPATH_);E:\OpenGL\glew-2.1.0\lib\Release\Win32;E:\OpenGL\glfw-3.3.2.bin.WIN32\lib-vc2017;E:\OpenGL\glut;E:\libpng;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(Qt_LIBS_);odbc32.lib;odbccp32.lib;zlib.lib;libpng16.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions> /SAFESEH:NO %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>E:\OpenGL\glew-2.1.0\include;E:\OpenGL\glfw-3.3.2.bin.WIN32\include;E:\OpenGL\glut;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>E:\OpenGL\glew-2.1.0\include;E:\OpenGL\glfw-3.3.2.bin.WIN32\include;E:\OpenGL\glut;E:\libpng;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/utf-8  /SAFESEH:NO %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(Qt_LIBPATH_);E:\OpenGL\glew-2.1.0\lib\Release\Win32;E:\OpenGL\glfw-3.3.2.bin.WIN32\lib-vc2017;E:\OpenGL\glut;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>$(Qt_LIBS_);odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(Qt_LIBPATH_);E:\OpenGL\glew-2.1.0\lib\Release\Win32;E:\OpenGL\glfw-3.3.2.bin.WIN32\lib-vc2017;E:\OpenGL\glut;E:\libpng;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(Qt_LIBS_);odbc32.lib;odbccp32.lib;zlib.lib;libpng16.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions> /SAFESEH:NO %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <QtRcc Include="QT3DReconstruction.qrc" />
+    <QtUic Include="dialog_addsensorwidth.ui" />
     <QtUic Include="dialog_densifypointcloud.ui" />
     <QtUic Include="Dialog_MatchFeature.ui" />
     <QtUic Include="dialog_reconstructmesh.ui" />
     <QtUic Include="dialog_sfm.ui" />
+    <QtUic Include="dialog_texturemesh.ui" />
     <QtUic Include="QT3DReconstruction.ui" />
     <QtMoc Include="QT3DReconstruction.h" />
+    <ClCompile Include="dialog_addsensorwidth.cpp" />
     <ClCompile Include="dialog_densifypointcloud.cpp" />
     <ClCompile Include="Dialog_MatchFeature.cpp" />
     <ClCompile Include="Dialog_ReconstructMesh.cpp" />
     <ClCompile Include="dialog_sfm.cpp" />
+    <ClCompile Include="dialog_texturemesh.cpp" />
     <ClCompile Include="Global.cpp" />
     <ClCompile Include="GLUtil\Matrix4D.cpp" />
     <ClCompile Include="GLUtil\Position3D.cpp" />
@@ -144,6 +148,8 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="Dialog_ReconstructMesh.h" />
+    <QtMoc Include="dialog_texturemesh.h" />
+    <QtMoc Include="dialog_addsensorwidth.h" />
     <ClInclude Include="Global.h" />
     <ClInclude Include="GLUtil\Matrix4D.h" />
     <ClInclude Include="GLUtil\Position3D.h" />

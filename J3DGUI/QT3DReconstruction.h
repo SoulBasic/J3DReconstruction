@@ -7,6 +7,8 @@
 #include "dialog_sfm.h"
 #include "dialog_densifypointcloud.h"
 #include "Dialog_ReconstructMesh.h"
+#include "dialog_texturemesh.h"
+#include "dialog_addsensorwidth.h"
 #include <iostream>
 #include "qfiledialog.h"
 #include "qmessagebox.h"
@@ -34,7 +36,6 @@ class QT3DReconstruction : public QMainWindow
 
 public:
 	QT3DReconstruction(QWidget *parent = Q_NULLPTR);
-	PlyIO*ply;
 private slots:
 
     void on_actionMatchFeature_triggered();
@@ -59,20 +60,16 @@ private slots:
 
     void on_action_reconstrctMesh_triggered();
 
+    void on_action_triggered();
+
 private:
 	Ui::QT3DReconstructionClass ui;
 	Dialog_MatchFeature dlgmf;
 	Dialog_SFM dlgsfm;
 	Dialog_DensifyPointCloud dlgdense;
 	Dialog_ReconstructMesh dlgrm;
-	
-	
-
-
-
-
-
-
+	Dialog_TextureMesh dlgtm;
+	Dialog_addsensorwidth dlgasw;
 
 
 };

@@ -11,8 +11,8 @@ QT3DReconstruction::QT3DReconstruction(QWidget *parent)
 	connect(timer, SIGNAL(timeout()), this, SLOT(timerSlot()));
 
 	timer->start(500); // 1000毫秒, 等于 1 秒
-	
-
+	setWindowFlags(windowFlags()& ~Qt::WindowMaximizeButtonHint);
+	setFixedSize(this->width(), this->height());
 }
 
 
@@ -44,24 +44,7 @@ void QT3DReconstruction::on_action_viewMVS_triggered()
 
 void QT3DReconstruction::on_action_addSensorWidth_triggered()
 {
-	bool isok;
-    QString text = QInputDialog::getText(this, "输入相机参数", "请输入对应值（格式 model;width） ", QLineEdit::Normal, "AAA;10", &isok);
-	if (isok)
-	{
-		QFile swd("SenWidDB.txt");
-		if (swd.open(QIODevice::ReadWrite | QIODevice::Append | QIODevice::Text))
-		{
-			swd.write("\n");
-			swd.write(text.toUtf8());
-			swd.close();
-            QMessageBox::information(this, "成功", "成功输入相机参数 ", QMessageBox::Ok, QMessageBox::Ok);
-		}
-		else
-		{
-            QMessageBox::information(this, "失败", "无法打开SensorWidthDB文件 ", QMessageBox::Ok, QMessageBox::Ok);
-		}
-
-	}
+	dlgasw.exec();
 }
 
 void QT3DReconstruction::on_action_viewPLY_triggered()
@@ -72,15 +55,16 @@ void QT3DReconstruction::on_action_viewPLY_triggered()
 	//QMessageBox::information(NULL, "", filename, QMessageBox::Yes, NULL);
 
 	QByteArray buf = fileName.toLatin1(); // must
-	//this->ply->~PlyIO();
-	this->ply = new PlyIO(buf.data());
-	ui.J3DViewerWidget->ply = this->ply;
-	if (!this->ply->open()) {
+
+	PlyIO* ply = new PlyIO(buf.data());
+	if (false == ply->open()) {
 		ui.textBrowser->insertPlainText("\n模型加载失败");
 		ui.textBrowser->update();
+		return;
 	}
-	
-
+	delete Global::ply;
+	Global::ply = ply;
+	ui.J3DViewerWidget->setPly();
 
 	//QProcess myProcess(this);
 	//QString program = "J3DViewer.exe";
@@ -127,7 +111,7 @@ void QT3DReconstruction::timerSlot()
 		}
 	}
 	
-	
+
 	if (Global::tasking == true)
 	{
 		Global::getProcessMsg();
@@ -141,18 +125,36 @@ void QT3DReconstruction::timerSlot()
 			if (temp == "densifypointcloud") {
 				QString fileName = Global::densifyWorkingDir + "/DenseCloud.ply";
 				QByteArray buf = fileName.toLatin1();
-				this->ply = new PlyIO(buf.data());
-				ui.J3DViewerWidget->ply = this->ply;
-				this->ply->open();
+				PlyIO* ply = new PlyIO(buf.data());
+				if (false == ply->open()) {
+					return;
+				}
+				delete Global::ply;
+				Global::ply = ply;
+				ui.J3DViewerWidget->setPly();
 			}
 			else if (temp == "reconstructmesh") {
 				QString fileName = Global::reconstructMeshWorkingDir + "/TIN_Mesh.ply";
 				QByteArray buf = fileName.toLatin1();
-				qDebug("%s", buf.data());
-				this->ply = new PlyIO(buf.data());
-				ui.J3DViewerWidget->ply = this->ply;
-				this->ply->open();
+				PlyIO* ply = new PlyIO(buf.data());
+				if (false == ply->open()) {
+					return;
+				}
+				delete Global::ply;
+				Global::ply = ply;
+				ui.J3DViewerWidget->setPly();
 			}
+			//else if (temp == "texturemesh") {
+			//	QString fileName = Global::reconstructMeshWorkingDir + "/TEXTURE_Mesh.ply";
+			//	QByteArray buf = fileName.toLatin1();
+			//	PlyIO* ply = new PlyIO(buf.data());
+			//	if (false == ply->open()) {
+			//		return;
+			//	}
+			//	delete Global::ply;
+			//	Global::ply = ply;
+			//	ui.J3DViewerWidget->setPly();
+			//}
             QMessageBox::information(NULL, "完成", "任务完成！ ", QMessageBox::Ok, QMessageBox::Ok);
 			Global::tasking = false;
 			ui.label_process->setText("等待任务 ");
@@ -222,13 +224,25 @@ void QT3DReconstruction::timerSlot()
 			}
 			case DENSE:
 			{
-                ui.label_process->setText("任务进行中：正在重建模型 ");
+                ui.label_process->setText("任务进行中：生成密集点云 ");
 				ui.progressBar->setValue(Global::processState);
 				break;
 			}
 			case REMESH:
 			{
 				ui.label_process->setText("任务进行中：生成三角网模型 ");
+				ui.progressBar->setValue(Global::processState);
+				break;
+			}
+			case REFINE:
+			{
+				ui.label_process->setText("任务进行中：优化三角网模型 ");
+				ui.progressBar->setValue(Global::processState);
+				break;
+			}
+			case TEXTURE:
+			{
+				ui.label_process->setText("任务进行中：生成纹理映射 ");
 				ui.progressBar->setValue(Global::processState);
 				break;
 			}
@@ -246,3 +260,8 @@ void QT3DReconstruction::timerSlot()
 	}
 }
 
+
+void QT3DReconstruction::on_action_triggered() //textureMesh
+{
+	dlgtm.exec();
+}

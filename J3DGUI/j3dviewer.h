@@ -14,8 +14,9 @@ class j3dviewer : public QOpenGLWidget, public QOpenGLFunctions
     Q_OBJECT
 public:
 	j3dviewer(QWidget *parent = nullptr);
-	PlyIO*ply;
-	void setPly(PlyIO*ply);
+	PlyIO* ply;
+	void setPly();
+	void initializeTexture();
 protected:
     void initializeGL() override;
     void paintGL() override;

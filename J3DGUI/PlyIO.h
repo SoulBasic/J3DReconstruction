@@ -28,6 +28,8 @@ public:
 		GLfloat  g;
 		GLfloat  b;
 		GLfloat  alpha;
+		GLfloat u;
+		GLfloat v;
 	};
 	struct Face3D
 	{
@@ -59,10 +61,12 @@ public:
 
 	int vertex_N, face_N;   //点数及面数
 
+	std::string textureFileName;
+	std::string workDir;
 	bool open();
 	void calculateNormal(Face3D &face);
 	GLvoid render();
-
+	GLuint CreateTextureFromPng(const char* filename);
 
 private:
 	std::vector<int> vertex_types, face_types;
