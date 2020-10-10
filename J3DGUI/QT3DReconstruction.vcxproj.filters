@@ -80,9 +80,6 @@
     <ClCompile Include="GLUtil\Position3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GLUtil\RoamingScenceManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GLUtil\Vector3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -121,9 +118,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GLUtil\Position3D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GLUtil\RoamingScenceManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GLUtil\Vector3D.h">

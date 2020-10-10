@@ -1,6 +1,5 @@
 #include "QT3DReconstruction.h"
-
-
+using namespace std;
 QT3DReconstruction::QT3DReconstruction(QWidget *parent)
 	: QMainWindow(parent)
 {
@@ -13,6 +12,15 @@ QT3DReconstruction::QT3DReconstruction(QWidget *parent)
 	timer->start(500); // 1000毫秒, 等于 1 秒
 	setWindowFlags(windowFlags()& ~Qt::WindowMaximizeButtonHint);
 	setFixedSize(this->width(), this->height());
+	PlyIO* ply = new PlyIO("C:/Users/Administrator/Desktop/222/TEXTURE_Mesh.ply");
+	if (false == ply->open()) {
+		ui.textBrowser->insertPlainText("\n模型加载失败");
+		ui.textBrowser->update();
+		return;
+	}
+	delete Global::ply;
+	Global::ply = ply;
+	ui.J3DViewerWidget->setPly();
 }
 
 
