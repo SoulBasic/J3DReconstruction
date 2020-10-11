@@ -11,6 +11,7 @@ struct Point3D//点坐标
 	GLfloat  alpha;
 };
 PlyIO::PlyIO(char* fileName) {
+	//initializeOpenGLFunctions();
 	this->vertex_N = 0;
 	this->face_N = 0;
 	this->fileName = fileName;
@@ -26,6 +27,7 @@ PlyIO::~PlyIO() {
 	cout <<"vertexN=" <<this->vertex_N;
 	if (this->vertex_N > 0) { delete[] vertex; }
 	if (this->face_N > 0) { delete[] faces; }
+	free(rgba);
 }
 
 int PlyIO::getPlyFileType()
@@ -150,24 +152,41 @@ bool PlyIO::readHeaderRB() {
 
 void PlyIO::initPng() {
 	CreateTextureFromPng();
+	//开启纹理贴图特效
+	glEnable(GL_TEXTURE_2D);
+
+	//创建纹理 
+	glGenTextures(1, &textureID);
+	//绑定纹理
+	glBindTexture(GL_TEXTURE_2D, textureID); //将纹理绑定到名字
+
+	//设置贴图和纹理的混合效果这里是默认只用纹理
+	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
+	//设置纹理所用到图片数据
+	if (color_type == PNG_COLOR_TYPE_RGB_ALPHA)
+	{
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, rgba);
+	}
+	else
+	{
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, rgba);
+	}
+
+	//glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 }
 
 GLuint PlyIO::CreateTextureFromPng()
 {
 	unsigned char header[8];     //8
 	int k;   //用于循环
-	GLuint textureID; //贴图名字
-	int width, height; //记录图片到宽和高
-	png_byte color_type; //图片到类型（可能会用在是否是开启来通道）
-	png_byte bit_depth; //字节深度
 
+	png_byte bit_depth; //字节深度
 	png_structp png_ptr; //图片
 	png_infop info_ptr; //图片的信息
 	int number_of_passes; //隔行扫描
 	png_bytep * row_pointers;//图片的数据内容
 	int row, col, pos;  //用于改变png像素排列的问题。
-	GLubyte *rgba;
-
 	FILE *fp = fopen(this->textureFileName.c_str(), "rb");//以只读形式打开文件名为file_name的文件
 	if (!fp)//做出相应可能的错误处理
 	{
@@ -295,26 +314,7 @@ GLuint PlyIO::CreateTextureFromPng()
 		}
 	}
 	
-
-
-	//开启纹理贴图特效
-	glEnable(GL_TEXTURE_2D);
-
-	//创建纹理 
-	glGenTextures(1, &textureID);
-	//绑定纹理
-	glBindTexture(GL_TEXTURE_2D, textureID); //将纹理绑定到名字
-
-//设置贴图和纹理的混合效果这里是默认只用纹理
-	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
-	//设置纹理所用到图片数据
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, rgba);
-
-	//glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-
 	free(row_pointers);
-	free(rgba);
 	fclose(fp);
 	return textureID;
 
@@ -593,8 +593,9 @@ bool PlyIO::open()
 GLvoid PlyIO::render() {
 	
 	if (face_N > 0) {
+
 		glBegin(GL_TRIANGLES);
-		glColor3f(1.0, 1.0, 1.0);
+		glColor3f(0.0, 1.0, 1.0);
 		if (this->textureFileName != "") 
 		{
 			for (int i = 0; i < face_N; i++)
@@ -630,15 +631,15 @@ GLvoid PlyIO::render() {
 
 		glEnd();
 		if(this->textureFileName != "")
-			glEnable(GL_LIGHTING);
-		else
 			glDisable(GL_LIGHTING);
+		else
+			glEnable(GL_LIGHTING);
 		
 	}
 	else {
 		glDisable(GL_LIGHTING);
+		glPointSize(1);
 		glBegin(GL_POINTS);
-		//glColor3f(0.0f, 0.0f, 0.0f);
 		
 		for (int i = 0; i < vertex_N; i++)
 		{

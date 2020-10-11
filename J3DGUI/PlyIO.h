@@ -7,7 +7,7 @@
 #include <sstream>
 #include <iostream>
 #include "qdebug.h"
-#include <GLUT.H>
+#include "glut64.h"
 #include <lpng/png.h>
 
 #define M_PI 3.14159265358979323846
@@ -64,6 +64,10 @@ public:
 
 	std::string textureFileName;
 	std::string workDir;
+	GLuint textureID;
+	int width, height; //记录图片到宽和高
+	GLubyte *rgba;
+	png_byte color_type; //图片到类型（可能会用在是否是开启来通道）
 	bool open();
 	Point3D CalTexture(GLfloat x, GLfloat y) {
 			Point3D Caltexture;

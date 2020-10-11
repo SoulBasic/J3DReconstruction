@@ -3,6 +3,7 @@
 #include <string>
 #include <direct.h>
 #include <fstream>
+
 using namespace std;
 
 #define CMD_MATCHFEATURES 101
@@ -23,6 +24,8 @@ using namespace std;
 #define PROCESSWORKING 0
 #define PROCESSCLOSE 1
 #define PROCESSERROR 2
+#define EXIT_SUCCESS 0
+#define EXIT_FAILURE 1
 
 
 
@@ -33,5 +36,7 @@ public:
 	static int processProject;
 	static int processState;
 	static bool saveProcess();
+	//static bool resizeTextureFile(std::string fileName);
+	//static unsigned int getImageSize(std::string fileName);
 };
 

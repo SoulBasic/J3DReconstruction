@@ -13,6 +13,8 @@
 #include "Global.h"
 #include "MVSEngine.h"
 
+
+
 HWND m_hWnd;
 //"3285.55;0;1480.14;0;3292.21;2025.93;0;0;1");// EigenMatrixFormat"f;0;ppx;0;f;ppy;0;0;1"
 
@@ -368,13 +370,29 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		cmd[6] = (char*)reconstructMeshOutputDir.data();
 		cmd[7] = "-w";
 		cmd[8] = (char*)reconstructMeshWorkingDir.data();
-		Global::process = !MVSEngine::ReconstructMesh(9, cmd);
+		int status = MVSEngine::ReconstructMesh(9, cmd);
+		cmd[0] = t;
+		cmd[1] = "-i";
+		cmd[2] = (char*)reconstructMeshOutputDir.data();
+		cmd[3] = "--resolution-level";
+		cmd[4] = "2";
+		cmd[5] = "-o";
+		cmd[6] = (char*)reconstructMeshOutputDir.data();
+		cmd[7] = "-w";
+		cmd[8] = (char*)reconstructMeshWorkingDir.data();
+		status = MVSEngine::RefineMesh(9, cmd);
+		if (status == EXIT_SUCCESS) {
+			Global::process = PROCESSCLOSE;
+		}
+		else {
+			Global::process = PROCESSWORKING;
+		}
 	}
 	break;
 	case CMD_TEXTUREMESH: {
 		Global::process = PROCESSWORKING;
 		Global::saveProcess();
-		std::string textureMeshInputDir, textureMeshOutputDir, textureMeshWorkingDir;
+		std::string textureMeshInputDir, textureMeshOutputDir, textureMeshWorkingDir, exportFormat;
 		ifstream cmdCache;
 		cmdCache.open(("C:\\ProgramData\\J3DEngine\\cmdCache.tmp"), ios::in | ios::_Nocreate);
 		if (!cmdCache)
@@ -402,9 +420,12 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		getline(cmdCache, temp);
 		textureMeshOutputDir = temp;
 
+		getline(cmdCache, temp);
+		exportFormat = temp;
+
 
 		cmdCache.close();
-		char* cmd[7];
+		char* cmd[9];
 		char t[200];
 		GetModuleFileNameA(NULL, t, 200);
 		cmd[0] = t;
@@ -414,7 +435,18 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		cmd[4] = (char*)textureMeshOutputDir.data();
 		cmd[5] = "-w";
 		cmd[6] = (char*)textureMeshWorkingDir.data();
-		Global::process = !MVSEngine::TextureMesh(7, cmd);
+		cmd[5] = "--export-type";
+		cmd[6] = (char*)exportFormat.data();
+		int status = MVSEngine::TextureMesh(9, cmd);
+		//Global::resizeTextureFile(textureMeshOutputDir);
+		if (status == EXIT_SUCCESS) {
+			Global::process = PROCESSCLOSE;
+		}
+		else {
+			Global::process = PROCESSWORKING;
+		}
+		
+		
 	}
 	}
 
@@ -448,7 +480,7 @@ int main()
 	}
 
 	std::cout << "\n-----------------------------------" << std::endl;
-	std::cout << "        欢迎使用J3DEngine V1.1        " << std::endl;
+	std::cout << "        欢迎使用J3DEngine V1.2        " << std::endl;
 	std::cout << "            程序初始化成功             " << std::endl;
 	std::cout << "        请使用J3DGUI程序发起指令       " << std::endl;
 	std::cout << "     @Basic All rights reserved    " << std::endl;

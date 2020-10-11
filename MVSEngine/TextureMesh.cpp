@@ -72,7 +72,7 @@ bool MVSEngine::Initialize_TextureMesh(size_t argc, LPCTSTR* argv)
 		("local-seam-leveling", boost::program_options::value<bool>(&OPT_TextureMesh::bLocalSeamLeveling)->default_value(true), "generate uniform texture patch borders using local seam leveling")
 		("texture-size-multiple", boost::program_options::value<unsigned>(&OPT_TextureMesh::nTextureSizeMultiple)->default_value(0), "texture size should be a multiple of this value (0 - power of two)")
 		("patch-packing-heuristic", boost::program_options::value<unsigned>(&OPT_TextureMesh::nRectPackingHeuristic)->default_value(3), "specify the heuristic used when deciding where to place a new patch (0 - best fit, 3 - good speed, 100 - best speed)")
-		("empty-color", boost::program_options::value<uint32_t>(&OPT_TextureMesh::nColEmpty)->default_value(0x00FF7F27), "color used for faces not covered by any image")
+		("empty-color", boost::program_options::value<uint32_t>(&OPT_TextureMesh::nColEmpty)->default_value(0x00696969), "color used for faces not covered by any image")
 		("orthographic-image-resolution", boost::program_options::value<unsigned>(&OPT_TextureMesh::nOrthoMapResolution)->default_value(0), "orthographic image resolution to be generated from the textured mesh - the mesh is expected to be already geo-referenced or at least properly oriented (0 - disabled)")
 		;
 

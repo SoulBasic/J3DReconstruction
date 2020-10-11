@@ -84,9 +84,12 @@ bool Global::getProcessMsg()
 		Global::process = str.toInt();
 		buf = Processcache.readLine();
 		str = buf;
-		qDebug("%s  = %d ", str,buf.size());
-		if (buf.size() == 21) {
+		//qDebug("%s  = %d ", str,buf.size());
+		if (buf.size() == 21 && str.mid(0,2) == "Es") {
 			Global::processProject = DENSE;
+		}
+		else if (buf.size() == 21 && str.mid(0, 2) == "Pr") {
+			Global::processProject = REFINE;
 		}
 		else if (buf.size() == 17) {
 			Global::processProject = DENSEFUSE;

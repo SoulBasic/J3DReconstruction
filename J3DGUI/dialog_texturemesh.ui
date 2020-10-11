@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>494</width>
-    <height>192</height>
+    <height>226</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="QPushButton" name="btn_OK">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>140</y>
+     <x>120</x>
+     <y>170</y>
      <width>81</width>
      <height>31</height>
     </rect>
@@ -68,8 +68,8 @@
   <widget class="QPushButton" name="btn_CANCEL">
    <property name="geometry">
     <rect>
-     <x>270</x>
-     <y>140</y>
+     <x>290</x>
+     <y>170</y>
      <width>81</width>
      <height>31</height>
     </rect>
@@ -126,6 +126,39 @@
      <height>20</height>
     </rect>
    </property>
+  </widget>
+  <widget class="QLabel" name="label_17">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>130</y>
+     <width>121</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>纹理模型输出格式:</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>130</y>
+     <width>81</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>ply</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>obj</string>
+    </property>
+   </item>
   </widget>
  </widget>
  <resources/>

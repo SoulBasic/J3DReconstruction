@@ -53,6 +53,8 @@ void Dialog_TextureMesh::on_btn_OK_clicked()
 		cmdcache.write("\n");
 		cmdcache.write(Global::textureMeshOutputDir.toUtf8());
 		cmdcache.write("\n");
+		cmdcache.write(ui->comboBox->currentText().toUtf8());
+		cmdcache.write("\n");
 		cmdcache.close();
 		QMessageBox::information(NULL, "完成", "配置完成 ", QMessageBox::Yes, NULL);
 		PostThreadMessageA(Global::engineTid, CMD_TEXTUREMESH, 0, 0);

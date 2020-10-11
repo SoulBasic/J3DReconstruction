@@ -44,10 +44,9 @@ void j3dviewer::initializeGL()
 
 	glShadeModel(GL_SMOOTH);
 	//glClearDepth(1.0f);
-	glPointSize(1);
-
+	
+	//glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 
 	//材质反光性设置
 	GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };  //镜面反射参数
@@ -74,9 +73,10 @@ void j3dviewer::initializeGL()
 	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, material_ambient);
 	glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, 20);
 
+	
 	glEnable(GL_DEPTH_TEST);
 	//glDepthFunc(GL_LEQUAL);
-	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+	//glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 	glViewport(0, 0, 1800, 900);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
@@ -96,12 +96,14 @@ void j3dviewer::paintGL()
 	gluLookAt(NewEye->X(), NewEye->Y(), NewEye->Z(),
 		NewView->X(), NewView->Y(), NewView->Z(),
 		NewUp->X(), NewUp->Y(), NewUp->Z());
-	//glColor3f(1, 0, 0);
 	glCallList(ID_COORDINATY);
+	glEnable(GL_TEXTURE_2D);
+	glColor3f(1.0, 0.0, 0.0);
+
 	if (this->ply->available == true) {
 		this->ply->render();
 	}
-
+	glDisable(GL_TEXTURE_2D);
 }
 
 void j3dviewer::resizeGL(int w, int h)
