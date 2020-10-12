@@ -21,13 +21,13 @@ PlyIO::PlyIO(char* fileName) {
 	std::string fn(fileName);
 	fn = fn.substr(0, fn.find_last_of('/'));
 	this->workDir = fn;
+	//this->rgba == (GLubyte*)malloc(4);
 
 }
 PlyIO::~PlyIO() {
-	cout <<"vertexN=" <<this->vertex_N;
 	if (this->vertex_N > 0) { delete[] vertex; }
 	if (this->face_N > 0) { delete[] faces; }
-	free(rgba);
+	//free(this->rgba);
 }
 
 int PlyIO::getPlyFileType()
@@ -70,7 +70,7 @@ std::string PlyIO::readValueRB() {
 	return temp;
 }
 
-int PlyIO::getTypeBytesLength(std::string type) 
+int PlyIO::getTypeBytesLength(std::string type)
 {
 	if (type == "float32")
 		return 4;
@@ -152,28 +152,7 @@ bool PlyIO::readHeaderRB() {
 
 void PlyIO::initPng() {
 	CreateTextureFromPng();
-	//开启纹理贴图特效
-	glEnable(GL_TEXTURE_2D);
 
-	//创建纹理 
-	glGenTextures(1, &textureID);
-	//绑定纹理
-	glBindTexture(GL_TEXTURE_2D, textureID); //将纹理绑定到名字
-
-	//设置贴图和纹理的混合效果这里是默认只用纹理
-	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
-	//设置纹理所用到图片数据
-	if (color_type == PNG_COLOR_TYPE_RGB_ALPHA)
-	{
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, rgba);
-	}
-	else
-	{
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, rgba);
-	}
-
-	//glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 }
 
 GLuint PlyIO::CreateTextureFromPng()
@@ -243,28 +222,28 @@ GLuint PlyIO::CreateTextureFromPng()
 	width = png_get_image_width(png_ptr, info_ptr);
 	height = png_get_image_height(png_ptr, info_ptr);
 	color_type = png_get_color_type(png_ptr, info_ptr);
-	
+
 	//如果图片带有alpha通道就需要
 	if (color_type == PNG_COLOR_TYPE_RGB_ALPHA) {
-		cout << "colortype=rgba"<< endl;
+		cout << "colortype=rgba" << endl;
 	}
 	else {
 		cout << "colortype=rgb" << endl;
 	}
 
-		   // png_set_swap_alpha(png_ptr);
+	// png_set_swap_alpha(png_ptr);
 	bit_depth = png_get_bit_depth(png_ptr, info_ptr);
 	//隔行扫描图片  这个必须要调用才能进行
 	number_of_passes = png_set_interlace_handling(png_ptr);
 	//将读取到的信息更新到info_ptr
 	png_read_update_info(png_ptr, info_ptr);
-
 	//读文件
 	if (setjmp(png_jmpbuf(png_ptr))) {
 		fclose(fp);
 		return 0;
 	}
 	rgba = (GLubyte*)malloc(width * height * 4);
+
 	//使用动态数组  设置长度
 	row_pointers = (png_bytep*)malloc(sizeof(png_bytep) * height);
 
@@ -281,9 +260,9 @@ GLuint PlyIO::CreateTextureFromPng()
 	
 	//png_set_rows(png_ptr,info_ptr,row_pointers);
 	png_read_image(png_ptr, row_pointers);
-
 	pos = (width * height * 4) - (4 * width);
-	if(color_type == PNG_COLOR_TYPE_RGB_ALPHA)
+
+	if (color_type == PNG_COLOR_TYPE_RGB_ALPHA)
 	{
 		for (row = 0; row < height; row++)
 		{
@@ -308,16 +287,56 @@ GLuint PlyIO::CreateTextureFromPng()
 				rgba[pos++] = row_pointers[row][col + 1];    // green
 				rgba[pos++] = row_pointers[row][col + 2];    // blue
 				//cout << "red=" << (int)rgba[pos-3] << " green=" << (int)rgba[pos-2] << " blue=" << (int)rgba[pos-1]<< endl;
-				
+
 			}
 			pos = (pos - (width * 4) * 2);
 		}
 	}
+	cout << "png_read_image after line done" << endl;
+	//开启纹理贴图特效
+	glEnable(GL_TEXTURE_2D);
 	
+	//创建纹理 
+	glGenTextures(1, &textureID);
+	//绑定纹理
+	glBindTexture(GL_TEXTURE_2D, textureID); //将纹理绑定到名字
+
+	//设置贴图和纹理的混合效果这里是默认只用纹理
+	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
+	//设置纹理所用到图片数据
+	if (color_type == PNG_COLOR_TYPE_RGB_ALPHA)
+	{
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, rgba);
+	}
+	else
+	{
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, rgba);
+	}
+
+	//glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	cout << "kkkkkkkkkkk" << endl;
 	free(row_pointers);
+
 	fclose(fp);
 	return textureID;
 
+}
+
+
+void PlyIO::CreateTextureFromBmp() {
+	AUX_RGBImageRec *pImage = NULL;
+	FILE *pFile = NULL;
+	wchar_t ws[100];
+	//
+	//this->textureFileName.c_str()
+	swprintf(ws, 100, L"%hs", "C:/Users/Administrator/Desktop/222/TEXTURE_Mesh.bmp");
+	AUX_RGBImageRec *Image = auxDIBImageLoad(ws);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+
+	glTexImage2D(GL_TEXTURE_2D, 0, 3, Image->sizeX, Image->sizeY,
+		0, GL_RGB, GL_UNSIGNED_BYTE, Image->data);
 }
 
 void PlyIO::calculateNormal(PlyIO::Face3D &face) {
@@ -522,7 +541,7 @@ bool PlyIO::open()
 			vertex[i].x = p[0];
 			vertex[i].y = p[1];
 			vertex[i].z = p[2];
-			
+
 			if (haveColors) {
 				vertex[i].r = ((float)k[0]) / 255;
 				vertex[i].g = ((float)k[1]) / 255;
@@ -542,7 +561,7 @@ bool PlyIO::open()
 		//	std::string t = this->workDir + "/" + this->textureFileName;
 		//	CreateTextureFromPng(t.c_str());
 		//}
-		for (int i = 0; i < face_N; i++) 
+		for (int i = 0; i < face_N; i++)
 		{
 			fread((void*)(&dummy), 1, 1, file);
 
@@ -583,7 +602,7 @@ bool PlyIO::open()
 	}
 	std::cout << "loading accomplished \n" << std::endl;
 	this->available = true;
-	
+
 	return true;
 
 
@@ -591,12 +610,11 @@ bool PlyIO::open()
 }
 
 GLvoid PlyIO::render() {
-	
 	if (face_N > 0) {
 
 		glBegin(GL_TRIANGLES);
 		glColor3f(0.0, 1.0, 1.0);
-		if (this->textureFileName != "") 
+		if (this->textureFileName != "")
 		{
 			for (int i = 0; i < face_N; i++)
 			{
@@ -614,9 +632,9 @@ GLvoid PlyIO::render() {
 				glVertex3f(vertex[faces[i].v3].x, vertex[faces[i].v3].y, vertex[faces[i].v3].z);
 				//std::cout << "vertex.v3.u=" << faces[i].u[2] << "vertex.v3.v=" << faces[i].v[2] << std::endl;
 			}
-			
+
 		}
-		else 
+		else
 		{
 			for (int i = 0; i < face_N; i++)
 			{
@@ -630,17 +648,17 @@ GLvoid PlyIO::render() {
 		}
 
 		glEnd();
-		if(this->textureFileName != "")
+		if (this->textureFileName != "")
 			glDisable(GL_LIGHTING);
 		else
 			glEnable(GL_LIGHTING);
-		
+
 	}
 	else {
 		glDisable(GL_LIGHTING);
 		glPointSize(1);
 		glBegin(GL_POINTS);
-		
+
 		for (int i = 0; i < vertex_N; i++)
 		{
 			glColor3f(vertex[i].r, vertex[i].g, vertex[i].b);

@@ -7,8 +7,9 @@
 #include <sstream>
 #include <iostream>
 #include "qdebug.h"
-#include "glut64.h"
+#include "GLUT.H"
 #include <lpng/png.h>
+#include "GLAUX.H"
 
 #define M_PI 3.14159265358979323846
 #define TYPE_PLY_RB 0
@@ -66,7 +67,7 @@ public:
 	std::string workDir;
 	GLuint textureID;
 	int width, height; //记录图片到宽和高
-	GLubyte *rgba;
+	GLubyte* rgba;
 	png_byte color_type; //图片到类型（可能会用在是否是开启来通道）
 	bool open();
 	Point3D CalTexture(GLfloat x, GLfloat y) {
@@ -79,6 +80,7 @@ public:
 	GLvoid render();
 	void initPng();
 	GLuint CreateTextureFromPng();
+	void CreateTextureFromBmp();
 private:
 	std::vector<int> vertex_types, face_types;
 	int type;

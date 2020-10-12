@@ -12,8 +12,19 @@ QT3DReconstruction::QT3DReconstruction(QWidget *parent)
 	timer->start(500); // 1000毫秒, 等于 1 秒
 	setWindowFlags(windowFlags()& ~Qt::WindowMaximizeButtonHint);
 	setFixedSize(this->width(), this->height());
-	PlyIO* ply = new PlyIO("");
-	//C:/Users/Administrator/Desktop/222/TEXTURE_Mesh.ply
+	PlyIO* ply = new PlyIO("C:/Users/Administrator/Desktop/222/TEXTURE_Mesh.ply");
+	if (false == ply->open()) {
+		ui.textBrowser->insertPlainText("\n模型加载失败");
+		ui.textBrowser->update();
+		return;
+	}
+	
+	delete Global::ply;
+	
+	Global::ply = ply;
+	
+	ui.J3DViewerWidget->setPly();
+	
 	
 }
 
@@ -146,17 +157,17 @@ void QT3DReconstruction::timerSlot()
 				Global::ply = ply;
 				ui.J3DViewerWidget->setPly();
 			}
-			//else if (temp == "texturemesh") {
-			//	QString fileName = Global::reconstructMeshWorkingDir + "/TEXTURE_Mesh.ply";
-			//	QByteArray buf = fileName.toLatin1();
-			//	PlyIO* ply = new PlyIO(buf.data());
-			//	if (false == ply->open()) {
-			//		return;
-			//	}
-			//	delete Global::ply;
-			//	Global::ply = ply;
-			//	ui.J3DViewerWidget->setPly();
-			//}
+			else if (temp == "texturemesh") {
+				QString fileName = Global::reconstructMeshWorkingDir + "/TEXTURE_Mesh.ply";
+				QByteArray buf = fileName.toLatin1();
+				PlyIO* ply = new PlyIO(buf.data());
+				if (false == ply->open()) {
+					return;
+				}
+				delete Global::ply;
+				Global::ply = ply;
+				ui.J3DViewerWidget->setPly();
+			}
             QMessageBox::information(NULL, "完成", "任务完成！ ", QMessageBox::Ok, QMessageBox::Ok);
 			Global::tasking = false;
 			ui.label_process->setText("等待任务 ");

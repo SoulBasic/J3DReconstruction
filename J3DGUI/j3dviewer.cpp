@@ -82,6 +82,7 @@ void j3dviewer::initializeGL()
 	glLoadIdentity();
 	glOrtho(-20, 20, -10, 10, -10.0, 10.0);
 
+
 }
 
 void j3dviewer::paintGL()
@@ -104,6 +105,7 @@ void j3dviewer::paintGL()
 		this->ply->render();
 	}
 	glDisable(GL_TEXTURE_2D);
+	//glutSwapBuffers();
 }
 
 void j3dviewer::resizeGL(int w, int h)
