@@ -1,3 +1,57 @@
-﻿cl : 命令行 warning D9002: 忽略未知选项“/SAFESEH:NO”
+﻿  Reading Qt configuration (C:/Qt/Qt5.14.2/5.14.2/msvc2017/bin/qmake)
+  Uic'ing dialog_addsensorwidth.ui...
+  Uic'ing dialog_densifypointcloud.ui...
+  Uic'ing Dialog_MatchFeature.ui...
+  Uic'ing dialog_reconstructmesh.ui...
+  Uic'ing dialog_sfm.ui...
+  Uic'ing dialog_texturemesh.ui...
+  Uic'ing QT3DReconstruction.ui...
+  rcc QT3DReconstruction.qrc
+  moc QT3DReconstruction.h
+  moc dialog_densifypointcloud.h
+  moc dialog_matchfeature.h
+  moc dialog_sfm.h
+  moc Dialog_ReconstructMesh.h
+   RCC: Warning: No resources in 'E:\Work\JWL3D\J3DGUI\QT3DReconstruction.qrc'.
+  moc dialog_texturemesh.h
+  moc dialog_addsensorwidth.h
+  moc j3dviewer.h
+cl : 命令行 warning D9002: 忽略未知选项“/SAFESEH:NO”
+cl : 命令行 warning D9002: 忽略未知选项“/SAFESEH:NO”
+  dialog_addsensorwidth.cpp
+cl : 命令行 warning D9002: 忽略未知选项“/SAFESEH:NO”
+  dialog_densifypointcloud.cpp
+cl : 命令行 warning D9002: 忽略未知选项“/SAFESEH:NO”
+  Dialog_MatchFeature.cpp
+cl : 命令行 warning D9002: 忽略未知选项“/SAFESEH:NO”
+  Dialog_ReconstructMesh.cpp
+cl : 命令行 warning D9002: 忽略未知选项“/SAFESEH:NO”
+cl : 命令行 warning D9002: 忽略未知选项“/SAFESEH:NO”
+  dialog_sfm.cpp
+  dialog_texturemesh.cpp
+  Global.cpp
+  Matrix4D.cpp
+  Position3D.cpp
+  Vector3D.cpp
+  j3dviewer.cpp
   PlyIO.cpp
+  QT3DReconstruction.cpp
+  main.cpp
+e:\work\jwl3d\j3dgui\qt3dreconstruction.cpp(50): warning C4172: 返回局部变量或临时变量的地址: wszClassName
+cl : 命令行 warning D9002: 忽略未知选项“/SAFESEH:NO”
+cl : 命令行 warning D9002: 忽略未知选项“/SAFESEH:NO”
+  qrc_QT3DReconstruction.cpp
+cl : 命令行 warning D9002: 忽略未知选项“/SAFESEH:NO”
+  moc_QT3DReconstruction.cpp
+cl : 命令行 warning D9002: 忽略未知选项“/SAFESEH:NO”
+  moc_dialog_densifypointcloud.cpp
+cl : 命令行 warning D9002: 忽略未知选项“/SAFESEH:NO”
+cl : 命令行 warning D9002: 忽略未知选项“/SAFESEH:NO”
+  moc_dialog_matchfeature.cpp
+cl : 命令行 warning D9002: 忽略未知选项“/SAFESEH:NO”
+  moc_dialog_sfm.cpp
+  moc_Dialog_ReconstructMesh.cpp
+  moc_dialog_texturemesh.cpp
+  moc_dialog_addsensorwidth.cpp
+  moc_j3dviewer.cpp
   QT3DReconstruction.vcxproj -> E:\Work\JWL3D\Release\J3DGUI.exe

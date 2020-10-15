@@ -21,7 +21,7 @@ PlyIO::PlyIO(char* fileName) {
 	std::string fn(fileName);
 	fn = fn.substr(0, fn.find_last_of('/'));
 	this->workDir = fn;
-	//this->rgba == (GLubyte*)malloc(4);
+	//this->rgba = (GLubyte*)malloc(4);
 
 }
 PlyIO::~PlyIO() {
@@ -261,38 +261,45 @@ GLuint PlyIO::CreateTextureFromPng()
 	//png_set_rows(png_ptr,info_ptr,row_pointers);
 	png_read_image(png_ptr, row_pointers);
 	pos = (width * height * 4) - (4 * width);
-
-	if (color_type == PNG_COLOR_TYPE_RGB_ALPHA)
-	{
-		for (row = 0; row < height; row++)
-		{
-			for (col = 0; col < (4 * width); col += 4)
-			{
-				rgba[pos++] = row_pointers[row][col];        // red
-				rgba[pos++] = row_pointers[row][col + 1];    // green
-				rgba[pos++] = row_pointers[row][col + 2];    // blue
-				rgba[pos++] = row_pointers[row][col + 3];    // alpha
-				//cout << "red=" << (int)rgba[pos-4] << " green=" << (int)rgba[pos-3] << " blue=" << (int)rgba[pos-2] << " alpha=" << (int)rgba[pos-1] << endl;
-			}
-			pos = (pos - (width * 4) * 2);
-		}
-	}
-	else
-	{
-		for (row = 0; row < height; row++)
-		{
-			for (col = 0; col < (4 * width); col += 3)
-			{
-				rgba[pos++] = row_pointers[row][col];        // red
-				rgba[pos++] = row_pointers[row][col + 1];    // green
-				rgba[pos++] = row_pointers[row][col + 2];    // blue
-				//cout << "red=" << (int)rgba[pos-3] << " green=" << (int)rgba[pos-2] << " blue=" << (int)rgba[pos-1]<< endl;
-
-			}
-			pos = (pos - (width * 4) * 2);
-		}
-	}
 	cout << "png_read_image after line done" << endl;
+	if (row_pointers == nullptr) {
+		cout << "error nullptr" << endl;
+		return 0;
+	}
+		if (color_type == PNG_COLOR_TYPE_RGB_ALPHA)
+		{
+			for (row = 0; row < height; row++)
+			{
+				for (col = 0; col < (4 * width); col += 4)
+				{
+					
+					rgba[pos++] = row_pointers[row][col];        // red
+					rgba[pos++] = row_pointers[row][col + 1];    // green
+					rgba[pos++] = row_pointers[row][col + 2];    // blue
+					rgba[pos++] = row_pointers[row][col + 3];    // alpha
+					//cout << "red=" << (int)rgba[pos-4] << " green=" << (int)rgba[pos-3] << " blue=" << (int)rgba[pos-2] << " alpha=" << (int)rgba[pos-1] << endl;
+				}
+				pos = (pos - (width * 4) * 2);
+			}
+		}
+		else
+		{
+			for (row = 0; row < height; row++)
+			{
+				for (col = 0; col < (4 * width); col += 3)
+				{
+					
+					rgba[pos++] = row_pointers[row][col];        // red
+					rgba[pos++] = row_pointers[row][col + 1];    // green
+					rgba[pos++] = row_pointers[row][col + 2];    // blue
+					//cout << "red=" << (int)rgba[pos-3] << " green=" << (int)rgba[pos-2] << " blue=" << (int)rgba[pos-1]<< endl;
+
+				}
+				pos = (pos - (width * 4) * 2);
+			}
+		}
+	
+	cout << "rgba read done" << endl;
 	//开启纹理贴图特效
 	glEnable(GL_TEXTURE_2D);
 	
@@ -612,10 +619,11 @@ bool PlyIO::open()
 GLvoid PlyIO::render() {
 	if (face_N > 0) {
 
-		glBegin(GL_TRIANGLES);
-		glColor3f(0.0, 1.0, 1.0);
+
 		if (this->textureFileName != "")
 		{
+			glBegin(GL_TRIANGLES);
+			glColor3f(0.5, 0.5, 0.5);
 			for (int i = 0; i < face_N; i++)
 			{
 				glNormal3f(faces[i].normal[0], faces[i].normal[1], faces[i].normal[2]);
@@ -632,10 +640,22 @@ GLvoid PlyIO::render() {
 				glVertex3f(vertex[faces[i].v3].x, vertex[faces[i].v3].y, vertex[faces[i].v3].z);
 				//std::cout << "vertex.v3.u=" << faces[i].u[2] << "vertex.v3.v=" << faces[i].v[2] << std::endl;
 			}
+			glEnd();
+			glColor3f(0.0, 0.0, 0.0);
+			glPointSize(1);
+			glBegin(GL_POINTS);
+
+			for (int i = 0; i < vertex_N; i++)
+			{
+				glVertex3f(vertex[i].x, vertex[i].y, vertex[i].z);
+			}
+			glEnd();
 
 		}
 		else
 		{
+			glBegin(GL_TRIANGLES);
+			glColor3f(0.0, 1.0, 1.0);
 			for (int i = 0; i < face_N; i++)
 			{
 				glNormal3f(faces[i].normal[0], faces[i].normal[1], faces[i].normal[2]);
@@ -643,11 +663,11 @@ GLvoid PlyIO::render() {
 				glVertex3f(vertex[faces[i].v2].x, vertex[faces[i].v2].y, vertex[faces[i].v2].z);
 				glVertex3f(vertex[faces[i].v3].x, vertex[faces[i].v3].y, vertex[faces[i].v3].z);
 			}
-
+			glEnd();
 			//glEnable(GL_LIGHTING);
 		}
 
-		glEnd();
+		
 		if (this->textureFileName != "")
 			glDisable(GL_LIGHTING);
 		else
@@ -668,6 +688,7 @@ GLvoid PlyIO::render() {
 	}
 
 
+	
 	glFlush();
 
 }

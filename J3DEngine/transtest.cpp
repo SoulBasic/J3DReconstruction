@@ -326,6 +326,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 	}
 	break;
 	case CMD_RECONSTRUCTMESH: {
+		MessageBoxA(NULL, "111", "´íÎó", MB_OK);
 		Global::process = PROCESSWORKING;
 		Global::saveProcess();
 		std::string reconstructMeshInputDir, reconstructMeshOutputDir, reconstructMeshWorkingDir;
@@ -370,6 +371,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		cmd[6] = (char*)reconstructMeshOutputDir.data();
 		cmd[7] = "-w";
 		cmd[8] = (char*)reconstructMeshWorkingDir.data();
+		MessageBoxA(NULL, "122", "´íÎó", MB_OK);
 		int status = MVSEngine::ReconstructMesh(9, cmd);
 		cmd[0] = t;
 		cmd[1] = "-i";
@@ -380,6 +382,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		cmd[6] = (char*)reconstructMeshOutputDir.data();
 		cmd[7] = "-w";
 		cmd[8] = (char*)reconstructMeshWorkingDir.data();
+		MessageBoxA(NULL, "222", "´íÎó", MB_OK);
 		status = MVSEngine::RefineMesh(9, cmd);
 		if (status == EXIT_SUCCESS) {
 			Global::process = PROCESSCLOSE;
@@ -435,8 +438,8 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		cmd[4] = (char*)textureMeshOutputDir.data();
 		cmd[5] = "-w";
 		cmd[6] = (char*)textureMeshWorkingDir.data();
-		cmd[5] = "--export-type";
-		cmd[6] = (char*)exportFormat.data();
+		cmd[7] = "--export-type";
+		cmd[8] = (char*)exportFormat.data();
 		int status = MVSEngine::TextureMesh(9, cmd);
 		//Global::resizeTextureFile(textureMeshOutputDir);
 		if (status == EXIT_SUCCESS) {
