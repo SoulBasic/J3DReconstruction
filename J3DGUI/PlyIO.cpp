@@ -330,22 +330,6 @@ GLuint PlyIO::CreateTextureFromPng()
 
 }
 
-
-void PlyIO::CreateTextureFromBmp() {
-	AUX_RGBImageRec *pImage = NULL;
-	FILE *pFile = NULL;
-	wchar_t ws[100];
-	//
-	//this->textureFileName.c_str()
-	swprintf(ws, 100, L"%hs", "C:/Users/Administrator/Desktop/222/TEXTURE_Mesh.bmp");
-	AUX_RGBImageRec *Image = auxDIBImageLoad(ws);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-
-	glTexImage2D(GL_TEXTURE_2D, 0, 3, Image->sizeX, Image->sizeY,
-		0, GL_RGB, GL_UNSIGNED_BYTE, Image->data);
-}
-
 void PlyIO::calculateNormal(PlyIO::Face3D &face) {
 	Point3D FirstPoint = vertex[face.v1];
 	//qDebug("第一点：%f %f %f", FirstPoint.x, FirstPoint.y, FirstPoint.z);

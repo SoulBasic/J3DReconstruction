@@ -279,3 +279,20 @@ void QT3DReconstruction::on_action_triggered() //textureMesh
 {
 	dlgtm.exec();
 }
+
+void QT3DReconstruction::on_actionopen_mvs_file_triggered()
+{
+	QString fileName = QFileDialog::getOpenFileName(NULL, "ViewMVS", ".", "*.mvs");
+	if (fileName == "")
+		return;
+
+	QByteArray buf = fileName.toLatin1(); // must
+
+	char* cmd[2];
+	char t[200];
+	GetModuleFileNameA(NULL, t, 200);
+	cmd[0] = t;
+	//cmd[1] = "-i";
+	cmd[1] = (char*)fileName.toStdString().data();
+	MVSEngine::MVSViewer(2, cmd);
+}

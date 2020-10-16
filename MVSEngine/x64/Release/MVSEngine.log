@@ -1,4 +1,19 @@
-﻿  DensifyPointCloud.cpp
+﻿  Camera.cpp
+c:\openmvs\src\libs\common\types.inl(2508): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+c:\openmvs\boost\boost_1_67_0\boost\iostreams\positioning.hpp(96): warning C4996: 'std::fpos<_Mbstatet>::seekpos': warning STL4019: The member std::fpos::seekpos() is non-Standard, and is preserved only for compatibility with workarounds for old versions of Visual C++. It will be removed in a future release, and in this release always returns 0. Please use standards-conforming mechanisms to manipulate fpos, such as conversions to and from streamoff, or an integral type, instead. If you are receiving this message while compiling Boost.IOStreams, a fix has been submitted upstream to make Boost use standards-conforming mechanisms, as it does for other compilers. You can define _SILENCE_FPOS_SEEKPOS_DEPRECATION_WARNING to acknowledge that you have received this warning, or define _REMOVE_FPOS_SEEKPOS to remove std::fpos::seekpos entirely.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\iosfwd(59): note: 参见“std::fpos<_Mbstatet>::seekpos”的声明
+c:\openmvs\src\libs\io\obj.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  Common.cpp
+c:\openmvs\src\libs\common\types.inl(2508): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+c:\openmvs\boost\boost_1_67_0\boost\iostreams\positioning.hpp(96): warning C4996: 'std::fpos<_Mbstatet>::seekpos': warning STL4019: The member std::fpos::seekpos() is non-Standard, and is preserved only for compatibility with workarounds for old versions of Visual C++. It will be removed in a future release, and in this release always returns 0. Please use standards-conforming mechanisms to manipulate fpos, such as conversions to and from streamoff, or an integral type, instead. If you are receiving this message while compiling Boost.IOStreams, a fix has been submitted upstream to make Boost use standards-conforming mechanisms, as it does for other compilers. You can define _SILENCE_FPOS_SEEKPOS_DEPRECATION_WARNING to acknowledge that you have received this warning, or define _REMOVE_FPOS_SEEKPOS to remove std::fpos::seekpos entirely.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\iosfwd(59): note: 参见“std::fpos<_Mbstatet>::seekpos”的声明
+c:\openmvs\src\libs\io\obj.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  DensifyPointCloud.cpp
+c:\openmvs\src\libs\common\types.inl(2508): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+c:\openmvs\boost\boost_1_67_0\boost\iostreams\positioning.hpp(96): warning C4996: 'std::fpos<_Mbstatet>::seekpos': warning STL4019: The member std::fpos::seekpos() is non-Standard, and is preserved only for compatibility with workarounds for old versions of Visual C++. It will be removed in a future release, and in this release always returns 0. Please use standards-conforming mechanisms to manipulate fpos, such as conversions to and from streamoff, or an integral type, instead. If you are receiving this message while compiling Boost.IOStreams, a fix has been submitted upstream to make Boost use standards-conforming mechanisms, as it does for other compilers. You can define _SILENCE_FPOS_SEEKPOS_DEPRECATION_WARNING to acknowledge that you have received this warning, or define _REMOVE_FPOS_SEEKPOS to remove std::fpos::seekpos entirely.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\iosfwd(59): note: 参见“std::fpos<_Mbstatet>::seekpos”的声明
+c:\openmvs\src\libs\io\obj.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  Image.cpp
 c:\openmvs\src\libs\common\types.inl(2508): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
 c:\openmvs\boost\boost_1_67_0\boost\iostreams\positioning.hpp(96): warning C4996: 'std::fpos<_Mbstatet>::seekpos': warning STL4019: The member std::fpos::seekpos() is non-Standard, and is preserved only for compatibility with workarounds for old versions of Visual C++. It will be removed in a future release, and in this release always returns 0. Please use standards-conforming mechanisms to manipulate fpos, such as conversions to and from streamoff, or an integral type, instead. If you are receiving this message while compiling Boost.IOStreams, a fix has been submitted upstream to make Boost use standards-conforming mechanisms, as it does for other compilers. You can define _SILENCE_FPOS_SEEKPOS_DEPRECATION_WARNING to acknowledge that you have received this warning, or define _REMOVE_FPOS_SEEKPOS to remove std::fpos::seekpos entirely.
   c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\iosfwd(59): note: 参见“std::fpos<_Mbstatet>::seekpos”的声明
@@ -13,15 +28,53 @@ c:\openmvs\src\libs\common\types.inl(2508): warning C4819: 该文件包含不能
 c:\openmvs\boost\boost_1_67_0\boost\iostreams\positioning.hpp(96): warning C4996: 'std::fpos<_Mbstatet>::seekpos': warning STL4019: The member std::fpos::seekpos() is non-Standard, and is preserved only for compatibility with workarounds for old versions of Visual C++. It will be removed in a future release, and in this release always returns 0. Please use standards-conforming mechanisms to manipulate fpos, such as conversions to and from streamoff, or an integral type, instead. If you are receiving this message while compiling Boost.IOStreams, a fix has been submitted upstream to make Boost use standards-conforming mechanisms, as it does for other compilers. You can define _SILENCE_FPOS_SEEKPOS_DEPRECATION_WARNING to acknowledge that you have received this warning, or define _REMOVE_FPOS_SEEKPOS to remove std::fpos::seekpos entirely.
   c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\iosfwd(59): note: 参见“std::fpos<_Mbstatet>::seekpos”的声明
 c:\openmvs\src\libs\io\obj.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  Scene.cpp
+c:\openmvs\src\libs\common\types.inl(2508): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+c:\openmvs\boost\boost_1_67_0\boost\iostreams\positioning.hpp(96): warning C4996: 'std::fpos<_Mbstatet>::seekpos': warning STL4019: The member std::fpos::seekpos() is non-Standard, and is preserved only for compatibility with workarounds for old versions of Visual C++. It will be removed in a future release, and in this release always returns 0. Please use standards-conforming mechanisms to manipulate fpos, such as conversions to and from streamoff, or an integral type, instead. If you are receiving this message while compiling Boost.IOStreams, a fix has been submitted upstream to make Boost use standards-conforming mechanisms, as it does for other compilers. You can define _SILENCE_FPOS_SEEKPOS_DEPRECATION_WARNING to acknowledge that you have received this warning, or define _REMOVE_FPOS_SEEKPOS to remove std::fpos::seekpos entirely.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\iosfwd(59): note: 参见“std::fpos<_Mbstatet>::seekpos”的声明
+c:\openmvs\src\libs\io\obj.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
   TextureMesh.cpp
 c:\openmvs\src\libs\common\types.inl(2508): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
 c:\openmvs\boost\boost_1_67_0\boost\iostreams\positioning.hpp(96): warning C4996: 'std::fpos<_Mbstatet>::seekpos': warning STL4019: The member std::fpos::seekpos() is non-Standard, and is preserved only for compatibility with workarounds for old versions of Visual C++. It will be removed in a future release, and in this release always returns 0. Please use standards-conforming mechanisms to manipulate fpos, such as conversions to and from streamoff, or an integral type, instead. If you are receiving this message while compiling Boost.IOStreams, a fix has been submitted upstream to make Boost use standards-conforming mechanisms, as it does for other compilers. You can define _SILENCE_FPOS_SEEKPOS_DEPRECATION_WARNING to acknowledge that you have received this warning, or define _REMOVE_FPOS_SEEKPOS to remove std::fpos::seekpos entirely.
   c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\iosfwd(59): note: 参见“std::fpos<_Mbstatet>::seekpos”的声明
 c:\openmvs\src\libs\io\obj.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  Viewer.cpp
+c:\openmvs\src\libs\common\types.inl(2508): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+c:\openmvs\boost\boost_1_67_0\boost\iostreams\positioning.hpp(96): warning C4996: 'std::fpos<_Mbstatet>::seekpos': warning STL4019: The member std::fpos::seekpos() is non-Standard, and is preserved only for compatibility with workarounds for old versions of Visual C++. It will be removed in a future release, and in this release always returns 0. Please use standards-conforming mechanisms to manipulate fpos, such as conversions to and from streamoff, or an integral type, instead. If you are receiving this message while compiling Boost.IOStreams, a fix has been submitted upstream to make Boost use standards-conforming mechanisms, as it does for other compilers. You can define _SILENCE_FPOS_SEEKPOS_DEPRECATION_WARNING to acknowledge that you have received this warning, or define _REMOVE_FPOS_SEEKPOS to remove std::fpos::seekpos entirely.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\iosfwd(59): note: 参见“std::fpos<_Mbstatet>::seekpos”的声明
+c:\openmvs\src\libs\io\obj.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  Window.cpp
+c:\openmvs\src\libs\common\types.inl(2508): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+c:\openmvs\boost\boost_1_67_0\boost\iostreams\positioning.hpp(96): warning C4996: 'std::fpos<_Mbstatet>::seekpos': warning STL4019: The member std::fpos::seekpos() is non-Standard, and is preserved only for compatibility with workarounds for old versions of Visual C++. It will be removed in a future release, and in this release always returns 0. Please use standards-conforming mechanisms to manipulate fpos, such as conversions to and from streamoff, or an integral type, instead. If you are receiving this message while compiling Boost.IOStreams, a fix has been submitted upstream to make Boost use standards-conforming mechanisms, as it does for other compilers. You can define _SILENCE_FPOS_SEEKPOS_DEPRECATION_WARNING to acknowledge that you have received this warning, or define _REMOVE_FPOS_SEEKPOS to remove std::fpos::seekpos entirely.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\iosfwd(59): note: 参见“std::fpos<_Mbstatet>::seekpos”的声明
+c:\openmvs\src\libs\io\obj.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
   正在生成代码...
+Viewer.obj : warning LNK4006: "int OPT::nProcessPriority" (?nProcessPriority@OPT@@3HA) 已在 DensifyPointCloud.obj 中定义；已忽略第二个定义
+Viewer.obj : warning LNK4006: "unsigned int OPT::nMaxThreads" (?nMaxThreads@OPT@@3IA) 已在 DensifyPointCloud.obj 中定义；已忽略第二个定义
+Viewer.obj : warning LNK4006: "class SEACAVE::String OPT::strInputFileName" (?strInputFileName@OPT@@3VString@SEACAVE@@A) 已在 DensifyPointCloud.obj 中定义；已忽略第二个定义
+Viewer.obj : warning LNK4006: "class SEACAVE::String OPT::strOutputFileName" (?strOutputFileName@OPT@@3VString@SEACAVE@@A) 已在 DensifyPointCloud.obj 中定义；已忽略第二个定义
+Viewer.obj : warning LNK4006: "class SEACAVE::String OPT::strMeshFileName" (?strMeshFileName@OPT@@3VString@SEACAVE@@A) 已在 DensifyPointCloud.obj 中定义；已忽略第二个定义
+Viewer.obj : warning LNK4006: "class SEACAVE::String OPT::strConfigFileName" (?strConfigFileName@OPT@@3VString@SEACAVE@@A) 已在 DensifyPointCloud.obj 中定义；已忽略第二个定义
+Viewer.obj : warning LNK4006: "class boost::program_options::variables_map OPT::vm" (?vm@OPT@@3Vvariables_map@program_options@boost@@A) 已在 DensifyPointCloud.obj 中定义；已忽略第二个定义
   MVS.lib(PointCloud.obj) : 找到 MSIL .netmodule 或使用 /GL 编译的模块；正在使用 /LTCG 重新启动链接；将 /LTCG 添加到链接命令行以改进链接器性能
+Viewer.obj : warning LNK4006: "int OPT::nProcessPriority" (?nProcessPriority@OPT@@3HA) 已在 DensifyPointCloud.obj 中定义；已忽略第二个定义
+Viewer.obj : warning LNK4006: "unsigned int OPT::nMaxThreads" (?nMaxThreads@OPT@@3IA) 已在 DensifyPointCloud.obj 中定义；已忽略第二个定义
+Viewer.obj : warning LNK4006: "class SEACAVE::String OPT::strInputFileName" (?strInputFileName@OPT@@3VString@SEACAVE@@A) 已在 DensifyPointCloud.obj 中定义；已忽略第二个定义
+Viewer.obj : warning LNK4006: "class SEACAVE::String OPT::strOutputFileName" (?strOutputFileName@OPT@@3VString@SEACAVE@@A) 已在 DensifyPointCloud.obj 中定义；已忽略第二个定义
+Viewer.obj : warning LNK4006: "class SEACAVE::String OPT::strMeshFileName" (?strMeshFileName@OPT@@3VString@SEACAVE@@A) 已在 DensifyPointCloud.obj 中定义；已忽略第二个定义
+Viewer.obj : warning LNK4006: "class SEACAVE::String OPT::strConfigFileName" (?strConfigFileName@OPT@@3VString@SEACAVE@@A) 已在 DensifyPointCloud.obj 中定义；已忽略第二个定义
+Viewer.obj : warning LNK4006: "class boost::program_options::variables_map OPT::vm" (?vm@OPT@@3Vvariables_map@program_options@boost@@A) 已在 DensifyPointCloud.obj 中定义；已忽略第二个定义
     正在创建库 E:\Work\JWL3D\x64\Release\J3DMVSEngine.lib 和对象 E:\Work\JWL3D\x64\Release\J3DMVSEngine.exp
 LINK : warning LNK4098: 默认库“LIBCMTD”与其他库的使用冲突；请使用 /NODEFAULTLIB:library
+E:\Work\JWL3D\x64\Release\J3DMVSEngine.dll : warning LNK4088: 因 /FORCE 选项生成了映像；映像可能不能运行
   正在生成代码
   已完成代码的生成
+Viewer.obj : warning LNK4006: "int OPT::nProcessPriority" (?nProcessPriority@OPT@@3HA) 已在 DensifyPointCloud.obj 中定义；已忽略第二个定义
+Viewer.obj : warning LNK4006: "unsigned int OPT::nMaxThreads" (?nMaxThreads@OPT@@3IA) 已在 DensifyPointCloud.obj 中定义；已忽略第二个定义
+Viewer.obj : warning LNK4006: "class SEACAVE::String OPT::strInputFileName" (?strInputFileName@OPT@@3VString@SEACAVE@@A) 已在 DensifyPointCloud.obj 中定义；已忽略第二个定义
+Viewer.obj : warning LNK4006: "class SEACAVE::String OPT::strOutputFileName" (?strOutputFileName@OPT@@3VString@SEACAVE@@A) 已在 DensifyPointCloud.obj 中定义；已忽略第二个定义
+Viewer.obj : warning LNK4006: "class SEACAVE::String OPT::strMeshFileName" (?strMeshFileName@OPT@@3VString@SEACAVE@@A) 已在 DensifyPointCloud.obj 中定义；已忽略第二个定义
+Viewer.obj : warning LNK4006: "class SEACAVE::String OPT::strConfigFileName" (?strConfigFileName@OPT@@3VString@SEACAVE@@A) 已在 DensifyPointCloud.obj 中定义；已忽略第二个定义
+Viewer.obj : warning LNK4006: "class boost::program_options::variables_map OPT::vm" (?vm@OPT@@3Vvariables_map@program_options@boost@@A) 已在 DensifyPointCloud.obj 中定义；已忽略第二个定义
+E:\Work\JWL3D\x64\Release\J3DMVSEngine.dll : warning LNK4088: 因 /FORCE 选项生成了映像；映像可能不能运行
   MVSEngine.vcxproj -> E:\Work\JWL3D\x64\Release\J3DMVSEngine.dll

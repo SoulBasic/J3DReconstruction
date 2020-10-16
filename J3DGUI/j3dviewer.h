@@ -4,6 +4,8 @@
 #include "PlyIO.h"
 #include <QOpenGLWidget>
 #include <QOpenGLFunctions>
+#include <GLFW/glfw3.h>
+
 #include <QMouseEvent>
 #include <QWheelEvent>
 #include "Global.h"
@@ -14,6 +16,7 @@
 #include "zlib/zlib.h"
 #include <stdarg.h>
 #include <math.h>
+
 //class RoamingScenceManager;
 class j3dviewer : public QOpenGLWidget, public QOpenGLFunctions
 {

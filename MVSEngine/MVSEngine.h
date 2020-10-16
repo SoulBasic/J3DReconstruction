@@ -1,11 +1,5 @@
 #pragma once
 
-#include <iostream>
-#include <Windows.h>
-#include <winnt.h>
-#include "libs/MVS/Common.h"
-#include "libs/MVS/Scene.h"
-#include <boost/program_options.hpp>
 namespace MVSEngine
 {
 	bool Initialize_Dense(size_t argc, LPCTSTR* argv);
@@ -23,6 +17,14 @@ namespace MVSEngine
 	bool Initialize_TextureMesh(size_t argc, LPCTSTR* argv);
 	void Finalize_TextureMesh();
 	__declspec(dllexport) int TextureMesh(int num, char* cmd[]);
+
+	bool Initialize_TextureMesh(size_t argc, LPCTSTR* argv);
+	void Finalize_TextureMesh();
+	__declspec(dllexport) int TextureMesh(int num, char* cmd[]);
+
+	bool Initialize_MVSViewer(size_t argc, LPCTSTR* argv);
+	void Finalize_MVSViewer();
+	__declspec(dllexport) int MVSViewer(int num, char* cmd[]);
 
 
 

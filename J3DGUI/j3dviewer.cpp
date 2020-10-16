@@ -81,7 +81,7 @@ void j3dviewer::initializeGL()
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	glOrtho(-20, 20, -10, 10, -10.0, 10.0);
-
+	
 
 }
 

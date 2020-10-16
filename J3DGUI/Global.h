@@ -57,4 +57,5 @@ public:
 	static QString processETA;
 	static bool getProcessMsg();
 	static PlyIO* ply;
+	static LPCTSTR charToLPCTSTR(const char* str);
 };

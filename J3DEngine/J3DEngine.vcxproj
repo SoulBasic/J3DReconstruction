@@ -26,7 +26,6 @@
     <ClInclude Include="ExportSparseCloud.h" />
     <ClInclude Include="Global.h" />
     <ClInclude Include="MatchImages.h" />
-    <ClInclude Include="MVSEngine.h" />
     <ClInclude Include="PresetConfigureImages.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="StructureFromMotion.h" />
@@ -170,7 +169,7 @@
       <SDLCheck>false</SDLCheck>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;OPENMVG_USE_AVX2;__SSE2__;__SSE3__;__SSSE3__;__SSE4_1__;__SSE4_2__;__AVX__;__FMA__;__BMI2__;__AVX2__;OPENMVG_USE_OPENMP;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>false</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\openMVS\openMVG\src;C:\openMVS\openMVG\src\third_party\eigen;C:\openMVS\openMVG\src\dependencies\cereal\include;C:\openMVS\openMVG\src\third_party\lemon;C:\openMVS\build\openMVG\third_party\lemon;C:\openMVS\openMVG\src\third_party\flann\src\cpp;C:\openMVS\openMVG\src\openMVG;C:\openMVS\openMVG\src\third_party\stlplus3;\filesystemSimplified;C:\openMVS\build\openCV\install\include\opencv2;C:\openMVS\build\openCV\install\include\opencv;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\openMVS\openMVG\src;C:\openMVS\openMVG\src\third_party\eigen;C:\openMVS\openMVG\src\dependencies\cereal\include;C:\openMVS\openMVG\src\third_party\lemon;C:\openMVS\build\openMVG\third_party\lemon;C:\openMVS\openMVG\src\third_party\flann\src\cpp;C:\openMVS\openMVG\src\openMVG;C:\openMVS\openMVG\src\third_party\stlplus3;\filesystemSimplified;C:\openMVS\build\openCV\install\include\opencv2;C:\openMVS\build\openCV\install\include\opencv;..\MVSEngine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
       <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>

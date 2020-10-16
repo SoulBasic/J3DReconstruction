@@ -158,6 +158,7 @@
     <addaction name="action_viewMVS"/>
     <addaction name="action_viewPLY"/>
     <addaction name="action_addSensorWidth"/>
+    <addaction name="actionopen_mvs_file"/>
    </widget>
    <addaction name="menu_3"/>
    <addaction name="menu_2"/>
@@ -203,6 +204,11 @@
   <action name="action">
    <property name="text">
     <string>模型纹理映射</string>
+   </property>
+  </action>
+  <action name="actionopen_mvs_file">
+   <property name="text">
+    <string>open mvs file</string>
    </property>
   </action>
  </widget>

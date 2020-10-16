@@ -111,3 +111,11 @@ bool Global::getProcessMsg()
 		return false;
 }
 
+LPCTSTR Global::charToLPCTSTR(const char* str) 
+{
+	int num = MultiByteToWideChar(0, 0, str, -1, NULL, 0);
+	wchar_t *wide = new wchar_t[num];
+	MultiByteToWideChar(0, 0, str, -1, wide, num);
+	return wide;
+}
+

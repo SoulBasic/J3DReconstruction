@@ -23,8 +23,7 @@
 #include <qtimer.h>
 #include <qinputdialog.h>
 #include <fstream>
-
-
+#include "MVSEngine.h"
 
 
 
@@ -61,6 +60,8 @@ private slots:
     void on_action_reconstrctMesh_triggered();
 
     void on_action_triggered();
+
+    void on_actionopen_mvs_file_triggered();
 
 private:
 	Ui::QT3DReconstructionClass ui;

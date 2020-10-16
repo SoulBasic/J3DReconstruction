@@ -6,10 +6,9 @@
 #include <vector>
 #include <sstream>
 #include <iostream>
+#include "GL/glew.h"
 #include "qdebug.h"
-#include "GLUT.H"
 #include <lpng/png.h>
-#include "GLAUX.H"
 
 #define M_PI 3.14159265358979323846
 #define TYPE_PLY_RB 0
