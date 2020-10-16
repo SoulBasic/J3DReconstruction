@@ -12,6 +12,7 @@ using namespace std;
 #define CMD_EXPORTDENSECLOUD 104
 #define CMD_RECONSTRUCTMESH 105
 #define CMD_TEXTUREMESH 106
+#define CMD_FULLAUTO 100
 #define LISTIMAGES 1
 #define COMPUTEFEATURES 2
 #define MATCHFEATURES 3
@@ -20,7 +21,11 @@ using namespace std;
 #define COLORED 6
 #define SPARSE 7
 #define DENSE 8
+#define DENSEFUSE 12
 #define REMESH 9
+#define REFINE 10
+#define TEXTURE 11
+#define FULLAUTO 13
 #define PROCESSWORKING 0
 #define PROCESSCLOSE 1
 #define PROCESSERROR 2

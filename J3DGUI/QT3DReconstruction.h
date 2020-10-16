@@ -9,6 +9,7 @@
 #include "Dialog_ReconstructMesh.h"
 #include "dialog_texturemesh.h"
 #include "dialog_addsensorwidth.h"
+#include "dialog_fullauto.h"
 #include <iostream>
 #include "qfiledialog.h"
 #include "qmessagebox.h"
@@ -69,6 +70,8 @@ private slots:
 
     void on_actionopen_mvs_file_triggered();
 
+    void on_action_fullauto_triggered();
+
 private:
 
 	Ui::QT3DReconstructionClass ui;
@@ -78,5 +81,6 @@ private:
 	Dialog_ReconstructMesh dlgrm;
 	Dialog_TextureMesh dlgtm;
 	Dialog_addsensorwidth dlgasw;
+	Dialog_FullAuto dlgfa;
 
 };

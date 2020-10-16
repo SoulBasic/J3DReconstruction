@@ -210,6 +210,7 @@
     <QtRcc Include="QT3DReconstruction.qrc" />
     <QtUic Include="dialog_addsensorwidth.ui" />
     <QtUic Include="dialog_densifypointcloud.ui" />
+    <QtUic Include="dialog_fullauto.ui" />
     <QtUic Include="Dialog_MatchFeature.ui" />
     <QtUic Include="dialog_reconstructmesh.ui" />
     <QtUic Include="dialog_sfm.ui" />
@@ -220,6 +221,7 @@
     <QtMoc Include="QT3DReconstruction.h" />
     <ClCompile Include="dialog_addsensorwidth.cpp" />
     <ClCompile Include="dialog_densifypointcloud.cpp" />
+    <ClCompile Include="dialog_fullauto.cpp" />
     <ClCompile Include="Dialog_MatchFeature.cpp" />
     <ClCompile Include="Dialog_ReconstructMesh.cpp" />
     <ClCompile Include="dialog_sfm.cpp" />
@@ -246,6 +248,7 @@
     <QtMoc Include="Dialog_ReconstructMesh.h" />
     <QtMoc Include="dialog_texturemesh.h" />
     <QtMoc Include="dialog_addsensorwidth.h" />
+    <QtMoc Include="dialog_fullauto.h" />
     <ClInclude Include="Global.h" />
     <ClInclude Include="GLUtil\Matrix4D.h" />
     <ClInclude Include="GLUtil\Position3D.h" />

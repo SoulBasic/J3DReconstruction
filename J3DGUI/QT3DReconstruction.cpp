@@ -116,7 +116,7 @@ void QT3DReconstruction::timerSlot()
 	}
 	
 
-	if (Global::tasking == true)
+	if (Global::tasking)
 	{
 		Global::getProcessMsg();
 		qDebug("%d %d %d", Global::process, Global::processProject, Global::processState);
@@ -332,4 +332,9 @@ bool QT3DReconstruction::openJ3DView(QString fileName)
 	this->ui.widget->setGeometry(QRect(10, 70, 1361, 661));
 	this->ui.widget->show();
 	return true;
+}
+
+void QT3DReconstruction::on_action_fullauto_triggered()
+{
+	dlgfa.exec();
 }

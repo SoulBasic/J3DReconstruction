@@ -123,8 +123,8 @@
    <widget class="mvsviewer" name="widget" native="true">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>70</y>
+      <x>-50</x>
+      <y>-110</y>
       <width>1361</width>
       <height>661</height>
      </rect>
@@ -143,10 +143,11 @@
    </property>
    <widget class="QMenu" name="menu_2">
     <property name="title">
-     <string>三维重建</string>
+     <string>分步三维重建</string>
     </property>
     <addaction name="actionMatchFeature"/>
     <addaction name="actionSFM"/>
+    <addaction name="separator"/>
     <addaction name="actionDenseCloud"/>
     <addaction name="action_reconstrctMesh"/>
     <addaction name="action"/>
@@ -155,12 +156,18 @@
     <property name="title">
      <string>文件</string>
     </property>
-    <addaction name="action_viewMVS"/>
     <addaction name="actionopen_mvs_file"/>
     <addaction name="action_addSensorWidth"/>
     <addaction name="action_viewPLY"/>
    </widget>
+   <widget class="QMenu" name="menu_4">
+    <property name="title">
+     <string>全自动三维重建</string>
+    </property>
+    <addaction name="action_fullauto"/>
+   </widget>
    <addaction name="menu_3"/>
+   <addaction name="menu_4"/>
    <addaction name="menu_2"/>
   </widget>
   <action name="actionMatchFeature">
@@ -170,20 +177,12 @@
   </action>
   <action name="actionSFM">
    <property name="text">
-    <string>SFM</string>
+    <string>SFM及稀疏点云生成</string>
    </property>
   </action>
   <action name="actionDenseCloud">
    <property name="text">
     <string>密集点云生成</string>
-   </property>
-  </action>
-  <action name="action_viewMVS">
-   <property name="text">
-    <string>预览稀疏点云(MVS)</string>
-   </property>
-   <property name="visible">
-    <bool>false</bool>
    </property>
   </action>
   <action name="action_addSensorWidth">
@@ -209,6 +208,11 @@
   <action name="actionopen_mvs_file">
    <property name="text">
     <string>打开j3d模型文件</string>
+   </property>
+  </action>
+  <action name="action_fullauto">
+   <property name="text">
+    <string>全自动工程配置</string>
    </property>
   </action>
  </widget>

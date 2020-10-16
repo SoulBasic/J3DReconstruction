@@ -15,6 +15,7 @@
 #define CMD_EXPORTDENSECLOUD 104
 #define CMD_RECONSTRUCTMESH 105
 #define CMD_TEXTUREMESH 106
+#define CMD_FULLAUTO 100
 #define LISTIMAGES 1
 #define COMPUTEFEATURES 2
 #define MATCHFEATURES 3
@@ -27,9 +28,12 @@
 #define REMESH 9
 #define REFINE 10
 #define TEXTURE 11
+#define FULLAUTO 13
 #define PROCESSWORKING 0
 #define PROCESSCLOSE 1
 #define PROCESSERROR 2
+#define EXIT_SUCCESS 0
+#define EXIT_FAILURE 1
 
 class Global
 {
@@ -49,7 +53,10 @@ public:
 	static QString textureMeshInputDir;
 	static QString textureMeshOutputDir;
 	static QString textureMeshWorkingDir;
+	static QString fullauto_InPutDir;
+	static QString fullauto_OutputDir;
 	static bool tasking;
+	static bool autoTasking;
 	static void connectEngine();
 	static DWORD GetProcessidFromName(char* name);
 	static int process;
