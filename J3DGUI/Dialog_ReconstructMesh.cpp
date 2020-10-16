@@ -35,8 +35,8 @@ void Dialog_ReconstructMesh::on_btn_OK_clicked()
 		return;
 	}
 
-	Global::reconstructMeshInputDir = ui->lineEdit_inputDir->text() + "/DenseCloud.mvs";
-	Global::reconstructMeshOutputDir = ui->lineEdit_OutputDir->text() + "/TIN_Mesh.mvs";
+	Global::reconstructMeshInputDir = ui->lineEdit_inputDir->text() + "/DenseCloud.j3d";
+	Global::reconstructMeshOutputDir = ui->lineEdit_OutputDir->text() + "/TIN_Mesh.j3d";
 	Global::reconstructMeshWorkingDir = ui->lineEdit_OutputDir->text();
 
 	_mkdir("C:\\ProgramData\\J3DEngine");

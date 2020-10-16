@@ -39,9 +39,6 @@
     <QtUic Include="dialog_sfm.ui">
       <Filter>Form Files</Filter>
     </QtUic>
-    <QtMoc Include="j3dviewer.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <QtMoc Include="Dialog_ReconstructMesh.h">
       <Filter>Header Files</Filter>
     </QtMoc>
@@ -49,6 +46,9 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="dialog_addsensorwidth.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="mvsviewer.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
@@ -66,9 +66,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Global.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="j3dviewer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Dialog_ReconstructMesh.cpp">
@@ -90,6 +87,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="dialog_addsensorwidth.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mvsviewer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

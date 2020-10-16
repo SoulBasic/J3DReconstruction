@@ -35,8 +35,8 @@ void Dialog_TextureMesh::on_btn_OK_clicked()
 		return;
 	}
 
-	Global::textureMeshInputDir = ui->lineEdit_inputDir->text() + "/TIN_Mesh.mvs";
-	Global::textureMeshOutputDir = ui->lineEdit_OutputDir->text() + "/TEXTURE_Mesh.mvs";
+	Global::textureMeshInputDir = ui->lineEdit_inputDir->text() + "/TIN_Mesh.j3d";
+	Global::textureMeshOutputDir = ui->lineEdit_OutputDir->text() + "/TEXTURE_Mesh.j3d";
 	Global::textureMeshWorkingDir = ui->lineEdit_OutputDir->text();
 
 	_mkdir("C:\\ProgramData\\J3DEngine");

@@ -262,7 +262,7 @@ bool exportToSparse(
 
 int ExportSparseCloud(
 	std::string sSfM_Data_Filename,
-	std::string sOutFile = "scene.mvs",
+	std::string sOutFile = "scene.j3d",
 	std::string sOutDir = "undistorted_images",
 	int iNumThreads = 0 //only use openmp
 )
@@ -270,7 +270,7 @@ int ExportSparseCloud(
 	Global::processProject = SPARSE;
 	Global::processState = 0;
 	Global::saveProcess();
-	if (stlplus::extension_part(sOutFile) != "mvs") {
+	if (stlplus::extension_part(sOutFile) != "j3d") {
 		std::cerr << std::endl
 			<< "无效的输出文件扩展名: " << sOutFile << std::endl;
 		return EXIT_FAILURE;

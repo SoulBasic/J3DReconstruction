@@ -281,8 +281,8 @@ bool Scene::Init(int width, int height, LPCTSTR windowName, LPCTSTR fileName, LP
 	// init OpenGL
 	glPolygonMode(GL_FRONT, GL_FILL);
 	glEnable(GL_DEPTH_TEST);
-	glClearColor(0.f, 0.5f, 0.9f, 1.f);
-
+	//glClearColor(0.f, 0.5f, 0.9f, 1.f);
+	glClearColor(0.9019f, 0.9019f, 0.9821f, 0);
 	static const float light0_ambient[] = {0.1f, 0.1f, 0.1f, 1.0f};
 	static const float light0_diffuse[] = {1.0f, 1.0f, 1.0f, 1.0f};
 	static const float light0_position[] = {0.0f, 0.0f, 1000.0f, 0.0f};
@@ -377,7 +377,7 @@ bool Scene::Open(LPCTSTR fileName, LPCTSTR meshFileName)
 	// init camera
 	window.SetCamera(CameraPtr(new Camera(bounds)));
 	window.camera->maxCamID = images.size();
-	window.SetName(String::FormatString((name + _T(": %s")).c_str(), Util::getFileName(fileName).c_str()));
+	//window.SetName(String::FormatString((name + _T(": %s")).c_str(), Util::getFileName(fileName).c_str()));
 	window.Reset(MINF(2u, images.size()));
 	return true;
 }
@@ -412,7 +412,7 @@ void Scene::CompilePointCloud()
 	if (!scene.pointcloud.IsEmpty() && (window.sparseType&Window::SPR_POINTS) != 0) {
 		ASSERT_ARE_SAME_TYPE(float, MVS::PointCloud::Point::Type);
 		glBegin(GL_POINTS);
-		glColor3f(1.f,1.f,1.f);
+		glColor3f(0.5, 0.5, 0.5);
 		FOREACH(i, scene.pointcloud.points) {
 			if (!scene.pointcloud.pointViews.IsEmpty() &&
 				scene.pointcloud.pointViews[i].size() < window.minViews)
@@ -440,7 +440,7 @@ void Scene::CompileMesh()
 	ASSERT_ARE_SAME_TYPE(float, MVS::Mesh::Vertex::Type);
 	ASSERT_ARE_SAME_TYPE(float, MVS::Mesh::Normal::Type);
 	ASSERT_ARE_SAME_TYPE(float, MVS::Mesh::TexCoord::Type);
-	glColor3f(1.f, 1.f, 1.f);
+	glColor3f(1,1, 1);
 	glBegin(GL_TRIANGLES);
 	FOREACH(i, scene.mesh.faces) {
 		const MVS::Mesh::Face& face = scene.mesh.faces[i];
@@ -548,7 +548,7 @@ void Scene::Draw()
 				}
 			}
 			// draw camera frame
-			glColor3f(bSelectedImage ? 0.f : 1.f, 1.f, 0.f);
+			glColor3f(0.f,0.6, bSelectedImage ? 0.f : 1.f);
 			glBegin(GL_LINES);
 			glVertex3d(0,0,0); glVertex3dv(ic1.ptr());
 			glVertex3d(0,0,0); glVertex3dv(ic2.ptr());
@@ -611,6 +611,29 @@ void Scene::CastRay(const Ray3& ray, int action)
 	case GLFW_RELEASE: {
 	if (now-window.selectionTimeClick > timeClick) {
 		// this is a long click, ignore it
+		if (now - window.selectionTimeClick > 0.6) {
+			auto& x = window.cursorXPos;
+			auto& y = window.cursorYPos;
+			if (x < 80 && y < 30) 
+			{
+				window.bRenderCameras = !window.bRenderCameras;
+			}
+			else if (x > 120 && x < 200 && y < 30) {
+				if (window.bRenderSolid) {
+					window.bRenderSolid = false;
+					glPolygonMode(GL_FRONT, GL_LINE);
+				}
+				else {
+					window.bRenderSolid = true;
+					glPolygonMode(GL_FRONT, GL_FILL);
+				}
+			}
+			else if (x > 240 && x < 320 && y < 30) {
+				window.bRenderTexture = !window.bRenderTexture;
+				if (window.clbkCompileMesh != NULL)
+					window.clbkCompileMesh();
+			}
+		}
 		break;
 	} else
 	if (window.selectionType != Window::SEL_NA &&

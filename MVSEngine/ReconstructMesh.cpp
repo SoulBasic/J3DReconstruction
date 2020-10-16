@@ -139,7 +139,7 @@ bool MVSEngine::Initialize_ReconstructMesh(size_t argc, LPCTSTR* argv)
 	Util::ensureValidPath(OPT_ReconstructMesh::strOutputFileName);
 	Util::ensureUnifySlash(OPT_ReconstructMesh::strOutputFileName);
 	if (OPT_ReconstructMesh::strOutputFileName.IsEmpty())
-		OPT_ReconstructMesh::strOutputFileName = Util::getFileFullName(OPT_ReconstructMesh::strInputFileName) + _T("_mesh.mvs");
+		OPT_ReconstructMesh::strOutputFileName = Util::getFileFullName(OPT_ReconstructMesh::strInputFileName) + _T("_mesh.j3d");
 
 	// Initialize_ReconstructMesh global options
 	Process::setCurrentProcessPriority((Process::Priority)OPT_ReconstructMesh::nProcessPriority);
@@ -266,7 +266,7 @@ int MVSEngine::ReconstructMesh(int num, char * cmd[])
 
 		// save the final mesh
 		const String baseFileName(MAKE_PATH_SAFE(Util::getFileFullName(OPT_ReconstructMesh::strOutputFileName)));
-		scene.Save(baseFileName + _T(".mvs"), (ARCHIVE_TYPE)OPT_ReconstructMesh::nArchiveType);
+		scene.Save(baseFileName + _T(".j3d"), (ARCHIVE_TYPE)OPT_ReconstructMesh::nArchiveType);
 		scene.mesh.Save(baseFileName + OPT_ReconstructMesh::strExportType);
 #if TD_VERBOSE != TD_VERBOSE_OFF
 		if (VERBOSITY_LEVEL > 2)

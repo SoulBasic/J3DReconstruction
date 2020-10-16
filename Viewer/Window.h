@@ -74,7 +74,7 @@ public:
 	SELECTION selectionType;
 	Point3f selectionPoints[4];
 	double selectionTimeClick, selectionTime;
-
+	double cursorXPos, cursorYPos;
 	typedef DELEGATE<bool (LPCTSTR, LPCTSTR)> ClbkOpenScene;
 	ClbkOpenScene clbkOpenScene;
 	typedef DELEGATE<bool (LPCTSTR, LPCTSTR, bool)> ClbkExportScene;
@@ -117,6 +117,8 @@ public:
 	static void Scroll(GLFWwindow* window, double xoffset, double yoffset);
 	void Drop(int count, const char** paths);
 	static void Drop(GLFWwindow* window, int count, const char** paths);
+
+	static void CursorPos(GLFWwindow* window, double x, double y);
 
 protected:
 	bool IsShiftKeyPressed() const;

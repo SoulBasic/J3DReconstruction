@@ -111,6 +111,25 @@ bool Global::getProcessMsg()
 		return false;
 }
 
+
+bool Global::CheckViewerMsg() 
+{
+	QFile Processcache("C:\\ProgramData\\J3DEngine\\ViewerCache.tmp");
+	if (Processcache.open(QIODevice::ReadOnly | QIODevice::Text))
+	{
+		QByteArray buf = Processcache.readLine();
+		QString str(buf);
+		time_t tm = time(NULL);
+		if (str.toLong() > 1) {
+			return true;
+		}
+		
+	}
+		return false;
+	
+		
+}
+
 LPCTSTR Global::charToLPCTSTR(const char* str) 
 {
 	int num = MultiByteToWideChar(0, 0, str, -1, NULL, 0);

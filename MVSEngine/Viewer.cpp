@@ -63,8 +63,8 @@ boost::program_options::variables_map vm;
 bool MVSEngine::Initialize_MVSViewer(size_t argc, LPCTSTR* argv)
 {
 	// initialize log and console
-	OPEN_LOG();
-	OPEN_LOGCONSOLE();
+	//OPEN_LOG();
+	//OPEN_LOGCONSOLE();
 
 	// group of options allowed only on command line
 	boost::program_options::options_description generic("Generic options");
@@ -126,41 +126,15 @@ bool MVSEngine::Initialize_MVSViewer(size_t argc, LPCTSTR* argv)
 		}
 	}
 	catch (const std::exception& e) {
-		LOG(e.what());
+		//LOG(e.what());
 		return false;
 	}
 
-	#if TD_VERBOSE != TD_VERBOSE_OFF
-	// initialize the log file
-	if (OPT::bLogFile)
-		OPEN_LOGFILE((MAKE_PATH(APPNAME _T("-")+Util::getUniqueName(0)+_T(".log"))).c_str());
-	#endif
-
 	// print application details: version and command line
-	Util::LogBuild();
-	LOG(_T("Command line:%s"), Util::CommandLineToString(argc, argv).c_str());
 
 	// validate input
 	Util::ensureValidPath(OPT::strInputFileName);
-	if (OPT::vm.count("help")) {
-		boost::program_options::options_description visible("Available options");
-		visible.add(generic).add(config);
-		GET_LOG() << _T("\n"
-			"Visualize any know point-cloud/mesh formats or MVS projects. Supply files through command line or Drag&Drop.\n"
-			"Keys:\n"
-			"\tE: export scene\n"
-			"\tR: reset scene\n"
-			"\tC: render cameras\n"
-			"\tLeft/Right: select next camera to view the scene\n"
-			"\tW: render wire-frame mesh\n"
-			"\tT: render mesh texture\n"
-			"\tUp/Down: adjust point size\n"
-			"\tUp/Down + Shift: adjust minimum number of views accepted when displaying a point or line\n"
-			"\t+/-: adjust camera thumbnail transparency\n"
-			"\t+/- + Shift: adjust camera cones' length\n"
-			"\n")
-			<< visible;
-	}
+
 	if (!OPT::strExportType.IsEmpty())
 		OPT::strExportType = OPT::strExportType.ToLower() == _T("obj") ? _T(".obj") : _T(".ply");
 
@@ -184,19 +158,7 @@ bool MVSEngine::Initialize_MVSViewer(size_t argc, LPCTSTR* argv)
 	return true;
 }
 
-// finalize application instance
-void MVSEngine::Finalize_MVSViewer()
-{
-	#if TD_VERBOSE != TD_VERBOSE_OFF
-	// print memory statistics
-	Util::LogMemoryInfo();
-	#endif
 
-	if (OPT::bLogFile)
-		CLOSE_LOGFILE();
-	CLOSE_LOGCONSOLE();
-	CLOSE_LOG();
-}
 
 int MVSEngine::MVSViewer(int num, char* cmd[])
 {
@@ -204,6 +166,7 @@ int MVSEngine::MVSViewer(int num, char* cmd[])
 	// set _crtBreakAlloc index to stop in <dbgheap.c> at allocation
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);// | _CRTDBG_CHECK_ALWAYS_DF);
 	#endif
+
 	int argc = num;
 	LPCTSTR* argv = (LPCTSTR*)cmd;
 	if (!Initialize_MVSViewer(argc, argv))
@@ -211,7 +174,7 @@ int MVSEngine::MVSViewer(int num, char* cmd[])
 
 	// create viewer
 	Scene viewer;
-	if (!viewer.Init(1280, 720, APPNAME,
+	if (!viewer.Init(960, 540, APPNAME,
 			OPT::strInputFileName.IsEmpty() ? NULL : MAKE_PATH_SAFE(OPT::strInputFileName).c_str(),
 			OPT::strMeshFileName.IsEmpty() ? NULL : MAKE_PATH_SAFE(OPT::strMeshFileName).c_str()))
 		return EXIT_FAILURE;
@@ -222,7 +185,6 @@ int MVSEngine::MVSViewer(int num, char* cmd[])
 	// enter viewer loop
 	viewer.Loop();
 
-	Finalize_MVSViewer();
 	return EXIT_SUCCESS;
 }
 /*----------------------------------------------------------------*/

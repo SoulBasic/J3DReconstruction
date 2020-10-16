@@ -47,8 +47,8 @@ void Dialog_DensifyPointCloud::on_btn_OK_clicked()
 		return;
 	}
 
-	Global::densifyInputDir = ui->lineEdit_inputDir->text() + "/SparseCloud.mvs";
-	Global::densifyOutputDir = ui->lineEdit_OutputDir->text() + "/DenseCloud.mvs";
+	Global::densifyInputDir = ui->lineEdit_inputDir->text() + "/SparseCloud.j3d";
+	Global::densifyOutputDir = ui->lineEdit_OutputDir->text() + "/DenseCloud.j3d";
 	Global::densifyWorkingDir = ui->lineEdit_OutputDir->text();
 
 	_mkdir("C:\\ProgramData\\J3DEngine");

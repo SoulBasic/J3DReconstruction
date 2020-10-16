@@ -12,6 +12,7 @@ HEADERS += ./Global.h \
     $$PWD/dialog_addsensorwidth.h \
     $$PWD/dialog_texturemesh.h \
     $$PWD/j3dviewer.h \
+    $$PWD/mvsviewer.h \
     ./QT3DReconstruction.h \
     ./dialog_densifypointcloud.h \
     ./dialog_matchfeature.h \
@@ -21,6 +22,7 @@ SOURCES += ./dialog_densifypointcloud.cpp \
     $$PWD/dialog_addsensorwidth.cpp \
     $$PWD/dialog_texturemesh.cpp \
     $$PWD/j3dviewer.cpp \
+    $$PWD/mvsviewer.cpp \
     ./Dialog_MatchFeature.cpp \
     ./dialog_sfm.cpp \
     ./Global.cpp \

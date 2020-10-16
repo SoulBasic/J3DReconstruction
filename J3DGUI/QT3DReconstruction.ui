@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1383</width>
-    <height>803</height>
+    <height>833</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -50,10 +50,10 @@
    <widget class="QLabel" name="label_engine">
     <property name="geometry">
      <rect>
-      <x>1070</x>
-      <y>20</y>
+      <x>1080</x>
+      <y>10</y>
       <width>291</width>
-      <height>21</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
@@ -76,7 +76,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>720</y>
+      <y>750</y>
       <width>161</width>
       <height>21</height>
      </rect>
@@ -89,7 +89,7 @@
     <property name="geometry">
      <rect>
       <x>170</x>
-      <y>720</y>
+      <y>750</y>
       <width>391</width>
       <height>31</height>
      </rect>
@@ -111,7 +111,7 @@
     <property name="geometry">
      <rect>
       <x>570</x>
-      <y>730</y>
+      <y>760</y>
       <width>791</width>
       <height>23</height>
      </rect>
@@ -120,12 +120,12 @@
      <number>0</number>
     </property>
    </widget>
-   <widget class="j3dviewer" name="J3DViewerWidget" native="true">
+   <widget class="mvsviewer" name="widget" native="true">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>50</y>
-      <width>1351</width>
+      <x>10</x>
+      <y>70</y>
+      <width>1361</width>
       <height>661</height>
      </rect>
     </property>
@@ -156,9 +156,9 @@
      <string>文件</string>
     </property>
     <addaction name="action_viewMVS"/>
-    <addaction name="action_viewPLY"/>
-    <addaction name="action_addSensorWidth"/>
     <addaction name="actionopen_mvs_file"/>
+    <addaction name="action_addSensorWidth"/>
+    <addaction name="action_viewPLY"/>
    </widget>
    <addaction name="menu_3"/>
    <addaction name="menu_2"/>
@@ -208,16 +208,16 @@
   </action>
   <action name="actionopen_mvs_file">
    <property name="text">
-    <string>open mvs file</string>
+    <string>打开j3d模型文件</string>
    </property>
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>j3dviewer</class>
+   <class>mvsviewer</class>
    <extends>QWidget</extends>
-   <header location="global">j3dviewer.h</header>
+   <header>mvsviewer.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

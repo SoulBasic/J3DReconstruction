@@ -28,18 +28,19 @@
  *      that material or in the Appropriate Legal Notices displayed by works
  *      containing it.
  */
-
+#pragma comment( linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"" )
 #include "Common.h"
 #include <boost/program_options.hpp>
 
 #include "Scene.h"
+#include <time.h>
 
 using namespace VIEWER;
 
 
 // D E F I N E S ///////////////////////////////////////////////////
 
-#define APPNAME _T("Viewer")
+#define APPNAME _T("J3D Viewer")
 
 
 // S T R U C T S ///////////////////////////////////////////////////
@@ -55,6 +56,7 @@ unsigned nMaxThreads;
 unsigned nMaxMemory;
 String strExportType;
 String strConfigFileName;
+String strCheckCode;
 #if TD_VERBOSE != TD_VERBOSE_OFF
 bool bLogFile;
 #endif
@@ -65,8 +67,8 @@ boost::program_options::variables_map vm;
 bool Initialize(size_t argc, LPCTSTR* argv)
 {
 	// initialize log and console
-	OPEN_LOG();
-	OPEN_LOGCONSOLE();
+	//OPEN_LOG();
+	//OPEN_LOGCONSOLE();
 
 	// group of options allowed only on command line
 	boost::program_options::options_description generic("Generic options");
@@ -74,6 +76,7 @@ bool Initialize(size_t argc, LPCTSTR* argv)
 		("help,h", "produce this help message")
 		("working-folder,w", boost::program_options::value<std::string>(&WORKING_FOLDER), "working directory (default current directory)")
 		("config-file,c", boost::program_options::value<std::string>(&OPT::strConfigFileName)->default_value(APPNAME _T(".cfg")), "file name containing program options")
+		("check-code,k", boost::program_options::value<std::string>(&OPT::strCheckCode), "checkcode")
 		("export-type", boost::program_options::value<std::string>(&OPT::strExportType), "file type used to export the 3D scene (ply or obj)")
 		("archive-type", boost::program_options::value<unsigned>(&OPT::nArchiveType)->default_value(2), "project archive type: 0-text, 1-binary, 2-compressed binary")
 		("process-priority", boost::program_options::value<int>(&OPT::nProcessPriority)->default_value(0), "process priority (normal by default)")
@@ -90,6 +93,7 @@ bool Initialize(size_t argc, LPCTSTR* argv)
 			), "verbosity level")
 		#endif
 		;
+
 
 	// group of options allowed both on command line and in config file
 	boost::program_options::options_description config("Viewer options");
@@ -137,11 +141,17 @@ bool Initialize(size_t argc, LPCTSTR* argv)
 	if (OPT::bLogFile)
 		OPEN_LOGFILE((MAKE_PATH(APPNAME _T("-")+Util::getUniqueName(0)+_T(".log"))).c_str());
 	#endif
+	//Priority check
+	if (OPT::strCheckCode != "2324")
+	{
+		return false;
+	}
 
 	// print application details: version and command line
-	Util::LogBuild();
-	LOG(_T("Command line:%s"), Util::CommandLineToString(argc, argv).c_str());
-
+	//Util::LogBuild();
+	//LOG(_T("Command line:%s"), Util::CommandLineToString(argc, argv).c_str());
+	LOG(_T("J3D Viewer 初始化完成"));
+	LOG(_T("读取文件中:%s"), Util::CommandLineToString(argc, argv).c_str());
 	// validate input
 	Util::ensureValidPath(OPT::strInputFileName);
 	if (OPT::vm.count("help")) {
@@ -196,8 +206,8 @@ void Finalize()
 
 	if (OPT::bLogFile)
 		CLOSE_LOGFILE();
-	CLOSE_LOGCONSOLE();
-	CLOSE_LOG();
+	//CLOSE_LOGCONSOLE();
+	//CLOSE_LOG();
 }
 
 int main(int argc, LPCTSTR* argv)
@@ -212,17 +222,26 @@ int main(int argc, LPCTSTR* argv)
 
 	// create viewer
 	Scene viewer;
-	if (!viewer.Init(1280, 720, APPNAME,
+	if (!viewer.Init(1280, 720, _T("J3D Viewer"),
 			OPT::strInputFileName.IsEmpty() ? NULL : MAKE_PATH_SAFE(OPT::strInputFileName).c_str(),
 			OPT::strMeshFileName.IsEmpty() ? NULL : MAKE_PATH_SAFE(OPT::strMeshFileName).c_str()))
 		return EXIT_FAILURE;
-	if (viewer.IsOpen() && !OPT::strOutputFileName.IsEmpty()) {
-		// export the scene
-		viewer.Export(MAKE_PATH_SAFE(OPT::strOutputFileName), OPT::strExportType.IsEmpty()?LPCTSTR(NULL):OPT::strExportType.c_str(), OPT::bLosslessTexture);
-	}
+	//if (viewer.IsOpen() && !OPT::strOutputFileName.IsEmpty()) {
+	//	// export the scene
+	//	viewer.Export(MAKE_PATH_SAFE(OPT::strOutputFileName), OPT::strExportType.IsEmpty()?LPCTSTR(NULL):OPT::strExportType.c_str(), OPT::bLosslessTexture);
+	//}
 	// enter viewer loop
-	viewer.Loop();
 
+	std::ofstream cmd;
+	cmd.open("C:\\ProgramData\\J3DEngine\\ViewerCache.tmp", std::ios::out | std::ios::trunc);
+	auto tm = time(NULL);
+	if (!cmd.is_open())
+	{
+		return EXIT_FAILURE;
+	}
+	cmd << tm;
+	cmd.close();
+	viewer.Loop();
 	Finalize();
 	return EXIT_SUCCESS;
 }

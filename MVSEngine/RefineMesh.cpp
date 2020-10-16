@@ -128,8 +128,8 @@ bool MVSEngine::Initialize_RefineMesh(size_t argc, LPCTSTR* argv)
 
 	OPEN_LOGFILE(MAKE_PATH(APPNAME _T("-") + Util::getUniqueName(0) + _T(".log")).c_str());
 
-	Util::LogBuild();
-	LOG(_T("Command line:%s"), Util::CommandLineToString(argc, argv).c_str());
+	//Util::LogBuild();
+	//LOG(_T("Command line:%s"), Util::CommandLineToString(argc, argv).c_str());
 
 
 	Util::ensureValidPath(OPT_RefineMesh::strInputFileName);
@@ -146,7 +146,7 @@ bool MVSEngine::Initialize_RefineMesh(size_t argc, LPCTSTR* argv)
 	Util::ensureValidPath(OPT_RefineMesh::strOutputFileName);
 	Util::ensureUnifySlash(OPT_RefineMesh::strOutputFileName);
 	if (OPT_RefineMesh::strOutputFileName.IsEmpty())
-		OPT_RefineMesh::strOutputFileName = Util::getFileFullName(OPT_RefineMesh::strInputFileName) + _T("_refine.mvs");
+		OPT_RefineMesh::strOutputFileName = Util::getFileFullName(OPT_RefineMesh::strInputFileName) + _T("_refine.j3d");
 
 	Process::setCurrentProcessPriority((Process::Priority)OPT_RefineMesh::nProcessPriority);
 #ifdef _USE_OPENMP
@@ -226,7 +226,7 @@ int MVSEngine::RefineMesh(int num, char* cmd[])
 
 	// save the final mesh
 	const String baseFileName(MAKE_PATH_SAFE(Util::getFileFullName(OPT_RefineMesh::strOutputFileName)));
-	scene.Save(baseFileName + _T(".mvs"), (ARCHIVE_TYPE)OPT_RefineMesh::nArchiveType);
+	scene.Save(baseFileName + _T(".j3d"), (ARCHIVE_TYPE)OPT_RefineMesh::nArchiveType);
 	scene.mesh.Save(baseFileName + OPT_RefineMesh::strExportType);
 #if TD_VERBOSE != TD_VERBOSE_OFF
 	if (VERBOSITY_LEVEL > 2)

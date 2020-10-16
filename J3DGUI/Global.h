@@ -7,6 +7,7 @@
 #include <tlhelp32.h>
 #include <qdebug.h>
 #include "PlyIO.h"
+#include <time.h>
 
 #define CMD_MATCHFEATURES 101
 #define CMD_SFMANDSFP 102
@@ -56,6 +57,7 @@ public:
 	static int processState;
 	static QString processETA;
 	static bool getProcessMsg();
+	static bool CheckViewerMsg();
 	static PlyIO* ply;
 	static LPCTSTR charToLPCTSTR(const char* str);
 };

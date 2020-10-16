@@ -19,11 +19,11 @@
 #include <qtextcodec.h>
 #include "Global.h"
 #include <qfile.h>
-#include <qopenglwidget.h>
 #include <qtimer.h>
 #include <qinputdialog.h>
 #include <fstream>
 #include "MVSEngine.h"
+#include "mvsviewer.h"
 
 
 
@@ -35,6 +35,12 @@ class QT3DReconstruction : public QMainWindow
 
 public:
 	QT3DReconstruction(QWidget *parent = Q_NULLPTR);
+	~QT3DReconstruction()
+	{
+		WinExec("taskkill /f /im J3DView.dll", SW_HIDE);
+	}
+
+	bool openJ3DView(QString fileName);
 private slots:
 
     void on_actionMatchFeature_triggered();
@@ -64,6 +70,7 @@ private slots:
     void on_actionopen_mvs_file_triggered();
 
 private:
+
 	Ui::QT3DReconstructionClass ui;
 	Dialog_MatchFeature dlgmf;
 	Dialog_SFM dlgsfm;
@@ -71,6 +78,5 @@ private:
 	Dialog_ReconstructMesh dlgrm;
 	Dialog_TextureMesh dlgtm;
 	Dialog_addsensorwidth dlgasw;
-
 
 };

@@ -260,7 +260,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		std::cout << "进行稀疏点云输出" << std::endl;
 		STATE_RETURN = ExportSparseCloud(
 			sfmOutputDir + "/robust.bin",
-			sfmOutputDir + "/SparseCloud.mvs",
+			sfmOutputDir + "/SparseCloud.j3d",
 			sfmOutputDir + "/undistorted_images");
 		if (STATE_RETURN == EXIT_FAILURE)
 		{
@@ -326,7 +326,6 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 	}
 	break;
 	case CMD_RECONSTRUCTMESH: {
-		MessageBoxA(NULL, "111", "错误", MB_OK);
 		Global::process = PROCESSWORKING;
 		Global::saveProcess();
 		std::string reconstructMeshInputDir, reconstructMeshOutputDir, reconstructMeshWorkingDir;
@@ -371,7 +370,6 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		cmd[6] = (char*)reconstructMeshOutputDir.data();
 		cmd[7] = "-w";
 		cmd[8] = (char*)reconstructMeshWorkingDir.data();
-		MessageBoxA(NULL, "122", "错误", MB_OK);
 		int status = MVSEngine::ReconstructMesh(9, cmd);
 		cmd[0] = t;
 		cmd[1] = "-i";
@@ -382,7 +380,6 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		cmd[6] = (char*)reconstructMeshOutputDir.data();
 		cmd[7] = "-w";
 		cmd[8] = (char*)reconstructMeshWorkingDir.data();
-		MessageBoxA(NULL, "222", "错误", MB_OK);
 		status = MVSEngine::RefineMesh(9, cmd);
 		if (status == EXIT_SUCCESS) {
 			Global::process = PROCESSCLOSE;
@@ -483,7 +480,7 @@ int main()
 	}
 
 	std::cout << "\n-----------------------------------" << std::endl;
-	std::cout << "        欢迎使用J3DEngine V1.2        " << std::endl;
+	std::cout << "        欢迎使用J3DEngine V1.5        " << std::endl;
 	std::cout << "            程序初始化成功             " << std::endl;
 	std::cout << "        请使用J3DGUI程序发起指令       " << std::endl;
 	std::cout << "     @Basic All rights reserved    " << std::endl;
@@ -504,26 +501,5 @@ int main()
 
 	}
 
-
-	//std::cout << "进行密集点云输出" << std::endl;
-	//::system("PresetConfigDense.exe scene.mvs");
-	//std::cout << "进行网络重建" << std::endl;
-	//::system("ReconstructMesh.exe -d 4 scene_dense.mvs");
-	//std::cout << "进行网格修正" << std::endl;
-	//::system("RefineMesh.exe --resolution-level=4 scene_dense_mesh.mvs");
-	//std::cout << "进行纹理重建" << std::endl;
-	//::system("TextureMesh.exe scene_dense_mesh_refine.mvs");
-
-	////STATE_RETURN = ExportDensifyCloud(1, FilenameSparse_Ptr);
-	///*
-	//if (STATE_RETURN == EXIT_FAILURE)
-	//{
-	//	std::cout << "输出密集点云失败" << std::endl;
-	//	::system("pause");
-	//	return 1;
-	//}
-	//*/
-	//std::cout << "任务完成" << std::endl;
-	//::system("pause");
 	return 0;
 }

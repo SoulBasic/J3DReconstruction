@@ -137,7 +137,7 @@ bool MVSEngine::Initialize_Dense(size_t argc, LPCTSTR* argv)
 	Util::ensureValidPath(OPT::strOutputFileName);
 	Util::ensureUnifySlash(OPT::strOutputFileName);
 	if (OPT::strOutputFileName.IsEmpty())
-		OPT::strOutputFileName = Util::getFileFullName(OPT::strInputFileName) + _T("_dense.mvs");
+		OPT::strOutputFileName = Util::getFileFullName(OPT::strInputFileName) + _T("_dense.j3d");
 
 	// init dense options
 	if (!OPT::strDenseConfigFileName.IsEmpty())
@@ -237,7 +237,7 @@ int MVSEngine::DensifyPointCloud(int num,char* cmd[])
 		// filter point-cloud based on camera-point visibility intersections
 		scene.PointCloudFilter(OPT::thFilterPointCloud);
 		const String baseFileName(MAKE_PATH_SAFE(Util::getFileFullName(OPT::strOutputFileName)) + _T("_filtered"));
-		scene.Save(baseFileName + _T(".mvs"), (ARCHIVE_TYPE)OPT::nArchiveType);
+		scene.Save(baseFileName + _T(".j3d"), (ARCHIVE_TYPE)OPT::nArchiveType);
 		scene.pointcloud.Save(baseFileName + _T(".ply"));
 		MVSEngine::Finalize_Dense();
 
@@ -262,7 +262,7 @@ int MVSEngine::DensifyPointCloud(int num,char* cmd[])
 
 	// save the final mesh
 	const String baseFileName(MAKE_PATH_SAFE(Util::getFileFullName(OPT::strOutputFileName)));
-	scene.Save(baseFileName + _T(".mvs"), (ARCHIVE_TYPE)OPT::nArchiveType);
+	scene.Save(baseFileName + _T(".j3d"), (ARCHIVE_TYPE)OPT::nArchiveType);
 	scene.pointcloud.Save(baseFileName + _T(".ply"));
 #if TD_VERBOSE != TD_VERBOSE_OFF
 	if (VERBOSITY_LEVEL > 2)

@@ -142,7 +142,7 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>false</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
@@ -163,7 +163,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalOptions> /SAFESEH:NO /bigobj /Zm170 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions> /SAFESEH:NO /bigobj /Zm170 /utf-8 %(AdditionalOptions)</AdditionalOptions>
       <AdditionalIncludeDirectories>E:\OpenGL\glew-2.1.0\include;E:\OpenGL\glfw3_src\include;C:\Program Files %28x86%29\freeglut\include\GL;E:\libpng;C:\Program Files (x86)\GLFW\include;..\MVSEngine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_NO_DEBUG;NDEBUG;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;_HAS_EXCEPTIONS=1;_USE_OPENMP;_USE_OPENGL;_USE_BOOST;_USE_EIGEN;_USE_NONFREE;_USE_FAST_FLOAT2INT;_USE_FAST_CBRT;_USE_SSE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -178,7 +178,7 @@
     </QtUic>
     <Link>
       <AdditionalLibraryDirectories>$(Qt_LIBPATH_);E:\libpng\x64\Release;C:\Program Files (x86)\Windows Kits\10\Lib\10.0.17763.0\um\x64;E:\OpenGL\glew-2.1.0\lib\Release\x64;..\x64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>$(Qt_LIBS_);odbc32.lib;odbccp32.lib;zlib.lib;libpng16.lib;OpenGL32.Lib;GlU32.Lib;J3DMVSEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(Qt_LIBS_);odbc32.lib;odbccp32.lib;zlib.lib;libpng16.lib;OpenGL32.Lib;GlU32.Lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions> /SAFESEH:NO /machine:x64 /FORCE:MULTIPLE %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
@@ -214,7 +214,9 @@
     <QtUic Include="dialog_reconstructmesh.ui" />
     <QtUic Include="dialog_sfm.ui" />
     <QtUic Include="dialog_texturemesh.ui" />
-    <QtUic Include="QT3DReconstruction.ui" />
+    <QtUic Include="QT3DReconstruction.ui">
+      <SubType>Designer</SubType>
+    </QtUic>
     <QtMoc Include="QT3DReconstruction.h" />
     <ClCompile Include="dialog_addsensorwidth.cpp" />
     <ClCompile Include="dialog_densifypointcloud.cpp" />
@@ -226,7 +228,7 @@
     <ClCompile Include="GLUtil\Matrix4D.cpp" />
     <ClCompile Include="GLUtil\Position3D.cpp" />
     <ClCompile Include="GLUtil\Vector3D.cpp" />
-    <ClCompile Include="j3dviewer.cpp" />
+    <ClCompile Include="mvsviewer.cpp" />
     <ClCompile Include="PlyIO.cpp" />
     <ClCompile Include="QT3DReconstruction.cpp" />
     <ClCompile Include="main.cpp" />
@@ -248,10 +250,10 @@
     <ClInclude Include="GLUtil\Matrix4D.h" />
     <ClInclude Include="GLUtil\Position3D.h" />
     <ClInclude Include="GLUtil\Vector3D.h" />
+    <QtMoc Include="mvsviewer.h" />
     <ClInclude Include="PlyIO.h" />
     <ClInclude Include="resource1.h" />
     <ClInclude Include="resource2.h" />
-    <QtMoc Include="j3dviewer.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="J3DGUI.rc" />

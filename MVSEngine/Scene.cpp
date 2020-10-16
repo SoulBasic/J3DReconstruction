@@ -281,8 +281,8 @@ bool Scene::Init(int width, int height, LPCTSTR windowName, LPCTSTR fileName, LP
 	// init OpenGL
 	glPolygonMode(GL_FRONT, GL_FILL);
 	glEnable(GL_DEPTH_TEST);
-	glClearColor(0.f, 0.5f, 0.9f, 1.f);
-
+	//glClearColor(0.f, 0.5f, 0.9f, 1.f);
+	glClearColor(0.9019f, 0.9019f, 0.9821f, 0);
 	static const float light0_ambient[] = {0.1f, 0.1f, 0.1f, 1.0f};
 	static const float light0_diffuse[] = {1.0f, 1.0f, 1.0f, 1.0f};
 	static const float light0_position[] = {0.0f, 0.0f, 1000.0f, 0.0f};
@@ -310,7 +310,7 @@ bool Scene::Init(int width, int height, LPCTSTR windowName, LPCTSTR fileName, LP
 bool Scene::Open(LPCTSTR fileName, LPCTSTR meshFileName)
 {
 	ASSERT(fileName);
-	DEBUG_EXTRA("Loading: '%s'", Util::getFileNameExt(fileName).c_str());
+	//DEBUG_EXTRA("Loading: '%s'", Util::getFileNameExt(fileName).c_str());
 	Empty();
 	sceneName = fileName;
 
@@ -412,7 +412,7 @@ void Scene::CompilePointCloud()
 	if (!scene.pointcloud.IsEmpty() && (window.sparseType&Window::SPR_POINTS) != 0) {
 		ASSERT_ARE_SAME_TYPE(float, MVS::PointCloud::Point::Type);
 		glBegin(GL_POINTS);
-		glColor3f(1.f,1.f,1.f);
+		glColor3f(0,0,0);
 		FOREACH(i, scene.pointcloud.points) {
 			if (!scene.pointcloud.pointViews.IsEmpty() &&
 				scene.pointcloud.pointViews[i].size() < window.minViews)
@@ -440,7 +440,7 @@ void Scene::CompileMesh()
 	ASSERT_ARE_SAME_TYPE(float, MVS::Mesh::Vertex::Type);
 	ASSERT_ARE_SAME_TYPE(float, MVS::Mesh::Normal::Type);
 	ASSERT_ARE_SAME_TYPE(float, MVS::Mesh::TexCoord::Type);
-	glColor3f(1.f, 1.f, 1.f);
+	glColor3f(0, 0, 0);
 	glBegin(GL_TRIANGLES);
 	FOREACH(i, scene.mesh.faces) {
 		const MVS::Mesh::Face& face = scene.mesh.faces[i];
@@ -466,6 +466,27 @@ void Scene::Draw()
 
 	window.UpdateView(images, scene.images);
 
+	glLineWidth(4);
+	glBegin(GL_LINES);
+	glColor3f(1.0, 0.0, 0.0);
+	glVertex3f(0.0, 0.0, 0.0);
+	glVertex3f(2, 0.0, 0.0);
+	glEnd();
+
+	glLineWidth(2);
+	glBegin(GL_LINES);
+	glColor3f(0.0, 1.0, 0.0);
+	glVertex3f(0.0, 0.0, 0.0);
+	glVertex3f(0.0, 2, 0.0);
+	glEnd();
+
+	glLineWidth(0.5);
+	glBegin(GL_LINES);
+	glColor3f(0.0, 0.0, 1.0);
+	glVertex3f(0.0, 0.0, 0.0);
+	glVertex3f(0.0, 0.0, 2);
+	glEnd();
+	
 	// render point-cloud
 	if (listPointCloud) {
 		glDisable(GL_TEXTURE_2D);
