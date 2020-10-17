@@ -35,6 +35,7 @@
 #include "Scene.h"
 #include <time.h>
 
+
 using namespace VIEWER;
 
 
@@ -231,7 +232,6 @@ int main(int argc, LPCTSTR* argv)
 	//	viewer.Export(MAKE_PATH_SAFE(OPT::strOutputFileName), OPT::strExportType.IsEmpty()?LPCTSTR(NULL):OPT::strExportType.c_str(), OPT::bLosslessTexture);
 	//}
 	// enter viewer loop
-
 	std::ofstream cmd;
 	cmd.open("C:\\ProgramData\\J3DEngine\\ViewerCache.tmp", std::ios::out | std::ios::trunc);
 	auto tm = time(NULL);
@@ -241,6 +241,7 @@ int main(int argc, LPCTSTR* argv)
 	}
 	cmd << tm;
 	cmd.close();
+
 	viewer.Loop();
 	Finalize();
 	return EXIT_SUCCESS;

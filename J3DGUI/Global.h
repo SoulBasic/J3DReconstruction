@@ -34,6 +34,16 @@
 #define PROCESSERROR 2
 #define EXIT_SUCCESS 0
 #define EXIT_FAILURE 1
+#define KEYMSG_T 2320
+#define KEYMSG_M 2321
+#define KEYMSG_C 2322
+#define KEYMSG_P 2323
+#define KEYMSG_UP 2324
+#define KEYMSG_DOWN 2325
+#define KEYMSG_ESC 2326
+#define KEYMSG_UPSHIFT 2327
+#define KEYMSG_DOWNSHIFT 2328
+
 
 class Global
 {

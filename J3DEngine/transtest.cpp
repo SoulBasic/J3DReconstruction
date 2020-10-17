@@ -794,7 +794,7 @@ int main()
 	}
 
 	std::cout << "\n-----------------------------------" << std::endl;
-	std::cout << "        欢迎使用J3DEngine V1.5        " << std::endl;
+	std::cout << "        欢迎使用J3DEngine V1.6        " << std::endl;
 	std::cout << "            程序初始化成功             " << std::endl;
 	std::cout << "        请使用J3DGUI程序发起指令       " << std::endl;
 	std::cout << "     @Basic All rights reserved    " << std::endl;

@@ -188,25 +188,14 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="Common.cpp" />
     <ClCompile Include="DensifyPointCloud.cpp" />
-    <ClCompile Include="Image.cpp" />
     <ClCompile Include="ReconstructMesh.cpp" />
     <ClCompile Include="RefineMesh.cpp" />
-    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="TextureMesh.cpp" />
-    <ClCompile Include="Viewer.cpp" />
-    <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="Common.h" />
-    <ClInclude Include="Image.h" />
     <ClInclude Include="MVSEngine.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="Scene.h" />
-    <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="J3DMVSEngine.rc" />

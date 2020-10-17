@@ -436,6 +436,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Common.h" />
+    <ClInclude Include="Global.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Scene.h" />
@@ -444,6 +445,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Common.cpp" />
+    <ClCompile Include="Global.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Viewer.cpp" />

@@ -25,7 +25,7 @@
 #include <fstream>
 #include "MVSEngine.h"
 #include "mvsviewer.h"
-
+#include "qevent.h"
 
 
 
@@ -82,5 +82,6 @@ private:
 	Dialog_TextureMesh dlgtm;
 	Dialog_addsensorwidth dlgasw;
 	Dialog_FullAuto dlgfa;
+protected:
 
 };

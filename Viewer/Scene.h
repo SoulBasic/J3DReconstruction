@@ -36,7 +36,7 @@
 // I N C L U D E S /////////////////////////////////////////////////
 
 #include "Window.h"
-
+#include "Global.h"
 
 // D E F I N E S ///////////////////////////////////////////////////
 
@@ -53,7 +53,6 @@ public:
 
 public:
 	String name;
-
 	String sceneName;
 	MVS::Scene scene;
 	Window window;
@@ -93,11 +92,21 @@ public:
 	void Loop();
 
 	void CastRay(const Ray3&, int);
+
+	HHOOK hook; // handle to the hook	
+	void InstallHook(); // function to install our hook
+	void UninstallHook(); // function to uninstall our hook
+
+	MSG msg; // struct with information about all messages in our queue
+	int Messsages(); // function to "deal" with our messages 
+
+	HHOOK keyboardhook;
 protected:
 	static void* ThreadWorker(void*);
 };
 /*----------------------------------------------------------------*/
 
 } // namespace VIEWER
+LRESULT WINAPI MyKeyBoardCallback(int nCode, WPARAM wParam, LPARAM lParam);
 
 #endif // _VIEWER_SCENE_H_

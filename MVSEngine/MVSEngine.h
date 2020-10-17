@@ -18,14 +18,5 @@ namespace MVSEngine
 	void Finalize_TextureMesh();
 	__declspec(dllexport) int TextureMesh(int num, char* cmd[]);
 
-	bool Initialize_TextureMesh(size_t argc, LPCTSTR* argv);
-	void Finalize_TextureMesh();
-	__declspec(dllexport) int TextureMesh(int num, char* cmd[]);
-
-	bool Initialize_MVSViewer(size_t argc, LPCTSTR* argv);
-	void Finalize_MVSViewer();
-	__declspec(dllexport) int MVSViewer(int num, char* cmd[]);
-
-
 
 }
