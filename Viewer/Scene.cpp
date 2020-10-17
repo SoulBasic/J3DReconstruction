@@ -757,12 +757,12 @@ LRESULT WINAPI MyKeyBoardCallback(int nCode, WPARAM wParam, LPARAM lParam)
 			}
 			case GLFW_KEY_A ://A
 			{
-				((Scene*)Global::sce)->window.Key(GLFW_KEY_A, 0, GLFW_RELEASE, GLFW_MOD_SUPER);
+				((Scene*)Global::sce)->window.Key(GLFW_KEY_UP, 0, GLFW_RELEASE, GLFW_MOD_SUPER);
 				break;
 			}
 			case GLFW_KEY_S://S
 			{
-				((Scene*)Global::sce)->window.Key(GLFW_KEY_S, 0, GLFW_RELEASE, GLFW_MOD_SUPER);
+				((Scene*)Global::sce)->window.Key(GLFW_KEY_DOWN, 0, GLFW_RELEASE, GLFW_MOD_SUPER);
 				break;
 			}
 			case GLFW_KEY_ESCAPE://esc
