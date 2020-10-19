@@ -321,7 +321,13 @@ bool QT3DReconstruction::openJ3DView(QString fileName)
 		return false;
 	}
 	time_t tm = time(NULL);
+	QPalette pa;
+
 	while (!Global::CheckViewerMsg()) {
+		
+		pa.setColor(QPalette::WindowText, Qt::yellow);
+		ui.label_engine->setPalette(pa);
+		ui.label_engine->setText("正在打开J3D模型文件 ");
 		if (time(NULL) - tm > 60) {
 			QMessageBox::information(NULL, "失败", "打开j3d文件失败，请尝试用管理员身份运行软件 ", QMessageBox::Ok, QMessageBox::Ok);
 			WinExec("taskkill /f /im J3DView.dll", SW_HIDE);

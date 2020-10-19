@@ -241,7 +241,8 @@ int main(int argc, LPCTSTR* argv)
 	}
 	cmd << tm;
 	cmd.close();
-
+	Sleep(1500);
+	viewer.window.SetVisible(true);
 	viewer.Loop();
 	Finalize();
 	return EXIT_SUCCESS;

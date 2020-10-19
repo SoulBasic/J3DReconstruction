@@ -303,7 +303,7 @@ bool Scene::Init(int width, int height, LPCTSTR windowName, LPCTSTR fileName, LP
 	if (fileName == NULL || !Open(fileName, meshFileName))
 		window.SetCamera(CameraPtr(new Camera()));
 
-	window.SetVisible(true);
+	window.SetVisible(false);
 	Global::sce = (void*)this;
 	InstallHook();
 	return true;
