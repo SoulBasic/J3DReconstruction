@@ -81,10 +81,10 @@ C:\openMVS\openMVG\src\openMVG/tracks/tracks.hpp(369): warning C4267: “参数�
 C:\openMVS\openMVG\src\openMVG/tracks/tracks.hpp(389): warning C4267: “参数”: 从“size_t”转换到“const unsigned int”，可能丢失数据
 C:\openMVS\openMVG\src\openMVG/tracks/tracks.hpp(391): warning C4267: “参数”: 从“size_t”转换到“const unsigned int”，可能丢失数据
 C:\openMVS\openMVG\src\openMVG/tracks/tracks.hpp(395): warning C4267: “参数”: 从“size_t”转换到“const unsigned int”，可能丢失数据
-e:\work\jwl3d\j3dengine\ExportSparseCloud.h(82): warning C4267: “=”: 从“size_t”转换到“unsigned int”，可能丢失数据
-e:\work\jwl3d\j3dengine\ExportSparseCloud.h(97): warning C4267: “=”: 从“size_t”转换到“uint32_t”，可能丢失数据
-e:\work\jwl3d\j3dengine\ExportSparseCloud.h(115): warning C4267: “参数”: 从“size_t”转换到“unsigned long”，可能丢失数据
-e:\work\jwl3d\j3dengine\ExportSparseCloud.h(169): warning C4101: “e”: 未引用的局部变量
+e:\work\jwl3d\j3dengine\ExportSparseCloud.h(92): warning C4267: “=”: 从“size_t”转换到“unsigned int”，可能丢失数据
+e:\work\jwl3d\j3dengine\ExportSparseCloud.h(100): warning C4267: “=”: 从“size_t”转换到“uint32_t”，可能丢失数据
+e:\work\jwl3d\j3dengine\ExportSparseCloud.h(117): warning C4267: “参数”: 从“size_t”转换到“unsigned long”，可能丢失数据
+e:\work\jwl3d\j3dengine\ExportSparseCloud.h(166): warning C4101: “e”: 未引用的局部变量
 C:\openMVS\openMVG\src\openMVG/robust_estimation/guided_matching.hpp(219): warning C4267: “参数”: 从“size_t”转换到“const openMVG::IndexT”，可能丢失数据
   C:\openMVS\openMVG\src\openMVG/matching_image_collection/F_ACRobust.hpp(148): note: 参见对正在编译的函数 模板 实例化“void openMVG::geometry_aware::GuidedMatching<openMVG::Mat3,openMVG::fundamental::kernel::EpipolarDistanceError>(const ModelArg &,const openMVG::cameras::IntrinsicBase *,const openMVG::features::Regions &,const openMVG::cameras::IntrinsicBase *,const openMVG::features::Regions &,double,double,openMVG::matching::IndMatches &)”的引用
           with
@@ -128,7 +128,7 @@ C:\openMVS\openMVG\src\openMVG/matching_image_collection/GeometricFilter.hpp(78)
               GeometryFunctor=openMVG::matching_image_collection::GeometricFilter_HMatrix_AC
           ]
 C:\openMVS\openMVG\src\openMVG/cameras/Camera_undistort_image.hpp(56): warning C4244: “参数”: 从“const double”转换到“int”，可能丢失数据
-  e:\work\jwl3d\j3dengine\ExportSparseCloud.h(154): note: 参见对正在编译的函数 模板 实例化“void openMVG::cameras::UndistortImage<openMVG::image::Image<openMVG::image::RGBColor>>(const Image &,const openMVG::cameras::IntrinsicBase *,Image &,openMVG::image::Rgb<unsigned char>)”的引用
+  e:\work\jwl3d\j3dengine\ExportSparseCloud.h(151): note: 参见对正在编译的函数 模板 实例化“void openMVG::cameras::UndistortImage<openMVG::image::Image<openMVG::image::RGBColor>>(const Image &,const openMVG::cameras::IntrinsicBase *,Image &,openMVG::image::Rgb<unsigned char>)”的引用
           with
           [
               Image=openMVG::image::Image<openMVG::image::RGBColor>

@@ -79,20 +79,23 @@ bool exportToSparse(
 	scene.images.reserve(nViews);
 	for (const auto& view : sfm_data.GetViews())
 	{
-		map_view[view.first] = scene.images.size();
-		MVS::Interface::Image image;
+		++my_progress_bar;
 		const std::string srcImage = stlplus::create_filespec(sfm_data.s_root_path, view.second->s_Img_path);
-		image.name = stlplus::create_filespec(sOutDir, view.second->s_Img_path);
-		image.platformID = map_intrinsic.at(view.second->id_intrinsic);
-		MVS::Interface::Platform& platform = scene.platforms[image.platformID];
-		image.cameraID = 0;
+		
 		if (!stlplus::is_file(srcImage))
 		{
-			std::cout << "无法读取对应的图片: " << srcImage << std::endl;
-			return EXIT_FAILURE;
+			std::cerr << "无法读取对应的图片: " << srcImage << std::endl;
+			return false;
 		}
 		if (sfm_data.IsPoseAndIntrinsicDefined(view.second.get()))
 		{
+			map_view[view.first] = scene.images.size();
+
+			MVS::Interface::Image image;
+			image.name = stlplus::create_filespec(sOutDir, view.second->s_Img_path);
+			image.platformID = map_intrinsic.at(view.second->id_intrinsic);
+			MVS::Interface::Platform& platform = scene.platforms[image.platformID];
+			image.cameraID = 0;
 			MVS::Interface::Platform::Pose pose;
 			image.poseID = platform.poses.size();
 			const openMVG::geometry::Pose3 poseMVG(sfm_data.GetPoseOrDie(view.second.get()));
@@ -100,15 +103,14 @@ bool exportToSparse(
 			pose.C = poseMVG.center();
 			platform.poses.push_back(pose);
 			++nPoses;
+			scene.images.emplace_back(image);
 		}
 		else
 		{
 
-			image.poseID = NO_ID;
+			std::cout << "Cannot read the corresponding pose or intrinsic of view " << view.first << std::endl;
 
 		}
-		scene.images.emplace_back(image);
-		++my_progress_bar;
 	}
 
 	C_Progress_display my_progress_bar_images(sfm_data.views.size(),
@@ -133,12 +135,7 @@ bool exportToSparse(
 		const std::string srcImage = stlplus::create_filespec(sfm_data.s_root_path, view->s_Img_path);
 		const std::string imageName = stlplus::create_filespec(sOutDir, view->s_Img_path);
 
-		if (!stlplus::is_file(srcImage))
-		{
-			std::cerr << "无法读取对应的图片: " << srcImage << std::endl;
-			bOk = false;
-			continue;
-		}
+
 		if (sfm_data.IsPoseAndIntrinsicDefined(view))
 		{
 
@@ -188,7 +185,7 @@ bool exportToSparse(
 	{
 		std::cerr << "内存错误"
 			<< "尝试将线程数调少" << std::endl;
-		return EXIT_FAILURE;
+		return false;
 	}
 
 	// define structure
