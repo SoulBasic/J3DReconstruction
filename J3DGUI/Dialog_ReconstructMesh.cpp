@@ -2,15 +2,15 @@
 #include "ui_dialog_reconstructmesh.h"
 
 Dialog_ReconstructMesh::Dialog_ReconstructMesh(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::Dialog_ReconstructMesh)
+	QDialog(parent),
+	ui(new Ui::Dialog_ReconstructMesh)
 {
-    ui->setupUi(this);
+	ui->setupUi(this);
 }
 
 Dialog_ReconstructMesh::~Dialog_ReconstructMesh()
 {
-    delete ui;
+	delete ui;
 }
 
 void Dialog_ReconstructMesh::on_btn_OK_clicked()

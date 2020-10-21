@@ -2,15 +2,15 @@
 #include "ui_dialog_densifypointcloud.h"
 
 Dialog_DensifyPointCloud::Dialog_DensifyPointCloud(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::Dialog_DensifyPointCloud)
+	QDialog(parent),
+	ui(new Ui::Dialog_DensifyPointCloud)
 {
-    ui->setupUi(this);
+	ui->setupUi(this);
 }
 
 Dialog_DensifyPointCloud::~Dialog_DensifyPointCloud()
 {
-    delete ui;
+	delete ui;
 }
 
 void Dialog_DensifyPointCloud::on_pushButton_browseInputDir_clicked()

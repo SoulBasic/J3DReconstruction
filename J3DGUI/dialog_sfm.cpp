@@ -1,15 +1,15 @@
 #include "dialog_sfm.h"
 #include "ui_dialog_sfm.h"
 Dialog_SFM::Dialog_SFM(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::Dialog_SFM)
+	QDialog(parent),
+	ui(new Ui::Dialog_SFM)
 {
-    ui->setupUi(this);
+	ui->setupUi(this);
 }
 
 Dialog_SFM::~Dialog_SFM()
 {
-    delete ui;
+	delete ui;
 }
 
 
@@ -44,7 +44,7 @@ void Dialog_SFM::on_btn_OK_clicked()
 	Global::sfmOutputDir = sfmOutputDir;
 
 	triangulationMethod = triangulationMethod.number(ui->comboBox_triangulationMethod->currentIndex());
-	
+
 	resectionMethod = resectionMethod.number(ui->comboBox_resectionMethod->currentIndex());
 
 	_mkdir("C:\\ProgramData\\J3DEngine");
@@ -63,7 +63,7 @@ void Dialog_SFM::on_btn_OK_clicked()
 		cmdcache.write("\n");
 		cmdcache.write(resectionMethod.toUtf8());
 		cmdcache.write("\n");
-		
+
 		cmdcache.close();
 		QMessageBox::information(NULL, "完成", "配置完成 ", QMessageBox::Ok, NULL);
 		PostThreadMessageA(Global::engineTid, CMD_SFMANDSFP, 0, 0);
@@ -72,7 +72,7 @@ void Dialog_SFM::on_btn_OK_clicked()
 	}
 	else
 	{
-		QMessageBox::information(NULL,"error", "无法写入缓存，请检查权限 ", QMessageBox::Ok, NULL);
+		QMessageBox::information(NULL, "error", "无法写入缓存，请检查权限 ", QMessageBox::Ok, NULL);
 	}
 
 }

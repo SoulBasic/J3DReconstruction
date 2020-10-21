@@ -54,8 +54,8 @@ struct IntersectRayPoints {
 	typedef MVS::PointCloud Scene;
 	typedef VIEWER::Scene::OctreePoints Octree;
 	typedef typename Octree::IDX_TYPE IDX;
-	typedef TCone<REAL,3> Cone3;
-	typedef TConeIntersect<REAL,3> Cone3Intersect;
+	typedef TCone<REAL, 3> Cone3;
+	typedef TConeIntersect<REAL, 3> Cone3Intersect;
 
 	const Scene& scene;
 	const Cone3 cone;
@@ -121,7 +121,7 @@ struct IntersectRayMesh {
 			set.insert(faces.begin(), faces.end());
 		}
 		// test face intersection and keep the closest
-		for (MVS::Mesh::FIndex idxFace: set) {
+		for (MVS::Mesh::FIndex idxFace : set) {
 			const MVS::Mesh::Face& face = scene.faces[idxFace];
 			REAL dist;
 			if (ray.Intersects<true>(Triangle3(Cast<REAL>(scene.vertices[face[0]]), Cast<REAL>(scene.vertices[face[1]]), Cast<REAL>(scene.vertices[face[2]])), &dist)) {
@@ -168,7 +168,7 @@ public:
 		glfwPostEmptyEvent();
 		return true;
 	}
-	EVTLoadImage(Scene* _pScene, MVS::IIndex _idx, unsigned _nMaxResolution=0)
+	EVTLoadImage(Scene* _pScene, MVS::IIndex _idx, unsigned _nMaxResolution = 0)
 		: Event(EVT_JOB), pScene(_pScene), idx(_idx), nMaxResolution(_nMaxResolution) {}
 };
 class EVTComputeOctree : public Event
@@ -181,11 +181,12 @@ public:
 			Scene::OctreeMesh octMesh(scene.mesh.vertices);
 			scene.mesh.ListIncidenteFaces();
 			pScene->octMesh.Swap(octMesh);
-		} else
-		if (!scene.pointcloud.IsEmpty()) {
-			Scene::OctreePoints octPoints(scene.pointcloud.points);
-			pScene->octPoints.Swap(octPoints);
 		}
+		else
+			if (!scene.pointcloud.IsEmpty()) {
+				Scene::OctreePoints octPoints(scene.pointcloud.points);
+				pScene->octPoints.Swap(octPoints);
+			}
 		return true;
 	}
 	EVTComputeOctree(Scene* _pScene)
@@ -282,10 +283,10 @@ bool Scene::Init(int width, int height, LPCTSTR windowName, LPCTSTR fileName, LP
 	glEnable(GL_DEPTH_TEST);
 	//glClearColor(0.f, 0.5f, 0.9f, 1.f);
 	glClearColor(0.9019f, 0.9019f, 0.9821f, 0);
-	static const float light0_ambient[] = {0.1f, 0.1f, 0.1f, 1.0f};
-	static const float light0_diffuse[] = {1.0f, 1.0f, 1.0f, 1.0f};
-	static const float light0_position[] = {0.0f, 0.0f, 1000.0f, 0.0f};
-	static const float light0_specular[] = {0.4f, 0.4f, 0.4f, 1.0f};
+	static const float light0_ambient[] = { 0.1f, 0.1f, 0.1f, 1.0f };
+	static const float light0_diffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+	static const float light0_position[] = { 0.0f, 0.0f, 1000.0f, 0.0f };
+	static const float light0_specular[] = { 0.4f, 0.4f, 0.4f, 1.0f };
 
 	glLightfv(GL_LIGHT0, GL_AMBIENT, light0_ambient);
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, light0_diffuse);
@@ -327,15 +328,15 @@ bool Scene::Open(LPCTSTR fileName, LPCTSTR meshFileName)
 	if (scene.IsEmpty())
 		return false;
 
-	#if 1
+#if 1
 	// create octree structure used to accelerate selection functionality
 	events.AddEvent(new EVTComputeOctree(this));
-	#endif
+#endif
 
 	// init scene
 	AABB3d bounds(true);
 	if (!scene.pointcloud.IsEmpty()) {
-		bounds = scene.pointcloud.GetAABB(MINF(3u,scene.nCalibratedImages));
+		bounds = scene.pointcloud.GetAABB(MINF(3u, scene.nCalibratedImages));
 		if (bounds.IsEmpty())
 			bounds = scene.pointcloud.GetAABB();
 	}
@@ -357,15 +358,15 @@ bool Scene::Open(LPCTSTR fileName, LPCTSTR meshFileName)
 	if (scene.mesh.HasTexture()) {
 		Image& image = textures.AddEmpty();
 		ASSERT(image.idx == NO_ID);
-		#if 0
+#if 0
 		cv::flip(scene.mesh.textureDiffuse, scene.mesh.textureDiffuse, 0);
 		image.SetImage(scene.mesh.textureDiffuse);
 		scene.mesh.textureDiffuse.release();
-		#else // preserve texture, used only to be able to export the mesh
+#else // preserve texture, used only to be able to export the mesh
 		Image8U3 textureDiffuse;
 		cv::flip(scene.mesh.textureDiffuse, textureDiffuse, 0);
 		image.SetImage(textureDiffuse);
-		#endif
+#endif
 		image.GenerateMipmap();
 	}
 
@@ -392,12 +393,12 @@ bool Scene::Export(LPCTSTR _fileName, LPCTSTR exportType, bool losslessTexture) 
 	String lastFileName;
 	const String fileName(_fileName != NULL ? String(_fileName) : sceneName);
 	const String baseFileName(Util::getFileFullName(fileName));
-	const bool bPoints(scene.pointcloud.Save(lastFileName=(baseFileName+_T("_pointcloud.ply"))));
-	const bool bMesh(scene.mesh.Save(lastFileName=(baseFileName+_T("_mesh")+(exportType?exportType:(Util::getFileExt(fileName)==_T(".obj")?_T(".obj"):_T(".ply")))), true, losslessTexture));
-	#if TD_VERBOSE != TD_VERBOSE_OFF
+	const bool bPoints(scene.pointcloud.Save(lastFileName = (baseFileName + _T("_pointcloud.ply"))));
+	const bool bMesh(scene.mesh.Save(lastFileName = (baseFileName + _T("_mesh") + (exportType ? exportType : (Util::getFileExt(fileName) == _T(".obj") ? _T(".obj") : _T(".ply")))), true, losslessTexture));
+#if TD_VERBOSE != TD_VERBOSE_OFF
 	if (VERBOSITY_LEVEL > 2 && (bPoints || bMesh))
-		scene.ExportCamerasMLP(Util::getFileFullName(lastFileName)+_T(".mlp"), lastFileName);
-	#endif
+		scene.ExportCamerasMLP(Util::getFileFullName(lastFileName) + _T(".mlp"), lastFileName);
+#endif
 	return (bPoints || bMesh);
 }
 
@@ -408,7 +409,7 @@ void Scene::CompilePointCloud()
 	ReleasePointCloud();
 	listPointCloud = glGenLists(1);
 	glNewList(listPointCloud, GL_COMPILE);
-	ASSERT((window.sparseType&(Window::SPR_POINTS|Window::SPR_LINES)) != 0);
+	ASSERT((window.sparseType&(Window::SPR_POINTS | Window::SPR_LINES)) != 0);
 	// compile point-cloud
 	if (!scene.pointcloud.IsEmpty() && (window.sparseType&Window::SPR_POINTS) != 0) {
 		ASSERT_ARE_SAME_TYPE(float, MVS::PointCloud::Point::Type);
@@ -420,7 +421,7 @@ void Scene::CompilePointCloud()
 				continue;
 			if (!scene.pointcloud.colors.IsEmpty()) {
 				const MVS::PointCloud::Color& c = scene.pointcloud.colors[i];
-				glColor3ub(c.r,c.g,c.b);
+				glColor3ub(c.r, c.g, c.b);
 			}
 			const MVS::PointCloud::Point& X = scene.pointcloud.points[i];
 			glVertex3fv(X.ptr());
@@ -441,7 +442,7 @@ void Scene::CompileMesh()
 	ASSERT_ARE_SAME_TYPE(float, MVS::Mesh::Vertex::Type);
 	ASSERT_ARE_SAME_TYPE(float, MVS::Mesh::Normal::Type);
 	ASSERT_ARE_SAME_TYPE(float, MVS::Mesh::TexCoord::Type);
-	glColor3f(1,1, 1);
+	glColor3f(1, 1, 1);
 	glBegin(GL_TRIANGLES);
 	FOREACH(i, scene.mesh.faces) {
 		const MVS::Mesh::Face& face = scene.mesh.faces[i];
@@ -481,7 +482,8 @@ void Scene::Draw()
 			textures.First().Bind();
 			glCallList(listMesh);
 			glDisable(GL_TEXTURE_2D);
-		} else {
+		}
+		else {
 			glEnable(GL_LIGHTING);
 			glCallList(listMesh);
 			glDisable(GL_LIGHTING);
@@ -497,21 +499,21 @@ void Scene::Draw()
 			// change coordinates system to the camera space
 			glPushMatrix();
 			glMultMatrixd((GLdouble*)TransL2W((const Matrix3x3::EMat)camera.R, -(const Point3::EVec)camera.C).data());
-			glPointSize(window.pointSize+1.f);
+			glPointSize(window.pointSize + 1.f);
 			glDisable(GL_TEXTURE_2D);
 			// draw camera position and image center
 			const double scaleFocal(window.camera->scaleF);
 			glBegin(GL_POINTS);
-			glColor3f(1,0,0); glVertex3f(0,0,0); // camera position
-			glColor3f(0,1,0); glVertex3f(0,0,(float)scaleFocal); // image center
+			glColor3f(1, 0, 0); glVertex3f(0, 0, 0); // camera position
+			glColor3f(0, 1, 0); glVertex3f(0, 0, (float)scaleFocal); // image center
 			glEnd();
 			// cache image corner coordinates
 			const Point2d pp(camera.GetPrincipalPoint());
-			const double focal(camera.GetFocalLength()/scaleFocal);
-			const double cx(-pp.x/focal);
-			const double cy(-pp.y/focal);
-			const double px((double)imageData.width/focal+cx);
-			const double py((double)imageData.height/focal+cy);
+			const double focal(camera.GetFocalLength() / scaleFocal);
+			const double cx(-pp.x / focal);
+			const double cy(-pp.y / focal);
+			const double px((double)imageData.width / focal + cx);
+			const double py((double)imageData.height / focal + cy);
 			const Point3d ic1(cx, cy, scaleFocal);
 			const Point3d ic2(cx, py, scaleFocal);
 			const Point3d ic3(px, py, scaleFocal);
@@ -526,35 +528,37 @@ void Scene::Draw()
 					glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 					glEnable(GL_BLEND);
 					glDisable(GL_DEPTH_TEST);
-					glColor4f(1,1,1,window.cameraBlend);
+					glColor4f(1, 1, 1, window.cameraBlend);
 					glBegin(GL_QUADS);
-					glTexCoord2d(0,0); glVertex3dv(ic1.ptr());
-					glTexCoord2d(0,1); glVertex3dv(ic2.ptr());
-					glTexCoord2d(1,1); glVertex3dv(ic3.ptr());
-					glTexCoord2d(1,0); glVertex3dv(ic4.ptr());
+					glTexCoord2d(0, 0); glVertex3dv(ic1.ptr());
+					glTexCoord2d(0, 1); glVertex3dv(ic2.ptr());
+					glTexCoord2d(1, 1); glVertex3dv(ic3.ptr());
+					glTexCoord2d(1, 0); glVertex3dv(ic4.ptr());
 					glEnd();
 					glDisable(GL_TEXTURE_2D);
 					glDisable(GL_BLEND);
 					glEnable(GL_DEPTH_TEST);
-				} else {
+				}
+				else {
 					// start and wait to load the image
 					if (image.IsImageEmpty()) {
 						// start loading
 						image.SetImageLoading();
 						events.AddEvent(new EVTLoadImage(this, idx, IMAGE_MAX_RESOLUTION));
-					} else {
+					}
+					else {
 						// check if the image is available and set it
 						image.TransferImage();
 					}
 				}
 			}
 			// draw camera frame
-			glColor3f(0.f,0.6, bSelectedImage ? 0.f : 1.f);
+			glColor3f(0.f, 0.6, bSelectedImage ? 0.f : 1.f);
 			glBegin(GL_LINES);
-			glVertex3d(0,0,0); glVertex3dv(ic1.ptr());
-			glVertex3d(0,0,0); glVertex3dv(ic2.ptr());
-			glVertex3d(0,0,0); glVertex3dv(ic3.ptr());
-			glVertex3d(0,0,0); glVertex3dv(ic4.ptr());
+			glVertex3d(0, 0, 0); glVertex3dv(ic1.ptr());
+			glVertex3d(0, 0, 0); glVertex3dv(ic2.ptr());
+			glVertex3d(0, 0, 0); glVertex3dv(ic3.ptr());
+			glVertex3d(0, 0, 0); glVertex3dv(ic4.ptr());
 			glVertex3dv(ic1.ptr()); glVertex3dv(ic2.ptr());
 			glVertex3dv(ic2.ptr()); glVertex3dv(ic3.ptr());
 			glVertex3dv(ic3.ptr()); glVertex3dv(ic4.ptr());
@@ -565,13 +569,13 @@ void Scene::Draw()
 		}
 	}
 	if (window.selectionType != Window::SEL_NA) {
-		glPointSize(window.pointSize+4);
+		glPointSize(window.pointSize + 4);
 		glDisable(GL_DEPTH_TEST);
 		glBegin(GL_POINTS);
-		glColor3f(1,0,0); glVertex3fv(window.selectionPoints[0].ptr());
+		glColor3f(1, 0, 0); glVertex3fv(window.selectionPoints[0].ptr());
 		if (window.selectionType == Window::SEL_TRIANGLE) {
-		glColor3f(0,1,0); glVertex3fv(window.selectionPoints[1].ptr());
-		glColor3f(0,0,1); glVertex3fv(window.selectionPoints[2].ptr());
+			glColor3f(0, 1, 0); glVertex3fv(window.selectionPoints[1].ptr());
+			glColor3f(0, 0, 1); glVertex3fv(window.selectionPoints[2].ptr());
 		}
 		glEnd();
 		glEnable(GL_DEPTH_TEST);
@@ -594,7 +598,7 @@ void Scene::Loop()
 	while (!glfwWindowShouldClose(window.GetWindow())) {
 		//if (GetMessage(&msg, NULL, 0, 0) != -1)
 		//{
-		
+
 		//}
 		ProcessEvents();
 		Draw();
@@ -613,68 +617,73 @@ void Scene::CastRay(const Ray3& ray, int action)
 	case GLFW_PRESS: {
 		// remember when the click action started
 		window.selectionTimeClick = now;
-	break; }
+		break; }
 	case GLFW_RELEASE: {
-	if (now-window.selectionTimeClick > timeClick) {
-		// this is a long click, ignore it
-	} else
-	if (window.selectionType != Window::SEL_NA &&
-		now-window.selectionTime < timeDblClick) {
-		// this is a double click, center scene at the selected point
-		window.camera->center = Point3d(window.selectionPoints[3]);
-		window.camera->dist *= 0.7;
-		window.selectionTime = now;
-	} else
-	if (!octMesh.IsEmpty()) {
-		// find ray intersection with the mesh
-		const IntersectRayMesh intRay(octMesh, ray, scene.mesh);
-		if (intRay.pick.IsValid()) {
-			const MVS::Mesh::Face& face = scene.mesh.faces[(MVS::Mesh::FIndex)intRay.pick.idx];
-			window.selectionPoints[0] = scene.mesh.vertices[face[0]];
-			window.selectionPoints[1] = scene.mesh.vertices[face[1]];
-			window.selectionPoints[2] = scene.mesh.vertices[face[2]];
-			window.selectionPoints[3] = (ray.m_pOrig + ray.m_vDir*intRay.pick.dist).cast<float>();
-			window.selectionType = Window::SEL_TRIANGLE;
-			window.selectionTime = now;
-			DEBUG("Face selected:\n\tindex: %u\n\tvertex 1: %u (%g %g %g)\n\tvertex 2: %u (%g %g %g)\n\tvertex 3: %u (%g %g %g)",
-				intRay.pick.idx,
-				face[0], window.selectionPoints[0].x, window.selectionPoints[0].y, window.selectionPoints[0].z,
-				face[1], window.selectionPoints[1].x, window.selectionPoints[1].y, window.selectionPoints[1].z,
-				face[2], window.selectionPoints[2].x, window.selectionPoints[2].y, window.selectionPoints[2].z
-			);
-		} else {
-			window.selectionType = Window::SEL_NA;
+		if (now - window.selectionTimeClick > timeClick) {
+			// this is a long click, ignore it
 		}
-	} else
-	if (!octPoints.IsEmpty()) {
-		// find ray intersection with the points
-		const IntersectRayPoints intRay(octPoints, ray, scene.pointcloud, window.minViews);
-		if (intRay.pick.IsValid()) {
-			window.selectionPoints[0] = window.selectionPoints[3] = scene.pointcloud.points[intRay.pick.idx];
-			window.selectionType = Window::SEL_POINT;
-			window.selectionTime = now;
-			DEBUG("Point selected:\n\tindex: %u (%g %g %g)%s",
-				intRay.pick.idx,
-				window.selectionPoints[0].x, window.selectionPoints[0].y, window.selectionPoints[0].z,
-				[&]() {
-					if (scene.pointcloud.pointViews.empty())
-						return String();
-					const MVS::PointCloud::ViewArr& views = scene.pointcloud.pointViews[intRay.pick.idx];
-					ASSERT(!views.empty());
-					String strViews(String::FormatString("\n\tviews: %u", views.size()));
-					for (MVS::PointCloud::View idxImage: views) {
-						const MVS::Image& imageData = scene.images[idxImage];
-						const Point2 x(imageData.camera.TransformPointW2I(Cast<REAL>(window.selectionPoints[0])));
-						strViews += String::FormatString("\n\t\t%s (%.2f %.2f)", Util::getFileNameExt(imageData.name).c_str(), x.x, x.y);
+		else
+			if (window.selectionType != Window::SEL_NA &&
+				now - window.selectionTime < timeDblClick) {
+				// this is a double click, center scene at the selected point
+				window.camera->center = Point3d(window.selectionPoints[3]);
+				window.camera->dist *= 0.7;
+				window.selectionTime = now;
+			}
+			else
+				if (!octMesh.IsEmpty()) {
+					// find ray intersection with the mesh
+					const IntersectRayMesh intRay(octMesh, ray, scene.mesh);
+					if (intRay.pick.IsValid()) {
+						const MVS::Mesh::Face& face = scene.mesh.faces[(MVS::Mesh::FIndex)intRay.pick.idx];
+						window.selectionPoints[0] = scene.mesh.vertices[face[0]];
+						window.selectionPoints[1] = scene.mesh.vertices[face[1]];
+						window.selectionPoints[2] = scene.mesh.vertices[face[2]];
+						window.selectionPoints[3] = (ray.m_pOrig + ray.m_vDir*intRay.pick.dist).cast<float>();
+						window.selectionType = Window::SEL_TRIANGLE;
+						window.selectionTime = now;
+						DEBUG("Face selected:\n\tindex: %u\n\tvertex 1: %u (%g %g %g)\n\tvertex 2: %u (%g %g %g)\n\tvertex 3: %u (%g %g %g)",
+							intRay.pick.idx,
+							face[0], window.selectionPoints[0].x, window.selectionPoints[0].y, window.selectionPoints[0].z,
+							face[1], window.selectionPoints[1].x, window.selectionPoints[1].y, window.selectionPoints[1].z,
+							face[2], window.selectionPoints[2].x, window.selectionPoints[2].y, window.selectionPoints[2].z
+						);
 					}
-					return strViews;
-				}().c_str()
-			);
-		} else {
-			window.selectionType = Window::SEL_POINT;
-		}
-	}
-	break; }
+					else {
+						window.selectionType = Window::SEL_NA;
+					}
+				}
+				else
+					if (!octPoints.IsEmpty()) {
+						// find ray intersection with the points
+						const IntersectRayPoints intRay(octPoints, ray, scene.pointcloud, window.minViews);
+						if (intRay.pick.IsValid()) {
+							window.selectionPoints[0] = window.selectionPoints[3] = scene.pointcloud.points[intRay.pick.idx];
+							window.selectionType = Window::SEL_POINT;
+							window.selectionTime = now;
+							DEBUG("Point selected:\n\tindex: %u (%g %g %g)%s",
+								intRay.pick.idx,
+								window.selectionPoints[0].x, window.selectionPoints[0].y, window.selectionPoints[0].z,
+								[&]() {
+									if (scene.pointcloud.pointViews.empty())
+										return String();
+									const MVS::PointCloud::ViewArr& views = scene.pointcloud.pointViews[intRay.pick.idx];
+									ASSERT(!views.empty());
+									String strViews(String::FormatString("\n\tviews: %u", views.size()));
+									for (MVS::PointCloud::View idxImage : views) {
+										const MVS::Image& imageData = scene.images[idxImage];
+										const Point2 x(imageData.camera.TransformPointW2I(Cast<REAL>(window.selectionPoints[0])));
+										strViews += String::FormatString("\n\t\t%s (%.2f %.2f)", Util::getFileNameExt(imageData.name).c_str(), x.x, x.y);
+									}
+									return strViews;
+								}().c_str()
+									);
+						}
+						else {
+							window.selectionType = Window::SEL_POINT;
+						}
+					}
+		break; }
 	}
 }
 
@@ -755,7 +764,7 @@ LRESULT WINAPI MyKeyBoardCallback(int nCode, WPARAM wParam, LPARAM lParam)
 				((Scene*)Global::sce)->window.Key(GLFW_KEY_P, 0, GLFW_RELEASE, GLFW_MOD_SUPER);
 				break;
 			}
-			case GLFW_KEY_A ://A
+			case GLFW_KEY_A://A
 			{
 				((Scene*)Global::sce)->window.Key(GLFW_KEY_UP, 0, GLFW_RELEASE, GLFW_MOD_SUPER);
 				break;

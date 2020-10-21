@@ -134,7 +134,8 @@ void Window::UpdateView(const ImageArr& images, const MVS::ImageArr& sceneImages
 		const Eigen::Matrix4d trans(TransW2L((const Matrix3x3::EMat)camera.R, camera.GetT()));
 		glLoadMatrixf((GLfloat*)gs_convert);
 		glMultMatrixd((GLdouble*)trans.data());
-	} else {
+	}
+	else {
 		// apply view point transform
 		const Eigen::Matrix4d trans(camera->GetLookAt());
 		glLoadMatrixd((GLdouble*)trans.data());
@@ -179,8 +180,9 @@ void Window::Key(int k, int /*scancode*/, int action, int mod)
 					if (clbkCompilePointCloud != NULL)
 						clbkCompilePointCloud();
 				}
-			} else {
-				pointSize = MAXF(pointSize-0.5f, 0.5f);
+			}
+			else {
+				pointSize = MAXF(pointSize - 0.5f, 0.5f);
 			}
 		}
 		break;
@@ -190,35 +192,36 @@ void Window::Key(int k, int /*scancode*/, int action, int mod)
 				minViews++;
 				if (clbkCompilePointCloud != NULL)
 					clbkCompilePointCloud();
-			} else {
+			}
+			else {
 				pointSize += 0.5f;
 			}
 		}
 		break;
-	//case GLFW_KEY_LEFT:
-	//	if (action != GLFW_RELEASE) {
-	//		camera->prevCamID = camera->currentCamID;
-	//		camera->currentCamID--;
-	//		if (camera->currentCamID < NO_ID && camera->currentCamID >= camera->maxCamID)
-	//			camera->currentCamID = camera->maxCamID-1;
-	//	}
-	//	break;
-	//case GLFW_KEY_RIGHT:
-	//	if (action != GLFW_RELEASE) {
-	//		camera->prevCamID = camera->currentCamID;
-	//		camera->currentCamID++;
-	//		if (camera->currentCamID >= camera->maxCamID)
-	//			camera->currentCamID = NO_ID;
-	//	}
-	//	break;
-	//case GLFW_KEY_E:
-	//	if (action == GLFW_RELEASE && clbkExportScene != NULL)
-	//		clbkExportScene(NULL, NULL, false);
-	//	break;
-	//case GLFW_KEY_R:
-	//	if (action == GLFW_RELEASE)
-	//		Reset();
-	//	break;
+		//case GLFW_KEY_LEFT:
+		//	if (action != GLFW_RELEASE) {
+		//		camera->prevCamID = camera->currentCamID;
+		//		camera->currentCamID--;
+		//		if (camera->currentCamID < NO_ID && camera->currentCamID >= camera->maxCamID)
+		//			camera->currentCamID = camera->maxCamID-1;
+		//	}
+		//	break;
+		//case GLFW_KEY_RIGHT:
+		//	if (action != GLFW_RELEASE) {
+		//		camera->prevCamID = camera->currentCamID;
+		//		camera->currentCamID++;
+		//		if (camera->currentCamID >= camera->maxCamID)
+		//			camera->currentCamID = NO_ID;
+		//	}
+		//	break;
+		//case GLFW_KEY_E:
+		//	if (action == GLFW_RELEASE && clbkExportScene != NULL)
+		//		clbkExportScene(NULL, NULL, false);
+		//	break;
+		//case GLFW_KEY_R:
+		//	if (action == GLFW_RELEASE)
+		//		Reset();
+		//	break;
 	case GLFW_KEY_C:
 		if (action == GLFW_RELEASE)
 			bRenderCameras = !bRenderCameras;
@@ -228,7 +231,8 @@ void Window::Key(int k, int /*scancode*/, int action, int mod)
 			if (bRenderSolid) {
 				bRenderSolid = false;
 				glPolygonMode(GL_FRONT, GL_LINE);
-			} else {
+			}
+			else {
 				bRenderSolid = true;
 				glPolygonMode(GL_FRONT, GL_FILL);
 			}
@@ -250,26 +254,26 @@ void Window::Key(int k, int /*scancode*/, int action, int mod)
 		if (clbkCompilePointCloud != NULL)
 			clbkCompilePointCloud();
 		break;
-	//case GLFW_KEY_KP_SUBTRACT:
-	//	if (action == GLFW_RELEASE) {
-	//		if (mod & GLFW_MOD_CONTROL)
-	//			camera->SetFOV(MAXF(camera->fov-5, 5.0));
-	//		else if (mod & GLFW_MOD_SHIFT)
-	//			camera->scaleF *= 0.9f;
-	//		else
-	//			cameraBlend = MAXF(cameraBlend-0.1f, 0.f);
-	//	}
-	//	break;
-	//case GLFW_KEY_KP_ADD:
-	//	if (action == GLFW_RELEASE) {
-	//		if (mod & GLFW_MOD_CONTROL)
-	//			camera->SetFOV(camera->fov+5);
-	//		else if (mod & GLFW_MOD_SHIFT)
-	//			camera->scaleF *= 1.11f;
-	//		else
-	//			cameraBlend = MINF(cameraBlend+0.1f, 1.f);
-	//	}
-	//	break;
+		//case GLFW_KEY_KP_SUBTRACT:
+		//	if (action == GLFW_RELEASE) {
+		//		if (mod & GLFW_MOD_CONTROL)
+		//			camera->SetFOV(MAXF(camera->fov-5, 5.0));
+		//		else if (mod & GLFW_MOD_SHIFT)
+		//			camera->scaleF *= 0.9f;
+		//		else
+		//			cameraBlend = MAXF(cameraBlend-0.1f, 0.f);
+		//	}
+		//	break;
+		//case GLFW_KEY_KP_ADD:
+		//	if (action == GLFW_RELEASE) {
+		//		if (mod & GLFW_MOD_CONTROL)
+		//			camera->SetFOV(camera->fov+5);
+		//		else if (mod & GLFW_MOD_SHIFT)
+		//			camera->scaleF *= 1.11f;
+		//		else
+		//			cameraBlend = MINF(cameraBlend+0.1f, 1.f);
+		//	}
+		//	break;
 	}
 }
 void Window::Key(GLFWwindow* window, int k, int scancode, int action, int mod)
@@ -280,7 +284,7 @@ void Window::Key(GLFWwindow* window, int k, int scancode, int action, int mod)
 void Window::MouseButton(int button, int action, int /*mods*/)
 {
 	if (clbkRayScene != NULL && button == GLFW_MOUSE_BUTTON_LEFT) {
-		typedef Eigen::Matrix<double,4,4,Eigen::ColMajor> Mat4;
+		typedef Eigen::Matrix<double, 4, 4, Eigen::ColMajor> Mat4;
 		Mat4 P, V;
 		glGetDoublev(GL_MODELVIEW_MATRIX, V.data());
 		glGetDoublev(GL_PROJECTION_MATRIX, P.data());
@@ -292,8 +296,8 @@ void Window::MouseButton(int button, int action, int /*mods*/)
 		ray_eye.w() = 0.0;
 		// 4d World Coordinates
 		const Mat4 invV(V.inverse());
-		ASSERT(ISEQUAL(invV(3,3),1.0));
-		const Eigen::Vector3d start(invV.topRightCorner<3,1>());
+		ASSERT(ISEQUAL(invV(3, 3), 1.0));
+		const Eigen::Vector3d start(invV.topRightCorner<3, 1>());
 		const Eigen::Vector4d ray_wor(invV*ray_eye);
 		const Eigen::Vector3d dir(ray_wor.topRows<3>().normalized());
 		clbkRayScene(Ray3d(start, dir), action);
@@ -306,7 +310,7 @@ void Window::MouseButton(GLFWwindow* window, int button, int action, int mods)
 
 void Window::Scroll(double /*xoffset*/, double yoffset)
 {
-	camera->dist *= (yoffset>0 ? POW(1.11,yoffset) : POW(0.9,-yoffset));
+	camera->dist *= (yoffset > 0 ? POW(1.11, yoffset) : POW(0.9, -yoffset));
 }
 void Window::Scroll(GLFWwindow* window, double xoffset, double yoffset)
 {
@@ -323,7 +327,8 @@ void Window::Drop(int count, const char** paths)
 			String meshFileName(paths[1]);
 			Util::ensureUnifySlash(meshFileName);
 			clbkOpenScene(fileName, meshFileName);
-		} else {
+		}
+		else {
 			clbkOpenScene(fileName, NULL);
 		}
 		SetVisible(true);

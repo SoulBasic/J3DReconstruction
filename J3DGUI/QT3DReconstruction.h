@@ -44,33 +44,33 @@ public:
 	bool openJ3DView(QString fileName);
 private slots:
 
-    void on_actionMatchFeature_triggered();
+	void on_actionMatchFeature_triggered();
 
-    void on_actionSFM_triggered();
+	void on_actionSFM_triggered();
 
-    LPCWSTR LPSTRtoLPCWSTR(char* szStr);
+	LPCWSTR LPSTRtoLPCWSTR(char* szStr);
 
 
-    void on_action_viewMVS_triggered();
+	void on_action_viewMVS_triggered();
 
-    void on_action_addSensorWidth_triggered();
+	void on_action_addSensorWidth_triggered();
 
-    void on_action_viewPLY_triggered();
+	void on_action_viewPLY_triggered();
 
-    void on_actionDenseCloud_triggered();
+	void on_actionDenseCloud_triggered();
 
 	void timerSlot();
 
 
 
 
-    void on_action_reconstrctMesh_triggered();
+	void on_action_reconstrctMesh_triggered();
 
-    void on_action_triggered();
+	void on_action_triggered();
 
-    void on_actionopen_mvs_file_triggered();
+	void on_actionopen_mvs_file_triggered();
 
-    void on_action_fullauto_triggered();
+	void on_action_fullauto_triggered();
 
 private:
 

@@ -241,7 +241,7 @@ int StructureFromPoses(
 		std::cout << "\n重建预估时间(s): " << timer.elapsed() << "." << std::endl;
 
 	}
-	regions_provider.reset(); 
+	regions_provider.reset();
 	RemoveOutliers_AngleError(sfm_data, 2.0);
 
 	std::cout

@@ -2,15 +2,15 @@
 #include "ui_dialog_texturemesh.h"
 
 Dialog_TextureMesh::Dialog_TextureMesh(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::Dialog_TextureMesh)
+	QDialog(parent),
+	ui(new Ui::Dialog_TextureMesh)
 {
-    ui->setupUi(this);
+	ui->setupUi(this);
 }
 
 Dialog_TextureMesh::~Dialog_TextureMesh()
 {
-    delete ui;
+	delete ui;
 }
 
 void Dialog_TextureMesh::on_btn_OK_clicked()

@@ -4,7 +4,7 @@ namespace MVSEngine
 {
 	bool Initialize_Dense(size_t argc, LPCTSTR* argv);
 	void Finalize_Dense();
-	__declspec(dllexport) int DensifyPointCloud(int num, char* cmd[]); 
+	__declspec(dllexport) int DensifyPointCloud(int num, char* cmd[]);
 
 	bool Initialize_ReconstructMesh(size_t argc, LPCTSTR* argv);
 	void Finalize_ReconstructMesh();

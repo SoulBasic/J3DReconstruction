@@ -57,7 +57,7 @@ public:
 	Face3D * faces;
 	std::vector<Line3D> Lines;
 	std::vector<Triangle3D> Triangles;
-	
+
 	GLfloat x_max, x_min, y_max, y_min, z_max, z_min;//存储数据的左下、左上、右下、右上坐标
 
 	int vertex_N, face_N;   //点数及面数
@@ -70,10 +70,10 @@ public:
 	png_byte color_type; //图片到类型（可能会用在是否是开启来通道）
 	bool open();
 	Point3D CalTexture(GLfloat x, GLfloat y) {
-			Point3D Caltexture;
-			Caltexture.x = (2 - x) / (2 - 1);
-			Caltexture.y = (2 - y) / (2 - 1);
-			return Caltexture;
+		Point3D Caltexture;
+		Caltexture.x = (2 - x) / (2 - 1);
+		Caltexture.y = (2 - y) / (2 - 1);
+		return Caltexture;
 	}
 	void calculateNormal(Face3D &face);
 	GLvoid render();

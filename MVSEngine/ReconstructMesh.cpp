@@ -37,7 +37,7 @@ namespace OPT_ReconstructMesh {
 	String strExportType;
 	String strConfigFileName;
 	boost::program_options::variables_map vm;
-} 
+}
 
 bool MVSEngine::Initialize_ReconstructMesh(size_t argc, LPCTSTR* argv)
 {
@@ -200,7 +200,7 @@ int MVSEngine::ReconstructMesh(int num, char * cmd[])
 			scene.ExportCamerasMLP(Util::getFileFullName(OPT_ReconstructMesh::strOutputFileName) + _T(".mlp"), fileName);
 #endif
 	}
-	else 
+	else
 	{
 		if (OPT_ReconstructMesh::strMeshFileName.IsEmpty()) {
 			// reset image resolution to the original size and

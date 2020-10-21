@@ -3,20 +3,20 @@
 
 
 Dialog_MatchFeature::Dialog_MatchFeature(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::Dialog_MatchFeature)
+	QDialog(parent),
+	ui(new Ui::Dialog_MatchFeature)
 {
-    ui->setupUi(this);
+	ui->setupUi(this);
 }
 Dialog_MatchFeature::~Dialog_MatchFeature()
 {
-    delete ui;
+	delete ui;
 }
 
 
 void Dialog_MatchFeature::on_btn_OK_clicked()
 {
-	QString imagesDir, outputDir,kMatrix, describerMethod, quality, upright, forceCompute, geometricModel, distanceRatio, forceMatch, maxCacheSize;
+	QString imagesDir, outputDir, kMatrix, describerMethod, quality, upright, forceCompute, geometricModel, distanceRatio, forceMatch, maxCacheSize;
 	if (Global::GetProcessidFromName("J3DEngine.exe") == 0)
 	{
 		QMessageBox::critical(this, "错误 ", "未找到J3DEngine进程", QMessageBox::Ok, QMessageBox::Ok);
@@ -25,7 +25,7 @@ void Dialog_MatchFeature::on_btn_OK_clicked()
 	else
 		Global::connectEngine();
 
-	
+
 
 
 	if (ui->lineEdit_kMatrix->text() == "")
@@ -50,7 +50,7 @@ void Dialog_MatchFeature::on_btn_OK_clicked()
 		QMessageBox::critical(this, "错误 ", "未输入输出路径 ", QMessageBox::Ok, QMessageBox::Ok);
 		return;
 	}
-	
+
 	imagesDir = ui->lineEdit_inputDir->text();
 	Global::imagesDir = imagesDir;
 
@@ -59,19 +59,19 @@ void Dialog_MatchFeature::on_btn_OK_clicked()
 
 	switch (ui->comboBox_describer->currentIndex())
 	{
-	case 0:{
+	case 0: {
 		describerMethod = "SIFT";
 		break;
 	}
-	case 1:{
+	case 1: {
 		describerMethod = "SIFT_ANATOMY";
 		break;
 	}
-	case 2:{
+	case 2: {
 		describerMethod = "AKAZE_FLOAT";
 		break;
 	}
-	case 3:{
+	case 3: {
 		describerMethod = "AKAZE_MLDB";
 		break;
 	}
@@ -128,12 +128,12 @@ void Dialog_MatchFeature::on_btn_OK_clicked()
 	distanceRatio = ui->lineEdit_distanceRatio->text();
 
 	forceMatch = QString::number(ui->comboBox_forcematch->currentIndex());
-	
+
 	_mkdir("C:\\ProgramData\\J3DEngine");
 
 	QFile cmdcache("C:\\ProgramData\\J3DEngine\\cmdCache.tmp");
 
-	if (cmdcache.open(QIODevice::WriteOnly|QIODevice::Text|QIODevice::Truncate))
+	if (cmdcache.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate))
 	{
 		QString head = "matchfeature\n";
 		cmdcache.write(head.toUtf8());
@@ -163,9 +163,9 @@ void Dialog_MatchFeature::on_btn_OK_clicked()
 		Global::tasking = true;
 		this->close();
 	}
-	else 
+	else
 	{
-        QMessageBox::information(NULL, "错误", "无法访问缓存文件，请检查权限 ", QMessageBox::Yes, NULL);
+		QMessageBox::information(NULL, "错误", "无法访问缓存文件，请检查权限 ", QMessageBox::Yes, NULL);
 	}
 
 }
@@ -176,13 +176,13 @@ void Dialog_MatchFeature::on_btn_CANCEL_clicked()
 
 void Dialog_MatchFeature::pushButton_browseInputDir_clicked()
 {
-    Global::imagesDir = QFileDialog::getExistingDirectory(this, "浏览图片文件夹 ", "", NULL);
+	Global::imagesDir = QFileDialog::getExistingDirectory(this, "浏览图片文件夹 ", "", NULL);
 	ui->lineEdit_inputDir->setText(Global::imagesDir);
 }
 
 void Dialog_MatchFeature::pushButton_browseOutputDir_clicked()
 {
-    Global::matchesOutputDir = QFileDialog::getExistingDirectory(this, "浏览输出文件夹 ", "", NULL);
+	Global::matchesOutputDir = QFileDialog::getExistingDirectory(this, "浏览输出文件夹 ", "", NULL);
 	ui->lineEdit_OutputDir->setText(Global::matchesOutputDir);
 }
 

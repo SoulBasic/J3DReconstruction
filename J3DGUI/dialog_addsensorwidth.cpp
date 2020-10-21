@@ -2,15 +2,15 @@
 #include "ui_dialog_addsensorwidth.h"
 
 Dialog_addsensorwidth::Dialog_addsensorwidth(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::Dialog_addsensorwidth)
+	QDialog(parent),
+	ui(new Ui::Dialog_addsensorwidth)
 {
-    ui->setupUi(this);
+	ui->setupUi(this);
 }
 
 Dialog_addsensorwidth::~Dialog_addsensorwidth()
 {
-    delete ui;
+	delete ui;
 }
 
 void Dialog_addsensorwidth::on_btn_OK_clicked()
@@ -32,21 +32,21 @@ void Dialog_addsensorwidth::on_btn_OK_clicked()
 	}
 	double sensorWidth = 2 * (ui->lineEdit_focus->text().toDouble() * tan((0.5 * ui->lineEdit_fov->text().toDouble()) / 57.296));
 	QString txt = ui->lineEdit_model->text() + ";" + QString::number(sensorWidth);
-		QFile swd("SenWidDB.txt");
-		if (swd.open(QIODevice::ReadWrite | QIODevice::Append | QIODevice::Text))
-		{
-			swd.write("\n");
-			swd.write(txt.toUtf8());
-			swd.close();
-			QMessageBox::information(this, "成功", "成功输入相机参数 ", QMessageBox::Ok, QMessageBox::Ok);
-			this->close();
-		}
-		else
-		{
-			QMessageBox::information(this, "失败", "无法打开SensorWidthDB文件 ", QMessageBox::Ok, QMessageBox::Ok);
-		}
+	QFile swd("SenWidDB.txt");
+	if (swd.open(QIODevice::ReadWrite | QIODevice::Append | QIODevice::Text))
+	{
+		swd.write("\n");
+		swd.write(txt.toUtf8());
+		swd.close();
+		QMessageBox::information(this, "成功", "成功输入相机参数 ", QMessageBox::Ok, QMessageBox::Ok);
+		this->close();
+	}
+	else
+	{
+		QMessageBox::information(this, "失败", "无法打开SensorWidthDB文件 ", QMessageBox::Ok, QMessageBox::Ok);
+	}
 
-	
+
 }
 
 void Dialog_addsensorwidth::on_btn_CANCEL_clicked()

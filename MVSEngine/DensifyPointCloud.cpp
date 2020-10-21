@@ -185,7 +185,7 @@ void MVSEngine::Finalize_Dense()
 	CLOSE_LOG();
 }
 
-int MVSEngine::DensifyPointCloud(int num,char* cmd[])
+int MVSEngine::DensifyPointCloud(int num, char* cmd[])
 {
 	int argc = num;
 	LPCTSTR* argv = (LPCTSTR*)cmd;
@@ -199,7 +199,7 @@ int MVSEngine::DensifyPointCloud(int num,char* cmd[])
 
 		return EXIT_FAILURE;
 	}
-		
+
 
 	Scene scene(OPT::nMaxThreads);
 	if (OPT::fSampleMesh != 0) {
@@ -209,7 +209,7 @@ int MVSEngine::DensifyPointCloud(int num,char* cmd[])
 
 			return EXIT_FAILURE;
 		}
-			
+
 		TD_TIMER_START();
 		PointCloud pointcloud;
 		if (OPT::fSampleMesh > 0)
@@ -251,7 +251,7 @@ int MVSEngine::DensifyPointCloud(int num,char* cmd[])
 
 				return EXIT_FAILURE;
 			}
-				
+
 			VERBOSE("深度图估计中 (%s)", TD_TIMER_GET_FMT().c_str());
 			MVSEngine::Finalize_Dense();
 

@@ -2,15 +2,15 @@
 #include "ui_dialog_fullauto.h"
 
 Dialog_FullAuto::Dialog_FullAuto(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::Dialog_FullAuto)
+	QDialog(parent),
+	ui(new Ui::Dialog_FullAuto)
 {
-    ui->setupUi(this);
+	ui->setupUi(this);
 }
 
 Dialog_FullAuto::~Dialog_FullAuto()
 {
-    delete ui;
+	delete ui;
 }
 
 void Dialog_FullAuto::on_pushButton_browseInputDir_clicked()

@@ -49,7 +49,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		return;
 	}
 
-	switch (msg) 
+	switch (msg)
 	{
 	case CMD_MATCHFEATURES: {
 		Global::process = PROCESSWORKING;
@@ -176,9 +176,8 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		std::cout << "匹配完成" << std::endl;
 		std::cout << "\n任务完成" << std::endl;
 		Global::process = PROCESSCLOSE;
-		
+		break;
 	}
-	break;
 	case CMD_SFMANDSFP: {
 		Global::process = PROCESSWORKING;
 		Global::saveProcess();
@@ -270,9 +269,9 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		}
 		std::cout << "\n任务完成" << std::endl;
 		Global::process = PROCESSCLOSE;
-
+		break;
 	}
-	break;
+
 	case CMD_EXPORTDENSECLOUD: {
 		Global::process = PROCESSWORKING;
 		Global::saveProcess();
@@ -322,9 +321,9 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		cmd[6] = (char*)densifyOutputDir.data();
 		STATE_RETURN = !MVSEngine::DensifyPointCloud(7, cmd);
 		Global::process = STATE_RETURN;
-		return;
+		break;
 	}
-	break;
+
 	case CMD_RECONSTRUCTMESH: {
 		Global::process = PROCESSWORKING;
 		Global::saveProcess();
@@ -387,8 +386,10 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		else {
 			Global::process = PROCESSWORKING;
 		}
+
+		break;
 	}
-	break;
+
 	case CMD_TEXTUREMESH: {
 		Global::process = PROCESSWORKING;
 		Global::saveProcess();
@@ -445,11 +446,12 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		else {
 			Global::process = PROCESSWORKING;
 		}
-		
-		
+
+		break;
+
 	}
-	break;
-	case CMD_FULLAUTO: 
+
+	case CMD_FULLAUTO:
 	{
 		Global::process = PROCESSWORKING;
 		Global::saveProcess();
@@ -762,8 +764,6 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		Global::process = PROCESSCLOSE;
 	}
 	}
-
-
 	return;
 }
 

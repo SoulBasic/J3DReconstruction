@@ -4,11 +4,11 @@
 #include "qwindow.h"
 mvsviewer::mvsviewer(QWidget *parent)
 	: QWidget(parent)
-{	
+{
 
 }
 
-mvsviewer::mvsviewer(int i ,QWidget *parent)
+mvsviewer::mvsviewer(int i, QWidget *parent)
 	: QWidget(parent)
 {
 	i++;

@@ -257,7 +257,7 @@ GLuint PlyIO::CreateTextureFromPng()
 			info_ptr));
 	//由于png他的像素是由 左-右-从顶到底 而贴图需要的像素都是从左-右-底到顶的所以在这里需要把像素内容进行一个从新排列
 	//读图片
-	
+
 	//png_set_rows(png_ptr,info_ptr,row_pointers);
 	png_read_image(png_ptr, row_pointers);
 	pos = (width * height * 4) - (4 * width);
@@ -266,43 +266,43 @@ GLuint PlyIO::CreateTextureFromPng()
 		cout << "error nullptr" << endl;
 		return 0;
 	}
-		if (color_type == PNG_COLOR_TYPE_RGB_ALPHA)
+	if (color_type == PNG_COLOR_TYPE_RGB_ALPHA)
+	{
+		for (row = 0; row < height; row++)
 		{
-			for (row = 0; row < height; row++)
+			for (col = 0; col < (4 * width); col += 4)
 			{
-				for (col = 0; col < (4 * width); col += 4)
-				{
-					
-					rgba[pos++] = row_pointers[row][col];        // red
-					rgba[pos++] = row_pointers[row][col + 1];    // green
-					rgba[pos++] = row_pointers[row][col + 2];    // blue
-					rgba[pos++] = row_pointers[row][col + 3];    // alpha
-					//cout << "red=" << (int)rgba[pos-4] << " green=" << (int)rgba[pos-3] << " blue=" << (int)rgba[pos-2] << " alpha=" << (int)rgba[pos-1] << endl;
-				}
-				pos = (pos - (width * 4) * 2);
-			}
-		}
-		else
-		{
-			for (row = 0; row < height; row++)
-			{
-				for (col = 0; col < (4 * width); col += 3)
-				{
-					
-					rgba[pos++] = row_pointers[row][col];        // red
-					rgba[pos++] = row_pointers[row][col + 1];    // green
-					rgba[pos++] = row_pointers[row][col + 2];    // blue
-					//cout << "red=" << (int)rgba[pos-3] << " green=" << (int)rgba[pos-2] << " blue=" << (int)rgba[pos-1]<< endl;
 
-				}
-				pos = (pos - (width * 4) * 2);
+				rgba[pos++] = row_pointers[row][col];        // red
+				rgba[pos++] = row_pointers[row][col + 1];    // green
+				rgba[pos++] = row_pointers[row][col + 2];    // blue
+				rgba[pos++] = row_pointers[row][col + 3];    // alpha
+				//cout << "red=" << (int)rgba[pos-4] << " green=" << (int)rgba[pos-3] << " blue=" << (int)rgba[pos-2] << " alpha=" << (int)rgba[pos-1] << endl;
 			}
+			pos = (pos - (width * 4) * 2);
 		}
-	
+	}
+	else
+	{
+		for (row = 0; row < height; row++)
+		{
+			for (col = 0; col < (4 * width); col += 3)
+			{
+
+				rgba[pos++] = row_pointers[row][col];        // red
+				rgba[pos++] = row_pointers[row][col + 1];    // green
+				rgba[pos++] = row_pointers[row][col + 2];    // blue
+				//cout << "red=" << (int)rgba[pos-3] << " green=" << (int)rgba[pos-2] << " blue=" << (int)rgba[pos-1]<< endl;
+
+			}
+			pos = (pos - (width * 4) * 2);
+		}
+	}
+
 	cout << "rgba read done" << endl;
 	//开启纹理贴图特效
 	glEnable(GL_TEXTURE_2D);
-	
+
 	//创建纹理 
 	glGenTextures(1, &textureID);
 	//绑定纹理
@@ -651,7 +651,7 @@ GLvoid PlyIO::render() {
 			//glEnable(GL_LIGHTING);
 		}
 
-		
+
 		if (this->textureFileName != "")
 			glDisable(GL_LIGHTING);
 		else
@@ -672,7 +672,7 @@ GLvoid PlyIO::render() {
 	}
 
 
-	
+
 	glFlush();
 
 }

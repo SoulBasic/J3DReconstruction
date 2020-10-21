@@ -4,7 +4,7 @@ QT3DReconstruction::QT3DReconstruction(QWidget *parent)
 	: QMainWindow(parent)
 {
 	ui.setupUi(this);
-	
+
 	QTimer *timer = new QTimer(this); //this 为parent类, 表示当前窗口
 
 	connect(timer, SIGNAL(timeout()), this, SLOT(timerSlot()));
@@ -13,8 +13,8 @@ QT3DReconstruction::QT3DReconstruction(QWidget *parent)
 	setWindowFlags(windowFlags()& ~Qt::WindowMaximizeButtonHint);
 	setFixedSize(this->width(), this->height());
 	PlyIO* ply = new PlyIO("");
-	
-	
+
+
 }
 
 
@@ -51,7 +51,7 @@ void QT3DReconstruction::on_action_addSensorWidth_triggered()
 
 void QT3DReconstruction::on_action_viewPLY_triggered()
 {
-	QMessageBox::information(NULL, "暂不支持ply格式，请加载j3d模型","错误", QMessageBox::Yes, NULL);
+	QMessageBox::information(NULL, "暂不支持ply格式，请加载j3d模型", "错误", QMessageBox::Yes, NULL);
 	return;
 	QString fileName = QFileDialog::getOpenFileName(NULL, "ViewPLY", ".", "*.ply");
 	if (fileName == "")
@@ -90,31 +90,31 @@ void QT3DReconstruction::on_action_reconstrctMesh_triggered()
 
 void QT3DReconstruction::timerSlot()
 {
-	
-    if (Global::GetProcessidFromName("J3DEngine.exe") != 0 )
+
+	if (Global::GetProcessidFromName("J3DEngine.exe") != 0)
 	{
 		Global::connectEngine();
-        if (ui.label_engine->text() != "成功连接到J3DEngine ")
+		if (ui.label_engine->text() != "成功连接到J3DEngine ")
 		{
 			ui.textBrowser->insertPlainText("与J3DEngine成功建立连接\n");
 			QPalette pa;
 			pa.setColor(QPalette::WindowText, Qt::green);
 			ui.label_engine->setPalette(pa);
-            ui.label_engine->setText("成功连接到J3DEngine ");
-		}	
+			ui.label_engine->setText("成功连接到J3DEngine ");
+		}
 	}
 	else
 	{
-        if (ui.label_engine->text() != "未连接到J3DEngine ")
+		if (ui.label_engine->text() != "未连接到J3DEngine ")
 		{
 			ui.textBrowser->insertPlainText("与J3DEngine失去连接，之后将重新尝试连接\n");
 			QPalette pa;
 			pa.setColor(QPalette::WindowText, Qt::red);
 			ui.label_engine->setPalette(pa);
-            ui.label_engine->setText("未连接到J3DEngine ");
+			ui.label_engine->setText("未连接到J3DEngine ");
 		}
 	}
-	
+
 
 	if (Global::tasking)
 	{
@@ -126,18 +126,18 @@ void QT3DReconstruction::timerSlot()
 			cmdCache.open(("C:\\ProgramData\\J3DEngine\\cmdCache.tmp"), ios::in | ios::_Nocreate);
 			std::string temp;
 			getline(cmdCache, temp);
-		if(temp == "sfmandsfp")
-		{
-			QString fileName = Global::sfmOutputDir + "/SparseCloud.j3d";
-			if (fileName == "")
+			if (temp == "sfmandsfp")
 			{
-				QMessageBox::information(NULL, "失败", "打开j3d文件失败，请检查路径是否正确 ", QMessageBox::Ok, QMessageBox::Ok);
-				return;
+				QString fileName = Global::sfmOutputDir + "/SparseCloud.j3d";
+				if (fileName == "")
+				{
+					QMessageBox::information(NULL, "失败", "打开j3d文件失败，请检查路径是否正确 ", QMessageBox::Ok, QMessageBox::Ok);
+					return;
 
+				}
+				openJ3DView(fileName);
 			}
-			openJ3DView(fileName);
-		}
-		else if (temp == "densifypointcloud") {
+			else if (temp == "densifypointcloud") {
 				QString fileName = Global::densifyWorkingDir + "/DenseCloud.j3d";
 				if (fileName == "")
 				{
@@ -167,7 +167,7 @@ void QT3DReconstruction::timerSlot()
 				}
 				openJ3DView(fileName);
 			}
-            QMessageBox::information(NULL, "完成", "任务完成！ ", QMessageBox::Ok, QMessageBox::Ok);
+			QMessageBox::information(NULL, "完成", "任务完成！ ", QMessageBox::Ok, QMessageBox::Ok);
 			Global::tasking = false;
 			ui.label_process->setText("等待任务 ");
 			ui.progressBar->setValue(0);
@@ -175,15 +175,15 @@ void QT3DReconstruction::timerSlot()
 		}
 		else if (Global::process == PROCESSERROR)
 		{
-            QMessageBox::information(NULL, "失败", "任务失败，具体任务日志于J3DEngine查询 ", QMessageBox::Ok, QMessageBox::Ok);
+			QMessageBox::information(NULL, "失败", "任务失败，具体任务日志于J3DEngine查询 ", QMessageBox::Ok, QMessageBox::Ok);
 			Global::tasking = false;
-            ui.label_process->setText("等待任务 ");
+			ui.label_process->setText("等待任务 ");
 			ui.progressBar->setValue(0);
 			return;
 		}
 		else if (Global::processProject < 1)
 		{
-            ui.label_process->setText("等待任务 ");
+			ui.label_process->setText("等待任务 ");
 			ui.progressBar->setValue(0);
 			return;
 		}
@@ -194,49 +194,49 @@ void QT3DReconstruction::timerSlot()
 			{
 			case LISTIMAGES:
 			{
-                ui.label_process->setText("任务进行中：加载图片 ");
+				ui.label_process->setText("任务进行中：加载图片 ");
 				ui.progressBar->setValue(Global::processState);
 				break;
 			}
 			case COMPUTEFEATURES:
 			{
-                ui.label_process->setText("任务进行中：计算特征点 ");
+				ui.label_process->setText("任务进行中：计算特征点 ");
 				ui.progressBar->setValue(Global::processState);
 				break;
 			}
 			case MATCHFEATURES:
 			{
-                ui.label_process->setText("任务进行中：匹配特征点 ");
+				ui.label_process->setText("任务进行中：匹配特征点 ");
 				ui.progressBar->setValue(Global::processState);
 				break;
 			}
 			case SFM:
 			{
-                ui.label_process->setText("任务进行中：三维重建_SFM ");
+				ui.label_process->setText("任务进行中：三维重建_SFM ");
 				ui.progressBar->setValue(Global::processState);
 				break;
 			}
 			case SFP:
 			{
-                ui.label_process->setText("任务进行中：三维重建_SFP ");
+				ui.label_process->setText("任务进行中：三维重建_SFP ");
 				ui.progressBar->setValue(Global::processState);
 				break;
 			}
 			case COLORED:
 			{
-                ui.label_process->setText("任务进行中：点云上色 ");
+				ui.label_process->setText("任务进行中：点云上色 ");
 				ui.progressBar->setValue(Global::processState);
 				break;
 			}
 			case SPARSE:
 			{
-                ui.label_process->setText("任务进行中：生成稀疏点云 ");
+				ui.label_process->setText("任务进行中：生成稀疏点云 ");
 				ui.progressBar->setValue(Global::processState);
 				break;
 			}
 			case DENSE:
 			{
-                ui.label_process->setText("任务进行中：生成密集点云 ");
+				ui.label_process->setText("任务进行中：生成密集点云 ");
 				ui.progressBar->setValue(Global::processState);
 				break;
 			}
@@ -260,14 +260,14 @@ void QT3DReconstruction::timerSlot()
 			}
 			default:
 			{
-                ui.label_process->setText("等待任务 ");
+				ui.label_process->setText("等待任务 ");
 				ui.progressBar->setValue(0);
 				break;
 			}
-				
+
 			}
-			
-			
+
+
 		}
 	}
 }
@@ -281,14 +281,14 @@ void QT3DReconstruction::on_action_triggered() //textureMesh
 void QT3DReconstruction::on_actionopen_mvs_file_triggered()
 {
 	QString fileName = QFileDialog::getOpenFileName(NULL, "ViewJ3D", ".", "*.j3d");
-	if (fileName == "") 
+	if (fileName == "")
 	{
 		QMessageBox::information(NULL, "失败", "打开j3d文件失败，请检查路径是否正确 ", QMessageBox::Ok, QMessageBox::Ok);
 		return;
 
 	}
 	openJ3DView(fileName);
-	
+
 }
 
 bool QT3DReconstruction::openJ3DView(QString fileName)
@@ -324,7 +324,7 @@ bool QT3DReconstruction::openJ3DView(QString fileName)
 	QPalette pa;
 
 	while (!Global::CheckViewerMsg()) {
-		
+
 		pa.setColor(QPalette::WindowText, Qt::yellow);
 		ui.label_engine->setPalette(pa);
 		ui.label_engine->setText("正在打开J3D模型文件 ");
@@ -334,7 +334,7 @@ bool QT3DReconstruction::openJ3DView(QString fileName)
 			return false;
 		}
 	}
-	this->ui.widget = new mvsviewer(1,this->ui.centralWidget);
+	this->ui.widget = new mvsviewer(1, this->ui.centralWidget);
 	this->ui.widget->setObjectName(QString::fromUtf8("widget"));
 	this->ui.widget->setGeometry(QRect(10, 70, 1361, 661));
 	this->ui.widget->show();

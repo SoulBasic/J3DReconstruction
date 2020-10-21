@@ -81,7 +81,7 @@ bool exportToSparse(
 	{
 		++my_progress_bar;
 		const std::string srcImage = stlplus::create_filespec(sfm_data.s_root_path, view.second->s_Img_path);
-		
+
 		if (!stlplus::is_file(srcImage))
 		{
 			std::cerr << "无法读取对应的图片: " << srcImage << std::endl;
@@ -115,7 +115,7 @@ bool exportToSparse(
 
 	C_Progress_display my_progress_bar_images(sfm_data.views.size(),
 		std::cout, "\n- 矫正畸变 -\n");
-	std::atomic<bool> bOk(true); 
+	std::atomic<bool> bOk(true);
 #ifdef OPENMVG_USE_OPENMP
 	const unsigned int nb_max_thread = (iNumThreads > 0) ? iNumThreads : omp_get_max_threads();
 
@@ -210,9 +210,9 @@ bool exportToSparse(
 		std::sort(
 			views.begin(), views.end(),
 			[](const MVS::Interface::Vertex::View& view0, const MVS::Interface::Vertex::View& view1)
-		{
-			return view0.imageID < view1.imageID;
-		}
+			{
+				return view0.imageID < view1.imageID;
+			}
 		);
 		vert.X = landmark.X.cast<float>();
 		scene.vertices.push_back(vert);

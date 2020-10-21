@@ -196,7 +196,7 @@ int GetMatches(
 		std::cout << "\t 加载已有的结果;"
 			<< " #pair: " << map_PutativesMatches.size() << std::endl;
 	}
-	else 
+	else
 	{
 		std::cout << "Use: ";
 		switch (ePairmode)
@@ -302,10 +302,10 @@ int GetMatches(
 		std::transform(sfm_data.GetViews().begin(), sfm_data.GetViews().end(),
 			std::inserter(set_ViewIds, set_ViewIds.begin()), stl::RetrieveKey());
 		graph::indexedGraph putativeGraph(set_ViewIds, getPairs(map_PutativesMatches));
-		graph::exportToGraphvizData(stlplus::create_filespec(OutputPath, "putative_matches"),putativeGraph);
+		graph::exportToGraphvizData(stlplus::create_filespec(OutputPath, "putative_matches"), putativeGraph);
 	}
-	
-	
+
+
 	std::unique_ptr<ImageCollectionGeometricFilter> filter_ptr(
 		new ImageCollectionGeometricFilter(&sfm_data, regions_provider));
 
@@ -405,11 +405,11 @@ int GetMatches(
 			stlplus::create_filespec(OutputPath, "GeometricAdjacencyMatrix", "svg"));
 
 
-			std::set<IndexT> set_ViewIds;
-			std::transform(sfm_data.GetViews().begin(), sfm_data.GetViews().end(),
-				std::inserter(set_ViewIds, set_ViewIds.begin()), stl::RetrieveKey());
-			graph::indexedGraph putativeGraph(set_ViewIds, getPairs(map_GeometricMatches));
-			graph::exportToGraphvizData(stlplus::create_filespec(OutputPath, "geometric_matches"),putativeGraph);
+		std::set<IndexT> set_ViewIds;
+		std::transform(sfm_data.GetViews().begin(), sfm_data.GetViews().end(),
+			std::inserter(set_ViewIds, set_ViewIds.begin()), stl::RetrieveKey());
+		graph::indexedGraph putativeGraph(set_ViewIds, getPairs(map_GeometricMatches));
+		graph::exportToGraphvizData(stlplus::create_filespec(OutputPath, "geometric_matches"), putativeGraph);
 	}
 
 

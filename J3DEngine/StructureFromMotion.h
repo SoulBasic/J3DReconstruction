@@ -100,7 +100,7 @@ int StructureFromMotion(
 
 	std::pair<std::string, std::string> initialPairString(initialPairString_first, initialPairString_second);
 
-	
+
 
 	if (!isValid(static_cast<ETriangulationMethod>(triangulation_method))) {
 		std::cerr << "\n 无效的空中三角测量方法" << std::endl;
@@ -146,7 +146,7 @@ int StructureFromMotion(
 	}
 
 	std::shared_ptr<Matches_Provider> matches_provider = std::make_shared<Matches_Provider>();
-	if 
+	if
 		(
 			!(matches_provider->load(sfm_data, sfmOutputName) ||
 				matches_provider->load(sfm_data, stlplus::create_filespec(MatchesDataPath, "matches.f.txt")) ||
@@ -226,8 +226,8 @@ int StructureFromMotion(
 
 
 int PrintPointColors(
-	std::string InputFile,  
-	std::string OutputFile   
+	std::string InputFile,
+	std::string OutputFile
 )
 {
 	Global::processProject = COLORED;

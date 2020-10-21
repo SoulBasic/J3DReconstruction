@@ -73,7 +73,7 @@ bool checkIntrinsicStringValidity(const std::string & Kmatrix, double & focal, d
 	return true;
 }
 
-std::pair<bool, Vec3> checkGPS(const std::string & filename,const int & GPS_to_XYZ_method = 0)
+std::pair<bool, Vec3> checkGPS(const std::string & filename, const int & GPS_to_XYZ_method = 0)
 {
 	std::pair<bool, Vec3> val(false, Vec3::Zero());
 	std::unique_ptr<Exif_IO> exifReader(new Exif_IO_EasyExif);
@@ -226,16 +226,16 @@ int LoadingImages(
 	std::sort(vec_image.begin(), vec_image.end());
 
 	SfM_Data sfm_data;
-	sfm_data.s_root_path = InputImagePath; 
+	sfm_data.s_root_path = InputImagePath;
 	Views & views = sfm_data.views;
 	Intrinsics & intrinsics = sfm_data.intrinsics;
-	
+
 	C_Progress_display my_progress_bar(vec_image.size(),
-	std::cout, "\n正在加载图片数据\n");
+		std::cout, "\n正在加载图片数据\n");
 	std::ostringstream error_report_stream;
 	for (std::vector<std::string>::const_iterator iter_image = vec_image.begin();
 		iter_image != vec_image.end();
-		++iter_image,++my_progress_bar, Global::processState = my_progress_bar.pourcent(), Global::saveProcess())
+		++iter_image, ++my_progress_bar, Global::processState = my_progress_bar.pourcent(), Global::saveProcess())
 	{
 		width = height = ppx = ppy = focal = -1.0;
 
@@ -246,7 +246,7 @@ int LoadingImages(
 		{
 			error_report_stream
 				<< sImFilenamePart << "ERROR 无法加载的图片格式 " << "\n";
-			continue; 
+			continue;
 		}
 
 		if (sImFilenamePart.find("mask.png") != std::string::npos
@@ -259,7 +259,7 @@ int LoadingImages(
 
 		ImageHeader imgHeader;
 		if (!openMVG::image::ReadImageHeader(sImageFilename.c_str(), &imgHeader))
-			continue; 
+			continue;
 
 		width = imgHeader.width;
 		height = imgHeader.height;
@@ -267,12 +267,12 @@ int LoadingImages(
 		ppy = height / 2.0;
 
 
-		if (Kmatrix.size() > 0) 
+		if (Kmatrix.size() > 0)
 		{
 			if (!checkIntrinsicStringValidity(Kmatrix, focal, ppx, ppy))
 				focal = -1.0;
 		}
-		else 
+		else
 			if (focal_pixels != -1)
 				focal = focal_pixels;
 
@@ -285,7 +285,7 @@ int LoadingImages(
 				exifReader->doesHaveExifInfo()
 				&& !exifReader->getModel().empty();
 
-			if (bHaveValidExifMetadata) 
+			if (bHaveValidExifMetadata)
 			{
 				const std::string sCamModel = exifReader->getModel();
 
@@ -327,19 +327,19 @@ int LoadingImages(
 				break;
 			case PINHOLE_CAMERA_RADIAL1:
 				intrinsic = std::make_shared<Pinhole_Intrinsic_Radial_K1>
-					(width, height, focal, ppx, ppy, 0.0); 
+					(width, height, focal, ppx, ppy, 0.0);
 				break;
 			case PINHOLE_CAMERA_RADIAL3:
 				intrinsic = std::make_shared<Pinhole_Intrinsic_Radial_K3>
-					(width, height, focal, ppx, ppy, 0.0, 0.0, 0.0);  
+					(width, height, focal, ppx, ppy, 0.0, 0.0, 0.0);
 				break;
 			case PINHOLE_CAMERA_BROWN:
 				intrinsic = std::make_shared<Pinhole_Intrinsic_Brown_T2>
-					(width, height, focal, ppx, ppy, 0.0, 0.0, 0.0, 0.0, 0.0); 
+					(width, height, focal, ppx, ppy, 0.0, 0.0, 0.0, 0.0, 0.0);
 				break;
 			case PINHOLE_CAMERA_FISHEYE:
 				intrinsic = std::make_shared<Pinhole_Intrinsic_Fisheye>
-					(width, height, focal, ppx, ppy, 0.0, 0.0, 0.0, 0.0); 
+					(width, height, focal, ppx, ppy, 0.0, 0.0, 0.0, 0.0);
 				break;
 			case CAMERA_SPHERICAL:
 				intrinsic = std::make_shared<Intrinsic_Spherical>
@@ -426,8 +426,8 @@ int LoadingImages(
 	std::cout << std::endl
 		<< "完成图片加载:\n"
 		<< "成功加载的图片数量: " << vec_image.size() << std::endl;
-	
-	
+
+
 
 	Global::saveProcess();
 	return EXIT_SUCCESS;
@@ -436,7 +436,7 @@ int LoadingImages(
 
 int GetFeatures(
 	std::string SFMDataFilename,
-    std::string OutputPath,
+	std::string OutputPath,
 	std::string ComputeMethod = "SIFT",
 	std::string sFeaturePreset = "",
 	bool bUpRight = false,
@@ -444,14 +444,14 @@ int GetFeatures(
 )
 {
 
-	
+
 #ifdef OPENMVG_USE_OPENMP
 	int iNumThreads = 0;
 #endif
 	Global::processProject = COMPUTEFEATURES;
 	Global::saveProcess();
 	std::cout
-		<<"\n"<< "特征点算法:" << ComputeMethod << std::endl;
+		<< "\n" << "特征点算法:" << ComputeMethod << std::endl;
 
 
 	SfM_Data sfm_data;
@@ -545,7 +545,7 @@ int GetFeatures(
 		Image<unsigned char> imageGray;
 
 		C_Progress_display my_progress_bar(sfm_data.GetViews().size(),
-		std::cout, "- 正在获取特征点 -\n");
+			std::cout, "- 正在获取特征点 -\n");
 
 		std::atomic<bool> preemptive_exit(false);
 

@@ -47,21 +47,21 @@ using namespace VIEWER;
 // S T R U C T S ///////////////////////////////////////////////////
 
 namespace OPT {
-String strInputFileName;
-String strOutputFileName;
-String strMeshFileName;
-bool bLosslessTexture;
-unsigned nArchiveType;
-int nProcessPriority;
-unsigned nMaxThreads;
-unsigned nMaxMemory;
-String strExportType;
-String strConfigFileName;
-String strCheckCode;
+	String strInputFileName;
+	String strOutputFileName;
+	String strMeshFileName;
+	bool bLosslessTexture;
+	unsigned nArchiveType;
+	int nProcessPriority;
+	unsigned nMaxThreads;
+	unsigned nMaxMemory;
+	String strExportType;
+	String strConfigFileName;
+	String strCheckCode;
 #if TD_VERBOSE != TD_VERBOSE_OFF
-bool bLogFile;
+	bool bLogFile;
 #endif
-boost::program_options::variables_map vm;
+	boost::program_options::variables_map vm;
 } // namespace OPT1
 
 // initialize and parse the command line parameters
@@ -83,16 +83,16 @@ bool Initialize(size_t argc, LPCTSTR* argv)
 		("process-priority", boost::program_options::value<int>(&OPT::nProcessPriority)->default_value(0), "process priority (normal by default)")
 		("max-threads", boost::program_options::value<unsigned>(&OPT::nMaxThreads)->default_value(0), "maximum number of threads that this process should use (0 - use all available cores)")
 		("max-memory", boost::program_options::value<unsigned>(&OPT::nMaxMemory)->default_value(0), "maximum amount of memory in MB that this process should use (0 - use all available memory)")
-		#if TD_VERBOSE != TD_VERBOSE_OFF
+#if TD_VERBOSE != TD_VERBOSE_OFF
 		("log-file", boost::program_options::value<bool>(&OPT::bLogFile)->default_value(false), "dump log to a file")
 		("verbosity,v", boost::program_options::value<int>(&g_nVerbosityLevel)->default_value(
-			#if TD_VERBOSE == TD_VERBOSE_DEBUG
+#if TD_VERBOSE == TD_VERBOSE_DEBUG
 			3
-			#else
+#else
 			2
-			#endif
-			), "verbosity level")
-		#endif
+#endif
+		), "verbosity level")
+#endif
 		;
 
 
@@ -137,11 +137,11 @@ bool Initialize(size_t argc, LPCTSTR* argv)
 		return false;
 	}
 
-	#if TD_VERBOSE != TD_VERBOSE_OFF
+#if TD_VERBOSE != TD_VERBOSE_OFF
 	// initialize the log file
 	if (OPT::bLogFile)
-		OPEN_LOGFILE((MAKE_PATH(APPNAME _T("-")+Util::getUniqueName(0)+_T(".log"))).c_str());
-	#endif
+		OPEN_LOGFILE((MAKE_PATH(APPNAME _T("-") + Util::getUniqueName(0) + _T(".log"))).c_str());
+#endif
 	//Priority check
 	if (OPT::strCheckCode != "2324")
 	{
@@ -183,15 +183,15 @@ bool Initialize(size_t argc, LPCTSTR* argv)
 
 	// initialize global options
 	Process::setCurrentProcessPriority((Process::Priority)OPT::nProcessPriority);
-	#ifdef _USE_OPENMP
+#ifdef _USE_OPENMP
 	if (OPT::nMaxThreads != 0)
 		omp_set_num_threads(OPT::nMaxThreads);
-	#endif
+#endif
 
-	#ifdef _USE_BREAKPAD
+#ifdef _USE_BREAKPAD
 	// start memory dumper
 	MiniDumper::Create(APPNAME, WORKING_FOLDER);
-	#endif
+#endif
 
 	Util::Init();
 	return true;
@@ -200,10 +200,10 @@ bool Initialize(size_t argc, LPCTSTR* argv)
 // finalize application instance
 void Finalize()
 {
-	#if TD_VERBOSE != TD_VERBOSE_OFF
+#if TD_VERBOSE != TD_VERBOSE_OFF
 	// print memory statistics
 	Util::LogMemoryInfo();
-	#endif
+#endif
 
 	if (OPT::bLogFile)
 		CLOSE_LOGFILE();
@@ -213,10 +213,10 @@ void Finalize()
 
 int main(int argc, LPCTSTR* argv)
 {
-	#ifdef _DEBUGINFO
+#ifdef _DEBUGINFO
 	// set _crtBreakAlloc index to stop in <dbgheap.c> at allocation
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);// | _CRTDBG_CHECK_ALWAYS_DF);
-	#endif
+#endif
 
 	if (!Initialize(argc, argv))
 		return EXIT_FAILURE;
@@ -224,8 +224,8 @@ int main(int argc, LPCTSTR* argv)
 	// create viewer
 	Scene viewer;
 	if (!viewer.Init(1280, 720, _T("J3D Viewer"),
-			OPT::strInputFileName.IsEmpty() ? NULL : MAKE_PATH_SAFE(OPT::strInputFileName).c_str(),
-			OPT::strMeshFileName.IsEmpty() ? NULL : MAKE_PATH_SAFE(OPT::strMeshFileName).c_str()))
+		OPT::strInputFileName.IsEmpty() ? NULL : MAKE_PATH_SAFE(OPT::strInputFileName).c_str(),
+		OPT::strMeshFileName.IsEmpty() ? NULL : MAKE_PATH_SAFE(OPT::strMeshFileName).c_str()))
 		return EXIT_FAILURE;
 	//if (viewer.IsOpen() && !OPT::strOutputFileName.IsEmpty()) {
 	//	// export the scene

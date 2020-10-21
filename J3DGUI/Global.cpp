@@ -88,7 +88,7 @@ bool Global::getProcessMsg()
 		buf = Processcache.readLine();
 		str = buf;
 		//qDebug("%s  = %d ", str,buf.size());
-		if (buf.size() == 21 && str.mid(0,2) == "Es") {
+		if (buf.size() == 21 && str.mid(0, 2) == "Es") {
 			Global::processProject = DENSE;
 		}
 		else if (buf.size() == 21 && str.mid(0, 2) == "Pr") {
@@ -115,7 +115,7 @@ bool Global::getProcessMsg()
 }
 
 
-bool Global::CheckViewerMsg() 
+bool Global::CheckViewerMsg()
 {
 	QFile Processcache("C:\\ProgramData\\J3DEngine\\ViewerCache.tmp");
 	if (Processcache.open(QIODevice::ReadOnly | QIODevice::Text))
@@ -126,14 +126,14 @@ bool Global::CheckViewerMsg()
 		if (str.toLong() > 1) {
 			return true;
 		}
-		
+
 	}
-		return false;
-	
-		
+	return false;
+
+
 }
 
-LPCTSTR Global::charToLPCTSTR(const char* str) 
+LPCTSTR Global::charToLPCTSTR(const char* str)
 {
 	int num = MultiByteToWideChar(0, 0, str, -1, NULL, 0);
 	wchar_t *wide = new wchar_t[num];
