@@ -49,34 +49,34 @@ void QT3DReconstruction::on_action_addSensorWidth_triggered()
 	dlgasw.exec();
 }
 
-void QT3DReconstruction::on_action_viewPLY_triggered()
-{
-	QMessageBox::information(NULL, "暂不支持ply格式，请加载j3d模型", "错误", QMessageBox::Yes, NULL);
-	return;
-	QString fileName = QFileDialog::getOpenFileName(NULL, "ViewPLY", ".", "*.ply");
-	if (fileName == "")
-		return;
-	//QMessageBox::information(NULL, "", filename, QMessageBox::Yes, NULL);
-
-	QByteArray buf = fileName.toLatin1(); // must
-
-	PlyIO* ply = new PlyIO(buf.data());
-	if (false == ply->open()) {
-		ui.textBrowser->insertPlainText("\n模型加载失败");
-		ui.textBrowser->update();
-		return;
-	}
-	delete Global::ply;
-	Global::ply = ply;
-	//ui.J3DViewerWidget->setPly();
-
-	//QProcess myProcess(this);
-	//QString program = "J3DViewer.exe";
-	//QStringList arguments;
-	//arguments << fileName;
-	//myProcess.startDetached(program, arguments, NULL, NULL);
-
-}
+//void QT3DReconstruction::on_action_viewPLY_triggered()
+//{
+//	QMessageBox::information(NULL, "暂不支持ply格式，请加载j3d模型", "错误", QMessageBox::Yes, NULL);
+//	return;
+//	QString fileName = QFileDialog::getOpenFileName(NULL, "ViewPLY", ".", "*.ply");
+//	if (fileName == "")
+//		return;
+//	//QMessageBox::information(NULL, "", filename, QMessageBox::Yes, NULL);
+//
+//	QByteArray buf = fileName.toLatin1(); // must
+//
+//	PlyIO* ply = new PlyIO(buf.data());
+//	if (false == ply->open()) {
+//		ui.textBrowser->insertPlainText("\n模型加载失败");
+//		ui.textBrowser->update();
+//		return;
+//	}
+//	delete Global::ply;
+//	Global::ply = ply;
+//	//ui.J3DViewerWidget->setPly();
+//
+//	//QProcess myProcess(this);
+//	//QString program = "J3DViewer.exe";
+//	//QStringList arguments;
+//	//arguments << fileName;
+//	//myProcess.startDetached(program, arguments, NULL, NULL);
+//
+//}
 
 void QT3DReconstruction::on_actionDenseCloud_triggered()
 {
@@ -280,7 +280,7 @@ void QT3DReconstruction::on_action_triggered() //textureMesh
 
 void QT3DReconstruction::on_actionopen_mvs_file_triggered()
 {
-	QString fileName = QFileDialog::getOpenFileName(NULL, "ViewJ3D", ".", "*.j3d");
+	QString fileName = QFileDialog::getOpenFileName(NULL, "ViewJ3D", ".", "J3D Model Format(*.j3d);;Stanford Polygon File Format(*.ply);;All Files(*.*)");
 	if (fileName == "")
 	{
 		QMessageBox::information(NULL, "失败", "打开j3d文件失败，请检查路径是否正确 ", QMessageBox::Ok, QMessageBox::Ok);

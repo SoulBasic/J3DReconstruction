@@ -223,7 +223,7 @@ int main(int argc, LPCTSTR* argv)
 
 	// create viewer
 	Scene viewer;
-	if (!viewer.Init(1280, 720, _T("J3D Viewer"),
+	if (!viewer.Init(1361, 661, _T("J3D Viewer"),
 		OPT::strInputFileName.IsEmpty() ? NULL : MAKE_PATH_SAFE(OPT::strInputFileName).c_str(),
 		OPT::strMeshFileName.IsEmpty() ? NULL : MAKE_PATH_SAFE(OPT::strMeshFileName).c_str()))
 		return EXIT_FAILURE;

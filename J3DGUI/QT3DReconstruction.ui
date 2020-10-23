@@ -123,8 +123,8 @@
    <widget class="mvsviewer" name="widget" native="true">
     <property name="geometry">
      <rect>
-      <x>-50</x>
-      <y>-110</y>
+      <x>-150</x>
+      <y>-190</y>
       <width>1361</width>
       <height>661</height>
      </rect>
@@ -158,7 +158,6 @@
     </property>
     <addaction name="actionopen_mvs_file"/>
     <addaction name="action_addSensorWidth"/>
-    <addaction name="action_viewPLY"/>
    </widget>
    <widget class="QMenu" name="menu_4">
     <property name="title">
@@ -207,7 +206,7 @@
   </action>
   <action name="actionopen_mvs_file">
    <property name="text">
-    <string>打开j3d模型文件</string>
+    <string>打开...</string>
    </property>
   </action>
   <action name="action_fullauto">
