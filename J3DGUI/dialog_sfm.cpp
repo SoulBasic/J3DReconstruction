@@ -18,7 +18,7 @@ void Dialog_SFM::on_btn_OK_clicked()
 	QString matchesDir, sfmOutputDir, triangulationMethod, resectionMethod;
 	if (Global::GetProcessidFromName("J3DEngine.exe") == 0)
 	{
-		QMessageBox::critical(this, "é”™è¯¯ ", "æœªæ‰¾åˆ°J3DEngineè¿›ç¨‹", QMessageBox::Ok, QMessageBox::Ok);
+		QMessageBox::critical(this, u8"´íÎó ", u8"Î´ÕÒµ½J3DEngine½ø³Ì", QMessageBox::Ok, QMessageBox::Ok);
 		return;
 	}
 	else
@@ -28,12 +28,12 @@ void Dialog_SFM::on_btn_OK_clicked()
 
 	if (ui->lineEdit_inputDir->text() == "")
 	{
-		QMessageBox::critical(this, "é”™è¯¯ ", "æœªè¾“å…¥åŒ¹é…æ–‡ä»¶è·¯å¾„ ", QMessageBox::Ok, QMessageBox::Ok);
+		QMessageBox::critical(this, u8"´íÎó ", u8"Î´ÊäÈëÆ¥ÅäÎÄ¼þÂ·¾¶ ", QMessageBox::Ok, QMessageBox::Ok);
 		return;
 	}
 	if (ui->lineEdit_OutputDir->text() == "")
 	{
-		QMessageBox::critical(this, "é”™è¯¯ ", "æœªè¾“å…¥è¾“å‡ºè·¯å¾„ ", QMessageBox::Ok, QMessageBox::Ok);
+		QMessageBox::critical(this, u8"´íÎó ", u8"Î´ÊäÈëÊä³öÂ·¾¶ ", QMessageBox::Ok, QMessageBox::Ok);
 		return;
 	}
 
@@ -65,14 +65,14 @@ void Dialog_SFM::on_btn_OK_clicked()
 		cmdcache.write("\n");
 
 		cmdcache.close();
-		QMessageBox::information(NULL, "å®Œæˆ", "é…ç½®å®Œæˆ ", QMessageBox::Ok, NULL);
+		QMessageBox::information(NULL, u8"Íê³É", u8"ÅäÖÃÍê³É ", QMessageBox::Ok, NULL);
 		PostThreadMessageA(Global::engineTid, CMD_SFMANDSFP, 0, 0);
 		Global::tasking = true;
 		this->close();
 	}
 	else
 	{
-		QMessageBox::information(NULL, "error", "æ— æ³•å†™å…¥ç¼“å­˜ï¼Œè¯·æ£€æŸ¥æƒé™ ", QMessageBox::Ok, NULL);
+		QMessageBox::information(NULL, u8"´íÎó", u8"ÎÞ·¨Ð´Èë»º´æ£¬Çë¼ì²éÈ¨ÏÞ ", QMessageBox::Ok, NULL);
 	}
 
 }
@@ -84,12 +84,12 @@ void Dialog_SFM::on_btn_CANCEL_clicked()
 
 void Dialog_SFM::on_pushButton_browseInputDir_clicked()
 {
-	Global::matchesDir = QFileDialog::getExistingDirectory(this, "æµè§ˆå›¾ç‰‡æ–‡ä»¶å¤¹ ", "", NULL);
+	Global::matchesDir = QFileDialog::getExistingDirectory(this, u8"ä¯ÀÀÍ¼Æ¬ÎÄ¼þ¼Ð ", "", NULL);
 	ui->lineEdit_inputDir->setText(Global::matchesDir);
 }
 
 void Dialog_SFM::on_pushButton_browseOutputDir_clicked()
 {
-	Global::sfmOutputDir = QFileDialog::getExistingDirectory(this, "æµè§ˆå›¾ç‰‡æ–‡ä»¶å¤¹ ", "", NULL);
+	Global::sfmOutputDir = QFileDialog::getExistingDirectory(this, u8"ä¯ÀÀÍ¼Æ¬ÎÄ¼þ¼Ð ", "", NULL);
 	ui->lineEdit_OutputDir->setText(Global::sfmOutputDir);
 }

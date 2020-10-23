@@ -22,7 +22,7 @@
 #define SFM 4
 #define SFP 5
 #define COLORED 6
-#define SPARSE 7
+#define SPARSECLOUD 7
 #define DENSE 8
 #define DENSEFUSE 12
 #define REMESH 9
@@ -77,4 +77,5 @@ public:
 	static bool CheckViewerMsg();
 	static PlyIO* ply;
 	static LPCTSTR charToLPCTSTR(const char* str);
+	static void* sce;
 };

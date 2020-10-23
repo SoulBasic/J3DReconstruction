@@ -7,6 +7,7 @@
 
 int main(int argc, char *argv[])
 {
+	
 	QApplication a(argc, argv);
 	//Dialog_MatchFeature w;
 	QT3DReconstruction w;

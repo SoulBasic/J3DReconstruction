@@ -5,11 +5,11 @@ QT3DReconstruction::QT3DReconstruction(QWidget *parent)
 {
 	ui.setupUi(this);
 
-	QTimer *timer = new QTimer(this); //this ä¸ºparentç±», è¡¨ç¤ºå½“å‰çª—å£
+	QTimer *timer = new QTimer(this); //this ÎªparentÀà, ±íÊ¾µ±Ç°´°¿Ú
 
 	connect(timer, SIGNAL(timeout()), this, SLOT(timerSlot()));
 
-	timer->start(500); // 1000æ¯«ç§’, ç­‰äº 1 ç§’
+	timer->start(500); // 1000ºÁÃë, µÈÓÚ 1 Ãë
 	setWindowFlags(windowFlags()& ~Qt::WindowMaximizeButtonHint);
 	setFixedSize(this->width(), this->height());
 	PlyIO* ply = new PlyIO("");
@@ -51,7 +51,7 @@ void QT3DReconstruction::on_action_addSensorWidth_triggered()
 
 //void QT3DReconstruction::on_action_viewPLY_triggered()
 //{
-//	QMessageBox::information(NULL, "æš‚ä¸æ”¯æŒplyæ ¼å¼ï¼Œè¯·åŠ è½½j3dæ¨¡å‹", "é”™è¯¯", QMessageBox::Yes, NULL);
+//	QMessageBox::information(NULL, "Ôİ²»Ö§³Öply¸ñÊ½£¬Çë¼ÓÔØj3dÄ£ĞÍ", "´íÎó", QMessageBox::Yes, NULL);
 //	return;
 //	QString fileName = QFileDialog::getOpenFileName(NULL, "ViewPLY", ".", "*.ply");
 //	if (fileName == "")
@@ -62,7 +62,7 @@ void QT3DReconstruction::on_action_addSensorWidth_triggered()
 //
 //	PlyIO* ply = new PlyIO(buf.data());
 //	if (false == ply->open()) {
-//		ui.textBrowser->insertPlainText("\næ¨¡å‹åŠ è½½å¤±è´¥");
+//		ui.textBrowser->insertPlainText("\nÄ£ĞÍ¼ÓÔØÊ§°Ü");
 //		ui.textBrowser->update();
 //		return;
 //	}
@@ -94,24 +94,24 @@ void QT3DReconstruction::timerSlot()
 	if (Global::GetProcessidFromName("J3DEngine.exe") != 0)
 	{
 		Global::connectEngine();
-		if (ui.label_engine->text() != "æˆåŠŸè¿æ¥åˆ°J3DEngine ")
+		if (ui.label_engine->text() != u8"³É¹¦Á¬½Óµ½J3DEngine ")
 		{
-			ui.textBrowser->insertPlainText("ä¸J3DEngineæˆåŠŸå»ºç«‹è¿æ¥\n");
+			ui.textBrowser->insertPlainText(u8"ÓëJ3DEngine³É¹¦½¨Á¢Á¬½Ó\n");
 			QPalette pa;
 			pa.setColor(QPalette::WindowText, Qt::green);
 			ui.label_engine->setPalette(pa);
-			ui.label_engine->setText("æˆåŠŸè¿æ¥åˆ°J3DEngine ");
+			ui.label_engine->setText(u8"³É¹¦Á¬½Óµ½J3DEngine ");
 		}
 	}
 	else
 	{
-		if (ui.label_engine->text() != "æœªè¿æ¥åˆ°J3DEngine ")
+		if (ui.label_engine->text() != u8"Î´Á¬½Óµ½J3DEngine ")
 		{
-			ui.textBrowser->insertPlainText("ä¸J3DEngineå¤±å»è¿æ¥ï¼Œä¹‹åå°†é‡æ–°å°è¯•è¿æ¥\n");
+			ui.textBrowser->insertPlainText(u8"ÓëJ3DEngineÊ§È¥Á¬½Ó£¬Ö®ºó½«ÖØĞÂ³¢ÊÔÁ¬½Ó\n");
 			QPalette pa;
 			pa.setColor(QPalette::WindowText, Qt::red);
 			ui.label_engine->setPalette(pa);
-			ui.label_engine->setText("æœªè¿æ¥åˆ°J3DEngine ");
+			ui.label_engine->setText(u8"Î´Á¬½Óµ½J3DEngine ");
 		}
 	}
 
@@ -131,7 +131,7 @@ void QT3DReconstruction::timerSlot()
 				QString fileName = Global::sfmOutputDir + "/SparseCloud.j3d";
 				if (fileName == "")
 				{
-					QMessageBox::information(NULL, "å¤±è´¥", "æ‰“å¼€j3dæ–‡ä»¶å¤±è´¥ï¼Œè¯·æ£€æŸ¥è·¯å¾„æ˜¯å¦æ­£ç¡® ", QMessageBox::Ok, QMessageBox::Ok);
+					QMessageBox::information(NULL, u8"Ê§°Ü", "´ò¿ªj3dÎÄ¼şÊ§°Ü£¬Çë¼ì²éÂ·¾¶ÊÇ·ñÕıÈ· ", QMessageBox::Ok, QMessageBox::Ok);
 					return;
 
 				}
@@ -141,7 +141,7 @@ void QT3DReconstruction::timerSlot()
 				QString fileName = Global::densifyWorkingDir + "/DenseCloud.j3d";
 				if (fileName == "")
 				{
-					QMessageBox::information(NULL, "å¤±è´¥", "æ‰“å¼€j3dæ–‡ä»¶å¤±è´¥ï¼Œè¯·æ£€æŸ¥è·¯å¾„æ˜¯å¦æ­£ç¡® ", QMessageBox::Ok, QMessageBox::Ok);
+					QMessageBox::information(NULL, u8"Ê§°Ü", "´ò¿ªj3dÎÄ¼şÊ§°Ü£¬Çë¼ì²éÂ·¾¶ÊÇ·ñÕıÈ· ", QMessageBox::Ok, QMessageBox::Ok);
 					return;
 
 				}
@@ -151,7 +151,7 @@ void QT3DReconstruction::timerSlot()
 				QString fileName = Global::reconstructMeshWorkingDir + "/TIN_Mesh.j3d";
 				if (fileName == "")
 				{
-					QMessageBox::information(NULL, "å¤±è´¥", "æ‰“å¼€j3dæ–‡ä»¶å¤±è´¥ï¼Œè¯·æ£€æŸ¥è·¯å¾„æ˜¯å¦æ­£ç¡® ", QMessageBox::Ok, QMessageBox::Ok);
+					QMessageBox::information(NULL, u8"Ê§°Ü", "´ò¿ªj3dÎÄ¼şÊ§°Ü£¬Çë¼ì²éÂ·¾¶ÊÇ·ñÕıÈ· ", QMessageBox::Ok, QMessageBox::Ok);
 					return;
 
 				}
@@ -161,29 +161,29 @@ void QT3DReconstruction::timerSlot()
 				QString fileName = Global::reconstructMeshWorkingDir + "/TEXTURE_Mesh.j3d";
 				if (fileName == "")
 				{
-					QMessageBox::information(NULL, "å¤±è´¥", "æ‰“å¼€j3dæ–‡ä»¶å¤±è´¥ï¼Œè¯·æ£€æŸ¥è·¯å¾„æ˜¯å¦æ­£ç¡® ", QMessageBox::Ok, QMessageBox::Ok);
+					QMessageBox::information(NULL, u8"Ê§°Ü", "´ò¿ªj3dÎÄ¼şÊ§°Ü£¬Çë¼ì²éÂ·¾¶ÊÇ·ñÕıÈ· ", QMessageBox::Ok, QMessageBox::Ok);
 					return;
 
 				}
 				openJ3DView(fileName);
 			}
-			QMessageBox::information(NULL, "å®Œæˆ", "ä»»åŠ¡å®Œæˆï¼ ", QMessageBox::Ok, QMessageBox::Ok);
+			QMessageBox::information(NULL, u8"Íê³É", u8"ÈÎÎñÍê³É£¡ ", QMessageBox::Ok, QMessageBox::Ok);
 			Global::tasking = false;
-			ui.label_process->setText("ç­‰å¾…ä»»åŠ¡ ");
+			ui.label_process->setText(u8"µÈ´ıÈÎÎñ ");
 			ui.progressBar->setValue(0);
 			return;
 		}
 		else if (Global::process == PROCESSERROR)
 		{
-			QMessageBox::information(NULL, "å¤±è´¥", "ä»»åŠ¡å¤±è´¥ï¼Œå…·ä½“ä»»åŠ¡æ—¥å¿—äºJ3DEngineæŸ¥è¯¢ ", QMessageBox::Ok, QMessageBox::Ok);
+			QMessageBox::information(NULL, u8"Ê§°Ü", "ÈÎÎñÊ§°Ü£¬¾ßÌåÈÎÎñÈÕÖ¾ÓÚJ3DEngine²éÑ¯ ", QMessageBox::Ok, QMessageBox::Ok);
 			Global::tasking = false;
-			ui.label_process->setText("ç­‰å¾…ä»»åŠ¡ ");
+			ui.label_process->setText(u8"µÈ´ıÈÎÎñ ");
 			ui.progressBar->setValue(0);
 			return;
 		}
 		else if (Global::processProject < 1)
 		{
-			ui.label_process->setText("ç­‰å¾…ä»»åŠ¡ ");
+			ui.label_process->setText(u8"µÈ´ıÈÎÎñ ");
 			ui.progressBar->setValue(0);
 			return;
 		}
@@ -194,73 +194,73 @@ void QT3DReconstruction::timerSlot()
 			{
 			case LISTIMAGES:
 			{
-				ui.label_process->setText("ä»»åŠ¡è¿›è¡Œä¸­ï¼šåŠ è½½å›¾ç‰‡ ");
+				ui.label_process->setText(u8"ÈÎÎñ½øĞĞÖĞ£º¼ÓÔØÍ¼Æ¬ ");
 				ui.progressBar->setValue(Global::processState);
 				break;
 			}
 			case COMPUTEFEATURES:
 			{
-				ui.label_process->setText("ä»»åŠ¡è¿›è¡Œä¸­ï¼šè®¡ç®—ç‰¹å¾ç‚¹ ");
+				ui.label_process->setText(u8"ÈÎÎñ½øĞĞÖĞ£º¼ÆËãÌØÕ÷µã ");
 				ui.progressBar->setValue(Global::processState);
 				break;
 			}
 			case MATCHFEATURES:
 			{
-				ui.label_process->setText("ä»»åŠ¡è¿›è¡Œä¸­ï¼šåŒ¹é…ç‰¹å¾ç‚¹ ");
+				ui.label_process->setText(u8"ÈÎÎñ½øĞĞÖĞ£ºÆ¥ÅäÌØÕ÷µã ");
 				ui.progressBar->setValue(Global::processState);
 				break;
 			}
 			case SFM:
 			{
-				ui.label_process->setText("ä»»åŠ¡è¿›è¡Œä¸­ï¼šä¸‰ç»´é‡å»º_SFM ");
+				ui.label_process->setText(u8"ÈÎÎñ½øĞĞÖĞ£ºÈıÎ¬ÖØ½¨_SFM ");
 				ui.progressBar->setValue(Global::processState);
 				break;
 			}
 			case SFP:
 			{
-				ui.label_process->setText("ä»»åŠ¡è¿›è¡Œä¸­ï¼šä¸‰ç»´é‡å»º_SFP ");
+				ui.label_process->setText(u8"ÈÎÎñ½øĞĞÖĞ£ºÈıÎ¬ÖØ½¨_SFP ");
 				ui.progressBar->setValue(Global::processState);
 				break;
 			}
 			case COLORED:
 			{
-				ui.label_process->setText("ä»»åŠ¡è¿›è¡Œä¸­ï¼šç‚¹äº‘ä¸Šè‰² ");
+				ui.label_process->setText(u8"ÈÎÎñ½øĞĞÖĞ£ºµãÔÆÉÏÉ« ");
 				ui.progressBar->setValue(Global::processState);
 				break;
 			}
-			case SPARSE:
+			case SPARSECLOUD:
 			{
-				ui.label_process->setText("ä»»åŠ¡è¿›è¡Œä¸­ï¼šç”Ÿæˆç¨€ç–ç‚¹äº‘ ");
+				ui.label_process->setText(u8"ÈÎÎñ½øĞĞÖĞ£ºÉú³ÉÏ¡ÊèµãÔÆ ");
 				ui.progressBar->setValue(Global::processState);
 				break;
 			}
 			case DENSE:
 			{
-				ui.label_process->setText("ä»»åŠ¡è¿›è¡Œä¸­ï¼šç”Ÿæˆå¯†é›†ç‚¹äº‘ ");
+				ui.label_process->setText(u8"ÈÎÎñ½øĞĞÖĞ£ºÉú³ÉÃÜ¼¯µãÔÆ ");
 				ui.progressBar->setValue(Global::processState);
 				break;
 			}
 			case REMESH:
 			{
-				ui.label_process->setText("ä»»åŠ¡è¿›è¡Œä¸­ï¼šç”Ÿæˆä¸‰è§’ç½‘æ¨¡å‹ ");
+				ui.label_process->setText(u8"ÈÎÎñ½øĞĞÖĞ£ºÉú³ÉÈı½ÇÍøÄ£ĞÍ ");
 				ui.progressBar->setValue(Global::processState);
 				break;
 			}
 			case REFINE:
 			{
-				ui.label_process->setText("ä»»åŠ¡è¿›è¡Œä¸­ï¼šä¼˜åŒ–ä¸‰è§’ç½‘æ¨¡å‹ ");
+				ui.label_process->setText(u8"ÈÎÎñ½øĞĞÖĞ£ºÓÅ»¯Èı½ÇÍøÄ£ĞÍ ");
 				ui.progressBar->setValue(Global::processState);
 				break;
 			}
 			case TEXTURE:
 			{
-				ui.label_process->setText("ä»»åŠ¡è¿›è¡Œä¸­ï¼šç”Ÿæˆçº¹ç†æ˜ å°„ ");
+				ui.label_process->setText(u8"ÈÎÎñ½øĞĞÖĞ£ºÉú³ÉÎÆÀíÓ³Éä ");
 				ui.progressBar->setValue(Global::processState);
 				break;
 			}
 			default:
 			{
-				ui.label_process->setText("ç­‰å¾…ä»»åŠ¡ ");
+				ui.label_process->setText(u8"µÈ´ıÈÎÎñ ");
 				ui.progressBar->setValue(0);
 				break;
 			}
@@ -283,7 +283,7 @@ void QT3DReconstruction::on_actionopen_mvs_file_triggered()
 	QString fileName = QFileDialog::getOpenFileName(NULL, "ViewJ3D", ".", "J3D Model Format(*.j3d);;Stanford Polygon File Format(*.ply);;All Files(*.*)");
 	if (fileName == "")
 	{
-		QMessageBox::information(NULL, "å¤±è´¥", "æ‰“å¼€j3dæ–‡ä»¶å¤±è´¥ï¼Œè¯·æ£€æŸ¥è·¯å¾„æ˜¯å¦æ­£ç¡® ", QMessageBox::Ok, QMessageBox::Ok);
+		QMessageBox::information(NULL, u8"Ê§°Ü", u8"´ò¿ªj3dÎÄ¼şÊ§°Ü£¬Çë¼ì²éÂ·¾¶ÊÇ·ñÕıÈ· ", QMessageBox::Ok, QMessageBox::Ok);
 		return;
 
 	}
@@ -302,14 +302,14 @@ bool QT3DReconstruction::openJ3DView(QString fileName)
 	QFile Processcache("C:\\ProgramData\\J3DEngine\\ViewerCache.tmp");
 	if (!Processcache.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate))
 	{
-		QMessageBox::information(NULL, "å¤±è´¥", "æ‰“å¼€ç¼“å­˜æ–‡ä»¶å¤±è´¥ï¼Œè¯·æ£€æŸ¥æƒé™    ", QMessageBox::Ok, QMessageBox::Ok);
+		QMessageBox::information(NULL, u8"Ê§°Ü", u8"´ò¿ª»º´æÎÄ¼şÊ§°Ü£¬Çë¼ì²éÈ¨ÏŞ    ", QMessageBox::Ok, QMessageBox::Ok);
 		return false;
 	}
 	Processcache.write("1");
 	Processcache.close();
 	if (!CreateProcess(
 		NULL,
-		(LPWSTR)cmd.toStdWString().c_str(),
+		(LPSTR)cmd.toStdWString().c_str(),
 		NULL,
 		NULL,
 		FALSE,
@@ -317,7 +317,7 @@ bool QT3DReconstruction::openJ3DView(QString fileName)
 		NULL,
 		NULL, &si, &pi))
 	{
-		QMessageBox::information(NULL, "å¤±è´¥", "æ‰“å¼€j3dæ–‡ä»¶å¤±è´¥ï¼ŒViewerç¨‹åºæ–‡ä»¶ä¸å®Œæ•´ ", QMessageBox::Ok, QMessageBox::Ok);
+		QMessageBox::information(NULL, u8"Ê§°Ü", u8"´ò¿ªj3dÎÄ¼şÊ§°Ü£¬Viewer³ÌĞòÎÄ¼ş²»ÍêÕû ", QMessageBox::Ok, QMessageBox::Ok);
 		return false;
 	}
 	time_t tm = time(NULL);
@@ -327,9 +327,9 @@ bool QT3DReconstruction::openJ3DView(QString fileName)
 
 		pa.setColor(QPalette::WindowText, Qt::yellow);
 		ui.label_engine->setPalette(pa);
-		ui.label_engine->setText("æ­£åœ¨æ‰“å¼€J3Dæ¨¡å‹æ–‡ä»¶ ");
+		ui.label_engine->setText(u8"ÕıÔÚ´ò¿ªJ3DÄ£ĞÍÎÄ¼ş ");
 		if (time(NULL) - tm > 60) {
-			QMessageBox::information(NULL, "å¤±è´¥", "æ‰“å¼€j3dæ–‡ä»¶å¤±è´¥ï¼Œè¯·å°è¯•ç”¨ç®¡ç†å‘˜èº«ä»½è¿è¡Œè½¯ä»¶ ", QMessageBox::Ok, QMessageBox::Ok);
+			QMessageBox::information(NULL, u8"Ê§°Ü", u8"´ò¿ªj3dÎÄ¼şÊ§°Ü£¬Çë³¢ÊÔÓÃ¹ÜÀíÔ±Éí·İÔËĞĞÈí¼ş ", QMessageBox::Ok, QMessageBox::Ok);
 			WinExec("taskkill /f /im J3DView.dll", SW_HIDE);
 			return false;
 		}
@@ -343,5 +343,6 @@ bool QT3DReconstruction::openJ3DView(QString fileName)
 
 void QT3DReconstruction::on_action_fullauto_triggered()
 {
+	
 	dlgfa.exec();
 }

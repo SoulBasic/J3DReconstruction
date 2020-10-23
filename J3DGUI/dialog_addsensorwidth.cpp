@@ -17,17 +17,17 @@ void Dialog_addsensorwidth::on_btn_OK_clicked()
 {
 	if (ui->lineEdit_model->text() == "")
 	{
-		QMessageBox::critical(this, "é”™è¯¯ ", "æœªè¾“å…¥ç›¸æœºåž‹å· ", QMessageBox::Ok, QMessageBox::Ok);
+		QMessageBox::critical(this, u8"´íÎó ", u8"Î´ÊäÈëÏà»úÐÍºÅ ", QMessageBox::Ok, QMessageBox::Ok);
 		return;
 	}
 	if (ui->lineEdit_focus->text() == "")
 	{
-		QMessageBox::critical(this, "é”™è¯¯ ", "æœªè¾“å…¥ç›¸æœºç„¦è· ", QMessageBox::Ok, QMessageBox::Ok);
+		QMessageBox::critical(this, u8"´íÎó ", u8"Î´ÊäÈëÏà»ú½¹¾à ", QMessageBox::Ok, QMessageBox::Ok);
 		return;
 	}
 	if (ui->lineEdit_fov->text() == "")
 	{
-		QMessageBox::critical(this, "é”™è¯¯ ", "æœªè¾“å…¥ç›¸æœºè§†åœºè§’ ", QMessageBox::Ok, QMessageBox::Ok);
+		QMessageBox::critical(this, u8"´íÎó ", u8"Î´ÊäÈëÏà»úÊÓ³¡½Ç ", QMessageBox::Ok, QMessageBox::Ok);
 		return;
 	}
 	double sensorWidth = 2 * (ui->lineEdit_focus->text().toDouble() * tan((0.5 * ui->lineEdit_fov->text().toDouble()) / 57.296));
@@ -38,12 +38,12 @@ void Dialog_addsensorwidth::on_btn_OK_clicked()
 		swd.write("\n");
 		swd.write(txt.toUtf8());
 		swd.close();
-		QMessageBox::information(this, "æˆåŠŸ", "æˆåŠŸè¾“å…¥ç›¸æœºå‚æ•° ", QMessageBox::Ok, QMessageBox::Ok);
+		QMessageBox::information(this, u8"³É¹¦", u8"³É¹¦ÊäÈëÏà»ú²ÎÊý ", QMessageBox::Ok, QMessageBox::Ok);
 		this->close();
 	}
 	else
 	{
-		QMessageBox::information(this, "å¤±è´¥", "æ— æ³•æ‰“å¼€SensorWidthDBæ–‡ä»¶ ", QMessageBox::Ok, QMessageBox::Ok);
+		QMessageBox::information(this, u8"Ê§°Ü", u8"ÎÞ·¨´ò¿ªSensorWidthDBÎÄ¼þ ", QMessageBox::Ok, QMessageBox::Ok);
 	}
 
 

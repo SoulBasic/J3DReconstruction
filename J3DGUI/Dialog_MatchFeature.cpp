@@ -19,7 +19,7 @@ void Dialog_MatchFeature::on_btn_OK_clicked()
 	QString imagesDir, outputDir, kMatrix, describerMethod, quality, upright, forceCompute, geometricModel, distanceRatio, forceMatch, maxCacheSize;
 	if (Global::GetProcessidFromName("J3DEngine.exe") == 0)
 	{
-		QMessageBox::critical(this, "é”™è¯¯ ", "æœªæ‰¾åˆ°J3DEngineè¿›ç¨‹", QMessageBox::Ok, QMessageBox::Ok);
+		QMessageBox::critical(this, u8"´íÎó ", u8"Î´ÕÒµ½J3DEngine½ø³Ì", QMessageBox::Ok, QMessageBox::Ok);
 		return;
 	}
 	else
@@ -30,7 +30,7 @@ void Dialog_MatchFeature::on_btn_OK_clicked()
 
 	if (ui->lineEdit_kMatrix->text() == "")
 	{
-		if (QMessageBox::warning(this, "æœªè¾“å…¥æœ¬å¾çŸ©é˜µ ", "å¿½ç•¥æœ¬å¾çŸ©é˜µå‚æ•° ", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) != QMessageBox::Yes)
+		if (QMessageBox::warning(this, u8"Î´ÊäÈë±¾Õ÷¾ØÕó ", u8"ºöÂÔ±¾Õ÷¾ØÕó²ÎÊý ", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) != QMessageBox::Yes)
 		{
 			return;
 		}
@@ -42,12 +42,12 @@ void Dialog_MatchFeature::on_btn_OK_clicked()
 
 	if (ui->lineEdit_inputDir->text() == "")
 	{
-		QMessageBox::critical(this, "é”™è¯¯ ", "æœªè¾“å…¥å›¾ç‰‡è·¯å¾„ ", QMessageBox::Ok, QMessageBox::Ok);
+		QMessageBox::critical(this, u8"´íÎó ", u8"Î´ÊäÈëÍ¼Æ¬Â·¾¶ ", QMessageBox::Ok, QMessageBox::Ok);
 		return;
 	}
 	if (ui->lineEdit_OutputDir->text() == "")
 	{
-		QMessageBox::critical(this, "é”™è¯¯ ", "æœªè¾“å…¥è¾“å‡ºè·¯å¾„ ", QMessageBox::Ok, QMessageBox::Ok);
+		QMessageBox::critical(this, u8"´íÎó ", u8"Î´ÊäÈëÊä³öÂ·¾¶ ", QMessageBox::Ok, QMessageBox::Ok);
 		return;
 	}
 
@@ -158,14 +158,14 @@ void Dialog_MatchFeature::on_btn_OK_clicked()
 		cmdcache.write(forceMatch.toUtf8());
 		cmdcache.write("\n");
 		cmdcache.close();
-		QMessageBox::information(NULL, "å®Œæˆ", "é…ç½®å®Œæˆ", QMessageBox::Yes, NULL);
+		QMessageBox::information(NULL, u8"Íê³É", u8"ÅäÖÃÍê³É", QMessageBox::Yes, NULL);
 		PostThreadMessageA(Global::engineTid, CMD_MATCHFEATURES, 0, 0);
 		Global::tasking = true;
 		this->close();
 	}
 	else
 	{
-		QMessageBox::information(NULL, "é”™è¯¯", "æ— æ³•è®¿é—®ç¼“å­˜æ–‡ä»¶ï¼Œè¯·æ£€æŸ¥æƒé™ ", QMessageBox::Yes, NULL);
+		QMessageBox::information(NULL, u8"´íÎó", u8"ÎÞ·¨·ÃÎÊ»º´æÎÄ¼þ£¬Çë¼ì²éÈ¨ÏÞ ", QMessageBox::Yes, NULL);
 	}
 
 }
@@ -176,13 +176,13 @@ void Dialog_MatchFeature::on_btn_CANCEL_clicked()
 
 void Dialog_MatchFeature::pushButton_browseInputDir_clicked()
 {
-	Global::imagesDir = QFileDialog::getExistingDirectory(this, "æµè§ˆå›¾ç‰‡æ–‡ä»¶å¤¹ ", "", NULL);
+	Global::imagesDir = QFileDialog::getExistingDirectory(this, u8"ä¯ÀÀÍ¼Æ¬ÎÄ¼þ¼Ð ", "", NULL);
 	ui->lineEdit_inputDir->setText(Global::imagesDir);
 }
 
 void Dialog_MatchFeature::pushButton_browseOutputDir_clicked()
 {
-	Global::matchesOutputDir = QFileDialog::getExistingDirectory(this, "æµè§ˆè¾“å‡ºæ–‡ä»¶å¤¹ ", "", NULL);
+	Global::matchesOutputDir = QFileDialog::getExistingDirectory(this, u8"ä¯ÀÀÊä³öÎÄ¼þ¼Ð ", "", NULL);
 	ui->lineEdit_OutputDir->setText(Global::matchesOutputDir);
 }
 

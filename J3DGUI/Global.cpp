@@ -25,6 +25,7 @@ bool Global::autoTasking = false;
 int Global::process = PROCESSWORKING;
 int Global::processProject = 0;
 int Global::processState = 0;
+void* Global::sce = nullptr;
 
 void Global::connectEngine()
 {
@@ -56,16 +57,7 @@ DWORD Global::GetProcessidFromName(char* name)
 		pe.dwSize = sizeof(PROCESSENTRY32);
 		if (Process32Next(hSnapshot, &pe) == FALSE)
 			break;
-
-		wchar_t * wtext = pe.szExeFile;
-		DWORD dwNmu = WideCharToMultiByte(CP_OEMCP, NULL, wtext, -1, NULL, 0, NULL, FALSE);
-		char * psTest;
-		psTest = new char[dwNmu];
-		WideCharToMultiByte(CP_OEMCP, NULL, wtext, -1, psTest, dwNmu, NULL, FALSE);
-		std::string a = psTest;
-		delete[]psTest;
-
-		if (strcmp(a.c_str(), name) == 0)
+		if (strcmp(pe.szExeFile, name) == 0)
 		{
 			id = pe.th32ProcessID;
 			break;
@@ -133,11 +125,4 @@ bool Global::CheckViewerMsg()
 
 }
 
-LPCTSTR Global::charToLPCTSTR(const char* str)
-{
-	int num = MultiByteToWideChar(0, 0, str, -1, NULL, 0);
-	wchar_t *wide = new wchar_t[num];
-	MultiByteToWideChar(0, 0, str, -1, wide, num);
-	return wide;
-}
 

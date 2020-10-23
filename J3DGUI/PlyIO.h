@@ -20,7 +20,7 @@ class PlyIO
 public:
 	PlyIO(char* fileName);
 	~PlyIO();
-	struct Point3D//ç‚¹åæ ‡
+	struct Point3D//µã×ø±ê
 	{
 		GLfloat x;
 		GLfloat y;
@@ -39,17 +39,17 @@ public:
 		GLfloat v[3];
 		GLfloat normal[3];
 	};
-	struct  Line3D//å‚¨å­˜çº¿(ä¸¤ä¸ªç«¯ç‚¹)
+	struct  Line3D//´¢´æÏß(Á½¸ö¶Ëµã)
 	{
 		Point3D pointone;
 		Point3D pointtwo;
 	};
-	struct  Triangle3D//å‚¨å­˜ä¸‰è§’å½¢(ä¸‰ä¸ªç«¯ç‚¹)
+	struct  Triangle3D//´¢´æÈı½ÇĞÎ(Èı¸ö¶Ëµã)
 	{
 		Point3D pointone;
 		Point3D pointtwo;
 		Point3D pointthree;
-		GLfloat normal[3]; //ç‚¹çš„æ³•å‘é‡
+		GLfloat normal[3]; //µãµÄ·¨ÏòÁ¿
 	};
 	char* fileName;
 	bool available;
@@ -58,16 +58,16 @@ public:
 	std::vector<Line3D> Lines;
 	std::vector<Triangle3D> Triangles;
 
-	GLfloat x_max, x_min, y_max, y_min, z_max, z_min;//å­˜å‚¨æ•°æ®çš„å·¦ä¸‹ã€å·¦ä¸Šã€å³ä¸‹ã€å³ä¸Šåæ ‡
+	GLfloat x_max, x_min, y_max, y_min, z_max, z_min;//´æ´¢Êı¾İµÄ×óÏÂ¡¢×óÉÏ¡¢ÓÒÏÂ¡¢ÓÒÉÏ×ø±ê
 
-	int vertex_N, face_N;   //ç‚¹æ•°åŠé¢æ•°
+	int vertex_N, face_N;   //µãÊı¼°ÃæÊı
 
 	std::string textureFileName;
 	std::string workDir;
 	GLuint textureID;
-	int width, height; //è®°å½•å›¾ç‰‡åˆ°å®½å’Œé«˜
+	int width, height; //¼ÇÂ¼Í¼Æ¬µ½¿íºÍ¸ß
 	GLubyte* rgba;
-	png_byte color_type; //å›¾ç‰‡åˆ°ç±»å‹ï¼ˆå¯èƒ½ä¼šç”¨åœ¨æ˜¯å¦æ˜¯å¼€å¯æ¥é€šé“ï¼‰
+	png_byte color_type; //Í¼Æ¬µ½ÀàĞÍ£¨¿ÉÄÜ»áÓÃÔÚÊÇ·ñÊÇ¿ªÆôÀ´Í¨µÀ£©
 	bool open();
 	Point3D CalTexture(GLfloat x, GLfloat y) {
 		Point3D Caltexture;

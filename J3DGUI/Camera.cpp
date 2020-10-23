@@ -57,9 +57,9 @@ void Camera::CopyOf(const Camera& rhs)
 {
 	rotation = rhs.rotation;
 	center = rhs.center;
-	dist   = rhs.dist;
+	dist = rhs.dist;
 	radius = rhs.radius;
-	fov    = rhs.fov;
+	fov = rhs.fov;
 }
 
 
@@ -88,7 +88,7 @@ void Camera::Resize(int _width, int _height)
 	const GLfloat zNear = 1e-2f;
 	const GLfloat zFar = 1e5f;
 	width = _width; height = _height;
-	GLfloat aspect = float(width)/float(height);
+	GLfloat aspect = float(width) / float(height);
 	GLfloat fH = TAN(FD2R((float)fov)) * zNear;
 	GLfloat fW = fH * aspect;
 	glFrustum(-fW, fW, -fH, fH, zNear, zFar);
@@ -113,17 +113,17 @@ Eigen::Matrix4d Camera::GetLookAt() const
 	const Eigen::Matrix3d R(rotation.toRotationMatrix());
 	const Eigen::Vector3d eye(R.col(2) * dist + center);
 	const Eigen::Vector3d up(R.col(1));
-	
-	const Eigen::Vector3d n((center-eye).normalized());
+
+	const Eigen::Vector3d n((center - eye).normalized());
 	const Eigen::Vector3d s(n.cross(up));
 	const Eigen::Vector3d v(s.cross(n));
-	
+
 	Eigen::Matrix4d m;
 	m <<
-	s(0),  s(1),  s(2), -eye.dot(s),
-	v(0),  v(1),  v(2), -eye.dot(v),
-	-n(0), -n(1), -n(2),  eye.dot(n),
-	0.0, 0.0, 0.0, 1.0;
+		s(0), s(1), s(2), -eye.dot(s),
+		v(0), v(1), v(2), -eye.dot(v),
+		-n(0), -n(1), -n(2), eye.dot(n),
+		0.0, 0.0, 0.0, 1.0;
 	return m;
 }
 void Camera::GetLookAt(Eigen::Vector3d& _eye, Eigen::Vector3d& _center, Eigen::Vector3d& _up) const
@@ -134,7 +134,7 @@ void Camera::GetLookAt(Eigen::Vector3d& _eye, Eigen::Vector3d& _center, Eigen::V
 
 	_eye = R * eye + center;
 	_center = center;
-	_up  = R * up;
+	_up = R * up;
 }
 
 void Camera::Rotate(const Eigen::Vector2d& pos, const Eigen::Vector2d& prevPos)
@@ -158,7 +158,7 @@ void Camera::Rotate(const Eigen::Vector2d& pos, const Eigen::Vector2d& prevPos)
 void Camera::Project2Sphere(double radius, Eigen::Vector3d& p) const
 {
 	p.z() = 0;
-	const double d = p.x()* p.x()+ p.y() * p.y();
+	const double d = p.x()* p.x() + p.y() * p.y();
 	const double r = radius * radius;
 	if (d < r)	p.z() = SQRT(r - d);
 	else		p *= radius / p.norm();

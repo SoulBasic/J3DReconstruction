@@ -3,8 +3,8 @@
 #pragma once
 
 /*
-ä½¿ç”¨è¯´æ˜ï¼š
-	  æ‰€æœ‰çŸ©é˜µçš„æ“ä½œéƒ½é’ˆå¯¹äºåˆ—å‘é‡ï¼Œä¹Ÿå°±æ˜¯ä»¥åˆ—ä¸ºä¸»
+Ê¹ÓÃËµÃ÷£º
+	  ËùÓĞ¾ØÕóµÄ²Ù×÷¶¼Õë¶ÔÓÚÁĞÏòÁ¿£¬Ò²¾ÍÊÇÒÔÁĞÎªÖ÷
 	  Vx  Vy  Vz  P
 	  x1  x2  x3 x4
 	  y1  y2   y3 y4
@@ -20,12 +20,12 @@ class  Matrix4D
 {
 public:
 	Matrix4D();
-	explicit Matrix4D(double *values);  //ä¸€è¡Œä¸€è¡Œè¾“å…¥
+	explicit Matrix4D(double *values);  //Ò»ĞĞÒ»ĞĞÊäÈë
 	Matrix4D(const Matrix4D &matrix);
-	Matrix4D(const Vector3D &column1, const Vector3D &column2, const Vector3D &column3, const Position3D &pos); //3ä¸ªåˆ—å‘é‡ï¼Œ1ä¸ªä½ç½®åæ ‡
+	Matrix4D(const Vector3D &column1, const Vector3D &column2, const Vector3D &column3, const Position3D &pos); //3¸öÁĞÏòÁ¿£¬1¸öÎ»ÖÃ×ø±ê
 
 public:
-	void setToIndentity();  //è®¾ç½®ä¸ºå•ä½çŸ©é˜µ
+	void setToIndentity();  //ÉèÖÃÎªµ¥Î»¾ØÕó
 
 	Vector3D column(int index);
 	void setColumn(int index, const Vector3D &value);
@@ -33,7 +33,7 @@ public:
 	Vector3D row(int index);
 	void setRow(int index, const Vector3D &value);
 
-	double *Datas(); //ä»¥åˆ—ä¸ºä¸»çš„æ•°æ®
+	double *Datas(); //ÒÔÁĞÎªÖ÷µÄÊı¾İ
 
 	Matrix4D& operator+=(const Matrix4D& other);
 	Matrix4D& operator-=(const Matrix4D& other);
@@ -47,26 +47,26 @@ public:
 	friend Matrix4D operator-(const Matrix4D& m1, const Matrix4D& m2);
 	friend Matrix4D operator*(const Matrix4D& m1, const Matrix4D& m2);
 
-	friend Vector3D operator*(const Matrix4D& matrix, const Vector3D& vector);    //å› ä¸ºæ˜¯ä»¥åˆ—ä¸ºä¸»,æ‰€ä»¥å¿…é¡»matrix*vector,ä¸‹é¢ä¹Ÿæ˜¯.
+	friend Vector3D operator*(const Matrix4D& matrix, const Vector3D& vector);    //ÒòÎªÊÇÒÔÁĞÎªÖ÷,ËùÒÔ±ØĞëmatrix*vector,ÏÂÃæÒ²ÊÇ.
 	friend Position3D operator*(const Matrix4D& matrix, const Position3D& position);
 
-	friend ostream& operator <<(ostream &os, const Matrix4D &matrix);//é‡è½½<<
+	friend ostream& operator <<(ostream &os, const Matrix4D &matrix);//ÖØÔØ<<
 
-	static  Matrix4D getTranslateMatrix(float x, float y, float z);//è·å–å¹³ç§»çŸ©é˜µ
+	static  Matrix4D getTranslateMatrix(float x, float y, float z);//»ñÈ¡Æ½ÒÆ¾ØÕó
 	static  Matrix4D getTranslateMatrix(const Vector3D &vec);
 
-	static  Matrix4D getRotateMatrix(float angle, float x, float y, float z);//è·å–æ—‹è½¬çŸ©é˜µ,angleæ˜¯è§’åº¦ä¸æ˜¯å¼§åº¦
+	static  Matrix4D getRotateMatrix(float angle, float x, float y, float z);//»ñÈ¡Ğı×ª¾ØÕó,angleÊÇ½Ç¶È²»ÊÇ»¡¶È
 	static  Matrix4D getRotateMatrix(float angle, const Vector3D &vector);
 
 private:
 	double m[4][4];
 	int flagBits;
 	enum {
-		Identity = 0x0001,   // å•ä½çŸ©é˜µ
-		General = 0x0002,   // ä¸€èˆ¬çŸ©é˜µ
-		Translation = 0x0004,   // å¹³ç§»çŸ©é˜µ
-		Scale = 0x0008,   //ç¼©æ”¾çŸ©é˜µ
-		Rotation = 0x0010    // æ—‹è½¬çŸ©é˜µ
+		Identity = 0x0001,   // µ¥Î»¾ØÕó
+		General = 0x0002,   // Ò»°ã¾ØÕó
+		Translation = 0x0004,   // Æ½ÒÆ¾ØÕó
+		Scale = 0x0008,   //Ëõ·Å¾ØÕó
+		Rotation = 0x0010    // Ğı×ª¾ØÕó
 	};
 };
 

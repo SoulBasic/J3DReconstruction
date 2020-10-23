@@ -17,7 +17,7 @@ void Dialog_TextureMesh::on_btn_OK_clicked()
 {
 	if (Global::GetProcessidFromName("J3DEngine.exe") == 0)
 	{
-		QMessageBox::critical(this, "é”™è¯¯ ", "æœªæ‰¾åˆ°J3DEngineè¿›ç¨‹ ", QMessageBox::Ok, QMessageBox::Ok);
+		QMessageBox::critical(this, u8"´íÎó ", u8"Î´ÕÒµ½J3DEngine½ø³Ì ", QMessageBox::Ok, QMessageBox::Ok);
 		return;
 	}
 	else
@@ -26,12 +26,12 @@ void Dialog_TextureMesh::on_btn_OK_clicked()
 
 	if (ui->lineEdit_inputDir->text() == "")
 	{
-		QMessageBox::critical(this, "é”™è¯¯ ", "æœªè¾“å…¥å¯†é›†ç‚¹äº‘ç»“æžœè·¯å¾„ ", QMessageBox::Ok, QMessageBox::Ok);
+		QMessageBox::critical(this, u8"´íÎó ", u8"Î´ÊäÈëÃÜ¼¯µãÔÆ½á¹ûÂ·¾¶ ", QMessageBox::Ok, QMessageBox::Ok);
 		return;
 	}
 	if (ui->lineEdit_OutputDir->text() == "")
 	{
-		QMessageBox::critical(this, "é”™è¯¯ ", "æœªè¾“å…¥è¾“å‡ºè·¯å¾„ ", QMessageBox::Ok, QMessageBox::Ok);
+		QMessageBox::critical(this, u8"´íÎó ", u8"Î´ÊäÈëÊä³öÂ·¾¶ ", QMessageBox::Ok, QMessageBox::Ok);
 		return;
 	}
 
@@ -56,14 +56,14 @@ void Dialog_TextureMesh::on_btn_OK_clicked()
 		cmdcache.write(ui->comboBox->currentText().toUtf8());
 		cmdcache.write("\n");
 		cmdcache.close();
-		QMessageBox::information(NULL, "å®Œæˆ", "é…ç½®å®Œæˆ ", QMessageBox::Yes, NULL);
+		QMessageBox::information(NULL, u8"Íê³É", u8"ÅäÖÃÍê³É ", QMessageBox::Yes, NULL);
 		PostThreadMessageA(Global::engineTid, CMD_TEXTUREMESH, 0, 0);
 		Global::tasking = true;
 		this->close();
 	}
 	else
 	{
-		QMessageBox::information(NULL, "é”™è¯¯", "æ— æ³•è®¿é—®ç¼“å­˜æ–‡ä»¶ï¼Œè¯·æ£€æŸ¥æƒé™ ", QMessageBox::Yes, NULL);
+		QMessageBox::information(NULL, u8"´íÎó", u8"ÎÞ·¨·ÃÎÊ»º´æÎÄ¼þ£¬Çë¼ì²éÈ¨ÏÞ ", QMessageBox::Yes, NULL);
 	}
 }
 
@@ -74,12 +74,12 @@ void Dialog_TextureMesh::on_btn_CANCEL_clicked()
 
 void Dialog_TextureMesh::on_pushButton_browseInputDir_clicked()
 {
-	Global::textureMeshInputDir = QFileDialog::getExistingDirectory(this, "æµè§ˆæ¨¡åž‹é‡å»ºæ–‡ä»¶ç›®å½• ", "", NULL);
+	Global::textureMeshInputDir = QFileDialog::getExistingDirectory(this, u8"ä¯ÀÀÄ£ÐÍÖØ½¨ÎÄ¼þÄ¿Â¼ ", "", NULL);
 	ui->lineEdit_inputDir->setText(Global::textureMeshInputDir);
 }
 
 void Dialog_TextureMesh::on_pushButton_browseOutputDir_clicked()
 {
-	Global::textureMeshOutputDir = QFileDialog::getExistingDirectory(this, "æµè§ˆè¾“å‡ºçº¹ç†æ¨¡åž‹æ–‡ä»¶ç›®å½• ", "", NULL);
+	Global::textureMeshOutputDir = QFileDialog::getExistingDirectory(this, u8"ä¯ÀÀÊä³öÎÆÀíÄ£ÐÍÎÄ¼þÄ¿Â¼ ", "", NULL);
 	ui->lineEdit_OutputDir->setText(Global::textureMeshOutputDir);
 }

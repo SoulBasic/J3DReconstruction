@@ -1,6 +1,6 @@
 #include "PlyIO.h"
 using namespace std;
-struct Point3D//ç‚¹åæ ‡
+struct Point3D//µã×ø±ê
 {
 	GLfloat x;
 	GLfloat y;
@@ -158,52 +158,52 @@ void PlyIO::initPng() {
 GLuint PlyIO::CreateTextureFromPng()
 {
 	unsigned char header[8];     //8
-	int k;   //ç”¨äºå¾ªç¯
+	int k;   //ÓÃÓÚÑ­»·
 
-	png_byte bit_depth; //å­—èŠ‚æ·±åº¦
-	png_structp png_ptr; //å›¾ç‰‡
-	png_infop info_ptr; //å›¾ç‰‡çš„ä¿¡æ¯
-	int number_of_passes; //éš”è¡Œæ‰«æ
-	png_bytep * row_pointers;//å›¾ç‰‡çš„æ•°æ®å†…å®¹
-	int row, col, pos;  //ç”¨äºæ”¹å˜pngåƒç´ æ’åˆ—çš„é—®é¢˜ã€‚
-	FILE *fp = fopen(this->textureFileName.c_str(), "rb");//ä»¥åªè¯»å½¢å¼æ‰“å¼€æ–‡ä»¶åä¸ºfile_nameçš„æ–‡ä»¶
-	if (!fp)//åšå‡ºç›¸åº”å¯èƒ½çš„é”™è¯¯å¤„ç†
+	png_byte bit_depth; //×Ö½ÚÉî¶È
+	png_structp png_ptr; //Í¼Æ¬
+	png_infop info_ptr; //Í¼Æ¬µÄĞÅÏ¢
+	int number_of_passes; //¸ôĞĞÉ¨Ãè
+	png_bytep * row_pointers;//Í¼Æ¬µÄÊı¾İÄÚÈİ
+	int row, col, pos;  //ÓÃÓÚ¸Ä±äpngÏñËØÅÅÁĞµÄÎÊÌâ¡£
+	FILE *fp = fopen(this->textureFileName.c_str(), "rb");//ÒÔÖ»¶ÁĞÎÊ½´ò¿ªÎÄ¼şÃûÎªfile_nameµÄÎÄ¼ş
+	if (!fp)//×ö³öÏàÓ¦¿ÉÄÜµÄ´íÎó´¦Àí
 	{
-		fclose(fp);//å…³é—­æ‰“å¼€çš„æ–‡ä»¶ï¼ç»™å‡ºé»˜è®¤è´´å›¾
-		return 0;//æ­¤å¤„åº”è¯¥è°ƒç”¨ä¸€ä¸ªç”Ÿæˆé»˜è®¤è´´å›¾è¿”å›IDçš„å‡½æ•°
+		fclose(fp);//¹Ø±Õ´ò¿ªµÄÎÄ¼ş£¡¸ø³öÄ¬ÈÏÌùÍ¼
+		return 0;//´Ë´¦Ó¦¸Ãµ÷ÓÃÒ»¸öÉú³ÉÄ¬ÈÏÌùÍ¼·µ»ØIDµÄº¯Êı
 	}
-	//è¯»å–æ–‡ä»¶å¤´åˆ¤æ–­æ˜¯å¦æ‰€pngå›¾ç‰‡.ä¸æ˜¯åˆ™åšå‡ºç›¸åº”å¤„ç†
+	//¶ÁÈ¡ÎÄ¼şÍ·ÅĞ¶ÏÊÇ·ñËùpngÍ¼Æ¬.²»ÊÇÔò×ö³öÏàÓ¦´¦Àí
 	fread(header, 1, 8, fp);
 	if (png_sig_cmp(header, 0, 8))
 	{
 		fclose(fp);
-		return 0; //æ¯ä¸ªé”™è¯¯å¤„ç†éƒ½æ˜¯ä¸€æ ·çš„ï¼è¿™æ ·æŠ¥é”™ä¹‹åé”å®šå°±è¦èŠ±ç‚¹å°æ—¶é—´æ¥ï¼
+		return 0; //Ã¿¸ö´íÎó´¦Àí¶¼ÊÇÒ»ÑùµÄ£¡ÕâÑù±¨´íÖ®ºóËø¶¨¾ÍÒª»¨µãĞ¡Ê±¼äÀ´£¡
 	}
 
-	//æ ¹æ®libpngçš„libpng-manual.txtçš„è¯´æ˜ä½¿ç”¨æ–‡æ¡£ æ¥ä¸‹æ¥å¿…é¡»åˆå§‹åŒ–png_structp å’Œ png_infop
-	png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL); //åä¸‰ä¸ªæ˜¯ç»‘å®šé”™è¯¯ä»¥åŠè­¦å‘Šçš„å‡½æ•°è¿™é‡Œè®¾ç½®ä¸ºç©º
-	if (!png_ptr)//åšå‡ºç›¸åº”åˆ°åˆå§‹åŒ–å¤±è´¥çš„å¤„ç†
+	//¸ù¾İlibpngµÄlibpng-manual.txtµÄËµÃ÷Ê¹ÓÃÎÄµµ ½ÓÏÂÀ´±ØĞë³õÊ¼»¯png_structp ºÍ png_infop
+	png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL); //ºóÈı¸öÊÇ°ó¶¨´íÎóÒÔ¼°¾¯¸æµÄº¯ÊıÕâÀïÉèÖÃÎª¿Õ
+	if (!png_ptr)//×ö³öÏàÓ¦µ½³õÊ¼»¯Ê§°ÜµÄ´¦Àí
 	{
 		fclose(fp);
 		return 0;
 	}
-	//æ ¹æ®åˆå§‹åŒ–çš„png_ptråˆå§‹åŒ–png_infop
+	//¸ù¾İ³õÊ¼»¯µÄpng_ptr³õÊ¼»¯png_infop
 	info_ptr = png_create_info_struct(png_ptr);
 
 	if (!info_ptr)
 	{
-		//åˆå§‹åŒ–å¤±è´¥ä»¥åé”€æ¯png_structp
+		//³õÊ¼»¯Ê§°ÜÒÔºóÏú»Ùpng_structp
 		png_destroy_read_struct(&png_ptr, (png_infopp)NULL, (png_infopp)NULL);
 		fclose(fp);
 		return 0;
 	}
 
 
-	//è€è€å®å®æŒ‰ç…§libpngç»™åˆ°çš„è¯´æ˜ç¨³å®šæ­¥éª¤æ¥  é”™è¯¯å¤„ç†ï¼
+	//ÀÏÀÏÊµÊµ°´ÕÕlibpng¸øµ½µÄËµÃ÷ÎÈ¶¨²½ÖèÀ´  ´íÎó´¦Àí£¡
 	if (setjmp(png_jmpbuf(png_ptr)))
 
 	{
-		//é‡Šæ”¾å ç”¨çš„å†…å­˜ï¼ç„¶åå…³é—­æ–‡ä»¶è¿”å›ä¸€ä¸ªè´´å›¾IDæ­¤å¤„åº”è¯¥è°ƒç”¨ä¸€ä¸ªç”Ÿæˆé»˜è®¤è´´å›¾è¿”å›IDçš„å‡½æ•°
+		//ÊÍ·ÅÕ¼ÓÃµÄÄÚ´æ£¡È»ºó¹Ø±ÕÎÄ¼ş·µ»ØÒ»¸öÌùÍ¼ID´Ë´¦Ó¦¸Ãµ÷ÓÃÒ»¸öÉú³ÉÄ¬ÈÏÌùÍ¼·µ»ØIDµÄº¯Êı
 
 		png_destroy_read_struct(&png_ptr, (png_infopp)NULL, (png_infopp)NULL);
 
@@ -212,18 +212,18 @@ GLuint PlyIO::CreateTextureFromPng()
 		return 0;
 
 	}
-	//ä½ éœ€è¦ç¡®ä¿æ˜¯é€šè¿‡2è¿›åˆ¶æ‰“å¼€çš„æ–‡ä»¶ã€‚é€šè¿‡i/oå®šåˆ¶å‡½æ•°png_init_io
+	//ÄãĞèÒªÈ·±£ÊÇÍ¨¹ı2½øÖÆ´ò¿ªµÄÎÄ¼ş¡£Í¨¹ıi/o¶¨ÖÆº¯Êıpng_init_io
 	png_init_io(png_ptr, fp);
-	//ä¼¼ä¹æ˜¯è¯´è¦å‘Šè¯‰libpngæ–‡ä»¶ä»ç¬¬å‡ ä¸ªå¼€å§‹missing
+	//ËÆºõÊÇËµÒª¸æËßlibpngÎÄ¼ş´ÓµÚ¼¸¸ö¿ªÊ¼missing
 	png_set_sig_bytes(png_ptr, 8);
-	//å¦‚æœä½ åªæƒ³ç®€å•çš„æ“ä½œä½ ç°åœ¨å¯ä»¥å®é™…è¯»å–å›¾ç‰‡ä¿¡æ¯äº†ï¼
+	//Èç¹ûÄãÖ»Ïë¼òµ¥µÄ²Ù×÷ÄãÏÖÔÚ¿ÉÒÔÊµ¼Ê¶ÁÈ¡Í¼Æ¬ĞÅÏ¢ÁË£¡
 	png_read_info(png_ptr, info_ptr);
-	//è·å¾—å›¾ç‰‡åˆ°ä¿¡æ¯ width height é¢œè‰²ç±»å‹  å­—èŠ‚æ·±åº¦
+	//»ñµÃÍ¼Æ¬µ½ĞÅÏ¢ width height ÑÕÉ«ÀàĞÍ  ×Ö½ÚÉî¶È
 	width = png_get_image_width(png_ptr, info_ptr);
 	height = png_get_image_height(png_ptr, info_ptr);
 	color_type = png_get_color_type(png_ptr, info_ptr);
 
-	//å¦‚æœå›¾ç‰‡å¸¦æœ‰alphaé€šé“å°±éœ€è¦
+	//Èç¹ûÍ¼Æ¬´øÓĞalphaÍ¨µÀ¾ÍĞèÒª
 	if (color_type == PNG_COLOR_TYPE_RGB_ALPHA) {
 		cout << "colortype=rgba" << endl;
 	}
@@ -233,30 +233,30 @@ GLuint PlyIO::CreateTextureFromPng()
 
 	// png_set_swap_alpha(png_ptr);
 	bit_depth = png_get_bit_depth(png_ptr, info_ptr);
-	//éš”è¡Œæ‰«æå›¾ç‰‡  è¿™ä¸ªå¿…é¡»è¦è°ƒç”¨æ‰èƒ½è¿›è¡Œ
+	//¸ôĞĞÉ¨ÃèÍ¼Æ¬  Õâ¸ö±ØĞëÒªµ÷ÓÃ²ÅÄÜ½øĞĞ
 	number_of_passes = png_set_interlace_handling(png_ptr);
-	//å°†è¯»å–åˆ°çš„ä¿¡æ¯æ›´æ–°åˆ°info_ptr
+	//½«¶ÁÈ¡µ½µÄĞÅÏ¢¸üĞÂµ½info_ptr
 	png_read_update_info(png_ptr, info_ptr);
-	//è¯»æ–‡ä»¶
+	//¶ÁÎÄ¼ş
 	if (setjmp(png_jmpbuf(png_ptr))) {
 		fclose(fp);
 		return 0;
 	}
 	rgba = (GLubyte*)malloc(width * height * 4);
 
-	//ä½¿ç”¨åŠ¨æ€æ•°ç»„  è®¾ç½®é•¿åº¦
+	//Ê¹ÓÃ¶¯Ì¬Êı×é  ÉèÖÃ³¤¶È
 	row_pointers = (png_bytep*)malloc(sizeof(png_bytep) * height);
 
 	for (k = 0; k < height; k++)
 		row_pointers[k] = NULL;
 
-	//é€šè¿‡æ‰«ææµé‡Œé¢çš„æ¯ä¸€è¡Œå°†å¾—åˆ°çš„æ•°æ®èµ‹å€¼ç»™åŠ¨æ€æ•°ç»„       
+	//Í¨¹ıÉ¨ÃèÁ÷ÀïÃæµÄÃ¿Ò»ĞĞ½«µÃµ½µÄÊı¾İ¸³Öµ¸ø¶¯Ì¬Êı×é       
 	for (k = 0; k < height; k++)
 		//row_pointers[k] = (png_byte*) malloc(png_get_rowbytes(png_ptr,info_ptr));
 		row_pointers[k] = (png_bytep)png_malloc(png_ptr, png_get_rowbytes(png_ptr,
 			info_ptr));
-	//ç”±äºpngä»–çš„åƒç´ æ˜¯ç”± å·¦-å³-ä»é¡¶åˆ°åº• è€Œè´´å›¾éœ€è¦çš„åƒç´ éƒ½æ˜¯ä»å·¦-å³-åº•åˆ°é¡¶çš„æ‰€ä»¥åœ¨è¿™é‡Œéœ€è¦æŠŠåƒç´ å†…å®¹è¿›è¡Œä¸€ä¸ªä»æ–°æ’åˆ—
-	//è¯»å›¾ç‰‡
+	//ÓÉÓÚpngËûµÄÏñËØÊÇÓÉ ×ó-ÓÒ-´Ó¶¥µ½µ× ¶øÌùÍ¼ĞèÒªµÄÏñËØ¶¼ÊÇ´Ó×ó-ÓÒ-µ×µ½¶¥µÄËùÒÔÔÚÕâÀïĞèÒª°ÑÏñËØÄÚÈİ½øĞĞÒ»¸ö´ÓĞÂÅÅÁĞ
+	//¶ÁÍ¼Æ¬
 
 	//png_set_rows(png_ptr,info_ptr,row_pointers);
 	png_read_image(png_ptr, row_pointers);
@@ -300,17 +300,17 @@ GLuint PlyIO::CreateTextureFromPng()
 	}
 
 	cout << "rgba read done" << endl;
-	//å¼€å¯çº¹ç†è´´å›¾ç‰¹æ•ˆ
+	//¿ªÆôÎÆÀíÌùÍ¼ÌØĞ§
 	glEnable(GL_TEXTURE_2D);
 
-	//åˆ›å»ºçº¹ç† 
+	//´´½¨ÎÆÀí 
 	glGenTextures(1, &textureID);
-	//ç»‘å®šçº¹ç†
-	glBindTexture(GL_TEXTURE_2D, textureID); //å°†çº¹ç†ç»‘å®šåˆ°åå­—
+	//°ó¶¨ÎÆÀí
+	glBindTexture(GL_TEXTURE_2D, textureID); //½«ÎÆÀí°ó¶¨µ½Ãû×Ö
 
-	//è®¾ç½®è´´å›¾å’Œçº¹ç†çš„æ··åˆæ•ˆæœè¿™é‡Œæ˜¯é»˜è®¤åªç”¨çº¹ç†
+	//ÉèÖÃÌùÍ¼ºÍÎÆÀíµÄ»ìºÏĞ§¹ûÕâÀïÊÇÄ¬ÈÏÖ»ÓÃÎÆÀí
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
-	//è®¾ç½®çº¹ç†æ‰€ç”¨åˆ°å›¾ç‰‡æ•°æ®
+	//ÉèÖÃÎÆÀíËùÓÃµ½Í¼Æ¬Êı¾İ
 	if (color_type == PNG_COLOR_TYPE_RGB_ALPHA)
 	{
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, rgba);
@@ -332,12 +332,12 @@ GLuint PlyIO::CreateTextureFromPng()
 
 void PlyIO::calculateNormal(PlyIO::Face3D &face) {
 	Point3D FirstPoint = vertex[face.v1];
-	//qDebug("ç¬¬ä¸€ç‚¹ï¼š%f %f %f", FirstPoint.x, FirstPoint.y, FirstPoint.z);
+	//qDebug("µÚÒ»µã£º%f %f %f", FirstPoint.x, FirstPoint.y, FirstPoint.z);
 
 	Point3D SecondPoint = vertex[face.v2];
-	//qDebug("ç¬¬äºŒç‚¹ï¼š%f %f %f", SecondPoint.x, SecondPoint.y, SecondPoint.z);
+	//qDebug("µÚ¶şµã£º%f %f %f", SecondPoint.x, SecondPoint.y, SecondPoint.z);
 	Point3D ThirdPoint = vertex[face.v3];
-	//qDebug("ç¬¬ä¸‰ç‚¹ï¼š%f %f %f", ThirdPoint.x, ThirdPoint.y, ThirdPoint.z);
+	//qDebug("µÚÈıµã£º%f %f %f", ThirdPoint.x, ThirdPoint.y, ThirdPoint.z);
 	float dVector1[3], dVector2[3], norm[3];
 	dVector1[0] = SecondPoint.x - FirstPoint.x;
 	dVector1[1] = SecondPoint.y - FirstPoint.y;
@@ -356,7 +356,7 @@ void PlyIO::calculateNormal(PlyIO::Face3D &face) {
 	face.normal[0] = norm[0] / dNormalLength;
 	face.normal[1] = norm[1] / dNormalLength;
 	face.normal[2] = norm[2] / dNormalLength;
-	//qDebug("æ³•å‘é‡ï¼š%f %f %f", face.normal[0], face.normal[1], face.normal[2]);
+	//qDebug("·¨ÏòÁ¿£º%f %f %f", face.normal[0], face.normal[1], face.normal[2]);
 }
 
 
@@ -366,11 +366,11 @@ bool PlyIO::open()
 
 	if (this->type == TYPE_PLY_RT)
 	{
-		FILE *file;		// å·¥ä½œæ–‡ä»¶
-		file = fopen(this->fileName, "rt");					// æ‰“å¼€æ–‡ä»¶
+		FILE *file;		// ¹¤×÷ÎÄ¼ş
+		file = fopen(this->fileName, "rt");					// ´ò¿ªÎÄ¼ş
 		if (file == NULL)
 		{
-			MessageBox(NULL, L"Can not open file", L"Error", MB_OK);
+			MessageBox(NULL, "Can not open file", "Error", MB_OK);
 			return false;
 		}
 		this->file = file;
@@ -388,7 +388,7 @@ bool PlyIO::open()
 				counter++;
 			}
 		}
-		std::cout << "æ–‡ä»¶è§£æå®Œæˆ\n" << "Vertexs:" << vertex_N << " \n" << "Faces:" << face_N << " \n";
+		std::cout << "ÎÄ¼ş½âÎöÍê³É\n" << "Vertexs:" << vertex_N << " \n" << "Faces:" << face_N << " \n";
 		float p[3];
 		p[0] = 0;
 		p[1] = 0;
@@ -399,7 +399,7 @@ bool PlyIO::open()
 		k[2] = 0;
 		k[3] = 0;
 		float dummy;
-		//C_Progress_display progressbar(vertex_N, std::cout, "æ­£åœ¨åŠ è½½\n");
+		//C_Progress_display progressbar(vertex_N, std::cout, "ÕıÔÚ¼ÓÔØ\n");
 		for (int i = 0; i < vertex_N; i++) {
 			fscanf(file, "%f", &p[0]);//x
 			fscanf(file, "%f", &p[1]);//y
@@ -449,11 +449,11 @@ bool PlyIO::open()
 	}
 	else if (type == TYPE_PLY_RB)
 	{
-		FILE *file;											// å·¥ä½œæ–‡ä»¶
-		file = fopen(this->fileName, "rb");					// æ‰“å¼€æ–‡ä»¶
+		FILE *file;											// ¹¤×÷ÎÄ¼ş
+		file = fopen(this->fileName, "rb");					// ´ò¿ªÎÄ¼ş
 		if (file == NULL)
 		{
-			MessageBox(NULL, L"Can not open file", L"Error", MB_OK);
+			MessageBox(NULL, "Can not open file", "Error", MB_OK);
 			return false;
 		}
 		this->file = file;
@@ -491,7 +491,7 @@ bool PlyIO::open()
 		}
 
 
-		//C_Progress_display progressbar(vertex_N, std::cout, "æ­£åœ¨åŠ è½½");
+		//C_Progress_display progressbar(vertex_N, std::cout, "ÕıÔÚ¼ÓÔØ");
 
 
 		for (int i = 0; i < vertex_N; i++) {
@@ -582,13 +582,13 @@ bool PlyIO::open()
 				//	<< " v3.u=" << vertex[indexs[2]].u << " v3.v=" << vertex[indexs[2]].v << std::endl; 
 			}
 			calculateNormal(faces[i]);
-			//qDebug("æ³•å‘é‡ï¼š%f %f %f", faces[i].normal[0], faces[i].normal[1], faces[i].normal[2]);
+			//qDebug("·¨ÏòÁ¿£º%f %f %f", faces[i].normal[0], faces[i].normal[1], faces[i].normal[2]);
 		}
 		fclose(file);
 	}
 	else
 	{
-		MessageBox(NULL, L"Format error", L"ERROR", MB_OK);
+		MessageBox(NULL, "Format error", "ERROR", MB_OK);
 		return FALSE;
 	}
 	std::cout << "loading accomplished \n" << std::endl;
