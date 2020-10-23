@@ -47,14 +47,6 @@ void QT3DReconstruction::on_actionSFM_triggered()
 }
 
 
-LPCWSTR QT3DReconstruction::LPSTRtoLPCWSTR(char* szStr)
-{
-	WCHAR wszClassName[256];
-	memset(wszClassName, 0, sizeof(wszClassName));
-	MultiByteToWideChar(CP_ACP, 0, szStr, strlen(szStr) + 1, wszClassName,
-		sizeof(wszClassName) / sizeof(wszClassName[0]));
-	return wszClassName;
-}
 
 
 void QT3DReconstruction::on_action_viewMVS_triggered()
@@ -306,10 +298,13 @@ void QT3DReconstruction::on_actionopen_mvs_file_triggered()
 
 	}
 	//CloseWindow(FindWindowA("GLFW30", "J3D Viewer"));
-	openJ3DView(fileName);
-	delete viewer;
+	if (viewer == nullptr)
+	{
+		openJ3DView(fileName);
+	}
 
-
+	viewer->Open(fileName.toStdString().c_str(), NULL);
+	viewer->window.Reset();
 }
 
 bool QT3DReconstruction::openJ3DView(QString fileName)
@@ -339,18 +334,17 @@ bool QT3DReconstruction::openJ3DView(QString fileName)
 	//}
 	
 	//ÖÃ×Ó´°¿Ú
-	/*delete this->ui.widget;
+	delete this->ui.widget;
 	this->ui.widget = new mvsviewer(1, this->ui.centralWidget);
 	this->ui.widget->setObjectName(QString::fromUtf8("widget"));
 	this->ui.widget->setGeometry(QRect(10, 70, 1361, 661));
-	this->ui.widget->show();*/
+	this->ui.widget->show();
 
 	Sleep(200);
 	viewer->window.SetVisible(true);
 	// enter viewer loop
 	viewer->Loop();
 	FinalizeViewer();
-	viewer->window.Release();
 	return true;
 	
 	

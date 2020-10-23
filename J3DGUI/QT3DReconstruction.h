@@ -51,7 +51,6 @@ private slots:
 
 	void on_actionSFM_triggered();
 
-	LPCWSTR LPSTRtoLPCWSTR(char* szStr);
 
 
 	void on_action_viewMVS_triggered();
