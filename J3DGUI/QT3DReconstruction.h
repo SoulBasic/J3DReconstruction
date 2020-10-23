@@ -26,9 +26,13 @@
 #include "MVSEngine.h"
 #include "mvsviewer.h"
 #include "qevent.h"
+#include "Common.h"
+#include <boost/program_options.hpp>
+#include "Scene.h"
+#include <time.h>
+#include <qsharedpointer.h>
 
-
-
+using namespace VIEWER;
 
 class QT3DReconstruction : public QMainWindow
 {
@@ -38,7 +42,7 @@ public:
 	QT3DReconstruction(QWidget *parent = Q_NULLPTR);
 	~QT3DReconstruction()
 	{
-		WinExec("taskkill /f /im J3DView.dll", SW_HIDE);
+		delete &viewer;
 	}
 
 	bool openJ3DView(QString fileName);
@@ -82,6 +86,10 @@ private:
 	Dialog_TextureMesh dlgtm;
 	Dialog_addsensorwidth dlgasw;
 	Dialog_FullAuto dlgfa;
+	bool InitializeViewer(size_t argc, LPCTSTR* argv);
+	void FinalizeViewer();
+
+	QSharedPointer<Scene> viewer;
 protected:
 
 };

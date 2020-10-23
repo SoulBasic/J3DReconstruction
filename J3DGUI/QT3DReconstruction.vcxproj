@@ -145,7 +145,7 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>false</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
@@ -216,7 +216,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="Viewer.cpp" />
     <ClCompile Include="Window.cpp" />
     <QtRcc Include="QT3DReconstruction.qrc" />
     <QtUic Include="dialog_addsensorwidth.ui" />
