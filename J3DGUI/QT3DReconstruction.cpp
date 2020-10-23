@@ -305,17 +305,17 @@ void QT3DReconstruction::on_actionopen_mvs_file_triggered()
 		return;
 
 	}
-	//delete &viewer;
-	openJ3DView(fileName);
+	CloseWindow(FindWindowA("GLFW30", "J3D Viewer"));
+	if (openJ3DView(fileName))
+	{
+		delete &viewer;
+	}
+
 
 }
 
 bool QT3DReconstruction::openJ3DView(QString fileName)
 {
-#ifdef _DEBUGINFO
-	// set _crtBreakAlloc index to stop in <dbgheap.c> at allocation
-	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);// | _CRTDBG_CHECK_ALWAYS_DF);
-#endif
 	LPCTSTR cmd[5];
 	char t[200];
 	GetModuleFileNameA(NULL, t, 200);
@@ -330,7 +330,7 @@ bool QT3DReconstruction::openJ3DView(QString fileName)
 		return false;
 
 	// create viewer
-	viewer = QSharedPointer<Scene>(new Scene());
+	viewer = new Scene();
 	if (!viewer->Init(1361, 661, _T("J3D Viewer"),
 		OPT::strInputFileName.IsEmpty() ? NULL : MAKE_PATH_SAFE(OPT::strInputFileName).c_str(),
 		OPT::strMeshFileName.IsEmpty() ? NULL : MAKE_PATH_SAFE(OPT::strMeshFileName).c_str()))
@@ -341,16 +341,17 @@ bool QT3DReconstruction::openJ3DView(QString fileName)
 	//}
 	
 	//ÖÃ×Ó´°¿Ú
-	delete this->ui.widget;
+	/*delete this->ui.widget;
 	this->ui.widget = new mvsviewer(1, this->ui.centralWidget);
 	this->ui.widget->setObjectName(QString::fromUtf8("widget"));
 	this->ui.widget->setGeometry(QRect(10, 70, 1361, 661));
-	this->ui.widget->show();
+	this->ui.widget->show();*/
 
 	Sleep(200);
 	viewer->window.SetVisible(true);
 	// enter viewer loop
 	viewer->Loop();
+	FinalizeViewer();
 	return true;
 	
 	

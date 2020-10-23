@@ -30,7 +30,6 @@
 #include <boost/program_options.hpp>
 #include "Scene.h"
 #include <time.h>
-#include <qsharedpointer.h>
 
 using namespace VIEWER;
 
@@ -89,7 +88,7 @@ private:
 	bool InitializeViewer(size_t argc, LPCTSTR* argv);
 	void FinalizeViewer();
 
-	QSharedPointer<Scene> viewer;
+	Scene* viewer;
 protected:
 
 };
