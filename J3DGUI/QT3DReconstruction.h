@@ -41,7 +41,7 @@ public:
 	QT3DReconstruction(QWidget *parent = Q_NULLPTR);
 	~QT3DReconstruction()
 	{
-		delete &viewer;
+		delete viewer;
 	}
 
 	bool openJ3DView(QString fileName);

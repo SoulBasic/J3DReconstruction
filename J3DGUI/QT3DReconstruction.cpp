@@ -31,7 +31,7 @@ QT3DReconstruction::QT3DReconstruction(QWidget *parent)
 	setWindowFlags(windowFlags()& ~Qt::WindowMaximizeButtonHint);
 	setFixedSize(this->width(), this->height());
 	PlyIO* ply = new PlyIO("");
-	viewer = QSharedPointer<Scene>(new Scene());
+	viewer = nullptr;
 
 }
 
@@ -298,18 +298,16 @@ void QT3DReconstruction::on_action_triggered() //textureMesh
 
 void QT3DReconstruction::on_actionopen_mvs_file_triggered()
 {
-	QString fileName = QFileDialog::getOpenFileName(NULL, "ViewJ3D", ".", "J3D Model Format(*.j3d);;Stanford Polygon File Format(*.ply);;All Files(*.*)");
+	QString fileName = QFileDialog::getOpenFileName(NULL, "ViewJ3D", ".", "J3D Model Format(*.j3d);;Stanford Polygon File Format(*.ply);;Alias Wavefront Object(*.obj);;All Files(*.*)");
 	if (fileName == "")
 	{
 		QMessageBox::information(NULL, u8"失败", u8"打开j3d文件失败，请检查路径是否正确 ", QMessageBox::Ok, QMessageBox::Ok);
 		return;
 
 	}
-	CloseWindow(FindWindowA("GLFW30", "J3D Viewer"));
-	if (openJ3DView(fileName))
-	{
-		delete &viewer;
-	}
+	//CloseWindow(FindWindowA("GLFW30", "J3D Viewer"));
+	openJ3DView(fileName);
+	delete viewer;
 
 
 }
@@ -352,6 +350,7 @@ bool QT3DReconstruction::openJ3DView(QString fileName)
 	// enter viewer loop
 	viewer->Loop();
 	FinalizeViewer();
+	viewer->window.Release();
 	return true;
 	
 	
