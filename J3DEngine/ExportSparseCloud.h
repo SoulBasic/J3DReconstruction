@@ -267,7 +267,7 @@ int ExportSparseCloud(
 	Global::processProject = SPARSE;
 	Global::processState = 0;
 	Global::saveProcess();
-	if (stlplus::extension_part(sOutFile) != "j3d") {
+	if (stlplus::extension_part(sOutFile) != "J3D") {
 		std::cerr << std::endl
 			<< "无效的输出文件扩展名: " << sOutFile << std::endl;
 		return EXIT_FAILURE;

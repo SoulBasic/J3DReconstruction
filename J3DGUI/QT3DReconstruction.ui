@@ -123,8 +123,8 @@
    <widget class="mvsviewer" name="widget" native="true">
     <property name="geometry">
      <rect>
-      <x>-150</x>
-      <y>-190</y>
+      <x>10</x>
+      <y>70</y>
       <width>1361</width>
       <height>661</height>
      </rect>

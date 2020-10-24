@@ -23,16 +23,22 @@ QT3DReconstruction::QT3DReconstruction(QWidget *parent)
 {
 	ui.setupUi(this);
 
-	QTimer *timer = new QTimer(this); //this 为parent类, 表示当前窗口
+	timer = new QTimer(this); //this 为parent类, 表示当前窗口
 
 	connect(timer, SIGNAL(timeout()), this, SLOT(timerSlot()));
 
 	timer->start(500); // 1000毫秒, 等于 1 秒
 	setWindowFlags(windowFlags()& ~Qt::WindowMaximizeButtonHint);
 	setFixedSize(this->width(), this->height());
-	PlyIO* ply = new PlyIO("");
 	viewer = nullptr;
+}
 
+
+QT3DReconstruction::~QT3DReconstruction()
+{
+	CloseWindow(FindWindowA("GLFW30", "J3D Viewer"));
+	delete timer;
+	delete viewer;
 }
 
 
@@ -116,7 +122,7 @@ void QT3DReconstruction::timerSlot()
 					return;
 
 				}
-				openJ3DView(fileName);
+				openView(fileName);
 			}
 			else if (temp == "densifypointcloud") {
 				QString fileName = Global::densifyWorkingDir + "/DenseCloud.J3D";
@@ -126,7 +132,7 @@ void QT3DReconstruction::timerSlot()
 					return;
 
 				}
-				openJ3DView(fileName);
+				openView(fileName);
 			}
 			else if (temp == "reconstructmesh") {
 				QString fileName = Global::reconstructMeshWorkingDir + "/TIN_Mesh.J3D";
@@ -136,7 +142,7 @@ void QT3DReconstruction::timerSlot()
 					return;
 
 				}
-				openJ3DView(fileName);
+				openView(fileName);
 			}
 			else if (temp == "texturemesh") {
 				QString fileName = Global::reconstructMeshWorkingDir + "/TEXTURE_Mesh.J3D";
@@ -146,7 +152,7 @@ void QT3DReconstruction::timerSlot()
 					return;
 
 				}
-				openJ3DView(fileName);
+				openView(fileName);
 			}
 			QMessageBox::information(NULL, u8"完成", u8"任务完成！ ", QMessageBox::Ok, QMessageBox::Ok);
 			Global::tasking = false;
@@ -268,19 +274,20 @@ void QT3DReconstruction::on_actionopen_mvs_file_triggered()
 		return;
 
 	}
-	//CloseWindow(FindWindowA("GLFW30", "J3D Viewer"));
 	if (viewer == nullptr)
 	{
-		openJ3DView(fileName);
+		openView(fileName);
+		return;
 	}
-	
 	const char* path[2];
 	path[0] = fileName.toStdString().c_str();
 	path[1] = NULL;
 	viewer->window.Drop(1, path);
 }
 
-bool QT3DReconstruction::openJ3DView(QString fileName)
+
+
+bool QT3DReconstruction::openView(QString fileName)
 {
 	LPCTSTR cmd[5];
 	char t[200];
@@ -295,8 +302,8 @@ bool QT3DReconstruction::openJ3DView(QString fileName)
 	if (!InitializeViewer(5, l))
 		return false;
 
-	// create viewer
 	viewer = new Scene();
+	// create viewer
 	if (!viewer->Init(1361, 661, _T("J3D Viewer"),
 		OPT::strInputFileName.IsEmpty() ? NULL : MAKE_PATH_SAFE(OPT::strInputFileName).c_str(),
 		OPT::strMeshFileName.IsEmpty() ? NULL : MAKE_PATH_SAFE(OPT::strMeshFileName).c_str()))
@@ -313,13 +320,11 @@ bool QT3DReconstruction::openJ3DView(QString fileName)
 	this->ui.widget->setGeometry(QRect(10, 70, 1361, 661));
 	this->ui.widget->show();
 
-	Sleep(200);
 	viewer->window.SetVisible(true);
 	// enter viewer loop
 	viewer->Loop();
 	FinalizeViewer();
 	return true;
-
 }
 
 

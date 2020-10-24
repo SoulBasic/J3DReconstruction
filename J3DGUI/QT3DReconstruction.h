@@ -39,12 +39,9 @@ class QT3DReconstruction : public QMainWindow
 
 public:
 	QT3DReconstruction(QWidget *parent = Q_NULLPTR);
-	~QT3DReconstruction()
-	{
-		delete viewer;
-	}
+	~QT3DReconstruction();
 
-	bool openJ3DView(QString fileName);
+	bool openView(QString fileName);
 private slots:
 
 	void on_actionMatchFeature_triggered();
@@ -86,7 +83,7 @@ private:
 	Dialog_FullAuto dlgfa;
 	bool InitializeViewer(size_t argc, LPCTSTR* argv);
 	void FinalizeViewer();
-
+	QTimer* timer;
 	Scene* viewer;
 protected:
 

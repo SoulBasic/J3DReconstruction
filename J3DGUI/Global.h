@@ -75,7 +75,4 @@ public:
 	static QString processETA;
 	static bool getProcessMsg();
 	static bool CheckViewerMsg();
-	static PlyIO* ply;
-	static LPCTSTR charToLPCTSTR(const char* str);
-	static void* sce;
 };

@@ -19,13 +19,11 @@ QString Global::textureMeshWorkingDir = "";
 QString Global::fullauto_InPutDir = "";
 QString Global::fullauto_OutputDir = "";
 QString Global::processETA = "";
-PlyIO* Global::ply = new PlyIO("");
 bool Global::tasking = false;
 bool Global::autoTasking = false;
 int Global::process = PROCESSWORKING;
 int Global::processProject = 0;
 int Global::processState = 0;
-void* Global::sce = nullptr;
 
 void Global::connectEngine()
 {

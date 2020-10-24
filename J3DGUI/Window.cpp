@@ -254,26 +254,26 @@ void Window::Key(int k, int /*scancode*/, int action, int mod)
 		if (clbkCompilePointCloud != NULL)
 			clbkCompilePointCloud();
 		break;
-		//case GLFW_KEY_KP_SUBTRACT:
-		//	if (action == GLFW_RELEASE) {
-		//		if (mod & GLFW_MOD_CONTROL)
-		//			camera->SetFOV(MAXF(camera->fov-5, 5.0));
-		//		else if (mod & GLFW_MOD_SHIFT)
-		//			camera->scaleF *= 0.9f;
-		//		else
-		//			cameraBlend = MAXF(cameraBlend-0.1f, 0.f);
-		//	}
-		//	break;
-		//case GLFW_KEY_KP_ADD:
-		//	if (action == GLFW_RELEASE) {
-		//		if (mod & GLFW_MOD_CONTROL)
-		//			camera->SetFOV(camera->fov+5);
-		//		else if (mod & GLFW_MOD_SHIFT)
-		//			camera->scaleF *= 1.11f;
-		//		else
-		//			cameraBlend = MINF(cameraBlend+0.1f, 1.f);
-		//	}
-		//	break;
+		case GLFW_KEY_KP_SUBTRACT:
+			if (action == GLFW_RELEASE) {
+				if (mod & GLFW_MOD_CONTROL)
+					camera->SetFOV(MAXF(camera->fov-5, 5.0));
+				else if (mod & GLFW_MOD_SHIFT)
+					camera->scaleF *= 0.9f;
+				else
+					cameraBlend = MAXF(cameraBlend-0.1f, 0.f);
+			}
+			break;
+		case GLFW_KEY_KP_ADD:
+			if (action == GLFW_RELEASE) {
+				if (mod & GLFW_MOD_CONTROL)
+					camera->SetFOV(camera->fov+5);
+				else if (mod & GLFW_MOD_SHIFT)
+					camera->scaleF *= 1.11f;
+				else
+					cameraBlend = MINF(cameraBlend+0.1f, 1.f);
+			}
+			break;
 	}
 }
 void Window::Key(GLFWwindow* window, int k, int scancode, int action, int mod)
