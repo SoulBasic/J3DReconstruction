@@ -31,6 +31,7 @@ QT3DReconstruction::QT3DReconstruction(QWidget *parent)
 	setWindowFlags(windowFlags()& ~Qt::WindowMaximizeButtonHint);
 	setFixedSize(this->width(), this->height());
 	viewer = nullptr;
+	ViewerAva = false;
 }
 
 
@@ -122,7 +123,18 @@ void QT3DReconstruction::timerSlot()
 					return;
 
 				}
-				openView(fileName);
+				if (ViewerAva == true)
+				{
+					const char* path[2];
+					path[0] = fileName.toStdString().c_str();
+					path[1] = NULL;
+					viewer->window.Drop(1, path);
+				}
+				else
+				{
+					openViewCompatibility(fileName);
+				}
+
 			}
 			else if (temp == "densifypointcloud") {
 				QString fileName = Global::densifyWorkingDir + "/DenseCloud.J3D";
@@ -132,7 +144,17 @@ void QT3DReconstruction::timerSlot()
 					return;
 
 				}
-				openView(fileName);
+				if (ViewerAva == true)
+				{
+					const char* path[2];
+					path[0] = fileName.toStdString().c_str();
+					path[1] = NULL;
+					viewer->window.Drop(1, path);
+				}
+				else
+				{
+					openViewCompatibility(fileName);
+				}
 			}
 			else if (temp == "reconstructmesh") {
 				QString fileName = Global::reconstructMeshWorkingDir + "/TIN_Mesh.J3D";
@@ -142,7 +164,17 @@ void QT3DReconstruction::timerSlot()
 					return;
 
 				}
-				openView(fileName);
+				if (ViewerAva == true)
+				{
+					const char* path[2];
+					path[0] = fileName.toStdString().c_str();
+					path[1] = NULL;
+					viewer->window.Drop(1, path);
+				}
+				else
+				{
+					openViewCompatibility(fileName);
+				}
 			}
 			else if (temp == "texturemesh") {
 				QString fileName = Global::reconstructMeshWorkingDir + "/TEXTURE_Mesh.J3D";
@@ -152,7 +184,17 @@ void QT3DReconstruction::timerSlot()
 					return;
 
 				}
-				openView(fileName);
+				if (ViewerAva == true)
+				{
+					const char* path[2];
+					path[0] = fileName.toStdString().c_str();
+					path[1] = NULL;
+					viewer->window.Drop(1, path);
+				}
+				else
+				{
+					openViewCompatibility(fileName);
+				}
 			}
 			QMessageBox::information(NULL, u8"完成", u8"任务完成！ ", QMessageBox::Ok, QMessageBox::Ok);
 			Global::tasking = false;
@@ -274,7 +316,7 @@ void QT3DReconstruction::on_actionopen_mvs_file_triggered()
 		return;
 
 	}
-	if (viewer == nullptr)
+	if (ViewerAva == false)
 	{
 		openView(fileName);
 		return;
@@ -322,6 +364,7 @@ bool QT3DReconstruction::openView(QString fileName)
 
 	viewer->window.SetVisible(true);
 	// enter viewer loop
+	ViewerAva = true;
 	viewer->Loop();
 	FinalizeViewer();
 	return true;

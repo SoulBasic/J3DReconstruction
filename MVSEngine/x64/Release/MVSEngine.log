@@ -1,5 +1,4 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppClean.targets(76,5): warning : 文件“e:\work\jwl3d\mvsengine\x64\release\vc141.pdb”正由另一进程使用，因此该进程无法访问此文件。
-  DensifyPointCloud.cpp
+﻿  DensifyPointCloud.cpp
 c:\openmvs\src\libs\common\types.inl(2508): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
 c:\openmvs\boost\boost_1_67_0\boost\iostreams\positioning.hpp(96): warning C4996: 'std::fpos<_Mbstatet>::seekpos': warning STL4019: The member std::fpos::seekpos() is non-Standard, and is preserved only for compatibility with workarounds for old versions of Visual C++. It will be removed in a future release, and in this release always returns 0. Please use standards-conforming mechanisms to manipulate fpos, such as conversions to and from streamoff, or an integral type, instead. If you are receiving this message while compiling Boost.IOStreams, a fix has been submitted upstream to make Boost use standards-conforming mechanisms, as it does for other compilers. You can define _SILENCE_FPOS_SEEKPOS_DEPRECATION_WARNING to acknowledge that you have received this warning, or define _REMOVE_FPOS_SEEKPOS to remove std::fpos::seekpos entirely.
   c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\iosfwd(59): note: 参见“std::fpos<_Mbstatet>::seekpos”的声明
