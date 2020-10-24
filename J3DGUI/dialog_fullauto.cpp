@@ -143,16 +143,16 @@ void Dialog_FullAuto::on_btn_OK_clicked()
 
 	resectionMethod = resectionMethod.number(ui->comboBox_resectionMethod->currentIndex());
 
-	densifyInputDir = ui->lineEdit_OutputDir->text() + "/SparseCloud.j3d";
-	densifyOutputDir = ui->lineEdit_OutputDir->text() + "/DenseCloud.j3d";
+	densifyInputDir = ui->lineEdit_OutputDir->text() + "/SparseCloud.J3D";
+	densifyOutputDir = ui->lineEdit_OutputDir->text() + "/DenseCloud.J3D";
 	densifyWorkingDir = ui->lineEdit_OutputDir->text();
 
-	reconstructMeshInputDir = ui->lineEdit_OutputDir->text() + "/DenseCloud.j3d";
-	reconstructMeshOutputDir = ui->lineEdit_OutputDir->text() + "/TIN_Mesh.j3d";
+	reconstructMeshInputDir = ui->lineEdit_OutputDir->text() + "/DenseCloud.J3D";
+	reconstructMeshOutputDir = ui->lineEdit_OutputDir->text() + "/TIN_Mesh.J3D";
 	reconstructMeshWorkingDir = ui->lineEdit_OutputDir->text();
 
-	textureMeshInputDir = ui->lineEdit_OutputDir->text() + "/TIN_Mesh.j3d";
-	textureMeshOutputDir = ui->lineEdit_OutputDir->text() + "/TEXTURE_Mesh.j3d";
+	textureMeshInputDir = ui->lineEdit_OutputDir->text() + "/TIN_Mesh.J3D";
+	textureMeshOutputDir = ui->lineEdit_OutputDir->text() + "/TEXTURE_Mesh.J3D";
 	textureMeshWorkingDir = ui->lineEdit_OutputDir->text();
 
 	_mkdir("C:\\ProgramData\\J3DEngine");

@@ -135,7 +135,7 @@ bool MVSEngine::Initialize_TextureMesh(size_t argc, LPCTSTR* argv)
 	Util::ensureValidPath(OPT_TextureMesh::strOutputFileName);
 	Util::ensureUnifySlash(OPT_TextureMesh::strOutputFileName);
 	if (OPT_TextureMesh::strOutputFileName.IsEmpty())
-		OPT_TextureMesh::strOutputFileName = Util::getFileFullName(OPT_TextureMesh::strInputFileName) + _T("_texture.j3d");
+		OPT_TextureMesh::strOutputFileName = Util::getFileFullName(OPT_TextureMesh::strInputFileName) + _T("_texture.J3D");
 
 	Process::setCurrentProcessPriority((Process::Priority)OPT_TextureMesh::nProcessPriority);
 #ifdef _USE_OPENMP
@@ -209,7 +209,7 @@ int MVSEngine::TextureMesh(int num, char* cmd[])
 			return EXIT_FAILURE;
 		VERBOSE("Mesh texturing completed: %u vertices, %u faces (%s)", scene.mesh.vertices.GetSize(), scene.mesh.faces.GetSize(), TD_TIMER_GET_FMT().c_str());
 
-		scene.Save(baseFileName + _T(".j3d"), (ARCHIVE_TYPE)OPT_TextureMesh::nArchiveType);
+		scene.Save(baseFileName + _T(".J3D"), (ARCHIVE_TYPE)OPT_TextureMesh::nArchiveType);
 		scene.mesh.Save(baseFileName + OPT_TextureMesh::strExportType);
 #if TD_VERBOSE != TD_VERBOSE_OFF
 		if (VERBOSITY_LEVEL > 2)

@@ -259,7 +259,7 @@ bool exportToSparse(
 
 int ExportSparseCloud(
 	std::string sSfM_Data_Filename,
-	std::string sOutFile = "scene.j3d",
+	std::string sOutFile = "scene.J3D",
 	std::string sOutDir = "undistorted_images",
 	int iNumThreads = 0 //only use openmp
 )

@@ -259,7 +259,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		std::cout << "进行稀疏点云输出" << std::endl;
 		STATE_RETURN = ExportSparseCloud(
 			sfmOutputDir + "/robust.bin",
-			sfmOutputDir + "/SparseCloud.j3d",
+			sfmOutputDir + "/SparseCloud.J3D",
 			sfmOutputDir + "/undistorted_images");
 		if (STATE_RETURN == EXIT_FAILURE)
 		{
@@ -700,7 +700,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		std::cout << "进行稀疏点云输出" << std::endl;
 		STATE_RETURN = ExportSparseCloud(
 			sfmOutputDir + "/robust.bin",
-			sfmOutputDir + "/SparseCloud.j3d",
+			sfmOutputDir + "/SparseCloud.J3D",
 			sfmOutputDir + "/undistorted_images");
 		Sleep(3000);
 		if (STATE_RETURN == EXIT_FAILURE)
