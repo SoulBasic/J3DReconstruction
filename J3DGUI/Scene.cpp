@@ -594,10 +594,11 @@ void Scene::ProcessEvents()
 void Scene::Loop()
 {
 
-	while (!glfwWindowShouldClose(window.GetWindow())) {
+	while (!glfwWindowShouldClose(window.GetWindow()) && !shouldClose) {
 		ProcessEvents();
 		Draw();
 	}
+	Release();
 }
 
 

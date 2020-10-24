@@ -157,6 +157,7 @@
      <string>文件</string>
     </property>
     <addaction name="actionopen_mvs_file"/>
+    <addaction name="action_2"/>
     <addaction name="action_addSensorWidth"/>
    </widget>
    <widget class="QMenu" name="menu_4">
@@ -189,11 +190,6 @@
     <string>添加相机传感器参数</string>
    </property>
   </action>
-  <action name="action_viewPLY">
-   <property name="text">
-    <string>打开PLY文件</string>
-   </property>
-  </action>
   <action name="action_reconstrctMesh">
    <property name="text">
     <string>三角网模型重建</string>
@@ -206,12 +202,17 @@
   </action>
   <action name="actionopen_mvs_file">
    <property name="text">
-    <string>打开...</string>
+    <string>打开模型</string>
    </property>
   </action>
   <action name="action_fullauto">
    <property name="text">
     <string>全自动工程配置</string>
+   </property>
+  </action>
+  <action name="action_2">
+   <property name="text">
+    <string>打开模型（兼容模式）</string>
    </property>
   </action>
  </widget>

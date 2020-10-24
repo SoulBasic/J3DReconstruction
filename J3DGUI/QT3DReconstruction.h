@@ -30,7 +30,7 @@
 #include <boost/program_options.hpp>
 #include "Scene.h"
 #include <time.h>
-
+#include <qevent.h>
 using namespace VIEWER;
 
 class QT3DReconstruction : public QMainWindow
@@ -42,6 +42,7 @@ public:
 	~QT3DReconstruction();
 
 	bool openView(QString fileName);
+	bool openViewCompatibility(QString fileName);
 private slots:
 
 	void on_actionMatchFeature_triggered();
@@ -71,6 +72,8 @@ private slots:
 
 	void on_action_fullauto_triggered();
 
+    void on_action_2_triggered();
+
 private:
 
 	Ui::QT3DReconstructionClass ui;
@@ -85,6 +88,8 @@ private:
 	void FinalizeViewer();
 	QTimer* timer;
 	Scene* viewer;
+	bool ViewerAva;
+	void closeEvent(QCloseEvent *event);
 protected:
 
 };

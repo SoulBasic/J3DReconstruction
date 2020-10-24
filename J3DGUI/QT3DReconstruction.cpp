@@ -312,7 +312,7 @@ bool QT3DReconstruction::openView(QString fileName)
 	//	// export the scene
 	//	viewer.Export(MAKE_PATH_SAFE(OPT::strOutputFileName), OPT::strExportType.IsEmpty()?LPCTSTR(NULL):OPT::strExportType.c_str(), OPT::bLosslessTexture);
 	//}
-	
+
 	//置子窗口
 	delete this->ui.widget;
 	this->ui.widget = new mvsviewer(1, this->ui.centralWidget);
@@ -480,4 +480,66 @@ void QT3DReconstruction::FinalizeViewer()
 void QT3DReconstruction::on_action_fullauto_triggered()
 {
 	dlgfa.exec();
+}
+
+void QT3DReconstruction::on_action_2_triggered()
+{
+	QString fileName = QFileDialog::getOpenFileName(NULL, "ViewJ3D", ".", "J3D Model Format(*.J3D);;Stanford Polygon File Format(*.ply);;Alias Wavefront Object(*.obj);;All Files(*.*)");
+	if (fileName == "")
+	{
+		QMessageBox::information(NULL, u8"失败", u8"打开J3D文件失败，请检查路径是否正确 ", QMessageBox::Ok, QMessageBox::Ok);
+		return;
+
+	}
+	
+	openViewCompatibility(fileName);
+}
+
+bool QT3DReconstruction::openViewCompatibility(QString fileName)
+{
+	QString cmd = "J3DView.dll -k 2324 -i " + fileName;
+	STARTUPINFO si = { sizeof(si) };
+	PROCESS_INFORMATION pi;
+	si.dwFlags = STARTF_USESHOWWINDOW;
+	si.wShowWindow = true;
+	QFile Processcache("C:\\ProgramData\\J3DEngine\\ViewerCache.tmp");
+	if (!Processcache.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate))
+	{
+		QMessageBox::information(NULL, "失败", "打开缓存文件失败，请检查权限    ", QMessageBox::Ok, QMessageBox::Ok);
+		return false;
+	}
+	Processcache.write("1");
+	Processcache.close();
+	if (!CreateProcess(
+		NULL,
+		(LPSTR)cmd.toStdString().c_str(),
+		NULL,
+		NULL,
+		FALSE,
+		CREATE_NEW_CONSOLE,
+		NULL,
+		NULL, &si, &pi))
+	{
+		QMessageBox::information(NULL, "失败", "打开文件失败，Viewer程序文件不完整 ", QMessageBox::Ok, QMessageBox::Ok);
+		return false;
+	}
+	time_t tm = time(NULL);
+	QPalette pa;
+	while (!Global::CheckViewerMsg()) {
+		pa.setColor(QPalette::WindowText, Qt::yellow);
+		ui.label_engine->setPalette(pa);
+		ui.label_engine->setText("正在打开模型文件 ");
+		if (time(NULL) - tm > 60) {
+			QMessageBox::information(NULL, "失败", "打开文件失败，请尝试用管理员身份运行软件 ", QMessageBox::Ok, QMessageBox::Ok);
+			WinExec("taskkill /f /im J3DView.dll", SW_HIDE);
+			return false;
+		}
+	}
+	return true;
+}
+void QT3DReconstruction::closeEvent(QCloseEvent *event)
+{
+	//关闭时释放内存
+	this->setAttribute(Qt::WA_DeleteOnClose);
+	QMainWindow::closeEvent(event);
 }
