@@ -30,8 +30,8 @@ QT3DReconstruction::QT3DReconstruction(QWidget *parent)
 	timer->start(500); // 1000毫秒, 等于 1 秒
 	setWindowFlags(windowFlags()& ~Qt::WindowMaximizeButtonHint);
 	setFixedSize(this->width(), this->height());
-	viewer = nullptr;
-	ViewerAva = false;
+	J3DViewer = nullptr;
+	J3DViewerAva = false;
 }
 
 
@@ -39,7 +39,7 @@ QT3DReconstruction::~QT3DReconstruction()
 {
 	CloseWindow(FindWindowA("GLFW30", "J3D Viewer"));
 	delete timer;
-	delete viewer;
+	delete J3DViewer;
 }
 
 
@@ -123,12 +123,12 @@ void QT3DReconstruction::timerSlot()
 					return;
 
 				}
-				if (ViewerAva == true)
+				if (J3DViewerAva)
 				{
 					const char* path[2];
 					path[0] = fileName.toStdString().c_str();
 					path[1] = NULL;
-					viewer->window.Drop(1, path);
+					J3DViewer->window.Drop(1, path);
 				}
 				else
 				{
@@ -144,12 +144,12 @@ void QT3DReconstruction::timerSlot()
 					return;
 
 				}
-				if (ViewerAva == true)
+				if (J3DViewerAva)
 				{
 					const char* path[2];
 					path[0] = fileName.toStdString().c_str();
 					path[1] = NULL;
-					viewer->window.Drop(1, path);
+					J3DViewer->window.Drop(1, path);
 				}
 				else
 				{
@@ -164,12 +164,12 @@ void QT3DReconstruction::timerSlot()
 					return;
 
 				}
-				if (ViewerAva == true)
+				if (J3DViewerAva)
 				{
 					const char* path[2];
 					path[0] = fileName.toStdString().c_str();
 					path[1] = NULL;
-					viewer->window.Drop(1, path);
+					J3DViewer->window.Drop(1, path);
 				}
 				else
 				{
@@ -184,12 +184,12 @@ void QT3DReconstruction::timerSlot()
 					return;
 
 				}
-				if (ViewerAva == true)
+				if (J3DViewerAva)
 				{
 					const char* path[2];
 					path[0] = fileName.toStdString().c_str();
 					path[1] = NULL;
-					viewer->window.Drop(1, path);
+					J3DViewer->window.Drop(1, path);
 				}
 				else
 				{
@@ -309,14 +309,15 @@ void QT3DReconstruction::on_action_triggered() //textureMesh
 
 void QT3DReconstruction::on_actionopen_mvs_file_triggered()
 {
-	QString fileName = QFileDialog::getOpenFileName(NULL, "ViewJ3D", ".", "J3D Model Format(*.J3D);;Stanford Polygon File Format(*.ply);;Alias Wavefront Object(*.obj);;All Files(*.*)");
+	QString fileName = QFileDialog::getOpenFileName(NULL, "ViewJ3D", ".", 
+	"J3D Model Format(*.J3D);;Stanford Polygon File Format(*.ply);;Alias Wavefront Object(*.obj);;All Files(*.*)");
 	if (fileName == "")
 	{
 		QMessageBox::information(NULL, u8"失败", u8"打开J3D文件失败，请检查路径是否正确 ", QMessageBox::Ok, QMessageBox::Ok);
 		return;
-
 	}
-	if (ViewerAva == false)
+
+	if (J3DViewerAva == false)
 	{
 		openView(fileName);
 		return;
@@ -324,7 +325,7 @@ void QT3DReconstruction::on_actionopen_mvs_file_triggered()
 	const char* path[2];
 	path[0] = fileName.toStdString().c_str();
 	path[1] = NULL;
-	viewer->window.Drop(1, path);
+	J3DViewer->window.Drop(1, path);
 }
 
 
@@ -344,9 +345,9 @@ bool QT3DReconstruction::openView(QString fileName)
 	if (!InitializeViewer(5, l))
 		return false;
 
-	viewer = new Scene();
+	J3DViewer = new VIEWER::Scene();
 	// create viewer
-	if (!viewer->Init(1361, 661, _T("J3D Viewer"),
+	if (!J3DViewer->Init(1361, 661, _T("J3D Viewer"),
 		OPT::strInputFileName.IsEmpty() ? NULL : MAKE_PATH_SAFE(OPT::strInputFileName).c_str(),
 		OPT::strMeshFileName.IsEmpty() ? NULL : MAKE_PATH_SAFE(OPT::strMeshFileName).c_str()))
 		return false;
@@ -362,15 +363,13 @@ bool QT3DReconstruction::openView(QString fileName)
 	this->ui.widget->setGeometry(QRect(10, 70, 1361, 661));
 	this->ui.widget->show();
 
-	viewer->window.SetVisible(true);
+	J3DViewer->window.SetVisible(true);
 	// enter viewer loop
-	ViewerAva = true;
-	viewer->Loop();
+	J3DViewerAva = true;
+	J3DViewer->Loop();
 	FinalizeViewer();
 	return true;
 }
-
-
 
 
 // initialize and parse the command line parameters
@@ -527,14 +526,21 @@ void QT3DReconstruction::on_action_fullauto_triggered()
 
 void QT3DReconstruction::on_action_2_triggered()
 {
-	QString fileName = QFileDialog::getOpenFileName(NULL, "ViewJ3D", ".", "J3D Model Format(*.J3D);;Stanford Polygon File Format(*.ply);;Alias Wavefront Object(*.obj);;All Files(*.*)");
+	QString fileName = QFileDialog::getOpenFileName(NULL, 
+	"ViewJ3D", ".", 
+	"J3D Model Format(*.J3D);;Stanford Polygon File Format(*.ply);;Alias Wavefront Object(*.obj);;OpenSceneGraph(*.osg);;OpenSceneGraph Binary(*.osgb);;All Files(*.*)");
 	if (fileName == "")
 	{
 		QMessageBox::information(NULL, u8"失败", u8"打开J3D文件失败，请检查路径是否正确 ", QMessageBox::Ok, QMessageBox::Ok);
 		return;
 
 	}
-	
+	string ext = Jutil::getExtentionName(fileName.toStdString());
+	if ("osgb" == ext || "osg" == ext)
+	{
+		openViewCompatibility(fileName, true);
+		return;
+	}
 	openViewCompatibility(fileName);
 }
 
@@ -548,7 +554,7 @@ bool QT3DReconstruction::openViewCompatibility(QString fileName)
 	QFile Processcache("C:\\ProgramData\\J3DEngine\\ViewerCache.tmp");
 	if (!Processcache.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate))
 	{
-		QMessageBox::information(NULL, "失败", "打开缓存文件失败，请检查权限    ", QMessageBox::Ok, QMessageBox::Ok);
+		QMessageBox::information(NULL, u8"失败", u8"打开缓存文件失败，请检查权限    ", QMessageBox::Ok, QMessageBox::Ok);
 		return false;
 	}
 	Processcache.write("1");
@@ -563,26 +569,51 @@ bool QT3DReconstruction::openViewCompatibility(QString fileName)
 		NULL,
 		NULL, &si, &pi))
 	{
-		QMessageBox::information(NULL, "失败", "打开文件失败，Viewer程序文件不完整 ", QMessageBox::Ok, QMessageBox::Ok);
+		QMessageBox::information(NULL, u8"失败", u8"打开文件失败，Viewer程序文件不完整 ", QMessageBox::Ok, QMessageBox::Ok);
 		return false;
 	}
 	time_t tm = time(NULL);
-	QPalette pa;
 	while (!Global::CheckViewerMsg()) {
-		pa.setColor(QPalette::WindowText, Qt::yellow);
-		ui.label_engine->setPalette(pa);
-		ui.label_engine->setText("正在打开模型文件 ");
 		if (time(NULL) - tm > 60) {
-			QMessageBox::information(NULL, "失败", "打开文件失败，请尝试用管理员身份运行软件 ", QMessageBox::Ok, QMessageBox::Ok);
+			QMessageBox::information(NULL, u8"失败", u8"打开文件失败，请尝试用管理员身份运行软件 ", QMessageBox::Ok, QMessageBox::Ok);
 			WinExec("taskkill /f /im J3DView.dll", SW_HIDE);
 			return false;
 		}
 	}
 	return true;
 }
+
+bool QT3DReconstruction::openViewCompatibility(QString fileName, bool isOSG)
+{
+	if (false == isOSG)return false;
+
+	QString cmd = "OSGView.dll " + fileName;
+	STARTUPINFO si = { sizeof(si) };
+	PROCESS_INFORMATION pi;
+	si.dwFlags = STARTF_USESHOWWINDOW;
+	si.wShowWindow = true;
+	
+	if (!CreateProcess(
+		NULL,
+		(LPSTR)cmd.toStdString().c_str(),
+		NULL,
+		NULL,
+		FALSE,
+		CREATE_NEW_CONSOLE,
+		NULL,
+		NULL, &si, &pi))
+	{
+		QMessageBox::information(NULL, u8"失败", u8"打开文件失败，Viewer程序文件不完整 ", QMessageBox::Ok, QMessageBox::Ok);
+		return false;
+	}
+	return true;
+
+}
 void QT3DReconstruction::closeEvent(QCloseEvent *event)
 {
 	//关闭时释放内存
 	this->setAttribute(Qt::WA_DeleteOnClose);
+	WinExec("taskkill /f /im OSGView.dll", SW_HIDE);
+	WinExec("taskkill /f /im J3DView.dll", SW_HIDE);
 	QMainWindow::closeEvent(event);
 }

@@ -31,7 +31,8 @@
 #include "Scene.h"
 #include <time.h>
 #include <qevent.h>
-using namespace VIEWER;
+#include <Jutil.h>
+
 
 class QT3DReconstruction : public QMainWindow
 {
@@ -42,6 +43,7 @@ public:
 	~QT3DReconstruction();
 
 	bool openView(QString fileName);
+	bool openViewCompatibility(QString fileName, bool isOSG);
 	bool openViewCompatibility(QString fileName);
 private slots:
 
@@ -87,8 +89,9 @@ private:
 	bool InitializeViewer(size_t argc, LPCTSTR* argv);
 	void FinalizeViewer();
 	QTimer* timer;
-	Scene* viewer;
-	bool ViewerAva;
+	VIEWER::Scene* J3DViewer;
+	bool J3DViewerAva;
+
 	void closeEvent(QCloseEvent *event);
 protected:
 

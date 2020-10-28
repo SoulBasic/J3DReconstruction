@@ -16,9 +16,6 @@
 
 
 HWND m_hWnd;
-//"3285.55;0;1480.14;0;3292.21;2025.93;0;0;1");// EigenMatrixFormat"f;0;ppx;0;f;ppy;0;0;1"
-
-std::string FileName_OutputDensifyCloud;
 
 int STATE_RETURN;
 
@@ -282,8 +279,8 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		cmdCache.open(("C:\\ProgramData\\J3DEngine\\cmdCache.tmp"), ios::in | ios::_Nocreate);
 		if (!cmdCache)
 		{
-
-			MessageBoxA(NULL, "任务失败,无法获取任务参数", "错误", MB_OK);
+			
+			printf("任务失败,无法获取任务参数\n");
 			Global::process = PROCESSERROR;
 			break;
 		}
@@ -292,7 +289,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		getline(cmdCache, temp);
 		if (temp != "densifypointcloud")
 		{
-			MessageBoxA(NULL, "任务失败,无法获取任务参数", "错误", MB_OK);
+			printf("任务失败,无法获取任务参数\n");
 
 			Global::process = PROCESSERROR;
 			break;
@@ -320,7 +317,13 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		cmd[5] = "-o";
 		cmd[6] = (char*)densifyOutputDir.data();
 		STATE_RETURN = !MVSEngine::DensifyPointCloud(7, cmd);
-		Global::process = STATE_RETURN;
+		if (STATE_RETURN == EXIT_SUCCESS) {
+			Global::process = PROCESSCLOSE;
+		}
+		else {
+			Global::process = PROCESSWORKING;
+			printf("任务失败，请检查路径和文件是否正确\n");
+		}
 		break;
 	}
 
@@ -332,7 +335,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		cmdCache.open(("C:\\ProgramData\\J3DEngine\\cmdCache.tmp"), ios::in | ios::_Nocreate);
 		if (!cmdCache)
 		{
-			MessageBoxA(NULL, "任务失败,无法获取任务参数", "错误", MB_OK);
+			printf("任务失败,无法获取任务参数\n");
 			Global::process = PROCESSERROR;
 			break;
 		}
@@ -341,7 +344,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		getline(cmdCache, temp);
 		if (temp != "reconstructmesh")
 		{
-			MessageBoxA(NULL, "任务失败,无法获取任务参数", "错误", MB_OK);
+			printf("任务失败,无法获取任务参数\n");
 			Global::process = PROCESSERROR;
 			break;
 		}
@@ -370,6 +373,11 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		cmd[7] = "-w";
 		cmd[8] = (char*)reconstructMeshWorkingDir.data();
 		int status = MVSEngine::ReconstructMesh(9, cmd);
+		if (STATE_RETURN != EXIT_SUCCESS) {
+			Global::process = PROCESSWORKING;
+			printf("任务失败，请检查路径和文件是否正确\n");
+			break;
+		}
 		cmd[0] = t;
 		cmd[1] = "-i";
 		cmd[2] = (char*)reconstructMeshOutputDir.data();
@@ -385,6 +393,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		}
 		else {
 			Global::process = PROCESSWORKING;
+			printf("任务失败，请检查路径和文件是否正确\n");
 		}
 
 		break;
@@ -398,16 +407,16 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		cmdCache.open(("C:\\ProgramData\\J3DEngine\\cmdCache.tmp"), ios::in | ios::_Nocreate);
 		if (!cmdCache)
 		{
-			MessageBoxA(NULL, "任务失败,无法获取任务参数", "错误", MB_OK);
+			printf("任务失败,无法获取任务参数\n");
 			Global::process = PROCESSERROR;
 			break;
 		}
-
+		
 		std::string temp;
 		getline(cmdCache, temp);
 		if (temp != "texturemesh")
 		{
-			MessageBoxA(NULL, "任务失败,无法获取任务参数", "错误", MB_OK);
+			printf("任务失败,无法获取任务参数\n");
 			Global::process = PROCESSERROR;
 			break;
 		}
@@ -423,6 +432,12 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 
 		getline(cmdCache, temp);
 		exportFormat = temp;
+		bool isOsgb = false;
+		if ("osgb" == exportFormat)
+		{
+			exportFormat = "obj";
+			isOsgb = true;
+		}
 
 
 		cmdCache.close();
@@ -439,12 +454,20 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		cmd[7] = "--export-type";
 		cmd[8] = (char*)exportFormat.data();
 		int status = MVSEngine::TextureMesh(9, cmd);
-		//Global::resizeTextureFile(textureMeshOutputDir);
+		
+
 		if (status == EXIT_SUCCESS) {
+			string cmdt = "osgcv.dll " + textureMeshWorkingDir + "/TEXTURE_Mesh.obj " + textureMeshWorkingDir + "/TEXTURE_Mesh.osgb";
+			if (isOsgb)
+			{
+				::system(cmdt.c_str());
+			}
 			Global::process = PROCESSCLOSE;
+
 		}
 		else {
 			Global::process = PROCESSWORKING;
+			printf("任务失败，请检查路径和文件是否正确\n");
 		}
 
 		break;
@@ -553,7 +576,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		getline(cmdCache, temp);
 		if (temp != "densifypointcloud")
 		{
-			MessageBoxA(NULL, "任务失败,无法获取任务参数", "错误", MB_OK);
+			printf("任务失败,无法获取任务参数\n");
 
 			Global::process = PROCESSERROR;
 			break;
@@ -571,7 +594,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		getline(cmdCache, temp);
 		if (temp != "reconstructmesh")
 		{
-			MessageBoxA(NULL, "任务失败,无法获取任务参数", "错误", MB_OK);
+			printf("任务失败,无法获取任务参数\n");
 			Global::process = PROCESSERROR;
 			break;
 		}
@@ -588,7 +611,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		getline(cmdCache, temp);
 		if (temp != "texturemesh")
 		{
-			MessageBoxA(NULL, "任务失败,无法获取任务参数", "错误", MB_OK);
+			printf("任务失败,无法获取任务参数\n");
 			Global::process = PROCESSERROR;
 			break;
 		}
@@ -720,6 +743,11 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		cmd[5] = "-o";
 		cmd[6] = (char*)densifyOutputDir.data();
 		STATE_RETURN = MVSEngine::DensifyPointCloud(7, cmd);
+		if (STATE_RETURN != EXIT_SUCCESS) {
+			Global::process = PROCESSWORKING;
+			printf("任务失败，请检查路径和文件是否正确\n");
+			break;
+		}
 
 		Sleep(5000);
 		char* cmd1[9];
@@ -735,6 +763,11 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		cmd1[7] = "-w";
 		cmd1[8] = (char*)reconstructMeshWorkingDir.data();
 		STATE_RETURN = MVSEngine::ReconstructMesh(9, cmd1);
+		if (STATE_RETURN != EXIT_SUCCESS) {
+			Global::process = PROCESSWORKING;
+			printf("任务失败，请检查路径和文件是否正确\n");
+			break;
+		}
 		Sleep(5000);
 		cmd1[0] = t1;
 		cmd1[1] = "-i";
@@ -746,6 +779,11 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		cmd1[7] = "-w";
 		cmd1[8] = (char*)reconstructMeshWorkingDir.data();
 		STATE_RETURN = MVSEngine::RefineMesh(9, cmd1);
+		if (STATE_RETURN != EXIT_SUCCESS) {
+			Global::process = PROCESSWORKING;
+			printf("任务失败，请检查路径和文件是否正确\n");
+			break;
+		}
 		Sleep(5000);
 		char* cmd2[9];
 		char t2[200];
@@ -760,6 +798,11 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		cmd2[7] = "--export-type";
 		cmd2[8] = (char*)exportFormat.data();
 		STATE_RETURN = MVSEngine::TextureMesh(9, cmd2);
+		if (STATE_RETURN != EXIT_SUCCESS) {
+			Global::process = PROCESSWORKING;
+			printf("任务失败，请检查路径和文件是否正确\n");
+			break;
+		}
 
 		Global::process = PROCESSCLOSE;
 	}
@@ -800,7 +843,7 @@ int main()
 
 
 	std::cout << "\n-----------------------------------" << std::endl;
-	std::cout << "        欢迎使用J3DEngine V1.7        " << std::endl;
+	std::cout << "        欢迎使用J3DEngine V1.8        " << std::endl;
 	std::cout << "            程序初始化成功             " << std::endl;
 	std::cout << "        请使用J3DGUI程序发起指令       " << std::endl;
 	std::cout << "     @Basic All rights reserved    " << std::endl;

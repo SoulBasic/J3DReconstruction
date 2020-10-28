@@ -159,6 +159,11 @@
      <string>obj</string>
     </property>
    </item>
+   <item>
+    <property name="text">
+     <string>osgb</string>
+    </property>
+   </item>
   </widget>
  </widget>
  <resources/>
