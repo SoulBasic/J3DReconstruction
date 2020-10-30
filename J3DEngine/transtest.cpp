@@ -457,9 +457,10 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		
 
 		if (status == EXIT_SUCCESS) {
-			string cmdt = "osgcv.dll " + textureMeshWorkingDir + "/TEXTURE_Mesh.obj " + textureMeshWorkingDir + "/TEXTURE_Mesh.osgb";
+			
 			if (isOsgb)
 			{
+				string cmdt = "osgcv.dll " + textureMeshWorkingDir + "/TEXTURE_Mesh.obj " + textureMeshWorkingDir + "/TEXTURE_Mesh.osgb";
 				::system(cmdt.c_str());
 			}
 			Global::process = PROCESSCLOSE;
@@ -785,6 +786,14 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 			break;
 		}
 		Sleep(5000);
+
+		bool isOsgb = false;
+
+		if ("osgb" == exportFormat)
+		{
+			exportFormat = "obj";
+			isOsgb = true;
+		}
 		char* cmd2[9];
 		char t2[200];
 		GetModuleFileNameA(NULL, t2, 200);
@@ -803,7 +812,11 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 			printf("任务失败，请检查路径和文件是否正确\n");
 			break;
 		}
-
+		if (isOsgb)
+		{
+			string cmdt = "osgcv.dll " + textureMeshWorkingDir + "/TEXTURE_Mesh.obj " + textureMeshWorkingDir + "/TEXTURE_Mesh.osgb";
+			::system(cmdt.c_str());
+		}
 		Global::process = PROCESSCLOSE;
 	}
 	}

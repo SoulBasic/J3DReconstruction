@@ -18,5 +18,4 @@ namespace MVSEngine
 	void Finalize_TextureMesh();
 	__declspec(dllexport) int TextureMesh(int num, char* cmd[]);
 
-
 }

@@ -45,6 +45,7 @@ public:
 	bool openView(QString fileName);
 	bool openViewCompatibility(QString fileName, bool isOSG);
 	bool openViewCompatibility(QString fileName);
+	bool converseType(QString fileNameSrc, QString fileNameDes);
 private slots:
 
 	void on_actionMatchFeature_triggered();
@@ -76,6 +77,28 @@ private slots:
 
     void on_action_2_triggered();
 
+    void on_pushButton_camera_clicked();
+
+    void on_pushButton_pointcloud_clicked();
+
+    void on_pushButton_mesh_clicked();
+
+    void on_pushButton_texture_clicked();
+
+    void on_pushButton_pointplus_clicked();
+
+    void on_pushButton_pointsub_clicked();
+
+    void on_pushButton_pointnumplus_clicked();
+
+    void on_pushButton_pointnumsub_clicked();
+
+    void on_pushButton_viewportplus_clicked();
+
+    void on_pushButton_viewportsub_clicked();
+
+    void on_pushButton_export_clicked();
+
 private:
 
 	Ui::QT3DReconstructionClass ui;
@@ -91,7 +114,7 @@ private:
 	QTimer* timer;
 	VIEWER::Scene* J3DViewer;
 	bool J3DViewerAva;
-
+	Jutil::SparseFileName J3DFile;
 	void closeEvent(QCloseEvent *event);
 protected:
 

@@ -84,6 +84,7 @@ namespace VIEWER {
 		bool Init(int width, int height, LPCTSTR windowName, LPCTSTR fileName = NULL, LPCTSTR meshFileName = NULL);
 		bool Open(LPCTSTR fileName, LPCTSTR meshFileName = NULL);
 		bool Export(LPCTSTR fileName, LPCTSTR exportType = NULL, bool losslessTexture = false) const;
+		bool Export(LPCTSTR _fileName, LPCTSTR exportType, bool losslessTexture, bool b) const;
 		void CompilePointCloud();
 		void CompileMesh();
 

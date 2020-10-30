@@ -84,7 +84,6 @@ void QT3DReconstruction::timerSlot()
 		Global::connectEngine();
 		if (ui.label_engine->text() != u8"成功连接到J3DEngine ")
 		{
-			ui.textBrowser->insertPlainText(u8"与J3DEngine成功建立连接\n");
 			QPalette pa;
 			pa.setColor(QPalette::WindowText, Qt::green);
 			ui.label_engine->setPalette(pa);
@@ -95,7 +94,6 @@ void QT3DReconstruction::timerSlot()
 	{
 		if (ui.label_engine->text() != u8"未连接到J3DEngine ")
 		{
-			ui.textBrowser->insertPlainText(u8"与J3DEngine失去连接，之后将重新尝试连接\n");
 			QPalette pa;
 			pa.setColor(QPalette::WindowText, Qt::red);
 			ui.label_engine->setPalette(pa);
@@ -309,8 +307,8 @@ void QT3DReconstruction::on_action_triggered() //textureMesh
 
 void QT3DReconstruction::on_actionopen_mvs_file_triggered()
 {
-	QString fileName = QFileDialog::getOpenFileName(NULL, "ViewJ3D", ".", 
-	"J3D Model Format(*.J3D);;Stanford Polygon File Format(*.ply);;Alias Wavefront Object(*.obj);;All Files(*.*)");
+	QString fileName = QFileDialog::getOpenFileName(NULL, "ViewJ3D", ".",
+		"J3D Model Format(*.J3D);;Stanford Polygon File Format(*.ply);;Alias Wavefront Object(*.obj);;All Files(*.*)");
 	if (fileName == "")
 	{
 		QMessageBox::information(NULL, u8"失败", u8"打开J3D文件失败，请检查路径是否正确 ", QMessageBox::Ok, QMessageBox::Ok);
@@ -339,7 +337,7 @@ bool QT3DReconstruction::openView(QString fileName)
 	cmd[1] = "-k";
 	cmd[2] = "2324";
 	cmd[3] = "-i";
-	cmd[4] = const_cast<char*>(fileName.toStdString().c_str());
+	cmd[4] = fileName.toStdString().c_str();
 	LPCTSTR* l = cmd;
 
 	if (!InitializeViewer(5, l))
@@ -366,6 +364,7 @@ bool QT3DReconstruction::openView(QString fileName)
 	J3DViewer->window.SetVisible(true);
 	// enter viewer loop
 	J3DViewerAva = true;
+	J3DFile = Jutil::SparseFileName(fileName.toStdString());
 	J3DViewer->Loop();
 	FinalizeViewer();
 	return true;
@@ -376,8 +375,8 @@ bool QT3DReconstruction::openView(QString fileName)
 bool QT3DReconstruction::InitializeViewer(size_t argc, LPCTSTR* argv)
 {
 	// initialize log and console
-	//OPEN_LOG();
-	//OPEN_LOGCONSOLE();
+	OPEN_LOG();
+	OPEN_LOGCONSOLE();
 
 	// group of options allowed only on command line
 	boost::program_options::options_description generic("Generic options");
@@ -515,8 +514,8 @@ void QT3DReconstruction::FinalizeViewer()
 
 	if (OPT::bLogFile)
 		CLOSE_LOGFILE();
-	//CLOSE_LOGCONSOLE();
-	//CLOSE_LOG();
+	CLOSE_LOGCONSOLE();
+	CLOSE_LOG();
 }
 
 void QT3DReconstruction::on_action_fullauto_triggered()
@@ -526,9 +525,9 @@ void QT3DReconstruction::on_action_fullauto_triggered()
 
 void QT3DReconstruction::on_action_2_triggered()
 {
-	QString fileName = QFileDialog::getOpenFileName(NULL, 
-	"ViewJ3D", ".", 
-	"J3D Model Format(*.J3D);;Stanford Polygon File Format(*.ply);;Alias Wavefront Object(*.obj);;OpenSceneGraph(*.osg);;OpenSceneGraph Binary(*.osgb);;All Files(*.*)");
+	QString fileName = QFileDialog::getOpenFileName(NULL,
+		"ViewJ3D", ".",
+		"J3D Model Format(*.J3D);;Stanford Polygon File Format(*.ply);;Alias Wavefront Object(*.obj);;OpenSceneGraph(*.osg);;OpenSceneGraph Binary(*.osgb);;All Files(*.*)");
 	if (fileName == "")
 	{
 		QMessageBox::information(NULL, u8"失败", u8"打开J3D文件失败，请检查路径是否正确 ", QMessageBox::Ok, QMessageBox::Ok);
@@ -592,7 +591,7 @@ bool QT3DReconstruction::openViewCompatibility(QString fileName, bool isOSG)
 	PROCESS_INFORMATION pi;
 	si.dwFlags = STARTF_USESHOWWINDOW;
 	si.wShowWindow = true;
-	
+
 	if (!CreateProcess(
 		NULL,
 		(LPSTR)cmd.toStdString().c_str(),
@@ -616,4 +615,100 @@ void QT3DReconstruction::closeEvent(QCloseEvent *event)
 	WinExec("taskkill /f /im OSGView.dll", SW_HIDE);
 	WinExec("taskkill /f /im J3DView.dll", SW_HIDE);
 	QMainWindow::closeEvent(event);
+}
+
+void QT3DReconstruction::on_pushButton_camera_clicked()
+{
+	if (!J3DViewerAva)return;
+	J3DViewer->window.Key(GLFW_KEY_C, NULL, GLFW_RELEASE, 0);
+}
+
+void QT3DReconstruction::on_pushButton_pointcloud_clicked()
+{
+	if (!J3DViewerAva)return;
+	J3DViewer->window.Key(GLFW_KEY_P, NULL, GLFW_RELEASE, 0);
+}
+
+void QT3DReconstruction::on_pushButton_mesh_clicked()
+{
+	if (!J3DViewerAva)return;
+	J3DViewer->window.Key(GLFW_KEY_M, NULL, GLFW_RELEASE, 0);
+}
+
+void QT3DReconstruction::on_pushButton_texture_clicked()
+{
+	if (!J3DViewerAva)return;
+	J3DViewer->window.Key(GLFW_KEY_T, NULL, GLFW_RELEASE, 0);
+}
+void QT3DReconstruction::on_pushButton_pointplus_clicked()
+{
+	if (!J3DViewerAva)return;
+	J3DViewer->window.Key(GLFW_KEY_UP, NULL, GLFW_RELEASE, 0);
+}
+
+void QT3DReconstruction::on_pushButton_pointsub_clicked()
+{
+	if (!J3DViewerAva)return;
+	J3DViewer->window.Key(GLFW_KEY_DOWN, NULL, GLFW_RELEASE, 0);
+}
+
+void QT3DReconstruction::on_pushButton_pointnumplus_clicked()
+{
+	if (!J3DViewerAva)return;
+	J3DViewer->window.Key(GLFW_KEY_DOWN, NULL, GLFW_RELEASE, GLFW_PRESS);
+}
+
+void QT3DReconstruction::on_pushButton_pointnumsub_clicked()
+{
+	if (!J3DViewerAva)return;
+	J3DViewer->window.Key(GLFW_KEY_UP, NULL, GLFW_RELEASE, GLFW_PRESS);
+}
+
+void QT3DReconstruction::on_pushButton_viewportplus_clicked()
+{
+	if (!J3DViewerAva)return;
+	J3DViewer->window.Key(GLFW_KEY_LEFT, NULL, GLFW_RELEASE, 0);
+}
+
+void QT3DReconstruction::on_pushButton_viewportsub_clicked()
+{
+	if (!J3DViewerAva)return;
+	J3DViewer->window.Key(GLFW_KEY_RIGHT, NULL, GLFW_RELEASE, 0);
+}
+
+void QT3DReconstruction::on_pushButton_export_clicked()
+{
+	if (!J3DViewerAva)
+	{
+		QMessageBox::information(NULL, u8"失败", u8"请先加载J3D模型 ", QMessageBox::Ok, QMessageBox::Ok);
+		return;
+	}
+	
+	string type = "." + ui.comboBox->currentText().toStdString();
+	bool isOsgb = false;
+	if (".osgb" == type)
+	{
+		type = ".obj";
+		isOsgb = true;
+	}
+	string temp = J3DFile.getDir() + "/"+ J3DFile.getFrontName() + "_export" + type;
+	cout << "temp=" << temp << endl;
+	cout << temp.c_str() << endl;
+	J3DViewer->Export(temp.c_str(), type.c_str(), false, true);
+
+	if (isOsgb)
+	{
+		string temp1 = J3DFile.getDir() + "/" + J3DFile.getFrontName() + "_export.osgb";
+		converseType(temp.c_str(), temp1.c_str());
+	}
+
+	QMessageBox::information(NULL, u8"完成", u8"成功输出文件", QMessageBox::Ok, QMessageBox::Ok);
+}
+
+
+bool QT3DReconstruction::converseType(QString fileNameSrc, QString fileNameDes)
+{
+	QString cmd = "osgcv.dll " + fileNameSrc + " "+ fileNameDes;
+	::system(cmd.toStdString().c_str());
+	return true;
 }

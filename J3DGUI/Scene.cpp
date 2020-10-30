@@ -401,6 +401,25 @@ bool Scene::Export(LPCTSTR _fileName, LPCTSTR exportType, bool losslessTexture) 
 	return (bPoints || bMesh);
 }
 
+bool Scene::Export(LPCTSTR _fileName, LPCTSTR exportType, bool losslessTexture, bool b) const
+{
+	if (!IsOpen())
+		return false;
+	ASSERT(!sceneName.IsEmpty());
+	String lastFileName;
+	const String fileName(_fileName != NULL ? String(_fileName) : sceneName);
+	const String baseFileName(Util::getFileFullName(fileName));
+	const bool bPoints(scene.pointcloud.Save(lastFileName = (baseFileName + _T(".ply"))));
+	const bool bMesh(scene.mesh.Save(lastFileName = (baseFileName + (exportType ? exportType : (Util::getFileExt(fileName) == _T(".obj") ? _T(".obj") : _T(".ply")))), true, losslessTexture));
+#if TD_VERBOSE != TD_VERBOSE_OFF
+	if (VERBOSITY_LEVEL > 2 && (bPoints || bMesh))
+		scene.ExportCamerasMLP(Util::getFileFullName(lastFileName) + _T(".mlp"), lastFileName);
+#endif
+	return (bPoints || bMesh);
+}
+
+
+
 void Scene::CompilePointCloud()
 {
 	if (scene.pointcloud.IsEmpty())

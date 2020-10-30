@@ -198,22 +198,22 @@ void Window::Key(int k, int /*scancode*/, int action, int mod)
 			}
 		}
 		break;
-		//case GLFW_KEY_LEFT:
-		//	if (action != GLFW_RELEASE) {
-		//		camera->prevCamID = camera->currentCamID;
-		//		camera->currentCamID--;
-		//		if (camera->currentCamID < NO_ID && camera->currentCamID >= camera->maxCamID)
-		//			camera->currentCamID = camera->maxCamID-1;
-		//	}
-		//	break;
-		//case GLFW_KEY_RIGHT:
-		//	if (action != GLFW_RELEASE) {
-		//		camera->prevCamID = camera->currentCamID;
-		//		camera->currentCamID++;
-		//		if (camera->currentCamID >= camera->maxCamID)
-		//			camera->currentCamID = NO_ID;
-		//	}
-		//	break;
+		case GLFW_KEY_LEFT:
+			if (action == GLFW_RELEASE) {
+				camera->prevCamID = camera->currentCamID;
+				camera->currentCamID--;
+				if (camera->currentCamID < NO_ID && camera->currentCamID >= camera->maxCamID)
+					camera->currentCamID = camera->maxCamID-1;
+			}
+			break;
+		case GLFW_KEY_RIGHT:
+			if (action == GLFW_RELEASE) {
+				camera->prevCamID = camera->currentCamID;
+				camera->currentCamID++;
+				if (camera->currentCamID >= camera->maxCamID)
+					camera->currentCamID = NO_ID;
+			}
+			break;
 		//case GLFW_KEY_E:
 		//	if (action == GLFW_RELEASE && clbkExportScene != NULL)
 		//		clbkExportScene(NULL, NULL, false);

@@ -673,6 +673,11 @@
      <string>obj</string>
     </property>
    </item>
+   <item>
+    <property name="text">
+     <string>osgb</string>
+    </property>
+   </item>
   </widget>
   <widget class="QLabel" name="label_21">
    <property name="geometry">

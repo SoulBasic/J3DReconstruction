@@ -22,6 +22,9 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="Cmake Rules">
+      <UniqueIdentifier>{4a6fbe7b-c248-4a7a-922f-4b3480482f08}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="QT3DReconstruction.h">
@@ -198,5 +201,13 @@
     <Image Include="J3D_GUI.ico">
       <Filter>Resource Files</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\openMVS\build\openMVS\CMakeFiles\2380bda70809fc05df5a494dc6e05e0c\Viewer_CXX_prefix.hxx.rule">
+      <Filter>Cmake Rules</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="CMakeLists.txt" />
   </ItemGroup>
 </Project>
