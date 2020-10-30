@@ -1,2 +1,4 @@
 # J3DReconstruction
-基于openMVG+openMVS的三维重建应用（with GUI）
+基于openMVG+openMVS的三维重建应用（with QT GUI）
+本应用是基于openMVG和openMVS二次开发的Windows平台应用程序
+程序为摄影测量影像的三维重建提供解决方案，可将摄影测量的原始影像进行特征匹配重建为三维点云，并可进行点云加密，三角网重建，纹理映射，生成纹理模型
