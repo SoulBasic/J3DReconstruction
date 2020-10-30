@@ -346,8 +346,8 @@ bool QT3DReconstruction::openView(QString fileName)
 	J3DViewer = new VIEWER::Scene();
 	// create viewer
 	if (!J3DViewer->Init(1361, 661, _T("J3D Viewer"),
-		OPT::strInputFileName.IsEmpty() ? NULL : MAKE_PATH_SAFE(OPT::strInputFileName).c_str(),
-		OPT::strMeshFileName.IsEmpty() ? NULL : MAKE_PATH_SAFE(OPT::strMeshFileName).c_str()))
+		fileName.toStdString().c_str(),
+		NULL))
 		return false;
 	//if (viewer.IsOpen() && !OPT::strOutputFileName.IsEmpty()) {
 	//	// export the scene
@@ -355,6 +355,7 @@ bool QT3DReconstruction::openView(QString fileName)
 	//}
 
 	//ÖÃ×Ó´°¿Ú
+	Sleep(1000);
 	delete this->ui.widget;
 	this->ui.widget = new mvsviewer(1, this->ui.centralWidget);
 	this->ui.widget->setObjectName(QString::fromUtf8("widget"));
@@ -375,8 +376,8 @@ bool QT3DReconstruction::openView(QString fileName)
 bool QT3DReconstruction::InitializeViewer(size_t argc, LPCTSTR* argv)
 {
 	// initialize log and console
-	OPEN_LOG();
-	OPEN_LOGCONSOLE();
+	//OPEN_LOG();
+	//OPEN_LOGCONSOLE();
 
 	// group of options allowed only on command line
 	boost::program_options::options_description generic("Generic options");
@@ -514,8 +515,8 @@ void QT3DReconstruction::FinalizeViewer()
 
 	if (OPT::bLogFile)
 		CLOSE_LOGFILE();
-	CLOSE_LOGCONSOLE();
-	CLOSE_LOG();
+	//CLOSE_LOGCONSOLE();
+	//CLOSE_LOG();
 }
 
 void QT3DReconstruction::on_action_fullauto_triggered()

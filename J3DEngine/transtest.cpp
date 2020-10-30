@@ -854,9 +854,9 @@ int main()
 
 	for (int i = 0; i < sz; ++i)Sleep(20);
 
-
+	::system("cls");
 	std::cout << "\n-----------------------------------" << std::endl;
-	std::cout << "        欢迎使用J3DEngine V1.8        " << std::endl;
+	std::cout << "        欢迎使用J3DEngine V1.9        " << std::endl;
 	std::cout << "            程序初始化成功             " << std::endl;
 	std::cout << "        请使用J3DGUI程序发起指令       " << std::endl;
 	std::cout << "     @Basic All rights reserved    " << std::endl;
@@ -864,7 +864,6 @@ int main()
 	Global::processProject = 0;
 	Global::processState = 0;
 	Global::process = PROCESSWORKING;
-
 
 	while (int a = GetMessage(&msg, NULL, 0, 0))
 	{
