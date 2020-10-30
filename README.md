@@ -67,13 +67,13 @@ LIBJPEG（jpeg-9d）
 
 ​		管道中选择参数并跟随管道完成重建任务，最终可在J3DGUI程序中可视化查看结果
 
-<img src="C:\Users\Administrator\Desktop\engine.png"  />
-
-![](C:\Users\Administrator\Desktop\gui.png)
 
 
+![image](images/engine.png)
 
-​		
+
+
+![image](images/gui.png)
 
 
 
