@@ -23,25 +23,25 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ExportSparseCloud.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="MatchImages.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="PresetConfigureImages.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="StructureFromMotion.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="StructureFromPoses.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Global.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ExportSparseCloud.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MatchImages.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="PresetConfigureImages.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="StructureFromMotion.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="StructureFromPoses.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

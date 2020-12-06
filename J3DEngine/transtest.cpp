@@ -2,11 +2,11 @@
 #define NOMINMAX
 #include <iostream>
 #include <Windows.h>
-#include "PresetConfigureImages.h"
-#include "MatchImages.h"
-#include "StructureFromMotion.h"
-#include "StructureFromPoses.h"
-#include "ExportSparseCloud.h"
+#include "PresetConfigureImages.hpp"
+#include "MatchImages.hpp"
+#include "StructureFromMotion.hpp"
+#include "StructureFromPoses.hpp"
+#include "ExportSparseCloud.hpp"
 #include <algorithm>
 #include <direct.h>
 #include <fstream>

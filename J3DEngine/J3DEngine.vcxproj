@@ -23,13 +23,13 @@
     <ClCompile Include="transtest.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ExportSparseCloud.h" />
+    <ClInclude Include="ExportSparseCloud.hpp" />
     <ClInclude Include="Global.h" />
-    <ClInclude Include="MatchImages.h" />
-    <ClInclude Include="PresetConfigureImages.h" />
+    <ClInclude Include="MatchImages.hpp" />
+    <ClInclude Include="PresetConfigureImages.hpp" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="StructureFromMotion.h" />
-    <ClInclude Include="StructureFromPoses.h" />
+    <ClInclude Include="StructureFromMotion.hpp" />
+    <ClInclude Include="StructureFromPoses.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="J3DEngine.rc" />

@@ -249,7 +249,6 @@
     <ClCompile Include="GLUtil\Vector3D.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="mvsviewer.cpp" />
-    <ClCompile Include="PlyIO.cpp" />
     <ClCompile Include="QT3DReconstruction.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
