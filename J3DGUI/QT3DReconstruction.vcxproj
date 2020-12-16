@@ -219,7 +219,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="F:\lib\Jutil\Jutil.cpp" />
+    <ClCompile Include="Jutil.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Window.cpp" />
     <QtRcc Include="QT3DReconstruction.qrc" />
@@ -262,7 +262,7 @@
     <QtMoc Include="dialog_sfm.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="F:\lib\Jutil\Jutil.h" />
+    <ClInclude Include="Jutil.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Window.h" />
     <QtMoc Include="Dialog_ReconstructMesh.h" />

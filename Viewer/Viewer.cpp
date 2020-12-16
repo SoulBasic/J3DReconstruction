@@ -1,4 +1,3 @@
-
 #pragma comment( linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"" )
 #include "Common.h"
 #include <boost/program_options.hpp>

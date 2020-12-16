@@ -82,43 +82,29 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 			break;
 		}
 
-		getline(cmdCache, temp);
-		imagesInputDir = temp;
-
-		getline(cmdCache, temp);
-		matchesOutputDir = temp;
-
+		getline(cmdCache, imagesInputDir);
+		getline(cmdCache, matchesOutputDir);
 		getline(cmdCache, temp);
 		EigenMatrix = temp;
 		if (EigenMatrix == "NULL")
 		{
 			EigenMatrix = "";
 		}
-
-		getline(cmdCache, temp);
-		describerMethod = temp;
-
-		getline(cmdCache, temp);
-		featureQuality = temp;
-
+		getline(cmdCache, describerMethod);
+		getline(cmdCache, featureQuality);
 		getline(cmdCache, temp);
 		if (temp == "0")
 			upRight = false;
 		else
 			upRight = true;
-
 		getline(cmdCache, temp);
 		if (temp == "0")
 			forceCompute = false;
 		else
 			forceCompute = true;
-
-		getline(cmdCache, temp);
-		geometricModel = temp;
-
+		getline(cmdCache, geometricModel);
 		getline(cmdCache, temp);
 		distanceRatio = atof(temp.c_str());
-
 		getline(cmdCache, temp);
 		if (temp == "0")
 			forceMatch = false;
@@ -199,18 +185,12 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 			break;
 		}
 
-		getline(cmdCache, temp);
-		matchesDir = temp;
-
-		getline(cmdCache, temp);
-		sfmOutputDir = temp;
-
+		getline(cmdCache, matchesDir);
+		getline(cmdCache, sfmOutputDir);
 		getline(cmdCache, temp);
 		triangulationMethod = atoi(temp.c_str());
-
 		getline(cmdCache, temp);
 		resectionMethod = atoi(temp.c_str());
-
 		cmdCache.close();
 		STATE_RETURN = StructureFromMotion(
 			matchesDir + "\\sfm_data.json",
@@ -295,16 +275,9 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 			break;
 		}
 
-		getline(cmdCache, temp);
-		densifyInputDir = temp;
-
-		getline(cmdCache, temp);
-		densifyWorkingDir = temp;
-
-		getline(cmdCache, temp);
-		densifyOutputDir = temp;
-
-
+		getline(cmdCache, densifyInputDir);
+		getline(cmdCache, densifyWorkingDir);
+		getline(cmdCache, densifyOutputDir);
 		cmdCache.close();
 		char* cmd[7];
 		char t[200];
@@ -348,17 +321,9 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 			Global::process = PROCESSERROR;
 			break;
 		}
-
-		getline(cmdCache, temp);
-		reconstructMeshInputDir = temp;
-
-		getline(cmdCache, temp);
-		reconstructMeshWorkingDir = temp;
-
-		getline(cmdCache, temp);
-		reconstructMeshOutputDir = temp;
-
-
+		getline(cmdCache, reconstructMeshInputDir);
+		getline(cmdCache, reconstructMeshWorkingDir);
+		getline(cmdCache, reconstructMeshOutputDir);
 		cmdCache.close();
 		char* cmd[9];
 		char t[200];
@@ -398,7 +363,6 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 
 		break;
 	}
-
 	case CMD_TEXTUREMESH: {
 		Global::process = PROCESSWORKING;
 		Global::saveProcess();
@@ -411,7 +375,6 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 			Global::process = PROCESSERROR;
 			break;
 		}
-		
 		std::string temp;
 		getline(cmdCache, temp);
 		if (temp != "texturemesh")
@@ -420,26 +383,16 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 			Global::process = PROCESSERROR;
 			break;
 		}
-
-		getline(cmdCache, temp);
-		textureMeshInputDir = temp;
-
-		getline(cmdCache, temp);
-		textureMeshWorkingDir = temp;
-
-		getline(cmdCache, temp);
-		textureMeshOutputDir = temp;
-
-		getline(cmdCache, temp);
-		exportFormat = temp;
+		getline(cmdCache, textureMeshInputDir);
+		getline(cmdCache, textureMeshWorkingDir);
+		getline(cmdCache, textureMeshOutputDir);
+		getline(cmdCache, exportFormat);
 		bool isOsgb = false;
 		if ("osgb" == exportFormat)
 		{
 			exportFormat = "obj";
 			isOsgb = true;
 		}
-
-
 		cmdCache.close();
 		char* cmd[9];
 		char t[200];
@@ -521,20 +474,15 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 			break;
 		}
 
-		getline(cmdCache, temp);
-		imagesInputDir = temp;
-		getline(cmdCache, temp);
-		matchesOutputDir = temp;
-		getline(cmdCache, temp);
-		EigenMatrix = temp;
+		getline(cmdCache, imagesInputDir);
+		getline(cmdCache, matchesOutputDir);
+		getline(cmdCache, EigenMatrix);
 		if (EigenMatrix == "NULL")
 		{
 			EigenMatrix = "";
 		}
-		getline(cmdCache, temp);
-		describerMethod = temp;
-		getline(cmdCache, temp);
-		featureQuality = temp;
+		getline(cmdCache, describerMethod);
+		getline(cmdCache, featureQuality);
 		getline(cmdCache, temp);
 		if (temp == "0")
 			upRight = false;
@@ -545,8 +493,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 			forceCompute = false;
 		else
 			forceCompute = true;
-		getline(cmdCache, temp);
-		geometricModel = temp;
+		getline(cmdCache, geometricModel);
 		getline(cmdCache, temp);
 		distanceRatio = atof(temp.c_str());
 		getline(cmdCache, temp);
@@ -562,18 +509,12 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 			break;
 		}
 
-		getline(cmdCache, temp);
-		matchesDir = temp;
-
-		getline(cmdCache, temp);
-		sfmOutputDir = temp;
-
+		getline(cmdCache, matchesDir);
+		getline(cmdCache, sfmOutputDir);
 		getline(cmdCache, temp);
 		triangulationMethod = atoi(temp.c_str());
-
 		getline(cmdCache, temp);
 		resectionMethod = atoi(temp.c_str());
-
 		getline(cmdCache, temp);
 		if (temp != "densifypointcloud")
 		{
@@ -583,14 +524,9 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 			break;
 		}
 
-		getline(cmdCache, temp);
-		densifyInputDir = temp;
-
-		getline(cmdCache, temp);
-		densifyWorkingDir = temp;
-
-		getline(cmdCache, temp);
-		densifyOutputDir = temp;
+		getline(cmdCache, densifyInputDir);
+		getline(cmdCache, densifyWorkingDir);
+		getline(cmdCache, densifyOutputDir);
 
 		getline(cmdCache, temp);
 		if (temp != "reconstructmesh")
@@ -599,16 +535,9 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 			Global::process = PROCESSERROR;
 			break;
 		}
-
-		getline(cmdCache, temp);
-		reconstructMeshInputDir = temp;
-
-		getline(cmdCache, temp);
-		reconstructMeshWorkingDir = temp;
-
-		getline(cmdCache, temp);
-		reconstructMeshOutputDir = temp;
-
+		getline(cmdCache, reconstructMeshInputDir);
+		getline(cmdCache, reconstructMeshWorkingDir);
+		getline(cmdCache, reconstructMeshOutputDir);
 		getline(cmdCache, temp);
 		if (temp != "texturemesh")
 		{
@@ -616,23 +545,11 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 			Global::process = PROCESSERROR;
 			break;
 		}
-
-		getline(cmdCache, temp);
-		textureMeshInputDir = temp;
-
-		getline(cmdCache, temp);
-		textureMeshWorkingDir = temp;
-
-		getline(cmdCache, temp);
-		textureMeshOutputDir = temp;
-
-		getline(cmdCache, temp);
-		exportFormat = temp;
-
+		getline(cmdCache, textureMeshInputDir);
+		getline(cmdCache, textureMeshWorkingDir);
+		getline(cmdCache, textureMeshOutputDir);
+		getline(cmdCache, exportFormat);
 		cmdCache.close();
-
-
-
 		STATE_RETURN = LoadingImages(imagesInputDir, matchesOutputDir, sensorWidthDataBaseDir, EigenMatrix);
 		if (STATE_RETURN == EXIT_FAILURE)
 		{
@@ -749,7 +666,6 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 			printf("任务失败，请检查路径和文件是否正确\n");
 			break;
 		}
-
 		Sleep(5000);
 		char* cmd1[9];
 		char t1[200];
@@ -786,9 +702,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 			break;
 		}
 		Sleep(5000);
-
 		bool isOsgb = false;
-
 		if ("osgb" == exportFormat)
 		{
 			exportFormat = "obj";
@@ -822,7 +736,6 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 	}
 	return;
 }
-
 int main()
 {
 	std::cout << "\n正在初始化引擎，请稍等\n";
@@ -834,8 +747,8 @@ int main()
 	srand(time(NULL));
 	int sz = rand() % 300;
 	GetConsoleMode(hStdin, &mode);
-	mode &= ~ENABLE_QUICK_EDIT_MODE; //移除快速编辑模式
-	mode &= ~ENABLE_INSERT_MODE; //移除插入模式
+	mode &= ~ENABLE_QUICK_EDIT_MODE; 
+	mode &= ~ENABLE_INSERT_MODE; 
 	mode &= ~ENABLE_MOUSE_INPUT;
 	SetConsoleMode(hStdin, mode);
 
@@ -852,9 +765,6 @@ int main()
 		SendMessage(m_hWnd, WM_USER, tid, 0);
 	}
 
-	for (int i = 0; i < sz; ++i)Sleep(20);
-
-	::system("cls");
 	std::cout << "\n-----------------------------------" << std::endl;
 	std::cout << "        欢迎使用J3DEngine V1.9        " << std::endl;
 	std::cout << "            程序初始化成功             " << std::endl;

@@ -21,6 +21,8 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
+MVSEngine/x64/
+J3DGUI/Release/
 
 # Visual Studio 2015 cache/options directory
 .vs/

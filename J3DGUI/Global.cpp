@@ -1,6 +1,5 @@
 #include "Global.h"
 
-
 int Global::engineTid = 0;
 QString Global::imagesDir = "";
 QString Global::imagesInfoFile = "";

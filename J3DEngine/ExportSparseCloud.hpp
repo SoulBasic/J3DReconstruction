@@ -5,13 +5,11 @@
 #include "openMVG/sfm/sfm_data.hpp"
 #include "openMVG/sfm/sfm_data_io.hpp"
 
-
 #define _USE_EIGEN
 #include <software/SfM/export/InterfaceMVS.h>
 #include "third_party/cmdLine/cmdLine.h"
 #include "third_party/stlplus3/filesystemSimplified/file_system.hpp"
 #include "third_party/progress/progress_display.hpp"
-
 
 #include <atomic>
 #include <cstdlib>
@@ -34,7 +32,6 @@ bool exportToSparse(
 	const int iNumThreads = 0
 )
 {
-
 	if (!stlplus::is_folder(sOutDir))
 	{
 		stlplus::folder_create(sOutDir);
@@ -45,7 +42,6 @@ bool exportToSparse(
 		}
 	}
 
-	// Export data :
 	MVS::Interface scene;
 	size_t nPoses(0);
 	const uint32_t nViews((uint32_t)sfm_data.GetViews().size());
@@ -55,7 +51,6 @@ bool exportToSparse(
 
 
 	std::map<openMVG::IndexT, uint32_t> map_intrinsic, map_view;
-
 
 	for (const auto& intrinsic : sfm_data.GetIntrinsics())
 	{

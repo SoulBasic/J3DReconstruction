@@ -277,7 +277,6 @@ bool Scene::Init(int width, int height, LPCTSTR windowName, LPCTSTR fileName, LP
 
 	window.SetVisible(false);
 	Global::sce = (void*)this;
-	//InstallHook();
 	return true;
 }
 bool Scene::Open(LPCTSTR fileName, LPCTSTR meshFileName)

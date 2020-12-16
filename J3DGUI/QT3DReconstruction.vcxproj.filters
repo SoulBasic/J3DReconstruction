@@ -113,7 +113,7 @@
     <ClCompile Include="Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="F:\lib\Jutil\Jutil.cpp">
+    <ClCompile Include="Jutil.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -165,7 +165,7 @@
     <ClInclude Include="Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="F:\lib\Jutil\Jutil.h">
+    <ClInclude Include="Jutil.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

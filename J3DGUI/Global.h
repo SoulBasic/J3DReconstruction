@@ -6,7 +6,6 @@
 #include "stdio.h"
 #include <tlhelp32.h>
 #include <qdebug.h>
-#include "PlyIO.h"
 #include <time.h>
 
 #define CMD_MATCHFEATURES 101

@@ -32,8 +32,6 @@ using namespace std;
 #define EXIT_SUCCESS 0
 #define EXIT_FAILURE 1
 
-
-
 class Global
 {
 public:
@@ -41,7 +39,5 @@ public:
 	static int processProject;
 	static int processState;
 	static bool saveProcess();
-	//static bool resizeTextureFile(std::string fileName);
-	//static unsigned int getImageSize(std::string fileName);
 };
 

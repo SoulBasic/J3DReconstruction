@@ -5,12 +5,6 @@
 
 using namespace VIEWER;
 
-
-// D E F I N E S ///////////////////////////////////////////////////
-
-
-// S T R U C T S ///////////////////////////////////////////////////
-
 Camera::Camera(const AABB3d& _box, double _fov)
 	:
 	box(_box),

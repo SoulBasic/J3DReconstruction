@@ -1,5 +1,4 @@
 #pragma once
-#include "PlyIO.h"
 #include <QtWidgets/QMainWindow>
 #include "ui_QT3DReconstruction.h"
 #include <Windows.h>
@@ -31,7 +30,7 @@
 #include "Scene.h"
 #include <time.h>
 #include <qevent.h>
-#include <Jutil.h>
+#include "Jutil.h"
 
 
 class QT3DReconstruction : public QMainWindow
