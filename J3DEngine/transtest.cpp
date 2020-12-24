@@ -751,7 +751,6 @@ int main()
 	mode &= ~ENABLE_INSERT_MODE; 
 	mode &= ~ENABLE_MOUSE_INPUT;
 	SetConsoleMode(hStdin, mode);
-
 	SetConsoleTitle("J3DEngine");
 	int tid = GetCurrentThreadId();
 	if (!saveTid())
@@ -764,7 +763,7 @@ int main()
 		printf("找到J3DGUI窗口");
 		SendMessage(m_hWnd, WM_USER, tid, 0);
 	}
-
+	::system("cls");
 	std::cout << "\n-----------------------------------" << std::endl;
 	std::cout << "        欢迎使用J3DEngine V1.9        " << std::endl;
 	std::cout << "            程序初始化成功             " << std::endl;
