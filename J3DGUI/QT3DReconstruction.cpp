@@ -390,7 +390,7 @@ void QT3DReconstruction::on_action_2_triggered()
 
 bool QT3DReconstruction::openViewCompatibility(QString fileName)
 {
-	QString cmd = "J3DView.dll -k 2324 -i " + fileName;
+	QString cmd = "J3DViewer.exe -k 2324 -i " + fileName;
 	STARTUPINFO si = { sizeof(si) };
 	PROCESS_INFORMATION pi;
 	si.dwFlags = STARTF_USESHOWWINDOW;
@@ -420,7 +420,7 @@ bool QT3DReconstruction::openViewCompatibility(QString fileName)
 	while (!Global::CheckViewerMsg()) {
 		if (time(NULL) - tm > 60) {
 			QMessageBox::information(NULL, u8"失败", u8"打开文件失败，请尝试用管理员身份运行软件 ", QMessageBox::Ok, QMessageBox::Ok);
-			WinExec("taskkill /f /im J3DView.dll", SW_HIDE);
+			WinExec("taskkill /f /im J3DViewer.exe", SW_HIDE);
 			return false;
 		}
 	}
@@ -431,7 +431,7 @@ bool QT3DReconstruction::openViewCompatibility(QString fileName, bool isOSG)
 {
 	if (false == isOSG)return false;
 
-	QString cmd = "OSGView.dll " + fileName;
+	QString cmd = "OSGViewer.exe " + fileName;
 	STARTUPINFO si = { sizeof(si) };
 	PROCESS_INFORMATION pi;
 	si.dwFlags = STARTF_USESHOWWINDOW;
@@ -458,8 +458,8 @@ void QT3DReconstruction::closeEvent(QCloseEvent *event)
 {
 	//关闭时释放内存
 	this->setAttribute(Qt::WA_DeleteOnClose);
-	WinExec("taskkill /f /im OSGView.dll", SW_HIDE);
-	WinExec("taskkill /f /im J3DView.dll", SW_HIDE);
+	WinExec("taskkill /f /im OSGViewer.exe", SW_HIDE);
+	WinExec("taskkill /f /im J3DViewer.exe", SW_HIDE);
 	QMainWindow::closeEvent(event);
 }
 
@@ -555,7 +555,7 @@ void QT3DReconstruction::on_pushButton_export_clicked()
 
 bool QT3DReconstruction::converseType(QString fileNameSrc, QString fileNameDes)
 {
-	QString cmd = "osgcv.dll " + fileNameSrc + " "+ fileNameDes;
+	QString cmd = "osgcv.exe " + fileNameSrc + " "+ fileNameDes;
 	::system(cmd.toStdString().c_str());
 	return true;
 }
