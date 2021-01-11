@@ -298,7 +298,7 @@ void QT3DReconstruction::on_actionopen_mvs_file_triggered()
 		QMessageBox::information(NULL, u8"失败", u8"打开J3D文件失败，请检查路径是否正确 ", QMessageBox::Ok, QMessageBox::Ok);
 		return;
 	}
-
+	J3DFile = Jutil::SparseFileName(fileName.toStdString());
 	if (J3DViewerAva == false)
 	{
 		openView(fileName);
@@ -307,6 +307,7 @@ void QT3DReconstruction::on_actionopen_mvs_file_triggered()
 	const char* path[2];
 	path[0] = fileName.toStdString().c_str();
 	path[1] = NULL;
+	
 	J3DViewer->window.Drop(1, path);
 }
 
@@ -334,7 +335,6 @@ bool QT3DReconstruction::openView(QString fileName)
 
 	// enter viewer loop
 	J3DViewerAva = true;
-	J3DFile = Jutil::SparseFileName(fileName.toStdString());
 	J3DViewer->Loop();
 	return true;
 }
@@ -531,24 +531,37 @@ void QT3DReconstruction::on_pushButton_export_clicked()
 		return;
 	}
 	
-	string type = "." + ui.comboBox->currentText().toStdString();
+	std::string type = "." + ui.comboBox->currentText().toStdString();
 	bool isOsgb = false;
+	bool isGltf = false;
 	if (".osgb" == type)
 	{
 		type = ".obj";
 		isOsgb = true;
 	}
-	string temp = J3DFile.getDir() + "/"+ J3DFile.getFrontName() + "_export" + type;
-	cout << "temp=" << temp << endl;
-	cout << temp.c_str() << endl;
+	else if (".gltf" == type)
+	{
+		type = ".obj";
+		isGltf = true;
+	}
+
+
+	std::string temp = J3DFile.getDir() + "/"+ J3DFile.getFrontName() + "_export" + type;
 	J3DViewer->Export(temp.c_str(), type.c_str(), false, true);
 
 	if (isOsgb)
 	{
-		string temp1 = J3DFile.getDir() + "/" + J3DFile.getFrontName() + "_export.osgb";
+		std::string temp1 = J3DFile.getDir() + "/" + J3DFile.getFrontName() + "_export.osgb";
 		converseType(temp.c_str(), temp1.c_str());
 	}
-
+#ifdef SUPPORT_GLTF
+	if (isGltf)
+	{
+		std::string temp1 = J3DFile.getDir() + "/" + J3DFile.getFrontName() + "_export.gltf";
+		QString cmd = "obj2gltf -i " + QString(temp.c_str()) + " -o " + QString(temp1.c_str());
+		::system(cmd.toStdString().c_str());
+	}
+#endif // SUPPORT_GLTF
 	QMessageBox::information(NULL, u8"完成", u8"成功输出文件", QMessageBox::Ok, QMessageBox::Ok);
 }
 

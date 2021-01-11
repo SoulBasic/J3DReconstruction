@@ -8,6 +8,9 @@
 #include <qdebug.h>
 #include <time.h>
 
+
+//#define SUPPORT_GLTF //支持GLTF输出，需安装obj2gltf插件，用于cesium显示
+
 #define CMD_MATCHFEATURES 101
 #define CMD_SFMANDSFP 102
 #define CMD_EXPORTSPARSECLOUD 103

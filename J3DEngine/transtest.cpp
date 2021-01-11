@@ -413,7 +413,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 			
 			if (isOsgb)
 			{
-				string cmdt = "osgcv.dll " + textureMeshWorkingDir + "/TEXTURE_Mesh.obj " + textureMeshWorkingDir + "/TEXTURE_Mesh.osgb";
+				string cmdt = "osgcv.exe " + textureMeshWorkingDir + "/TEXTURE_Mesh.obj " + textureMeshWorkingDir + "/TEXTURE_Mesh.osgb";
 				::system(cmdt.c_str());
 			}
 			Global::process = PROCESSCLOSE;
@@ -728,7 +728,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		}
 		if (isOsgb)
 		{
-			string cmdt = "osgcv.dll " + textureMeshWorkingDir + "/TEXTURE_Mesh.obj " + textureMeshWorkingDir + "/TEXTURE_Mesh.osgb";
+			string cmdt = "osgcv.exe " + textureMeshWorkingDir + "/TEXTURE_Mesh.obj " + textureMeshWorkingDir + "/TEXTURE_Mesh.osgb";
 			::system(cmdt.c_str());
 		}
 		Global::process = PROCESSCLOSE;
