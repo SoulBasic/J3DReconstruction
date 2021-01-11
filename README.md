@@ -37,7 +37,7 @@ openMVS库中提供的纹理映射管道封装
 
 openMVS库中提供的基于GLFW库的可视化模型预览封装
 
-OSG库中提供的基于openGL库的可视化模型预览及格式转换封装（主要是转换到osgb格式可以在smart3D打开）
+OSG库中提供的基于openGL库的可视化模型预览及格式转换封装（转换到osgb格式可以在smart3D打开、若本机安装obj2gltf插件可转换到gltf供Cesium加载）
 
 
 
@@ -139,9 +139,9 @@ $$
 
 其中若需打开osgb格式的文件，需要OSG库，项目中未附带OSG库的源码，请自行编译
 
-其中viewer和convert工具可直接使用OSG库中的osgviewer.exe和osgconv.exe
+其中viewer和convert工具可直接使用OSG库中的osgviewer.exe和osgconv.exe替换程序所需的OSGViewer.exe和osgcv.exe
 
-（或者本项目Release包中也有响应二进制文件可直接使用）
+（或者本项目Release包中也有相应二进制文件可直接使用）
 
 
 
