@@ -1,10 +1,5 @@
-
-
 #ifndef _VIEWER_COMMON_H_
 #define _VIEWER_COMMON_H_
-
-
- // I N C L U D E S /////////////////////////////////////////////////
 
 #include <GL/glew.h>
 #include "libs/MVS/Common.h"
@@ -18,12 +13,6 @@
 #include <GL/glu.h>
 #endif
 #include <GLFW/glfw3.h>
-
-
-// D E F I N E S ///////////////////////////////////////////////////
-
-
-// P R O T O T Y P E S /////////////////////////////////////////////
 
 using namespace SEACAVE;
 

@@ -32,8 +32,6 @@
 #include <qevent.h>
 #include "Jutil.h"
 
-
-
 class QT3DReconstruction : public QMainWindow
 {
 	Q_OBJECT
@@ -57,8 +55,6 @@ private slots:
 	void on_action_viewMVS_triggered();
 
 	void on_action_addSensorWidth_triggered();
-
-	//void on_action_viewPLY_triggered();
 
 	void on_actionDenseCloud_triggered();
 

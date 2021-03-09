@@ -5,13 +5,7 @@
 
 using namespace VIEWER;
 
-
-// D E F I N E S ///////////////////////////////////////////////////
-
 #define IMAGE_MAX_RESOLUTION 1024
-
-
-// S T R U C T S ///////////////////////////////////////////////////
 
 struct IndexDist {
 	IDX idx;

@@ -1,5 +1,5 @@
 ﻿  Global.cpp
-  transtest.cpp
+  main.cpp
 C:\openMVS\openMVG\src\openMVG/image/sample.hpp(403): warning C4244: “return”: 从“const openMVG::image::RealPixel<float>::real_type”转换到“openMVG::image::RealPixel<float>::base_type”，可能丢失数据
 C:\openMVS\openMVG\src\openMVG/geodesy/geodesy.hpp(94): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
 C:\openMVS\openMVG\src\openMVG/geodesy/geodesy.hpp(94): warning C4244: “初始化”: 从“double”转换到“const int”，可能丢失数据

@@ -5,16 +5,9 @@
 #include "Scene.h"
 #include <time.h>
 
-
 using namespace VIEWER;
 
-
-// D E F I N E S ///////////////////////////////////////////////////
-
 #define APPNAME _T("J3D Viewer")
-
-
-// S T R U C T S ///////////////////////////////////////////////////
 
 namespace OPT {
 	String strInputFileName;
@@ -197,10 +190,6 @@ int main(int argc, LPCTSTR* argv)
 		OPT::strInputFileName.IsEmpty() ? NULL : MAKE_PATH_SAFE(OPT::strInputFileName).c_str(),
 		OPT::strMeshFileName.IsEmpty() ? NULL : MAKE_PATH_SAFE(OPT::strMeshFileName).c_str()))
 		return EXIT_FAILURE;
-	//if (viewer.IsOpen() && !OPT::strOutputFileName.IsEmpty()) {
-	//	// export the scene
-	//	viewer.Export(MAKE_PATH_SAFE(OPT::strOutputFileName), OPT::strExportType.IsEmpty()?LPCTSTR(NULL):OPT::strExportType.c_str(), OPT::bLosslessTexture);
-	//}
 	// enter viewer loop
 	std::ofstream cmd;
 	cmd.open("C:\\ProgramData\\J3DEngine\\ViewerCache.tmp", std::ios::out | std::ios::trunc);
@@ -211,7 +200,7 @@ int main(int argc, LPCTSTR* argv)
 	}
 	cmd << tm;
 	cmd.close();
-	Sleep(1500);
+	Sleep(1200);
 	viewer.window.SetVisible(true);
 	viewer.Loop();
 	Finalize();

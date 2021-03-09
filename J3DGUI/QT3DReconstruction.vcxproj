@@ -244,9 +244,6 @@
     <ClCompile Include="dialog_sfm.cpp" />
     <ClCompile Include="dialog_texturemesh.cpp" />
     <ClCompile Include="Global.cpp" />
-    <ClCompile Include="GLUtil\Matrix4D.cpp" />
-    <ClCompile Include="GLUtil\Position3D.cpp" />
-    <ClCompile Include="GLUtil\Vector3D.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="mvsviewer.cpp" />
     <ClCompile Include="QT3DReconstruction.cpp" />
@@ -263,6 +260,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Jutil.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Window.h" />
     <QtMoc Include="Dialog_ReconstructMesh.h" />
@@ -272,14 +270,8 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Common.h" />
     <ClInclude Include="Global.h" />
-    <ClInclude Include="GLUtil\Matrix4D.h" />
-    <ClInclude Include="GLUtil\Position3D.h" />
-    <ClInclude Include="GLUtil\Vector3D.h" />
     <QtMoc Include="mvsviewer.h" />
     <ClInclude Include="Image.h" />
-    <ClInclude Include="PlyIO.h" />
-    <ClInclude Include="resource1.h" />
-    <ClInclude Include="resource2.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="J3DGUI.rc" />

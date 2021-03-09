@@ -342,23 +342,17 @@ bool QT3DReconstruction::openView(QString fileName)
 
 bool QT3DReconstruction::InitializeViewer(size_t argc, LPCTSTR* argv)
 {
-	// initialize log and console
 	//OPEN_LOG();
 	//OPEN_LOGCONSOLE();
-
-	// print application details
 	//Util::LogBuild();
 	//LOG(_T("Command line:%s"), Util::CommandLineToString(argc, argv).c_str());
-	
 	LOG(_T("J3D Viewer 初始化完成"));
 	LOG(_T("读取文件中..."));
-	
 	return true;
 }
 
 void QT3DReconstruction::FinalizeViewer()
 {
-
 	//CLOSE_LOGCONSOLE();
 	//CLOSE_LOG();
 }
@@ -398,7 +392,7 @@ bool QT3DReconstruction::openViewCompatibility(QString fileName)
 	QFile Processcache("C:\\ProgramData\\J3DEngine\\ViewerCache.tmp");
 	if (!Processcache.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate))
 	{
-		QMessageBox::information(NULL, u8"失败", u8"打开缓存文件失败，请检查权限    ", QMessageBox::Ok, QMessageBox::Ok);
+		QMessageBox::information(NULL, u8"失败", u8"打开缓存文件失败，请检查权限 ", QMessageBox::Ok, QMessageBox::Ok);
 		return false;
 	}
 	Processcache.write("1");
@@ -456,7 +450,6 @@ bool QT3DReconstruction::openViewCompatibility(QString fileName, bool isOSG)
 
 void QT3DReconstruction::closeEvent(QCloseEvent *event)
 {
-	//关闭时释放内存
 	this->setAttribute(Qt::WA_DeleteOnClose);
 	WinExec("taskkill /f /im OSGViewer.exe", SW_HIDE);
 	WinExec("taskkill /f /im J3DViewer.exe", SW_HIDE);
