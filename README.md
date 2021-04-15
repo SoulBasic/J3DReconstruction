@@ -104,6 +104,8 @@ sensorWidth = 2 * ( focal * std::tan( (0.5 * FOV)/57.296) );
 $$
 若是利用焦距/FOV等参数计算不够精确，也可自行获取相机型号及传感器宽度值手动导入SenWidDB.txt
 
+**(注：若SFM步骤时提示There is no defined intrinsic data in order to compute an essential matrix for the initial pair，则说明缺失源图片的相机传感器参数，需要根据以下图片中的情况进行手动添加，否则会SFM重建失败)**
+
 ![senwidinfo](images/senwidinfo.png)
 
 添加之后在SenWidDB.txt中理应也会出现对应的 相机型号;传感器宽度值 
