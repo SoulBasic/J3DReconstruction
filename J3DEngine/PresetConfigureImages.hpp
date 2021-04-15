@@ -308,7 +308,7 @@ int LoadingImages(
 					{
 						error_report_stream
 							<< stlplus::basename_part(sImageFilename)
-							<< "\n 找不到相机SenWidData \n";
+							<< "\n Warning:找不到相机传感器参数，请手动添加 \n";
 					}
 				}
 			}

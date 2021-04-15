@@ -101,7 +101,7 @@ void QT3DReconstruction::timerSlot()
 				QString fileName = Global::sfmOutputDir + "/SparseCloud.J3D";
 				if (fileName == "")
 				{
-					QMessageBox::information(NULL, u8"失败", "打开J3D文件失败，请检查路径是否正确 ", QMessageBox::Ok, QMessageBox::Ok);
+					QMessageBox::information(NULL, u8"失败", u8"打开J3D文件失败，请检查路径是否正确 ", QMessageBox::Ok, QMessageBox::Ok);
 					return;
 
 				}
@@ -122,7 +122,7 @@ void QT3DReconstruction::timerSlot()
 				QString fileName = Global::densifyWorkingDir + "/DenseCloud.J3D";
 				if (fileName == "")
 				{
-					QMessageBox::information(NULL, u8"失败", "打开J3D文件失败，请检查路径是否正确 ", QMessageBox::Ok, QMessageBox::Ok);
+					QMessageBox::information(NULL, u8"失败", u8"打开J3D文件失败，请检查路径是否正确 ", QMessageBox::Ok, QMessageBox::Ok);
 					return;
 
 				}
@@ -142,7 +142,7 @@ void QT3DReconstruction::timerSlot()
 				QString fileName = Global::reconstructMeshWorkingDir + "/TIN_Mesh.J3D";
 				if (fileName == "")
 				{
-					QMessageBox::information(NULL, u8"失败", "打开J3D文件失败，请检查路径是否正确 ", QMessageBox::Ok, QMessageBox::Ok);
+					QMessageBox::information(NULL, u8"失败", u8"打开J3D文件失败，请检查路径是否正确 ", QMessageBox::Ok, QMessageBox::Ok);
 					return;
 
 				}
@@ -162,7 +162,7 @@ void QT3DReconstruction::timerSlot()
 				QString fileName = Global::reconstructMeshWorkingDir + "/TEXTURE_Mesh.J3D";
 				if (fileName == "")
 				{
-					QMessageBox::information(NULL, u8"失败", "打开J3D文件失败，请检查路径是否正确 ", QMessageBox::Ok, QMessageBox::Ok);
+					QMessageBox::information(NULL, u8"失败", u8"打开J3D文件失败，请检查路径是否正确 ", QMessageBox::Ok, QMessageBox::Ok);
 					return;
 
 				}
@@ -186,7 +186,7 @@ void QT3DReconstruction::timerSlot()
 		}
 		else if (Global::process == PROCESSERROR)
 		{
-			QMessageBox::information(NULL, u8"失败", "任务失败，具体任务日志于J3DEngine查询 ", QMessageBox::Ok, QMessageBox::Ok);
+			QMessageBox::information(NULL, u8"失败", u8"任务失败，具体任务日志于J3DEngine查询 ", QMessageBox::Ok, QMessageBox::Ok);
 			Global::tasking = false;
 			ui.label_process->setText(u8"等待任务 ");
 			ui.progressBar->setValue(0);
