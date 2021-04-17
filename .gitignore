@@ -23,6 +23,9 @@ bld/
 [Ll]og/
 MVSEngine/x64/
 J3DGUI/Release/
+J3DEngine/x64/
+MVSEngine/x64/
+
 
 # Visual Studio 2015 cache/options directory
 .vs/

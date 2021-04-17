@@ -188,7 +188,7 @@
       <ProgramDatabaseFile>C:/openMVS/build/openMVG/Windows-AMD64-Release/Release/openMVG_main_ComputeMatches.pdb</ProgramDatabaseFile>
       <ImportLibrary>C:/openMVS/build/openMVG/Windows-AMD64-Release/Release/openMVG_main_ComputeMatches.lib</ImportLibrary>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <AdditionalLibraryDirectories>C:\openMVS\build\openCV\install\x64\vc15\lib;..\MVSEngine;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\openMVS\build\openCV\install\x64\vc15\lib;..\MVSEngine;..\x64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
