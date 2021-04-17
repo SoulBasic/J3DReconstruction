@@ -193,7 +193,7 @@ int LoadingImages(
 	{
 		if (!stlplus::folder_create(OutputPath))
 		{
-			std::cerr << "\n无法创建输出目录，请检查权限 " << std::endl;
+			std::cerr << "\n无法创建输出目录，请检查权限，或使用管理员身份运行 " << std::endl;
 			return EXIT_FAILURE;
 		}
 	}

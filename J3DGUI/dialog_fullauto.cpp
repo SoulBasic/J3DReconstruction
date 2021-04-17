@@ -228,7 +228,7 @@ void Dialog_FullAuto::on_btn_OK_clicked()
 	}
 	else
 	{
-		QMessageBox::information(NULL, u8"错误", u8"无法访问缓存文件，请检查权限 ", QMessageBox::Yes, NULL);
+		QMessageBox::information(NULL, u8"错误", u8"无法访问缓存文件，请检查权限，或使用管理员身份运行 ", QMessageBox::Yes, NULL);
 	}
 }
 

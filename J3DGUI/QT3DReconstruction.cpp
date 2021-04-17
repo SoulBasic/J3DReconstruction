@@ -392,7 +392,7 @@ bool QT3DReconstruction::openViewCompatibility(QString fileName)
 	QFile Processcache("C:\\ProgramData\\J3DEngine\\ViewerCache.tmp");
 	if (!Processcache.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate))
 	{
-		QMessageBox::information(NULL, u8"失败", u8"打开缓存文件失败，请检查权限 ", QMessageBox::Ok, QMessageBox::Ok);
+		QMessageBox::information(NULL, u8"失败", u8"打开缓存文件失败，请检查权限，或使用管理员身份运行 ", QMessageBox::Ok, QMessageBox::Ok);
 		return false;
 	}
 	Processcache.write("1");

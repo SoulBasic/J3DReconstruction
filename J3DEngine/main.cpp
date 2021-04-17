@@ -38,7 +38,7 @@ VOID CALLBACK TimerProc(HWND hWnd, UINT uMsg, UINT_PTR idEvent, DWORD dwTime)
 {
 	m_hWnd = FindWindow("Qt5QWindowIcon", "J3DGUI");
 	if (!saveTid() || !Global::saveProcess())
-		std::cout << "写入缓存失败，请检查软件权限 " << endl;
+		std::cout << "写入缓存失败，请检查软件权限，或使用管理员身份运行 " << endl;
 }
 void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 {
@@ -755,7 +755,7 @@ int main()
 	int tid = GetCurrentThreadId();
 	if (!saveTid())
 	{
-		std::cout << "写入缓存失败，请检查软件权限 " << endl;
+		std::cout << "写入缓存失败，请检查软件权限，或使用管理员身份运行 " << endl;
 		return -1;
 	}
 	m_hWnd = FindWindow("Qt5QWindowIcon", "J3DGUI");

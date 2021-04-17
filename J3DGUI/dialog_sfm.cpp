@@ -72,7 +72,7 @@ void Dialog_SFM::on_btn_OK_clicked()
 	}
 	else
 	{
-		QMessageBox::information(NULL, u8"错误", u8"无法写入缓存，请检查权限 ", QMessageBox::Ok, NULL);
+		QMessageBox::information(NULL, u8"错误", u8"无法写入缓存，请检查权限，或使用管理员身份运行 ", QMessageBox::Ok, NULL);
 	}
 
 }

@@ -37,7 +37,7 @@ bool exportToSparse(
 		stlplus::folder_create(sOutDir);
 		if (!stlplus::is_folder(sOutDir))
 		{
-			std::cerr << "无法访问输出目录，请检查权限" << std::endl;
+			std::cerr << "无法访问输出目录，请检查权限，或使用管理员身份运行 " << std::endl;
 			return false;
 		}
 	}
@@ -279,7 +279,7 @@ int ExportSparseCloud(
 	if (!exportToSparse(sfm_data, sOutFile, sOutDir, iNumThreads))
 	{
 		std::cerr << std::endl
-			<< "无法写到文件，请检查权限" << std::endl;
+			<< "无法写到文件，请检查权限，或使用管理员身份运行 " << std::endl;
 		return EXIT_FAILURE;
 	}
 	Global::processState = 100;
