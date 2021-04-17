@@ -90,7 +90,7 @@
     <QtBuildConfig>release</QtBuildConfig>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="QtSettings">
-    <QtInstall>msvc2017_64</QtInstall>
+    <QtInstall>5.14.2_msvc2017_64</QtInstall>
     <QtModules>core;gui;widgets</QtModules>
     <QtBuildConfig>release</QtBuildConfig>
   </PropertyGroup>
@@ -167,7 +167,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <AdditionalOptions> /SAFESEH:NO /bigobj /Zm170 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories>E:\OpenGL\glew-2.1.0\include;E:\OpenGL\glfw-3.3.2\include;E:\libpng;C:\Program Files (x86)\GLFW\include;..\MVSEngine;C:\openMVS\Boost\boost_1_67_0;C:\openMVS\src;C:\openMVS\Eigen;C:\openMVS\build\openCV;E:\OSG\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\3rd_party\glew-2.1.0\include;C:\Program Files (x86)\GLFW\include;..\MVSEngine;C:\openMVS\Boost\boost_1_67_0;C:\openMVS\src;C:\openMVS\Eigen;C:\openMVS\build\openCV\install\include;..\3rd_party\OSG\include;..\3rd_party\libpng;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_NO_DEBUG;NDEBUG;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;_HAS_EXCEPTIONS=1;_USE_OPENMP;_USE_OPENGL;_USE_BOOST;_USE_EIGEN;_USE_NONFREE;_USE_FAST_FLOAT2INT;_USE_FAST_CBRT;_USE_SSE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>true</OpenMPSupport>
@@ -185,7 +185,7 @@
       <ExecutionDescription>Uic'ing %(Identity)...</ExecutionDescription>
     </QtUic>
     <Link>
-      <AdditionalLibraryDirectories>$(Qt_LIBPATH_);E:\libpng\x64\Release;C:\Program Files (x86)\Windows Kits\10\Lib\10.0.17763.0\um\x64;E:\OpenGL\glew-2.1.0\lib\Release\x64;..\x64\Release;C:/openMVS/Boost/boost_1_67_0/lib64-msvc-14.1;C:/openMVS/Boost/boost_1_67_0/lib64-msvc-14.1/$(Configuration);C:\Program Files %28x86%29\CGAL\lib;E:\OSG\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(Qt_LIBPATH_);C:\Program Files (x86)\Windows Kits\10\Lib\10.0.17763.0\um\x64;..\3rd_party\glew-2.1.0\lib\Release\x64;..\x64\Release;C:/openMVS/Boost/boost_1_67_0/lib64-msvc-14.1;C:/openMVS/Boost/boost_1_67_0/lib64-msvc-14.1/$(Configuration);C:\Program Files %28x86%29\CGAL\lib;..\3rd_party\OSG\lib;..\3rd_party\libpng;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>$(Qt_LIBS_);C:\openMVS\build\openMVS\lib\vc15\x64\Release\MVS.lib;C:\openMVS\build\openMVS\lib\vc15\x64\Release\Math.lib;C:\openMVS\build\openMVS\lib\vc15\x64\Release\IO.lib;C:\openMVS\build\openMVS\lib\vc15\x64\Release\Common.lib;odbc32.lib;odbccp32.lib;zlib.lib;libpng16.lib;OpenGL32.Lib;GlU32.Lib;E:\OpenGL\glew-2.1.0\lib\Release\x64\glew32.lib;C:\Program Files (x86)\GLFW\lib\glfw3.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_iostreams-vc141-mt-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_program_options-vc141-mt-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_system-vc141-mt-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_serialization-vc141-mt-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_regex-vc141-mt-x64-1_67.lib;C:\openMVS\build\openCV\lib\Release\opencv_world341.lib;C:\openMVS\build\openCV\lib\Release\opencv_img_hash341.lib;C:\openMVS\jpeg-9d\libjpeg.lib;C:\Program Files (x86)\Ceres\lib\ceres.lib;C:\openMVS\build\Google_Log\Release\glog.lib;C:\openMVS\build\Google_Flags\lib\Release\gflags_static.lib;shlwapi.lib;C:\openMVS\CGAL\auxiliary\gmp\lib\libmpfr-4.lib;C:\openMVS\CGAL\auxiliary\gmp\lib\libgmp-10.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions> /SAFESEH:NO /machine:x64 /FORCE:MULTIPLE %(AdditionalOptions)</AdditionalOptions>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>

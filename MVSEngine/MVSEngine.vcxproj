@@ -167,7 +167,7 @@
       </SDLCheck>
       <PreprocessorDefinitions>_CONSOLE;WIN32;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;NDEBUG;_WIN32;_HAS_EXCEPTIONS=1;_USE_OPENMP;_USE_OPENGL;_USE_BOOST;_USE_EIGEN;_USE_NONFREE;_USE_FAST_FLOAT2INT;_USE_FAST_CBRT;_USE_SSE;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>false</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\openMVS\src;C:\openMVS\Boost\boost_1_67_0;C:\openMVS\Eigen;C:\openMVS\build\openCV;C:\openMVS\openCV\sources\include;C:\openMVS\openCV\sources\include\opencv;C:\openMVS\openCV\sources\modules;E:\OpenGL\glew-2.1.0\include;C:\Program Files (x86)\GLFW\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\openMVS\src;C:\openMVS\Boost\boost_1_67_0;C:\openMVS\Eigen;C:\openMVS\build\openCV\install\include;C:\openMVS\openCV\sources\include;C:\openMVS\openCV\sources\include\opencv;C:\openMVS\openCV\sources\modules;E:\OpenGL\glew-2.1.0\include;C:\Program Files (x86)\GLFW\include</AdditionalIncludeDirectories>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <AdditionalOptions>/bigobj /Zm170 %(AdditionalOptions)</AdditionalOptions>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>

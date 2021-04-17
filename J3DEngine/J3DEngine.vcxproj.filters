@@ -51,7 +51,7 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="C:\Users\Administrator\Desktop\J3DEngine.ico">
+    <Image Include="J3DEngine.ico">
       <Filter>资源文件</Filter>
     </Image>
   </ItemGroup>

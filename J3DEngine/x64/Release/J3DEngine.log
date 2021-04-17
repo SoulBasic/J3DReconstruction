@@ -360,5 +360,4 @@ C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.1
               _Ty=uint32_t
           ]
   正在生成代码...
-    正在创建库 C:/openMVS/build/openMVG/Windows-AMD64-Release/Release/openMVG_main_ComputeMatches.lib 和对象 C:/openMVS/build/openMVG/Windows-AMD64-Release/Release/openMVG_main_ComputeMatches.exp
-  J3DEngine.vcxproj -> E:\Work\JWL3D\x64\Release\J3DEngine.exe
+LINK : fatal error LNK1181: 无法打开输入文件“J3DMVSEngine.lib”
