@@ -47,13 +47,15 @@ OSG库中提供的基于openGL库的可视化模型预览及格式转换封装�
 
 #### Build
 
-本应用构建所需的环境如下：
+本项目在开发时的环境如下：
 
 Windows 10 + VisualStudio 2017
 
 openMVG
 
-openMVS（本项目所用的openMVG、openMVS在原项目的基础上有做细微更改，实际构建使用的代码也在我的仓库中，有需要的同学可以一起使用，若使用原版库，则J3DGUI中预览模型只能使用兼容模式）
+openMVS
+
+（本项目所用的openMVG、openMVS在原项目的基础上有做细微更改，实际构建使用的代码也在我的仓库中，有需要的同学可以一起使用，若使用原版库，则J3DGUI中预览模型只能使用兼容模式）
 
 openCV（openCV 3.4.1 & openCV 3.4.1_contrib）
 
@@ -78,6 +80,18 @@ GoogleLog （glog 0.3.3）
 CXSParse（CXSParse 3.1.1）
 
 LIBJPEG（jpeg-9d）
+
+GLFW（glfw-3.3.2）
+
+以下的三方库在项目3rd_party目录中附带，无需自行编译安装
+
+OpenSceneGragh（osg 3.4.1）
+
+LIBPNG（libpng 1.6.37）
+
+GLEW（glew-2.1.0）
+
+
 
 
 
