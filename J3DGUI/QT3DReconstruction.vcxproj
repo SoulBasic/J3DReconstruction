@@ -219,11 +219,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="dialog_coor.cpp" />
     <ClCompile Include="Jutil.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Window.cpp" />
     <QtRcc Include="QT3DReconstruction.qrc" />
     <QtUic Include="dialog_addsensorwidth.ui" />
+    <QtUic Include="dialog_coor.ui" />
     <QtUic Include="dialog_densifypointcloud.ui" />
     <QtUic Include="dialog_fullauto.ui" />
     <QtUic Include="Dialog_MatchFeature.ui" />
@@ -259,6 +261,7 @@
     <QtMoc Include="dialog_sfm.h" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="dialog_coor.h" />
     <ClInclude Include="Jutil.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Scene.h" />

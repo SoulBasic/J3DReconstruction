@@ -316,9 +316,16 @@
     </property>
     <addaction name="action_fullauto"/>
    </widget>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>坐标映射</string>
+    </property>
+    <addaction name="action_coor"/>
+   </widget>
    <addaction name="menu_3"/>
    <addaction name="menu_4"/>
    <addaction name="menu_2"/>
+   <addaction name="menu"/>
   </widget>
   <action name="actionMatchFeature">
    <property name="text">
@@ -363,6 +370,11 @@
   <action name="action_2">
    <property name="text">
     <string>打开模型（兼容模式）</string>
+   </property>
+  </action>
+  <action name="action_coor">
+   <property name="text">
+    <string>坐标映射</string>
    </property>
   </action>
  </widget>

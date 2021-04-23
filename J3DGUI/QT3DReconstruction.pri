@@ -10,6 +10,7 @@ message("You are running qmake on a generated .pro file. This may not work!")
 HEADERS += ./Global.h \
     $$PWD/Dialog_ReconstructMesh.h \
     $$PWD/dialog_addsensorwidth.h \
+    $$PWD/dialog_coor.h \
     $$PWD/dialog_fullauto.h \
     $$PWD/dialog_texturemesh.h \
     $$PWD/j3dviewer.h \
@@ -21,6 +22,7 @@ HEADERS += ./Global.h \
 SOURCES += ./dialog_densifypointcloud.cpp \
     $$PWD/Dialog_ReconstructMesh.cpp \
     $$PWD/dialog_addsensorwidth.cpp \
+    $$PWD/dialog_coor.cpp \
     $$PWD/dialog_fullauto.cpp \
     $$PWD/dialog_texturemesh.cpp \
     $$PWD/j3dviewer.cpp \
@@ -32,6 +34,7 @@ SOURCES += ./dialog_densifypointcloud.cpp \
     ./main.cpp
 FORMS += ./dialog_densifypointcloud.ui \
     $$PWD/dialog_addsensorwidth.ui \
+    $$PWD/dialog_coor.ui \
     $$PWD/dialog_fullauto.ui \
     $$PWD/dialog_reconstructmesh.ui \
     $$PWD/dialog_texturemesh.ui \

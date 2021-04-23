@@ -204,7 +204,7 @@ int MVSEngine::DensifyPointCloud(int num, char* cmd[])
 	Scene scene(OPT::nMaxThreads);
 	if (OPT::fSampleMesh != 0) {
 		// sample input mesh and export the obtained point-cloud
-		if (!scene.mesh.Load(MAKE_PATH_SAFE(OPT::strInputFileName)))
+		if (!scene.mesh.Load("‪F:\\3DR_Build\\TS\\build\\SparseCloud.J3D"))
 		{
 
 			return EXIT_FAILURE;

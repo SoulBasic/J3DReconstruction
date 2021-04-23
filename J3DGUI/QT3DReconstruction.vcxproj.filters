@@ -57,6 +57,9 @@
     <QtMoc Include="dialog_fullauto.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="dialog_coor.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -105,6 +108,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Jutil.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dialog_coor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -162,6 +168,9 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="dialog_fullauto.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="dialog_coor.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

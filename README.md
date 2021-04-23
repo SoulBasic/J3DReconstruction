@@ -167,9 +167,9 @@ $$
 渲染网格：M键
 渲染纹理：T键
 
-其中若需打开osgb格式的文件，需要OSG库，项目中未附带OSG库的源码，请自行编译
 
-其中viewer和convert工具可直接使用OSG库中的osgviewer.exe和osgconv.exe替换程序所需的OSGViewer.exe和osgcv.exe
+
+viewer和convert工具可直接使用OSG库中的osgviewer.exe和osgconv.exe替换程序所需的OSGViewer.exe和osgcv.exe
 
 （或者本项目Release包中也有相应二进制文件可直接使用）
 

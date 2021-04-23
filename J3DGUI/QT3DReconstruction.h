@@ -95,6 +95,8 @@ private slots:
 
     void on_pushButton_export_clicked();
 
+	void on_action_coor_triggered();
+
 private:
 
 	Ui::QT3DReconstructionClass ui;

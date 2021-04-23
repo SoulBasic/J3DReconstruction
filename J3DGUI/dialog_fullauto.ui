@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>全自动三维重建</string>
   </property>
   <widget class="QLabel" name="label_8">
    <property name="geometry">
