@@ -37,6 +37,9 @@
   <ItemGroup>
     <Image Include="J3DEngine.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="OriginPoints.hpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{876553CC-6603-4752-B10D-EDEE46B76701}</ProjectGuid>

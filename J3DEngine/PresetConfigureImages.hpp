@@ -222,6 +222,12 @@ int LoadingImages(
 		}
 	}
 
+
+	if (!sPriorWeights.empty())
+	{
+		prior_w_info = checkPriorWeightsString(sPriorWeights);
+	}
+
 	std::vector<std::string> vec_image = stlplus::folder_files(InputImagePath);
 	std::sort(vec_image.begin(), vec_image.end());
 

@@ -7,6 +7,7 @@
 #include "StructureFromMotion.hpp"
 #include "StructureFromPoses.hpp"
 #include "ExportSparseCloud.hpp"
+#include "OriginPoints.hpp"
 #include <algorithm>
 #include <direct.h>
 #include <fstream>
@@ -113,7 +114,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 
 		cmdCache.close();
 
-		STATE_RETURN = LoadingImages(imagesInputDir, matchesOutputDir, sensorWidthDataBaseDir, EigenMatrix);
+		STATE_RETURN = LoadingImages(imagesInputDir, matchesOutputDir, sensorWidthDataBaseDir, EigenMatrix, "1.0;1.0;1.0");
 		if (STATE_RETURN == EXIT_FAILURE)
 		{
 			std::cout << "加载图片失败" << std::endl;
@@ -192,7 +193,8 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		getline(cmdCache, temp);
 		resectionMethod = atoi(temp.c_str());
 		cmdCache.close();
-		STATE_RETURN = StructureFromMotion(
+		STATE_RETURN = StructureFromMotion
+		(
 			matchesDir + "\\sfm_data.json",
 			matchesDir,
 			"",
@@ -201,8 +203,8 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 			"",
 			"ADJUST_ALL",
 			3,
-			false,
-			false,
+			true,
+			true,
 			triangulationMethod,
 			resectionMethod);
 		if (STATE_RETURN == EXIT_FAILURE)
@@ -212,8 +214,23 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 			break;
 
 		}
+
+		std::cout << "进行SFM数据精细化" << std::endl;
+		STATE_RETURN = ConvertCoorsToOrigin
+		(
+			sfmOutputDir + "/sfm_data.bin",
+			sfmOutputDir
+		);
+		if (STATE_RETURN == EXIT_FAILURE)
+		{
+			std::cout << "SFM数据精细化失败" << std::endl;
+			Global::process = PROCESSERROR;
+			break;
+
+		}
+
 		std::cout << "进行点云上色" << std::endl;
-		STATE_RETURN = PrintPointColors(sfmOutputDir + "/sfm_data.bin", sfmOutputDir + "/colored.ply");
+		STATE_RETURN = PrintPointColors(sfmOutputDir + "/sfm_data_local.bin", sfmOutputDir + "/colored.ply");
 		if (STATE_RETURN == EXIT_FAILURE)
 		{
 			std::cout << "SFM点云上色失败" << std::endl;
@@ -222,7 +239,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		}
 		std::cout << "进行SFP重构" << std::endl;
 		STATE_RETURN = StructureFromPoses(
-			sfmOutputDir + "/sfm_data.bin",
+			sfmOutputDir + "/sfm_data_local.bin",
 			matchesDir,
 			sfmOutputDir + "/robust.bin",
 			matchesDir + "/matches.f.bin");
@@ -550,7 +567,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		getline(cmdCache, textureMeshOutputDir);
 		getline(cmdCache, exportFormat);
 		cmdCache.close();
-		STATE_RETURN = LoadingImages(imagesInputDir, matchesOutputDir, sensorWidthDataBaseDir, EigenMatrix);
+		STATE_RETURN = LoadingImages(imagesInputDir, matchesOutputDir, sensorWidthDataBaseDir, EigenMatrix, "1.0;1.0;1.0");
 		if (STATE_RETURN == EXIT_FAILURE)
 		{
 			std::cout << "加载图片失败" << std::endl;
@@ -603,8 +620,8 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 			"",
 			"ADJUST_ALL",
 			3,
-			false,
-			false,
+			true,
+			true,
 			triangulationMethod,
 			resectionMethod);
 		Sleep(3000);
@@ -615,8 +632,24 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 			break;
 
 		}
+
+		std::cout << "进行SFM数据精细化" << std::endl;
+		STATE_RETURN = ConvertCoorsToOrigin
+		(
+			sfmOutputDir + "/sfm_data.bin",
+			sfmOutputDir
+		);
+		Sleep(2000);
+		if (STATE_RETURN == EXIT_FAILURE)
+		{
+			std::cout << "SFM数据精细化失败" << std::endl;
+			Global::process = PROCESSERROR;
+			break;
+
+		}
+
 		std::cout << "进行点云上色" << std::endl;
-		STATE_RETURN = PrintPointColors(sfmOutputDir + "/sfm_data.bin", sfmOutputDir + "/colored.ply");
+		STATE_RETURN = PrintPointColors(sfmOutputDir + "/sfm_data_local.bin", sfmOutputDir + "/colored.ply");
 		Sleep(3000);
 		if (STATE_RETURN == EXIT_FAILURE)
 		{
@@ -626,7 +659,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		}
 		std::cout << "进行SFP重构" << std::endl;
 		STATE_RETURN = StructureFromPoses(
-			sfmOutputDir + "/sfm_data.bin",
+			sfmOutputDir + "/sfm_data_local.bin",
 			matchesDir,
 			sfmOutputDir + "/robust.bin",
 			matchesDir + "/matches.f.bin");
