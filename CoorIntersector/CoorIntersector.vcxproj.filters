@@ -15,10 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Global.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="J3DEngine.cpp">
+    <ClCompile Include="CoorIntersector.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -26,38 +23,10 @@
     <ClInclude Include="resource.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Global.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="ExportSparseCloud.hpp">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="MatchImages.hpp">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="PresetConfigureImages.hpp">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="StructureFromMotion.hpp">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="StructureFromPoses.hpp">
-      <Filter>头文件</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="J3DEngine.rc">
+    <ResourceCompile Include="CoorIntersector.rc">
       <Filter>资源文件</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="J3DEngine.ico">
-      <Filter>资源文件</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="OriginPoints.hpp">
-      <Filter>头文件</Filter>
-    </None>
   </ItemGroup>
 </Project>

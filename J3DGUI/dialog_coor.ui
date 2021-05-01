@@ -6,18 +6,18 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>340</width>
-    <height>208</height>
+    <width>472</width>
+    <height>63</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>坐标映射</string>
   </property>
   <widget class="QPushButton" name="button_ok">
    <property name="geometry">
     <rect>
-     <x>230</x>
-     <y>90</y>
+     <x>350</x>
+     <y>20</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -29,14 +29,40 @@
   <widget class="QLineEdit" name="lineEdit_filename">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>90</y>
+     <x>110</x>
+     <y>20</y>
      <width>161</width>
      <height>20</height>
     </rect>
    </property>
    <property name="text">
     <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_browseOutputDir">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>20</y>
+     <width>41</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>浏览</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_20">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>20</y>
+     <width>81</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>重建结果目录:</string>
    </property>
   </widget>
  </widget>

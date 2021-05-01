@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CoorIntersector.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="CoorIntersector.rc" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{69F45DB9-AD86-4497-95D9-0459D73E5D7E}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>ConsoleApplication3</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;_SILENCE_FPOS_SEEKPOS_DEPRECATION_WARNING;_WIN32;_HAS_EXCEPTIONS=1;_USE_OPENMP;_USE_OPENGL;_USE_BOOST;_USE_EIGEN;_USE_NONFREE;_USE_FAST_FLOAT2INT;_USE_FAST_CBRT;_USE_SSE;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>false</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\openMVS\src;C:\openMVS\Boost\boost_1_67_0;C:\openMVS\Eigen;C:\openMVS\build\openCV;C:\openMVS\openCV\sources\include;C:\openMVS\openCV\sources\include\opencv;C:\openMVS\openCV\sources\modules\core\include;C:\openMVS\openCV\sources\modules\flann\include;C:\openMVS\openCV\sources\modules\imgproc\include;C:\openMVS\openCV\sources\modules\ml\include;C:\openMVS\openCV\sources\modules\objdetect\include;C:\openMVS\openCV_contrib\modules\phase_unwrapping\include;C:\openMVS\openCV\sources\modules\photo\include;C:\openMVS\openCV_contrib\modules\plot\include;C:\openMVS\openCV_contrib\modules\reg\include;C:\openMVS\openCV_contrib\modules\surface_matching\include;C:\openMVS\openCV\sources\modules\video\include;C:\openMVS\openCV_contrib\modules\xphoto\include;C:\openMVS\openCV\sources\modules\dnn\include;C:\openMVS\openCV_contrib\modules\fuzzy\include;C:\openMVS\openCV_contrib\modules\hfs\include;C:\openMVS\openCV\sources\modules\imgcodecs\include;C:\openMVS\openCV\sources\modules\shape\include;C:\openMVS\openCV\sources\modules\videoio\include;C:\openMVS\openCV_contrib\modules\xobjdetect\include;C:\openMVS\openCV\sources\modules\highgui\include;C:\openMVS\openCV\sources\modules\superres\include;C:\openMVS\openCV_contrib\modules\bioinspired\include;C:\openMVS\openCV_contrib\modules\dnn_objdetect\include;C:\openMVS\openCV_contrib\modules\dpm\include;C:\openMVS\openCV\sources\modules\features2d\include;C:\openMVS\openCV_contrib\modules\line_descriptor\include;C:\openMVS\openCV_contrib\modules\saliency\include;C:\openMVS\openCV_contrib\modules\text\include;C:\openMVS\openCV\sources\modules\calib3d\include;C:\openMVS\openCV_contrib\modules\ccalib\include;C:\openMVS\openCV_contrib\modules\datasets\include;C:\openMVS\openCV_contrib\modules\rgbd\include;C:\openMVS\openCV_contrib\modules\stereo\include;C:\openMVS\openCV_contrib\modules\structured_light\include;C:\openMVS\openCV_contrib\modules\tracking\include;C:\openMVS\openCV\sources\modules\videostab\include;C:\openMVS\openCV_contrib\modules\xfeatures2d\include;C:\openMVS\openCV_contrib\modules\ximgproc\include;C:\openMVS\openCV_contrib\modules\aruco\include;C:\openMVS\openCV_contrib\modules\bgsegm\include;C:\openMVS\openCV_contrib\modules\face\include;C:\openMVS\openCV_contrib\modules\optflow\include;C:\openMVS\openCV\sources\modules\stitching\include;C:\openMVS\openCV\sources\modules\world\include;C:\openMVS\openCV_contrib\modules\img_hash\include;C:\openMVS\openCV\sources\modules\ts\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:/openMVS/Boost/boost_1_67_0/lib64-msvc-14.1;C:/openMVS/Boost/boost_1_67_0/lib64-msvc-14.1/$(Configuration);C:\openMVS\build\openMVS\lib\vc15\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>MVS.lib;Math.lib;IO.lib;Common.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_iostreams-vc141-mt-gd-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_program_options-vc141-mt-gd-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_system-vc141-mt-gd-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_serialization-vc141-mt-gd-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_regex-vc141-mt-gd-x64-1_67.lib;C:\openMVS\build\openCV\lib\Debug\opencv_world341d.lib;C:\openMVS\build\openCV\lib\Debug\opencv_img_hash341d.lib;C:\openMVS\jpeg-9d\libjpeg.lib;C:\openMVS\CGAL\auxiliary\gmp\lib\libmpfr-4.lib;C:\openMVS\CGAL\auxiliary\gmp\lib\libgmp-10.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64 /FORCE:MULTIPLE</AdditionalOptions>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>false</SDLCheck>
+      <PreprocessorDefinitions>_CONSOLE;WIN32;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;NDEBUG;_WIN32;_HAS_EXCEPTIONS=1;_USE_OPENMP;_USE_OPENGL;_USE_BOOST;_USE_EIGEN;_USE_NONFREE;_USE_FAST_FLOAT2INT;_USE_FAST_CBRT;_USE_SSE;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>false</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\openMVS\src;C:\openMVS\Boost\boost_1_67_0;C:\openMVS\Eigen;C:\openMVS\build\openCV\install\include;C:\openMVS\build\openCV\install\include\opencv2;C:\openMVS\build\openCV\install\include\opencv;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OpenMPSupport>true</OpenMPSupport>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <AdditionalOptions>/bigobj /Zm170 %(AdditionalOptions)</AdditionalOptions>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\openMVS\build\openMVS\lib\vc15\x64\Release;C:/openMVS/Boost/boost_1_67_0/lib64-msvc-14.1;C:/openMVS/Boost/boost_1_67_0/lib64-msvc-14.1/$(Configuration);C:\Program Files %28x86%29\CGAL\lib;%(AdditionalLibraryDirectories);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Common.lib;IO.lib;Math.lib;MVS.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\libboost_iostreams-vc141-mt-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\libboost_program_options-vc141-mt-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\libboost_system-vc141-mt-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\libboost_serialization-vc141-mt-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\libboost_regex-vc141-mt-x64-1_67.lib;C:\openMVS\build\openCV\lib\Release\opencv_world341.lib;C:\openMVS\build\openCV\lib\Release\opencv_img_hash341.lib;C:\Program Files (x86)\Ceres\lib\ceres.lib;C:\openMVS\build\Google_Log\Release\glog.lib;C:\openMVS\build\Google_Flags\lib\Release\gflags_static.lib;shlwapi.lib;C:\openMVS\CGAL\auxiliary\gmp\lib\libmpfr-4.lib;C:\openMVS\CGAL\auxiliary\gmp\lib\libgmp-10.lib;C:\openMVS\jpeg-9d\libjpeg.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64 /FORCE:MULTIPLE</AdditionalOptions>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

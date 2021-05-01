@@ -35,7 +35,10 @@ namespace OPT_TextureMesh {
 // Initialize_TextureMesh and parse the command line parameters
 bool MVSEngine::Initialize_TextureMesh(size_t argc, LPCTSTR* argv)
 {
-	// Initialize_TextureMesh log and console
+	// Initialize_Dense log and console
+	CLOSE_LOGFILE();
+	CLOSE_LOGCONSOLE();
+	CLOSE_LOG();
 	OPEN_LOG();
 	OPEN_LOGCONSOLE();
 
@@ -159,9 +162,6 @@ void MVSEngine::Finalize_TextureMesh()
 	Util::LogMemoryInfo();
 #endif
 
-	CLOSE_LOGFILE();
-	CLOSE_LOGCONSOLE();
-	CLOSE_LOG();
 }
 
 int MVSEngine::TextureMesh(int num, char* cmd[])

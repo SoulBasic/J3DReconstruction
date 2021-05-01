@@ -3,7 +3,8 @@
 #include "libs/MVS/Scene.h"
 #include <boost/program_options.hpp>
 #include "MVSEngine.h"
-
+#include <direct.h>
+#include <cstdio>
 using namespace MVS;
 
 
@@ -32,7 +33,11 @@ namespace OPT {
 // Initialize_Dense and parse the command line parameters
 bool MVSEngine::Initialize_Dense(size_t argc, LPCTSTR* argv)
 {
+
 	// Initialize_Dense log and console
+	CLOSE_LOGFILE();
+	CLOSE_LOGCONSOLE();
+	CLOSE_LOG();
 	OPEN_LOG();
 	OPEN_LOGCONSOLE();
 
@@ -179,10 +184,6 @@ void MVSEngine::Finalize_Dense()
 	// print memory statistics
 	Util::LogMemoryInfo();
 #endif
-
-	CLOSE_LOGFILE();
-	CLOSE_LOGCONSOLE();
-	CLOSE_LOG();
 }
 
 int MVSEngine::DensifyPointCloud(int num, char* cmd[])
@@ -204,7 +205,7 @@ int MVSEngine::DensifyPointCloud(int num, char* cmd[])
 	Scene scene(OPT::nMaxThreads);
 	if (OPT::fSampleMesh != 0) {
 		// sample input mesh and export the obtained point-cloud
-		if (!scene.mesh.Load("‪F:\\3DR_Build\\TS\\build\\SparseCloud.J3D"))
+		if (!scene.mesh.Load(MAKE_PATH_SAFE(OPT::strInputFileName)))
 		{
 
 			return EXIT_FAILURE;
@@ -225,7 +226,6 @@ int MVSEngine::DensifyPointCloud(int num, char* cmd[])
 	// load and estimate a dense point-cloud
 	if (!scene.Load(MAKE_PATH_SAFE(OPT::strInputFileName)))
 	{
-
 		return EXIT_FAILURE;
 	}
 	if (scene.pointcloud.IsEmpty()) {
@@ -264,10 +264,56 @@ int MVSEngine::DensifyPointCloud(int num, char* cmd[])
 	const String baseFileName(MAKE_PATH_SAFE(Util::getFileFullName(OPT::strOutputFileName)));
 	scene.Save(baseFileName + _T(".J3D"), (ARCHIVE_TYPE)OPT::nArchiveType);
 	scene.pointcloud.Save(baseFileName + _T(".ply"));
+
+
+
+
 #if TD_VERBOSE != TD_VERBOSE_OFF
 	if (VERBOSITY_LEVEL > 2)
 		scene.ExportCamerasMLP(baseFileName + _T(".mlp"), baseFileName + _T(".ply"));
 #endif
+
+	VERBOSE("图像坐标映射文件生成中: ");
+	//save coordinates files
+	auto workDir = MAKE_PATH_SAFE(Util::getFilePath(OPT::strInputFileName));
+	_mkdir((workDir + "image_coordinates").c_str());
+	std::vector<FILE*> files(scene.images.size(), nullptr);
+	std::unordered_map<std::string, int> nmap;
+	for (int i = 0; i < scene.images.size(); i++)
+	{
+		VERBOSE("%d : %s", i, scene.images[i].name.c_str());
+		nmap[scene.images[i].name.c_str()] = i;
+		std::string fname = Util::getFileName(scene.images[i].name).c_str();
+		fname = std::string(workDir.c_str()) + "image_coordinates/" + fname + ".coor";
+		files[i] = fopen(fname.c_str(), "wb");
+	}
+	const auto& points = scene.pointcloud.points;
+	const auto& views = scene.pointcloud.pointViews;
+	char buf[20];
+	for (int i = 0; i < points.size(); i++)
+	{
+		auto point = points[i];
+		auto view = views[i];
+		for (MVS::PointCloud::View idxImage : view) {
+			const MVS::Image& imageData = scene.images[idxImage];
+			const Point2 x(imageData.camera.TransformPointW2I(Cast<REAL>(points[i])));
+			int x1 = x.x * 2;
+			int y1 = x.y * 2;
+			int* p = reinterpret_cast<int*>(buf);
+			*p = x1;
+			p++;
+			*p = y1;
+			p++;
+			float* k = reinterpret_cast<float*>(p);
+			*k = point.x;
+			k++;
+			*k = point.y;
+			k++;
+			*k = point.z;
+			fwrite(buf, 20, 1, files[nmap[imageData.name.c_str()]]);
+		}
+	}
+	fcloseall();
 
 	MVSEngine::Finalize_Dense();
 

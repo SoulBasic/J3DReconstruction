@@ -20,7 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Global.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="J3DEngine.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ExportSparseCloud.hpp" />

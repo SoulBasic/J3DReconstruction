@@ -27,12 +27,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="QT3DReconstruction.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <ClCompile Include="QT3DReconstruction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <QtUic Include="dialog_densifypointcloud.ui">
       <Filter>Form Files</Filter>
     </QtUic>
@@ -113,6 +107,9 @@
     <ClCompile Include="dialog_coor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="QT3DReconstruction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="dialog_densifypointcloud.h">
@@ -122,6 +119,9 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="dialog_sfm.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QT3DReconstruction.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
@@ -188,8 +188,5 @@
     <None Include="C:\openMVS\build\openMVS\CMakeFiles\2380bda70809fc05df5a494dc6e05e0c\Viewer_CXX_prefix.hxx.rule">
       <Filter>Cmake Rules</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="CMakeLists.txt" />
   </ItemGroup>
 </Project>

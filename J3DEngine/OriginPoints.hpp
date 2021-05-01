@@ -30,12 +30,12 @@ int ConvertCoorsToOrigin
 	if (!Load(sfm_data, sSfM_Data_Filename_In, ESfM_Data(ALL)))
 	{
 		std::cerr << std::endl
-			<< "The input SfM_Data file \"" << sSfM_Data_Filename_In << "\" cannot be read." << std::endl;
+			<< "未能找到SFM数据文件 \"" << sSfM_Data_Filename_In << "\"" << std::endl;
 		return EXIT_FAILURE;
 	}
 
 	if (sfm_data.poses.empty()) {
-		std::cerr << "The provided scene does not contain any camera poses." << std::endl;
+		std::cerr << "该重建场景没有任何相机姿态数据！" << std::endl;
 		return EXIT_FAILURE;
 	}
 	local_Frame_Origin = (sfm_data.poses.cbegin()->second).center();
@@ -50,7 +50,6 @@ int ConvertCoorsToOrigin
 
 	// Save changed sfm data
 	  //-- Export to disk computed scene (data & visualizable results)
-	std::cout << "...Export SfM_Data to disk." << std::endl;
 	if (!Save(sfm_data,
 		stlplus::create_filespec(sOutDir, "sfm_data_local", ".bin"),
 		ESfM_Data(ALL))
@@ -58,7 +57,7 @@ int ConvertCoorsToOrigin
 			stlplus::create_filespec(sOutDir, "cloud_and_poses_local", ".ply"),
 			ESfM_Data(ALL)))
 	{
-		std::cerr << "Cannot save the resulting sfm_data scene." << std::endl;
+		std::cerr << "无法保存精细化场景，请检查权限" << std::endl;
 	}
 
 	std::ofstream file_LocalFrameOrigin(stlplus::create_filespec(sOutDir, "local_frame_origin", ".txt"));

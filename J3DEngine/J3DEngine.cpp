@@ -37,9 +37,9 @@ bool saveTid()
 
 VOID CALLBACK TimerProc(HWND hWnd, UINT uMsg, UINT_PTR idEvent, DWORD dwTime)
 {
-	m_hWnd = FindWindow("Qt5QWindowIcon", "J3DGUI");
+	m_hWnd = FindWindow("Qt5QWindowIcon", "J3D可视化平台");
 	if (!saveTid() || !Global::saveProcess())
-		std::cout << "写入缓存失败，请检查软件权限，或使用管理员身份运行 " << endl;
+		printf("写入缓存失败，请检查软件权限，或使用管理员身份运行 \n");
 }
 void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 {
@@ -49,7 +49,8 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 
 	switch (msg)
 	{
-	case CMD_MATCHFEATURES: {
+	case CMD_MATCHFEATURES: 
+	{
 		Global::process = PROCESSWORKING;
 		Global::saveProcess();
 		std::string imagesInputDir;
@@ -64,12 +65,12 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		float distanceRatio;
 		bool forceMatch;
 
-		std::cout << "\n任务呼叫：MATCHFEATURES \n" << std::endl;
+		printf("\n任务呼叫：MATCHFEATURES \n\n");
 		ifstream cmdCache;
 		cmdCache.open(("C:\\ProgramData\\J3DEngine\\cmdCache.tmp"), ios::in | ios::_Nocreate);
 		if (!cmdCache)
 		{
-			std::cout << "任务失败,无法获取任务参数\n" << std::endl;
+			printf("任务失败,无法获取任务参数\n");
 			Global::process = PROCESSERROR;
 			break;
 		}
@@ -78,7 +79,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		getline(cmdCache, temp);
 		if (temp != "matchfeature")
 		{
-			std::cout << "任务失败,无法获取任务参数\n" << std::endl;
+			printf("任务失败,无法获取任务参数\n");
 			Global::process = PROCESSERROR;
 			break;
 		}
@@ -117,12 +118,11 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		STATE_RETURN = LoadingImages(imagesInputDir, matchesOutputDir, sensorWidthDataBaseDir, EigenMatrix, "1.0;1.0;1.0");
 		if (STATE_RETURN == EXIT_FAILURE)
 		{
-			std::cout << "加载图片失败" << std::endl;
+			printf("加载图片失败\n");
 			Global::process = PROCESSERROR;
 			break;
 		}
-		std::cout << "加载图片成功" << std::endl;
-
+		printf("加载图片成功\n");
 		STATE_RETURN = GetFeatures(
 			matchesOutputDir + "/sfm_data.json",
 			matchesOutputDir,
@@ -133,12 +133,12 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 
 		if (STATE_RETURN == EXIT_FAILURE)
 		{
-			std::cout << "获取特征信息失败" << std::endl;
+			printf("获取特征信息失败\n");
 			Global::process = PROCESSERROR;
 			break;
 
 		}
-		std::cout << "获取特征点完成，准备开始匹配特征点" << std::endl;
+		printf("获取特征点完成，准备开始匹配特征点\n");
 
 		STATE_RETURN = GetMatches(
 			matchesOutputDir + "/sfm_data.json",
@@ -153,26 +153,28 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 
 		if (STATE_RETURN == EXIT_FAILURE)
 		{
-			std::cout << "匹配特征信息失败" << std::endl;
+			printf("匹配特征信息失败\n");
 			Global::process = PROCESSERROR;
 			break;
 		}
-		std::cout << "匹配完成" << std::endl;
-		std::cout << "\n任务完成" << std::endl;
+		printf("匹配完成\n");
+		printf("\n任务完成\n");
 		Global::process = PROCESSCLOSE;
 		break;
 	}
-	case CMD_SFMANDSFP: {
+
+	case CMD_SFMANDSFP: 
+	{
 		Global::process = PROCESSWORKING;
 		Global::saveProcess();
 		std::string matchesDir, sfmOutputDir;
 		int triangulationMethod, resectionMethod;
-		std::cout << "\n任务呼叫：SFMANDSFP \n" << std::endl;
+		printf("\n任务呼叫：SFMANDSFP \n\n");
 		ifstream cmdCache;
 		cmdCache.open(("C:\\ProgramData\\J3DEngine\\cmdCache.tmp"), ios::in | ios::_Nocreate);
 		if (!cmdCache)
 		{
-			std::cout << "任务失败,无法获取任务参数\n" << std::endl;
+			printf("任务失败,无法获取任务参数\n");
 			Global::process = PROCESSERROR;
 			break;
 		}
@@ -181,7 +183,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		getline(cmdCache, temp);
 		if (temp != "sfmandsfp")
 		{
-			std::cout << "任务失败,无法获取任务参数\n" << std::endl;
+			printf("任务失败,无法获取任务参数\n");
 			Global::process = PROCESSERROR;
 			break;
 		}
@@ -209,13 +211,13 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 			resectionMethod);
 		if (STATE_RETURN == EXIT_FAILURE)
 		{
-			std::cout << "SFM重建失败" << std::endl;
+			printf("SFM重建失败\n");
 			Global::process = PROCESSERROR;
 			break;
 
 		}
 
-		std::cout << "进行SFM数据精细化" << std::endl;
+		printf("进行SFM数据精细化\n");
 		STATE_RETURN = ConvertCoorsToOrigin
 		(
 			sfmOutputDir + "/sfm_data.bin",
@@ -223,21 +225,21 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		);
 		if (STATE_RETURN == EXIT_FAILURE)
 		{
-			std::cout << "SFM数据精细化失败" << std::endl;
+			printf("SFM数据精细化失败\n");
 			Global::process = PROCESSERROR;
 			break;
 
 		}
 
-		std::cout << "进行点云上色" << std::endl;
+		printf("进行点云上色\n");
 		STATE_RETURN = PrintPointColors(sfmOutputDir + "/sfm_data_local.bin", sfmOutputDir + "/colored.ply");
 		if (STATE_RETURN == EXIT_FAILURE)
 		{
-			std::cout << "SFM点云上色失败" << std::endl;
+			printf("SFM点云上色失败\n");
 			Global::process = PROCESSERROR;
 			break;
 		}
-		std::cout << "进行SFP重构" << std::endl;
+		printf("进行SFP重构\n");
 		STATE_RETURN = StructureFromPoses(
 			sfmOutputDir + "/sfm_data_local.bin",
 			matchesDir,
@@ -245,38 +247,39 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 			matchesDir + "/matches.f.bin");
 		if (STATE_RETURN == EXIT_FAILURE)
 		{
-			std::cout << "SFP重构失败" << std::endl;
+			printf("SFP重构失败\n");
 			Global::process = PROCESSERROR;
 			break;
 		}
-		std::cout << "SFP重构成功" << std::endl;
-		std::cout << "进行稀疏点云输出" << std::endl;
+		printf("SFP重构成功\n");
+		printf("进行稀疏点云输出\n");
 		STATE_RETURN = ExportSparseCloud(
 			sfmOutputDir + "/robust.bin",
 			sfmOutputDir + "/SparseCloud.J3D",
 			sfmOutputDir + "/undistorted_images");
 		if (STATE_RETURN == EXIT_FAILURE)
 		{
-			std::cout << "输出稀疏点云失败" << std::endl;
+			printf("输出稀疏点云失败\n");
 			Global::process = PROCESSERROR;
 			break;
 		}
-		std::cout << "\n任务完成" << std::endl;
+		printf("\n任务完成\n");
 		Global::process = PROCESSCLOSE;
 		break;
 	}
 
-	case CMD_EXPORTDENSECLOUD: {
+	case CMD_EXPORTDENSECLOUD: 
+	{
 		Global::process = PROCESSWORKING;
 		Global::saveProcess();
 		std::string densifyInputDir, densifyOutputDir, densifyWorkingDir;
 
-
+		printf("\n任务呼叫：DENSIFYPOINTCLOUD \n\n");
 		ifstream cmdCache;
 		cmdCache.open(("C:\\ProgramData\\J3DEngine\\cmdCache.tmp"), ios::in | ios::_Nocreate);
 		if (!cmdCache)
 		{
-			
+
 			printf("任务失败,无法获取任务参数\n");
 			Global::process = PROCESSERROR;
 			break;
@@ -306,9 +309,10 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		cmd[4] = (char*)densifyWorkingDir.data();
 		cmd[5] = "-o";
 		cmd[6] = (char*)densifyOutputDir.data();
-		STATE_RETURN = !MVSEngine::DensifyPointCloud(7, cmd);
+		STATE_RETURN = MVSEngine::DensifyPointCloud(7, cmd);
 		if (STATE_RETURN == EXIT_SUCCESS) {
 			Global::process = PROCESSCLOSE;
+			printf("任务完成\n");
 		}
 		else {
 			Global::process = PROCESSWORKING;
@@ -317,10 +321,12 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		break;
 	}
 
-	case CMD_RECONSTRUCTMESH: {
+	case CMD_RECONSTRUCTMESH: 
+	{
 		Global::process = PROCESSWORKING;
 		Global::saveProcess();
 		std::string reconstructMeshInputDir, reconstructMeshOutputDir, reconstructMeshWorkingDir;
+		printf("\n任务呼叫：RECONSTRUCTMESH \n\n");
 		ifstream cmdCache;
 		cmdCache.open(("C:\\ProgramData\\J3DEngine\\cmdCache.tmp"), ios::in | ios::_Nocreate);
 		if (!cmdCache)
@@ -372,6 +378,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		status = MVSEngine::RefineMesh(9, cmd);
 		if (status == EXIT_SUCCESS) {
 			Global::process = PROCESSCLOSE;
+			printf("任务完成\n");
 		}
 		else {
 			Global::process = PROCESSWORKING;
@@ -380,11 +387,14 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 
 		break;
 	}
-	case CMD_TEXTUREMESH: {
+
+	case CMD_TEXTUREMESH: 
+	{
 		Global::process = PROCESSWORKING;
 		Global::saveProcess();
 		std::string textureMeshInputDir, textureMeshOutputDir, textureMeshWorkingDir, exportFormat;
 		ifstream cmdCache;
+		printf("\n任务呼叫：TEXTUREMESH \n\n");
 		cmdCache.open(("C:\\ProgramData\\J3DEngine\\cmdCache.tmp"), ios::in | ios::_Nocreate);
 		if (!cmdCache)
 		{
@@ -424,17 +434,17 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		cmd[7] = "--export-type";
 		cmd[8] = (char*)exportFormat.data();
 		int status = MVSEngine::TextureMesh(9, cmd);
-		
+
 
 		if (status == EXIT_SUCCESS) {
-			
+
 			if (isOsgb)
 			{
 				string cmdt = "osgcv.exe " + textureMeshWorkingDir + "/TEXTURE_Mesh.obj " + textureMeshWorkingDir + "/TEXTURE_Mesh.osgb";
 				::system(cmdt.c_str());
 			}
 			Global::process = PROCESSCLOSE;
-
+			printf("任务完成\n");
 		}
 		else {
 			Global::process = PROCESSWORKING;
@@ -472,12 +482,12 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 
 		std::string textureMeshInputDir, textureMeshOutputDir, textureMeshWorkingDir, exportFormat;
 
-		std::cout << "\n任务呼叫：FULLAUTO \n" << std::endl;
+		printf("\n任务呼叫：FULLAUTO \n\n");
 		ifstream cmdCache;
 		cmdCache.open(("C:\\ProgramData\\J3DEngine\\fullautoCmdCache.tmp"), ios::in | ios::_Nocreate);
 		if (!cmdCache)
 		{
-			std::cout << "任务失败,无法获取任务参数\n" << std::endl;
+			printf("任务失败,无法获取任务参数\n");
 			Global::process = PROCESSERROR;
 			break;
 		}
@@ -486,7 +496,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		getline(cmdCache, temp);
 		if (temp != "matchfeature")
 		{
-			std::cout << "任务失败,无法获取任务参数\n" << std::endl;
+			printf("任务失败,无法获取任务参数\n");
 			Global::process = PROCESSERROR;
 			break;
 		}
@@ -521,7 +531,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		getline(cmdCache, temp);
 		if (temp != "sfmandsfp")
 		{
-			std::cout << "任务失败,无法获取任务参数\n" << std::endl;
+			printf("任务失败,无法获取任务参数\n");
 			Global::process = PROCESSERROR;
 			break;
 		}
@@ -570,11 +580,11 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		STATE_RETURN = LoadingImages(imagesInputDir, matchesOutputDir, sensorWidthDataBaseDir, EigenMatrix, "1.0;1.0;1.0");
 		if (STATE_RETURN == EXIT_FAILURE)
 		{
-			std::cout << "加载图片失败" << std::endl;
+			printf("加载图片失败\n");
 			Global::process = PROCESSERROR;
 			break;
 		}
-		std::cout << "加载图片成功" << std::endl;
+		printf("加载图片成功\n");
 		STATE_RETURN = GetFeatures(
 			matchesOutputDir + "/sfm_data.json",
 			matchesOutputDir,
@@ -586,12 +596,12 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 
 		if (STATE_RETURN == EXIT_FAILURE)
 		{
-			std::cout << "获取特征信息失败" << std::endl;
+			printf("获取特征信息失败\n");
 			Global::process = PROCESSERROR;
 			break;
 
 		}
-		std::cout << "获取特征点完成，准备开始匹配特征点" << std::endl;
+		printf("获取特征点完成，准备开始匹配特征点\n");
 		STATE_RETURN = GetMatches(
 			matchesOutputDir + "/sfm_data.json",
 			matchesOutputDir,
@@ -606,11 +616,11 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 
 		if (STATE_RETURN == EXIT_FAILURE)
 		{
-			std::cout << "匹配特征信息失败" << std::endl;
+			printf("匹配特征信息失败\n");
 			Global::process = PROCESSERROR;
 			break;
 		}
-		std::cout << "匹配完成" << std::endl;
+		printf("匹配完成\n");
 		STATE_RETURN = StructureFromMotion(
 			matchesDir + "\\sfm_data.json",
 			matchesDir,
@@ -627,13 +637,13 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		Sleep(3000);
 		if (STATE_RETURN == EXIT_FAILURE)
 		{
-			std::cout << "SFM重建失败" << std::endl;
+			printf("SFM重建失败\n");
 			Global::process = PROCESSERROR;
 			break;
 
 		}
 
-		std::cout << "进行SFM数据精细化" << std::endl;
+		printf("进行SFM数据精细化\n");
 		STATE_RETURN = ConvertCoorsToOrigin
 		(
 			sfmOutputDir + "/sfm_data.bin",
@@ -642,22 +652,22 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		Sleep(2000);
 		if (STATE_RETURN == EXIT_FAILURE)
 		{
-			std::cout << "SFM数据精细化失败" << std::endl;
+			printf("SFM数据精细化失败\n");
 			Global::process = PROCESSERROR;
 			break;
 
 		}
 
-		std::cout << "进行点云上色" << std::endl;
+		printf("进行点云上色\n");
 		STATE_RETURN = PrintPointColors(sfmOutputDir + "/sfm_data_local.bin", sfmOutputDir + "/colored.ply");
 		Sleep(3000);
 		if (STATE_RETURN == EXIT_FAILURE)
 		{
-			std::cout << "SFM点云上色失败" << std::endl;
+			printf("SFM点云上色失败\n");
 			Global::process = PROCESSERROR;
 			break;
 		}
-		std::cout << "进行SFP重构" << std::endl;
+		printf("进行SFP重构\n");
 		STATE_RETURN = StructureFromPoses(
 			sfmOutputDir + "/sfm_data_local.bin",
 			matchesDir,
@@ -666,12 +676,12 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		Sleep(3000);
 		if (STATE_RETURN == EXIT_FAILURE)
 		{
-			std::cout << "SFP重构失败" << std::endl;
+			printf("SFP重构失败\n");
 			Global::process = PROCESSERROR;
 			break;
 		}
-		std::cout << "SFP重构成功" << std::endl;
-		std::cout << "进行稀疏点云输出" << std::endl;
+		printf("SFP重构成功\n");
+		printf("进行稀疏点云输出\n");
 		STATE_RETURN = ExportSparseCloud(
 			sfmOutputDir + "/robust.bin",
 			sfmOutputDir + "/SparseCloud.J3D",
@@ -679,7 +689,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		Sleep(3000);
 		if (STATE_RETURN == EXIT_FAILURE)
 		{
-			std::cout << "输出稀疏点云失败" << std::endl;
+			printf("输出稀疏点云失败\n");
 			Global::process = PROCESSERROR;
 			break;
 		}
@@ -766,12 +776,13 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		}
 		Global::process = PROCESSCLOSE;
 	}
+
 	}
 	return;
 }
 int main()
 {
-	std::cout << "\n正在初始化引擎，请稍等\n";
+	printf("\n正在初始化引擎，请稍等\n");
 	MSG msg;
 	SetTimer(NULL, 0, 1000, NULL);
 	_mkdir("C:\\ProgramData\\J3DEngine");
@@ -788,21 +799,21 @@ int main()
 	int tid = GetCurrentThreadId();
 	if (!saveTid())
 	{
-		std::cout << "写入缓存失败，请检查软件权限，或使用管理员身份运行 " << endl;
+		MessageBoxA(nullptr, "写配置文件失败，请检查软件权限并使用管理员身份运行 ", "权限错误 ", MB_OK);
 		return -1;
 	}
-	m_hWnd = FindWindow("Qt5QWindowIcon", "J3DGUI");
+	m_hWnd = FindWindow("Qt5QWindowIcon", "J3D可视化平台");
 	if (m_hWnd) {
 		printf("找到J3DGUI窗口");
 		SendMessage(m_hWnd, WM_USER, tid, 0);
 	}
 	::system("cls");
-	std::cout << "\n-----------------------------------" << std::endl;
-	std::cout << "        欢迎使用J3DEngine V1.9        " << std::endl;
-	std::cout << "            程序初始化成功             " << std::endl;
-	std::cout << "        请使用J3DGUI程序发起指令       " << std::endl;
-	std::cout << "     @Basic All rights reserved    " << std::endl;
-	std::cout << "-----------------------------------" << std::endl;
+	printf("\n-----------------------------------\n");
+	printf("        欢迎使用J3DEngine V2.0        \n");
+	printf("            程序初始化成功             \n");
+	printf("        请使用J3DGUI程序发起指令       \n");
+	printf("     @Basic All rights reserved    \n");
+	printf("-----------------------------------\n");
 	Global::processProject = 0;
 	Global::processState = 0;
 	Global::process = PROCESSWORKING;

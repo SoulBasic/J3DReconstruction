@@ -9,6 +9,7 @@
 #include "dialog_texturemesh.h"
 #include "dialog_addsensorwidth.h"
 #include "dialog_fullauto.h"
+#include "dialog_coor.h"
 #include <iostream>
 #include "qfiledialog.h"
 #include "qmessagebox.h"
@@ -47,56 +48,28 @@ public:
 private slots:
 
 	void on_actionMatchFeature_triggered();
-
 	void on_actionSFM_triggered();
-
-
-
 	void on_action_viewMVS_triggered();
-
 	void on_action_addSensorWidth_triggered();
-
 	void on_actionDenseCloud_triggered();
-
 	void timerSlot();
-
-
-
-
 	void on_action_reconstrctMesh_triggered();
-
 	void on_action_triggered();
-
 	void on_actionopen_mvs_file_triggered();
-
 	void on_action_fullauto_triggered();
-
     void on_action_2_triggered();
-
     void on_pushButton_camera_clicked();
-
     void on_pushButton_pointcloud_clicked();
-
     void on_pushButton_mesh_clicked();
-
     void on_pushButton_texture_clicked();
-
     void on_pushButton_pointplus_clicked();
-
     void on_pushButton_pointsub_clicked();
-
     void on_pushButton_pointnumplus_clicked();
-
     void on_pushButton_pointnumsub_clicked();
-
     void on_pushButton_viewportplus_clicked();
-
     void on_pushButton_viewportsub_clicked();
-
     void on_pushButton_export_clicked();
-
 	void on_action_coor_triggered();
-
 private:
 
 	Ui::QT3DReconstructionClass ui;
@@ -107,6 +80,7 @@ private:
 	Dialog_TextureMesh dlgtm;
 	Dialog_addsensorwidth dlgasw;
 	Dialog_FullAuto dlgfa;
+	dialog_coor dlgcoor;
 	bool InitializeViewer(size_t argc, LPCTSTR* argv);
 	void FinalizeViewer();
 	QTimer* timer;

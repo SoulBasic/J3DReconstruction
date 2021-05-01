@@ -80,7 +80,7 @@
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="QtSettings">
-    <QtInstall>msvc2017</QtInstall>
+    <QtInstall>5.14.2_msvc2017_64</QtInstall>
     <QtModules>core;gui;widgets</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
@@ -208,13 +208,13 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>E:\OpenGL\glew-2.1.0\include;E:\OpenGL\glfw-3.3.2.bin.WIN32\include;E:\OpenGL\glut;E:\libpng;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\3rd_party\glew-2.1.0\include;C:\Program Files (x86)\GLFW\include;..\MVSEngine;C:\openMVS\Boost\boost_1_67_0;C:\openMVS\src;C:\openMVS\Eigen;C:\openMVS\build\openCV\install\include;..\3rd_party\OSG\include;..\3rd_party\libpng;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/utf-8  /SAFESEH:NO %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(Qt_LIBPATH_);E:\OpenGL\glew-2.1.0\lib\Release\Win32;E:\OpenGL\glfw-3.3.2.bin.WIN32\lib-vc2017;E:\OpenGL\glut;E:\libpng;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>$(Qt_LIBS_);odbc32.lib;odbccp32.lib;zlib.lib;libpng16d.lib;GLaux.lib;legacy_stdio_definitions.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(Qt_LIBPATH_);C:\Program Files (x86)\Windows Kits\10\Lib\10.0.17763.0\um\x64;..\3rd_party\glew-2.1.0\lib\Release\x64;..\x64\Release;C:/openMVS/Boost/boost_1_67_0/lib64-msvc-14.1;C:/openMVS/Boost/boost_1_67_0/lib64-msvc-14.1/$(Configuration);C:\Program Files %28x86%29\CGAL\lib;..\3rd_party\OSG\lib;..\3rd_party\libpng;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(Qt_LIBS_);C:\openMVS\build\openMVS\lib\vc15\x64\Debug\MVS.lib;C:\openMVS\build\openMVS\lib\vc15\x64\Debug\Math.lib;C:\openMVS\build\openMVS\lib\vc15\x64\Debug\IO.lib;C:\openMVS\build\openMVS\lib\vc15\x64\Debug\Common.lib;odbc32.lib;odbccp32.lib;zlib.lib;libpng16.lib;OpenGL32.Lib;GlU32.Lib;..\3rd_party\\glew-2.1.0\lib\Debug\x64\glew32.lib;C:\Program Files (x86)\GLFW\lib\glfw3.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_iostreams-vc141-mt-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_program_options-vc141-mt-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_system-vc141-mt-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_serialization-vc141-mt-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_regex-vc141-mt-x64-1_67.lib;C:\openMVS\build\openCV\lib\Release\opencv_world341d.lib;C:\openMVS\build\openCV\lib\Release\opencv_img_hash341d.lib;C:\openMVS\jpeg-9d\libjpeg.lib;C:\Program Files (x86)\Ceres\lib\ceres.lib;C:\openMVS\build\Google_Log\Debug\glog.lib;C:\openMVS\build\Google_Flags\lib\Debug\gflags_static.lib;shlwapi.lib;C:\openMVS\CGAL\auxiliary\gmp\lib\libmpfr-4.lib;C:\openMVS\CGAL\auxiliary\gmp\lib\libgmp-10.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions> /SAFESEH:NO %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
@@ -301,9 +301,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="C:\openMVS\build\openMVS\CMakeFiles\2380bda70809fc05df5a494dc6e05e0c\Viewer_CXX_prefix.hxx.rule" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="CMakeLists.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

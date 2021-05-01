@@ -7,11 +7,11 @@ QT3DReconstruction::QT3DReconstruction(QWidget *parent)
 {
 	ui.setupUi(this);
 
-	timer = new QTimer(this); //this 为parent类, 表示当前窗口
+	timer = new QTimer(this);
 
 	connect(timer, SIGNAL(timeout()), this, SLOT(timerSlot()));
 
-	timer->start(500); // 1000毫秒, 等于 1 秒
+	timer->start(500); 
 	setWindowFlags(windowFlags()& ~Qt::WindowMaximizeButtonHint);
 	setFixedSize(this->width(), this->height());
 	J3DViewer = nullptr;
@@ -570,6 +570,5 @@ bool QT3DReconstruction::converseType(QString fileNameSrc, QString fileNameDes)
 
 void QT3DReconstruction::on_action_coor_triggered()
 {
-
-
+	dlgcoor.exec();
 }

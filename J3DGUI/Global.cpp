@@ -23,6 +23,7 @@ bool Global::autoTasking = false;
 int Global::process = PROCESSWORKING;
 int Global::processProject = 0;
 int Global::processState = 0;
+void* Global::dlg = nullptr;
 
 void Global::connectEngine()
 {
