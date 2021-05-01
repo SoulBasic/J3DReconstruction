@@ -273,13 +273,11 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		Global::process = PROCESSWORKING;
 		Global::saveProcess();
 		std::string densifyInputDir, densifyOutputDir, densifyWorkingDir;
-
 		printf("\n任务呼叫：DENSIFYPOINTCLOUD \n\n");
 		ifstream cmdCache;
 		cmdCache.open(("C:\\ProgramData\\J3DEngine\\cmdCache.tmp"), ios::in | ios::_Nocreate);
 		if (!cmdCache)
 		{
-
 			printf("任务失败,无法获取任务参数\n");
 			Global::process = PROCESSERROR;
 			break;
@@ -290,7 +288,6 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		if (temp != "densifypointcloud")
 		{
 			printf("任务失败,无法获取任务参数\n");
-
 			Global::process = PROCESSERROR;
 			break;
 		}
@@ -309,15 +306,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		cmd[4] = (char*)densifyWorkingDir.data();
 		cmd[5] = "-o";
 		cmd[6] = (char*)densifyOutputDir.data();
-		STATE_RETURN = MVSEngine::DensifyPointCloud(7, cmd);
-		if (STATE_RETURN == EXIT_SUCCESS) {
-			Global::process = PROCESSCLOSE;
-			printf("任务完成\n");
-		}
-		else {
-			Global::process = PROCESSWORKING;
-			printf("任务失败，请检查路径和文件是否正确\n");
-		}
+		Global::process = !MVSEngine::DensifyPointCloud(7, cmd);
 		break;
 	}
 
@@ -375,16 +364,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		cmd[6] = (char*)reconstructMeshOutputDir.data();
 		cmd[7] = "-w";
 		cmd[8] = (char*)reconstructMeshWorkingDir.data();
-		status = MVSEngine::RefineMesh(9, cmd);
-		if (status == EXIT_SUCCESS) {
-			Global::process = PROCESSCLOSE;
-			printf("任务完成\n");
-		}
-		else {
-			Global::process = PROCESSWORKING;
-			printf("任务失败，请检查路径和文件是否正确\n");
-		}
-
+		Global::process = !MVSEngine::RefineMesh(9, cmd);
 		break;
 	}
 
@@ -393,8 +373,8 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		Global::process = PROCESSWORKING;
 		Global::saveProcess();
 		std::string textureMeshInputDir, textureMeshOutputDir, textureMeshWorkingDir, exportFormat;
-		ifstream cmdCache;
 		printf("\n任务呼叫：TEXTUREMESH \n\n");
+		ifstream cmdCache;
 		cmdCache.open(("C:\\ProgramData\\J3DEngine\\cmdCache.tmp"), ios::in | ios::_Nocreate);
 		if (!cmdCache)
 		{
@@ -435,22 +415,19 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		cmd[8] = (char*)exportFormat.data();
 		int status = MVSEngine::TextureMesh(9, cmd);
 
-
-		if (status == EXIT_SUCCESS) {
-
+		if (status == EXIT_SUCCESS) 
+		{
 			if (isOsgb)
 			{
 				string cmdt = "osgcv.exe " + textureMeshWorkingDir + "/TEXTURE_Mesh.obj " + textureMeshWorkingDir + "/TEXTURE_Mesh.osgb";
 				::system(cmdt.c_str());
 			}
 			Global::process = PROCESSCLOSE;
-			printf("任务完成\n");
 		}
-		else {
+		else 
+		{
 			Global::process = PROCESSWORKING;
-			printf("任务失败，请检查路径和文件是否正确\n");
 		}
-
 		break;
 
 	}
@@ -776,7 +753,6 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		}
 		Global::process = PROCESSCLOSE;
 	}
-
 	}
 	return;
 }

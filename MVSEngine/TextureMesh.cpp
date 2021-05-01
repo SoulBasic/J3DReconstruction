@@ -36,9 +36,9 @@ namespace OPT_TextureMesh {
 bool MVSEngine::Initialize_TextureMesh(size_t argc, LPCTSTR* argv)
 {
 	// Initialize_Dense log and console
-	CLOSE_LOGFILE();
-	CLOSE_LOGCONSOLE();
-	CLOSE_LOG();
+	//CLOSE_LOGFILE();
+	//CLOSE_LOGCONSOLE();
+	//CLOSE_LOG();
 	OPEN_LOG();
 	OPEN_LOGCONSOLE();
 
@@ -173,7 +173,7 @@ int MVSEngine::TextureMesh(int num, char* cmd[])
 	LPCTSTR* argv = (LPCTSTR*)cmd;
 	if (!Initialize_TextureMesh(argc, argv))
 		return EXIT_FAILURE;
-
+	
 	Scene scene(OPT_TextureMesh::nMaxThreads);
 	// load and texture the mesh
 	if (!scene.Load(MAKE_PATH_SAFE(OPT_TextureMesh::strInputFileName)))
