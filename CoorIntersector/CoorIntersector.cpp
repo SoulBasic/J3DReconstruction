@@ -27,6 +27,7 @@ double og_x, og_y, og_z;
 std::string workDir;
 std::map<int, std::map<int, SEACAVE::Point3f>> map;
 bool readImg(int idx);
+bool showPoints;
 
 SEACAVE::Point3d ecef_to_lla(double x, double y, double z)
 {
@@ -86,6 +87,11 @@ void onMouse(int event, int x, int y, int flags, void* param)
 	{
 		readImg(((filenames.size() - 1) == img_index) ? 0 : img_index + 1);
 	}
+	else if (event == CV_EVENT_MOUSEWHEEL)
+	{
+		showPoints = !showPoints;
+		readImg(img_index);
+	}
 	else
 	{
 		if (map.find(x) != map.end())
@@ -135,9 +141,12 @@ bool readImg(int idx)
 			int x1 = x.first;
 			int y1 = y.first;
 			if (x1 < 0 || y1 < 0 || x1 >= img.cols || y1 >= img.rows)continue;
-			img.at<cv::Vec3b>(y1, x1)[0] = 255;
-			img.at<cv::Vec3b>(y1, x1)[1] = 255;
-			img.at<cv::Vec3b>(y1, x1)[2] = 255;
+			if (showPoints)
+			{
+				img.at<cv::Vec3b>(y1, x1)[0] = 255;
+				img.at<cv::Vec3b>(y1, x1)[1] = 255;
+				img.at<cv::Vec3b>(y1, x1)[2] = 255;
+			}
 		}
 	}
 	cv::namedWindow("image", CV_WINDOW_NORMAL);
@@ -152,6 +161,7 @@ bool readImg(int idx)
 int main(int argc, char* argv[])
 {
 	workDir = argv[1];
+	showPoints = true;
 	if (workDir.size() == 0)
 	{
 		MessageBoxA(nullptr, "重建路径错误或重建模型无效 ", "无法打开文件 ", MB_OK);
@@ -174,7 +184,9 @@ int main(int argc, char* argv[])
 	}
 
 	std::cout << "以上是可用映射照片序号，请输入需要预览的图片序号(0 - " << filenames.size() - 1 << ")" << std::endl;
-	std::cout << "鼠标放置于图片中像素点，会实时显示映射坐标值，鼠标 左键/右键 控制 上一张/下一张 图片" << std::endl;
+	std::cout << "鼠标放置于图片中像素点，会实时显示映射坐标值" << std::endl;
+	std::cout << "鼠标 左键/右键 控制 上一张/下一张 图片" << std::endl;
+	std::cout << "鼠标滑轮下滑可以 显示/隐藏 可用映射点" << std::endl;
 	int idx = 0;
 	std::cin >> idx;
 	if (idx <= 0 || idx >= filenames.size())idx = 0;
