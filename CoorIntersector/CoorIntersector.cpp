@@ -170,10 +170,13 @@ int main(int argc, char* argv[])
 	FILE* origin_coor = fopen((workDir + "/local_frame_origin.txt").c_str(), "rt");
 	if (origin_coor == nullptr)
 	{
-		MessageBoxA(nullptr, "找不到坐标映射元数据local_frame_origin.txt ", "无法打开文件 ", MB_OK);
-		return -1;
+		std::cout << "找不到坐标映射元数据local_frame_origin.txt, 默认使用原点作为计算点" << std::endl;
+		og_x = og_y = og_z = 0;
 	}
-	fscanf(origin_coor, "%lf\n%lf\n%lf", &og_x, &og_y, &og_z);
+	else
+	{
+		fscanf(origin_coor, "%lf\n%lf\n%lf", &og_x, &og_y, &og_z);
+	}
 
 	getFiles((workDir + "./image_coordinates").c_str(), filenames);
 

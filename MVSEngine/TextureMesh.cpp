@@ -36,9 +36,9 @@ namespace OPT_TextureMesh {
 bool MVSEngine::Initialize_TextureMesh(size_t argc, LPCTSTR* argv)
 {
 	// Initialize_Dense log and console
-	//CLOSE_LOGFILE();
-	//CLOSE_LOGCONSOLE();
-	//CLOSE_LOG();
+	CLOSE_LOGFILE();
+	CLOSE_LOGCONSOLE();
+	CLOSE_LOG();
 	OPEN_LOG();
 	OPEN_LOGCONSOLE();
 
