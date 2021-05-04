@@ -20,8 +20,21 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CoorIntersector.cpp" />
+    <ClCompile Include="dxflib\dl_dxf.cpp" />
+    <ClCompile Include="dxflib\dl_writer_ascii.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="dxflib\dl_attributes.h" />
+    <ClInclude Include="dxflib\dl_codes.h" />
+    <ClInclude Include="dxflib\dl_creationadapter.h" />
+    <ClInclude Include="dxflib\dl_creationinterface.h" />
+    <ClInclude Include="dxflib\dl_dxf.h" />
+    <ClInclude Include="dxflib\dl_entities.h" />
+    <ClInclude Include="dxflib\dl_exception.h" />
+    <ClInclude Include="dxflib\dl_extrusion.h" />
+    <ClInclude Include="dxflib\dl_global.h" />
+    <ClInclude Include="dxflib\dl_writer.h" />
+    <ClInclude Include="dxflib\dl_writer_ascii.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
@@ -115,7 +128,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;_SILENCE_FPOS_SEEKPOS_DEPRECATION_WARNING;_WIN32;_HAS_EXCEPTIONS=1;_USE_OPENMP;_USE_OPENGL;_USE_BOOST;_USE_EIGEN;_USE_NONFREE;_USE_FAST_FLOAT2INT;_USE_FAST_CBRT;_USE_SSE;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>false</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\openMVS\src;C:\openMVS\Boost\boost_1_67_0;C:\openMVS\Eigen;C:\openMVS\build\openCV;C:\openMVS\openCV\sources\include;C:\openMVS\openCV\sources\include\opencv;C:\openMVS\openCV\sources\modules\core\include;C:\openMVS\openCV\sources\modules\flann\include;C:\openMVS\openCV\sources\modules\imgproc\include;C:\openMVS\openCV\sources\modules\ml\include;C:\openMVS\openCV\sources\modules\objdetect\include;C:\openMVS\openCV_contrib\modules\phase_unwrapping\include;C:\openMVS\openCV\sources\modules\photo\include;C:\openMVS\openCV_contrib\modules\plot\include;C:\openMVS\openCV_contrib\modules\reg\include;C:\openMVS\openCV_contrib\modules\surface_matching\include;C:\openMVS\openCV\sources\modules\video\include;C:\openMVS\openCV_contrib\modules\xphoto\include;C:\openMVS\openCV\sources\modules\dnn\include;C:\openMVS\openCV_contrib\modules\fuzzy\include;C:\openMVS\openCV_contrib\modules\hfs\include;C:\openMVS\openCV\sources\modules\imgcodecs\include;C:\openMVS\openCV\sources\modules\shape\include;C:\openMVS\openCV\sources\modules\videoio\include;C:\openMVS\openCV_contrib\modules\xobjdetect\include;C:\openMVS\openCV\sources\modules\highgui\include;C:\openMVS\openCV\sources\modules\superres\include;C:\openMVS\openCV_contrib\modules\bioinspired\include;C:\openMVS\openCV_contrib\modules\dnn_objdetect\include;C:\openMVS\openCV_contrib\modules\dpm\include;C:\openMVS\openCV\sources\modules\features2d\include;C:\openMVS\openCV_contrib\modules\line_descriptor\include;C:\openMVS\openCV_contrib\modules\saliency\include;C:\openMVS\openCV_contrib\modules\text\include;C:\openMVS\openCV\sources\modules\calib3d\include;C:\openMVS\openCV_contrib\modules\ccalib\include;C:\openMVS\openCV_contrib\modules\datasets\include;C:\openMVS\openCV_contrib\modules\rgbd\include;C:\openMVS\openCV_contrib\modules\stereo\include;C:\openMVS\openCV_contrib\modules\structured_light\include;C:\openMVS\openCV_contrib\modules\tracking\include;C:\openMVS\openCV\sources\modules\videostab\include;C:\openMVS\openCV_contrib\modules\xfeatures2d\include;C:\openMVS\openCV_contrib\modules\ximgproc\include;C:\openMVS\openCV_contrib\modules\aruco\include;C:\openMVS\openCV_contrib\modules\bgsegm\include;C:\openMVS\openCV_contrib\modules\face\include;C:\openMVS\openCV_contrib\modules\optflow\include;C:\openMVS\openCV\sources\modules\stitching\include;C:\openMVS\openCV\sources\modules\world\include;C:\openMVS\openCV_contrib\modules\img_hash\include;C:\openMVS\openCV\sources\modules\ts\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\openMVS\src;C:\openMVS\Boost\boost_1_67_0;C:\openMVS\Eigen;C:\openMVS\build\openCV;C:\openMVS\openCV\sources\include;C:\openMVS\openCV\sources\include\opencv;C:\openMVS\openCV\sources\modules\core\include;C:\openMVS\openCV\sources\modules\flann\include;C:\openMVS\openCV\sources\modules\imgproc\include;C:\openMVS\openCV\sources\modules\ml\include;C:\openMVS\openCV\sources\modules\objdetect\include;C:\openMVS\openCV_contrib\modules\phase_unwrapping\include;C:\openMVS\openCV\sources\modules\photo\include;C:\openMVS\openCV_contrib\modules\plot\include;C:\openMVS\openCV_contrib\modules\reg\include;C:\openMVS\openCV_contrib\modules\surface_matching\include;C:\openMVS\openCV\sources\modules\video\include;C:\openMVS\openCV_contrib\modules\xphoto\include;C:\openMVS\openCV\sources\modules\dnn\include;C:\openMVS\openCV_contrib\modules\fuzzy\include;C:\openMVS\openCV_contrib\modules\hfs\include;C:\openMVS\openCV\sources\modules\imgcodecs\include;C:\openMVS\openCV\sources\modules\shape\include;C:\openMVS\openCV\sources\modules\videoio\include;C:\openMVS\openCV_contrib\modules\xobjdetect\include;C:\openMVS\openCV\sources\modules\highgui\include;C:\openMVS\openCV\sources\modules\superres\include;C:\openMVS\openCV_contrib\modules\bioinspired\include;C:\openMVS\openCV_contrib\modules\dnn_objdetect\include;C:\openMVS\openCV_contrib\modules\dpm\include;C:\openMVS\openCV\sources\modules\features2d\include;C:\openMVS\openCV_contrib\modules\line_descriptor\include;C:\openMVS\openCV_contrib\modules\saliency\include;C:\openMVS\openCV_contrib\modules\text\include;C:\openMVS\openCV\sources\modules\calib3d\include;C:\openMVS\openCV_contrib\modules\ccalib\include;C:\openMVS\openCV_contrib\modules\datasets\include;C:\openMVS\openCV_contrib\modules\rgbd\include;C:\openMVS\openCV_contrib\modules\stereo\include;C:\openMVS\openCV_contrib\modules\structured_light\include;C:\openMVS\openCV_contrib\modules\tracking\include;C:\openMVS\openCV\sources\modules\videostab\include;C:\openMVS\openCV_contrib\modules\xfeatures2d\include;C:\openMVS\openCV_contrib\modules\ximgproc\include;C:\openMVS\openCV_contrib\modules\aruco\include;C:\openMVS\openCV_contrib\modules\bgsegm\include;C:\openMVS\openCV_contrib\modules\face\include;C:\openMVS\openCV_contrib\modules\optflow\include;C:\openMVS\openCV\sources\modules\stitching\include;C:\openMVS\openCV\sources\modules\world\include;C:\openMVS\openCV_contrib\modules\img_hash\include;C:\openMVS\openCV\sources\modules\ts\include;..\3rd_party\dxflib-3.17.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -155,7 +168,7 @@
       <SDLCheck>false</SDLCheck>
       <PreprocessorDefinitions>_CONSOLE;WIN32;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;NDEBUG;_WIN32;_HAS_EXCEPTIONS=1;_USE_OPENMP;_USE_OPENGL;_USE_BOOST;_USE_EIGEN;_USE_NONFREE;_USE_FAST_FLOAT2INT;_USE_FAST_CBRT;_USE_SSE;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>false</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\openMVS\src;C:\openMVS\Boost\boost_1_67_0;C:\openMVS\Eigen;C:\openMVS\build\openCV\install\include;C:\openMVS\build\openCV\install\include\opencv2;C:\openMVS\build\openCV\install\include\opencv;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\openMVS\src;C:\openMVS\Boost\boost_1_67_0;C:\openMVS\Eigen;C:\openMVS\build\openCV\install\include;C:\openMVS\build\openCV\install\include\opencv2;C:\openMVS\build\openCV\install\include\opencv;..\3rd_party\dxflib-3.17.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
       <LanguageStandard>stdcpp14</LanguageStandard>
       <AdditionalOptions>/bigobj /Zm170 %(AdditionalOptions)</AdditionalOptions>

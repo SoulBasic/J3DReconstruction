@@ -13,15 +13,57 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="dxflib">
+      <UniqueIdentifier>{9b5b4d24-414b-48ff-a025-c7a48fd92922}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CoorIntersector.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="dxflib\dl_dxf.cpp">
+      <Filter>dxflib</Filter>
+    </ClCompile>
+    <ClCompile Include="dxflib\dl_writer_ascii.cpp">
+      <Filter>dxflib</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dxflib\dl_attributes.h">
+      <Filter>dxflib</Filter>
+    </ClInclude>
+    <ClInclude Include="dxflib\dl_codes.h">
+      <Filter>dxflib</Filter>
+    </ClInclude>
+    <ClInclude Include="dxflib\dl_creationadapter.h">
+      <Filter>dxflib</Filter>
+    </ClInclude>
+    <ClInclude Include="dxflib\dl_creationinterface.h">
+      <Filter>dxflib</Filter>
+    </ClInclude>
+    <ClInclude Include="dxflib\dl_dxf.h">
+      <Filter>dxflib</Filter>
+    </ClInclude>
+    <ClInclude Include="dxflib\dl_entities.h">
+      <Filter>dxflib</Filter>
+    </ClInclude>
+    <ClInclude Include="dxflib\dl_exception.h">
+      <Filter>dxflib</Filter>
+    </ClInclude>
+    <ClInclude Include="dxflib\dl_extrusion.h">
+      <Filter>dxflib</Filter>
+    </ClInclude>
+    <ClInclude Include="dxflib\dl_global.h">
+      <Filter>dxflib</Filter>
+    </ClInclude>
+    <ClInclude Include="dxflib\dl_writer.h">
+      <Filter>dxflib</Filter>
+    </ClInclude>
+    <ClInclude Include="dxflib\dl_writer_ascii.h">
+      <Filter>dxflib</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
