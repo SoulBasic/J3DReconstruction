@@ -10,14 +10,14 @@
 
 
 //#define SUPPORT_GLTF //支持GLTF输出，需安装obj2gltf插件，用于cesium显示
-
+#define CMD_FULLAUTO 100
 #define CMD_MATCHFEATURES 101
 #define CMD_SFMANDSFP 102
 #define CMD_EXPORTSPARSECLOUD 103
 #define CMD_EXPORTDENSECLOUD 104
 #define CMD_RECONSTRUCTMESH 105
 #define CMD_TEXTUREMESH 106
-#define CMD_FULLAUTO 100
+#define CMD_IMPORTFROMBE 107
 #define LISTIMAGES 1
 #define COMPUTEFEATURES 2
 #define MATCHFEATURES 3
@@ -67,6 +67,7 @@ public:
 	static QString textureMeshWorkingDir;
 	static QString fullauto_InPutDir;
 	static QString fullauto_OutputDir;
+	static QString importWorkingDir;
 	static bool tasking;
 	static bool autoTasking;
 	static void connectEngine();

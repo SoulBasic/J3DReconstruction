@@ -3,16 +3,19 @@
 #include <string>
 #include <direct.h>
 #include <fstream>
+#include <vector>
+#include <io.h>
 
 using namespace std;
 
+#define CMD_FULLAUTO 100
 #define CMD_MATCHFEATURES 101
 #define CMD_SFMANDSFP 102
 #define CMD_EXPORTSPARSECLOUD 103
 #define CMD_EXPORTDENSECLOUD 104
 #define CMD_RECONSTRUCTMESH 105
 #define CMD_TEXTUREMESH 106
-#define CMD_FULLAUTO 100
+#define CMD_IMPORTFROMBE 107
 #define LISTIMAGES 1
 #define COMPUTEFEATURES 2
 #define MATCHFEATURES 3
@@ -39,5 +42,6 @@ public:
 	static int processProject;
 	static int processState;
 	static bool saveProcess();
+	static int getFiles(const char* path, std::vector<std::string>& arr);
 };
 

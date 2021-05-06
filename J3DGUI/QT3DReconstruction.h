@@ -70,6 +70,8 @@ private slots:
     void on_pushButton_viewportsub_clicked();
     void on_pushButton_export_clicked();
 	void on_action_coor_triggered();
+    void on_action_import_BlocksExchange_triggered();
+
 private:
 
 	Ui::QT3DReconstructionClass ui;

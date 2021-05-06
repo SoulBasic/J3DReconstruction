@@ -8,6 +8,7 @@
 #include "StructureFromPoses.hpp"
 #include "ExportSparseCloud.hpp"
 #include "OriginPoints.hpp"
+#include "BlocksExchangeInterface.hpp"
 #include <algorithm>
 #include <direct.h>
 #include <fstream>
@@ -253,10 +254,13 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		}
 		printf("SFP重构成功\n");
 		printf("进行稀疏点云输出\n");
-		STATE_RETURN = ExportSparseCloud(
+		STATE_RETURN = ExportSparseCloud
+		(
 			sfmOutputDir + "/robust.bin",
 			sfmOutputDir + "/SparseCloud.J3D",
-			sfmOutputDir + "/undistorted_images");
+			sfmOutputDir + "/undistorted_images",
+			sfmOutputDir
+		);
 		if (STATE_RETURN == EXIT_FAILURE)
 		{
 			printf("输出稀疏点云失败\n");
@@ -659,10 +663,13 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		}
 		printf("SFP重构成功\n");
 		printf("进行稀疏点云输出\n");
-		STATE_RETURN = ExportSparseCloud(
+		STATE_RETURN = ExportSparseCloud
+		(
 			sfmOutputDir + "/robust.bin",
 			sfmOutputDir + "/SparseCloud.J3D",
-			sfmOutputDir + "/undistorted_images");
+			sfmOutputDir + "/undistorted_images",
+			sfmOutputDir
+		);
 		Sleep(3000);
 		if (STATE_RETURN == EXIT_FAILURE)
 		{
@@ -752,6 +759,65 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 			::system(cmdt.c_str());
 		}
 		Global::process = PROCESSCLOSE;
+	}
+
+	case CMD_IMPORTFROMBE:
+	{
+		Global::process = PROCESSWORKING;
+		Global::saveProcess();
+		std::string inputFileName, workDir;
+		printf("\n任务呼叫：IMPORTFROMBE \n\n");
+		ifstream cmdCache;
+		cmdCache.open(("C:\\ProgramData\\J3DEngine\\cmdCache.tmp"), ios::in | ios::_Nocreate);
+		if (!cmdCache)
+		{
+			printf("任务失败,无法获取任务参数\n");
+			Global::process = PROCESSERROR;
+			break;
+		}
+		std::string temp;
+		getline(cmdCache, temp);
+		if (temp != "importfromblocksexchange")
+		{
+			printf("任务失败,无法获取任务参数\n");
+			Global::process = PROCESSERROR;
+			break;
+		}
+		getline(cmdCache, inputFileName);
+		getline(cmdCache, workDir);
+		BlocksExchange2openMVG(inputFileName, workDir);
+		Sleep(1000);
+		printf("进行SFM数据精细化\n");
+		STATE_RETURN = ConvertCoorsToOrigin
+		(
+			workDir + "/sfm_data.bin",
+			workDir
+		);
+		if (STATE_RETURN == EXIT_FAILURE)
+		{
+			printf("SFM数据精细化失败\n");
+			Global::process = PROCESSERROR;
+			break;
+		}
+		printf("进行稀疏点云输出\n");
+		int STATE_RETURN = ExportSparseCloud
+		(
+			workDir + "/sfm_data_local.bin",
+			workDir + "/SparseCloud.J3D",
+			workDir + "/undistorted_images",
+			workDir
+		);
+		if (STATE_RETURN == EXIT_FAILURE)
+		{
+			printf("输出稀疏点云失败\n");
+			Global::process = PROCESSERROR;
+			break;
+		}
+		printf("成功输出到文件SparseCloud.J3D\n");
+		printf("导入数据完成，之后可以继续使用MVS引擎进行模型重建工作\n");
+		printf("\n任务完成\n");
+		Global::process = PROCESSCLOSE;
+		break;
 	}
 	}
 	return;

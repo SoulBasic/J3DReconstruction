@@ -151,6 +151,7 @@ void onMouse(int event, int x, int y, int flags, void* param)
 	}
 	else
 	{
+
 	}
 }
 
@@ -453,9 +454,9 @@ int main(int argc, char* argv[])
 				printf("没有点可以输出！\n");
 				break;
 			}
-			if (write_to_dxf(workDir + "/output_picked_points.dxf"))
+			if (write_to_dxf(workDir + "/picked_points.dxf"))
 			{
-				printf("已成功保存到文件output_picked_points.dxf");
+				printf("已成功保存到文件picked_points.dxf");
 			}
 			break;
 		}

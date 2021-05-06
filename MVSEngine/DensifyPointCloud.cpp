@@ -186,6 +186,25 @@ void MVSEngine::Finalize_Dense()
 #endif
 }
 
+void cleanCacheFiles(const std::string& workDir)
+{
+	std::vector<std::string> fileNames;
+	MVSEngine::getFiles(workDir.c_str(), fileNames);
+	for (int i = 0; i < fileNames.size(); i++)
+	{
+		std::string& fn = fileNames[i];
+		auto pos = fn.rfind('.');
+		if (pos != fn.npos)
+		{
+			std::string ext = fn.substr(pos + 1, fn.size());
+			if (ext == "dmap")
+			{
+				remove(fn.c_str());
+			}
+		}
+
+	}
+}
 int MVSEngine::DensifyPointCloud(int num, char* cmd[])
 {
 	int argc = num;

@@ -295,12 +295,24 @@
     <property name="title">
      <string>分步三维重建</string>
     </property>
-    <addaction name="actionMatchFeature"/>
-    <addaction name="actionSFM"/>
-    <addaction name="separator"/>
-    <addaction name="actionDenseCloud"/>
-    <addaction name="action_reconstrctMesh"/>
-    <addaction name="action"/>
+    <widget class="QMenu" name="menuSFM_Engine">
+     <property name="title">
+      <string>SFM引擎</string>
+     </property>
+     <addaction name="actionMatchFeature"/>
+     <addaction name="actionSFM"/>
+    </widget>
+    <widget class="QMenu" name="menuMVS_Engine">
+     <property name="title">
+      <string>MVS引擎</string>
+     </property>
+     <addaction name="actionDenseCloud"/>
+     <addaction name="action_reconstrctMesh"/>
+     <addaction name="action"/>
+    </widget>
+    <addaction name="menuSFM_Engine"/>
+    <addaction name="menuMVS_Engine"/>
+    <addaction name="action_import_BlocksExchange"/>
    </widget>
    <widget class="QMenu" name="menu_3">
     <property name="title">
@@ -309,6 +321,7 @@
     <addaction name="actionopen_mvs_file"/>
     <addaction name="action_2"/>
     <addaction name="action_addSensorWidth"/>
+    <addaction name="action_coor"/>
    </widget>
    <widget class="QMenu" name="menu_4">
     <property name="title">
@@ -316,16 +329,9 @@
     </property>
     <addaction name="action_fullauto"/>
    </widget>
-   <widget class="QMenu" name="menu">
-    <property name="title">
-     <string>坐标映射</string>
-    </property>
-    <addaction name="action_coor"/>
-   </widget>
    <addaction name="menu_3"/>
    <addaction name="menu_4"/>
    <addaction name="menu_2"/>
-   <addaction name="menu"/>
   </widget>
   <action name="actionMatchFeature">
    <property name="text">
@@ -375,6 +381,11 @@
   <action name="action_coor">
    <property name="text">
     <string>坐标映射</string>
+   </property>
+  </action>
+  <action name="action_import_BlocksExchange">
+   <property name="text">
+    <string>导入其他SFM数据</string>
    </property>
   </action>
  </widget>

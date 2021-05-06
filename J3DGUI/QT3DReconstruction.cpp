@@ -572,3 +572,50 @@ void QT3DReconstruction::on_action_coor_triggered()
 {
 	dlgcoor.exec();
 }
+void QT3DReconstruction::on_action_import_BlocksExchange_triggered()
+{
+	QMessageBox::information(this, u8"导入其他SFM数据 ",
+		u8"请选择附带完整相机姿态(外方位元素以ECEF坐标系和旋转矩阵的形式保存)和连接点的SFM数据(Blocks Exchange XML)格式", QMessageBox::Ok, QMessageBox::Ok);
+	QString fileName = QFileDialog::getOpenFileName(NULL,
+		u8"导入SFM数据", ".",
+		"Blocks Exchange XML(*.xml);;All Files(*.*)");
+	if (fileName == "")
+	{
+		return;
+	}
+	string ext = Jutil::getExtentionName(fileName.toStdString());
+	if ("xml" == ext)
+	{
+		if (Global::GetProcessidFromName("J3DEngine.exe") == 0)
+		{
+			QMessageBox::critical(this, u8"错误 ", u8"未找到J3DEngine进程 ", QMessageBox::Ok, QMessageBox::Ok);
+			return;
+		}
+		else
+			Global::connectEngine();
+
+		Global::importWorkingDir = Jutil::getFileDir(fileName.toStdString()).c_str();
+		QString fn = Jutil::getFileName(fileName.toStdString()).c_str();
+		_mkdir("C:\\ProgramData\\J3DEngine");
+
+		QFile cmdcache("C:\\ProgramData\\J3DEngine\\cmdCache.tmp");
+
+		if (cmdcache.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate))
+		{
+			QString head = "importfromblocksexchange\n";
+			cmdcache.write(head.toUtf8());
+			cmdcache.write(fn.toUtf8());
+			cmdcache.write("\n");
+			cmdcache.write(Global::importWorkingDir.toUtf8());
+			cmdcache.write("\n");
+			cmdcache.close();
+			QMessageBox::information(NULL, u8"完成", u8"任务提交成功! ", QMessageBox::Yes, NULL);
+			PostThreadMessageA(Global::engineTid, CMD_IMPORTFROMBE, 0, 0);
+			Global::tasking = true;
+		}
+		else
+		{
+			QMessageBox::information(NULL, u8"错误", u8"无法访问缓存文件，请检查权限，或使用管理员身份运行 ", QMessageBox::Yes, NULL);
+		}
+	}
+}

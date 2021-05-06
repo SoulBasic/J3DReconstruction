@@ -254,8 +254,9 @@ bool exportToSparse(
 
 int ExportSparseCloud(
 	std::string sSfM_Data_Filename,
-	std::string sOutFile = "SparseCloud.J3D",
-	std::string sOutDir = "undistorted_images",
+	std::string sOutFile,
+	std::string sOutDir,
+	std::string workDir,
 	int iNumThreads = 0 //only use openmp
 )
 {
@@ -282,6 +283,24 @@ int ExportSparseCloud(
 			<< "无法写到文件，请检查权限，或使用管理员身份运行 " << std::endl;
 		return EXIT_FAILURE;
 	}
+
+	std::vector<std::string> fileNames;
+	Global::getFiles(workDir.c_str(), fileNames);
+	for (int i = 0; i < fileNames.size(); i++)
+	{
+		std::string& fn = fileNames[i];
+		auto pos = fn.rfind('.');
+		if (pos != fn.npos)
+		{
+			std::string ext = fn.substr(pos + 1, fn.size());
+			if (ext == "feat" || ext == "desc" || ext == "svg" || ext == "html")
+			{
+				remove(fn.c_str());
+			}
+		}
+
+	}
+
 	Global::processState = 100;
 	Global::saveProcess();
 	return EXIT_SUCCESS;

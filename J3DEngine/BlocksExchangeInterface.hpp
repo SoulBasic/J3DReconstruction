@@ -40,7 +40,7 @@ std::string getFileDir(const std::string& path)
 }
 
 
-void BlocksExchange2openMVG(const std::string& inputFileName, const std::string& outputFolder)
+void BlocksExchange2openMVG(const std::string& fileName, const std::string& workDir)
 {
 	SfM_Data sfm_data;
 	auto& intrinsics = sfm_data.intrinsics;
@@ -49,7 +49,7 @@ void BlocksExchange2openMVG(const std::string& inputFileName, const std::string&
 	auto& structure = sfm_data.structure;
 	ptree pt;
 	std::string photoName = "";
-	xml_parser::read_xml(inputFileName, pt);
+	xml_parser::read_xml(workDir + "\\" + fileName, pt);
 
 	auto SpatialReferenceSystems = pt.get_child("BlocksExchange.SpatialReferenceSystems.SRS");
 	for (auto pos = SpatialReferenceSystems.begin(); pos != SpatialReferenceSystems.end(); ++pos)
@@ -58,7 +58,7 @@ void BlocksExchange2openMVG(const std::string& inputFileName, const std::string&
 		else if ("<xmlcomment>" == pos->first) {}
 		else
 		{
-			//std::cout << pos->first << " " << pos->second.data() << std::endl;
+			std::cout << pos->first << " " << pos->second.data() << std::endl;
 		}
 	}
 
@@ -81,8 +81,10 @@ void BlocksExchange2openMVG(const std::string& inputFileName, const std::string&
 				height = atof(it->second.data().c_str());
 			}
 			else if (pos->first == "SensorSize")sensorSize = atof(pos->second.data().c_str());
-			else if (pos->first == "FocalLength")focal = std::max(width, height) * atof(pos->second.data().c_str()) / sensorSize;
-
+			else if (pos->first == "FocalLength")
+			{
+				focal = atof(pos->second.data().c_str());
+			}
 			else if (pos->first == "PrincipalPoint")
 			{
 				auto PrincipalPoint = pos->second.get_child("");
@@ -102,6 +104,7 @@ void BlocksExchange2openMVG(const std::string& inputFileName, const std::string&
 				k2 = atof(it++->second.data().c_str());
 				if (it->first != "K3")std::cout << "error" << std::endl;
 				k3 = atof(it->second.data().c_str());
+				focal = std::max(width, height) * focal / sensorSize;
 				intrinsics[0] = std::make_shared<Pinhole_Intrinsic_Radial_K3>(width, height, focal, ppx, ppy, k1, k2, k3);
 			}
 			else if (pos->first == "Photo")
@@ -153,14 +156,14 @@ void BlocksExchange2openMVG(const std::string& inputFileName, const std::string&
 				}
 				ViewPriors v(imagePath, id, 0, id, width, height);
 				v.b_use_pose_center_ = true;
-				//center = openMVG::geodesy::lla_to_ecef(center(1), center(0), center(2));
+				//center = openMVG::geodesy::lla_to_ecef(center(0), center(1), center(2));
 				v.SetPoseCenterPrior(center, openMVG::Vec3{ 1.0,1.0,1.0 });
 				views[id] = std::make_shared<ViewPriors>(v);
 				poses[id] = Pose3(rotation, center);
 			}
 			else
 			{
-				//std::cout << pos->first << " " << pos->second.data() << std::endl;
+				std::cout << pos->first << " " << pos->second.data() << std::endl;
 			}
 		}
 	}
@@ -213,19 +216,19 @@ void BlocksExchange2openMVG(const std::string& inputFileName, const std::string&
 
 				}
 			}
-			l.X = openMVG::Vec3{ x,y,z };
+			l.X = openMVG::Vec3(x, y, z);
 			structure[structure.size()] = l;
 		}
 	}
 
 
-	printf("ins = %d poses = %d views = %d landmarks = %d", sfm_data.intrinsics.size(), sfm_data.poses.size(), sfm_data.views.size(), sfm_data.structure.size());
+	printf("一共成功导入 相机 = %d 姿态 = %d 像片 = %d 连接点 = %d\n", sfm_data.intrinsics.size(), sfm_data.poses.size(), sfm_data.views.size(), sfm_data.structure.size());
 	sfm_data.s_root_path = getFileDir(photoName);
 	Save(sfm_data,
-		stlplus::create_filespec(outputFolder, "sfm_data", ".bin"),
+		stlplus::create_filespec(workDir, "sfm_data", ".bin"),
 		ESfM_Data(ALL));
 
 	Save(sfm_data,
-		stlplus::create_filespec(outputFolder, "cloud_and_poses", ".ply"),
+		stlplus::create_filespec(workDir, "cloud_and_poses", ".ply"),
 		ESfM_Data(ALL));
 }

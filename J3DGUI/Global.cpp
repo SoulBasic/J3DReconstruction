@@ -17,6 +17,7 @@ QString Global::textureMeshOutputDir = "";
 QString Global::textureMeshWorkingDir = "";
 QString Global::fullauto_InPutDir = "";
 QString Global::fullauto_OutputDir = "";
+QString Global::importWorkingDir = "";
 QString Global::processETA = "";
 bool Global::tasking = false;
 bool Global::autoTasking = false;
