@@ -759,6 +759,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 			::system(cmdt.c_str());
 		}
 		Global::process = PROCESSCLOSE;
+		break;
 	}
 
 	case CMD_IMPORTFROMBE:

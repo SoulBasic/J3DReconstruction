@@ -96,7 +96,7 @@ void QT3DReconstruction::timerSlot()
 			cmdCache.open(("C:\\ProgramData\\J3DEngine\\cmdCache.tmp"), ios::in | ios::_Nocreate);
 			std::string temp;
 			getline(cmdCache, temp);
-			if (temp == "sfmandsfp")
+			if (temp == "sfmandsfp" || temp == "importfromblocksexchange")
 			{
 				QString fileName = Global::sfmOutputDir + "/SparseCloud.J3D";
 				if (fileName == "")

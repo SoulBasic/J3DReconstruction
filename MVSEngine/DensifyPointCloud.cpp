@@ -238,7 +238,7 @@ int MVSEngine::DensifyPointCloud(int num, char* cmd[])
 		VERBOSE("网格重建完成: %u points (%s)", pointcloud.GetSize(), TD_TIMER_GET_FMT().c_str());
 		pointcloud.Save(MAKE_PATH_SAFE(Util::getFileFullName(OPT::strOutputFileName)) + _T(".ply"));
 		MVSEngine::Finalize_Dense();
-
+		cleanCacheFiles(cmd[4]);
 		return EXIT_SUCCESS;
 	}
 	// load and estimate a dense point-cloud
@@ -258,7 +258,7 @@ int MVSEngine::DensifyPointCloud(int num, char* cmd[])
 		scene.Save(baseFileName + _T(".J3D"), (ARCHIVE_TYPE)OPT::nArchiveType);
 		scene.pointcloud.Save(baseFileName + _T(".ply"));
 		MVSEngine::Finalize_Dense();
-
+		cleanCacheFiles(cmd[4]);
 		return EXIT_SUCCESS;
 	}
 	if ((ARCHIVE_TYPE)OPT::nArchiveType != ARCHIVE_MVS) {
@@ -272,7 +272,7 @@ int MVSEngine::DensifyPointCloud(int num, char* cmd[])
 
 			VERBOSE("深度图估计中 (%s)", TD_TIMER_GET_FMT().c_str());
 			MVSEngine::Finalize_Dense();
-
+			cleanCacheFiles(cmd[4]);
 			return EXIT_SUCCESS;
 		}
 		VERBOSE("密集点云生成完成: %u points (%s)", scene.pointcloud.GetSize(), TD_TIMER_GET_FMT().c_str());
@@ -334,6 +334,6 @@ int MVSEngine::DensifyPointCloud(int num, char* cmd[])
 	fcloseall();
 
 	MVSEngine::Finalize_Dense();
-
+	cleanCacheFiles(cmd[4]);
 	return EXIT_SUCCESS;
 }
