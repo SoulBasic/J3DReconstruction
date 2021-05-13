@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>472</width>
-    <height>63</height>
+    <height>91</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="QPushButton" name="button_ok">
    <property name="geometry">
     <rect>
-     <x>350</x>
-     <y>20</y>
+     <x>380</x>
+     <y>50</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -30,7 +30,7 @@
    <property name="geometry">
     <rect>
      <x>110</x>
-     <y>20</y>
+     <y>50</y>
      <width>161</width>
      <height>20</height>
     </rect>
@@ -43,7 +43,7 @@
    <property name="geometry">
     <rect>
      <x>290</x>
-     <y>20</y>
+     <y>50</y>
      <width>41</width>
      <height>23</height>
     </rect>
@@ -56,13 +56,52 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>20</y>
+     <y>50</y>
      <width>81</width>
      <height>21</height>
     </rect>
    </property>
    <property name="text">
     <string>重建结果目录:</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_browseTiffDir">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>20</y>
+     <width>41</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>浏览</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_21">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>20</y>
+     <width>81</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>DSM文件路径:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_filename_tif">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>20</y>
+     <width>161</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
  </widget>

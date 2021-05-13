@@ -31,20 +31,9 @@ public:
 private slots:
 	void on_button_ok_clicked();
 	void on_pushButton_browseOutputDir_clicked();
+	void on_pushButton_browseTiffDir_clicked();
 private:
-	void setCoordinate(SEACAVE::Point3d p);
-	char buf[128];
-	std::map<int, std::map<int, SEACAVE::Point3f>> map;
-	std::string workDir;
-	std::vector<std::string> filenames;
-	bool readImg(int idx);
-	static int getFiles(const char* path, std::vector<std::string>& arr);
-	static void onMouse(int event, int x, int y, int flags, void * param);
-	static SEACAVE::Point3d ecef_to_lla(double x, double y, double z);
     Ui::dialog_coor *ui;
-	cv::Mat img;
-	int img_index;
-	double og_x, og_y, og_z;
 };
 
 #endif // DIALOG_COOR_H

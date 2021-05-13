@@ -4,58 +4,22 @@
 #include "libs/MVS/Scene.h"
 #include "opencv2/highgui.hpp"
 #include "opencv2/opencv.hpp"
-#include <map>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 #include <Windows.h>
 #include <direct.h>
 #include <cstdio>
-#include "opencv2\opencv.hpp"
-#include <cmath>
-#include <list>
 #include "dxflib/dl_dxf.h"
-#define max_count_of_opened_file 8
+#include "TiffData.h"
+#include <chrono>
 using namespace MVS;
-typedef std::map<int, std::map<int, SEACAVE::Point3f>> point_map;
-struct opened_map
-{
-	std::string fname;
-	point_map* f_ptr;
-	opened_map(std::string fn, point_map* map) :fname(fn), f_ptr(map) {}
-};
 
-// WGS84 Ellipsoid
-static const double WGS84_A = 6378137.0;      // major axis
-static const double WGS84_B = 6356752.314245; // minor axis
-static const double WGS84_E = 0.0818191908;   // first eccentricity
-std::vector<std::string> filenames;
-cv::Mat img;
-int img_index;
-double og_x, og_y, og_z;
 std::string workDir;
-
-point_map* now_map_p;
+Scene scene;
+TiffData tiffData;
+int img_index;
 std::vector<SEACAVE::Point3d> picked_points;
-std::list<opened_map> opened_coor_files;
-bool readImg(int idx);
-bool showPoints;
+#define NOW_TIME std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count()
 
-
-
-SEACAVE::Point3d ecef_to_lla(double x, double y, double z)
-{
-	const double b = sqrt(WGS84_A*WGS84_A*(1 - WGS84_E * WGS84_E));
-	const double ep = sqrt((WGS84_A*WGS84_A - b * b) / (b*b));
-	const double p = hypot(x, y);
-	const double th = atan2(WGS84_A*z, b*p);
-	const double lon = atan2(y, x);
-	const double lat = atan2((z + ep * ep*b* pow(sin(th), 3)), (p - WGS84_E * WGS84_E*WGS84_A*pow(cos(th), 3)));
-	const double N = WGS84_A / sqrt(1 - WGS84_E * WGS84_E*sin(lat)*sin(lat));
-	const double alt = p / cos(lat) - N;
-
-	return SEACAVE::Point3d{ R2D(lat), R2D(lon), alt };
-}
 
 int getFiles(const char* path, std::vector<std::string>& arr)
 {
@@ -91,49 +55,19 @@ int getFiles(const char* path, std::vector<std::string>& arr)
 	return num_of_img;
 }
 
-bool getPoint(int x, int y, SEACAVE::Point3d& point)
-{
-	point_map& now_map = *now_map_p;
-	if (now_map.find(x) != now_map.end())
-	{
-		if (now_map[x].find(y) != now_map[x].end())
-		{
-			auto p = now_map[x][y];
-			point = ecef_to_lla(p.x + og_x, p.y + og_y, p.z + og_z);
-			return true;
-		}
-	}
-	return false;
-}
-
 void onMouse(int event, int x, int y, int flags, void* param)
 {
 	if (event == CV_EVENT_LBUTTONUP)
 	{
-		SEACAVE::Point3d point;
-		if (
-			getPoint(x, y, point) ||
-			getPoint(x - 1, y - 1, point) ||
-			getPoint(x - 1, y, point) ||
-			getPoint(x - 1, y + 1, point) ||
-			getPoint(x, y - 1, point) ||
-			getPoint(x, y + 1, point) ||
-			getPoint(x + 1, y - 1, point) ||
-			getPoint(x + 1, y, point) ||
-			getPoint(x + 1, y + 1, point)
-			)
+		time_t start_time = NOW_TIME;
+		auto p = tiffData.find(&scene.images[img_index], x, y);
+		if (isnan(p.x) || isnan(p.y) || isnan(p.z))
 		{
-			picked_points.push_back(point);
-			std::setiosflags(std::ios::fixed);
-			std::cout << std::setprecision(15) 
-				<< "添加成功,目前总点数为" << picked_points.size() 
-				<< "\t(lon = " << point.x << "\tlat = " << point.y << "\talt = " << point.z << ")" << std::endl;
-		}
-		else
-		{
-			printf("鼠标处无有效点,请重试\n");
+			printf("像点坐标:x=%d\ty=%d\t映射点坐标:lon=0.0\tlat=0.0\talt=0.0\n鼠标处无有效点,请重试\t映射用时:%dms\n", img_index, NOW_TIME - start_time, x, y);
 			return;
 		}
+		picked_points.push_back(p);
+		printf("像点坐标:x=%d\ty=%d\t映射点坐标:lon=%0.10lf\tlat=%0.10lf\talt=%0.10lf\n添加点成功, 目前总数为%d\t映射用时:%dms\n", x, y, p.x, p.y, p.z, picked_points.size(), NOW_TIME - start_time);
 	}
 	else if (event == CV_EVENT_RBUTTONUP)
 	{
@@ -146,106 +80,21 @@ void onMouse(int event, int x, int y, int flags, void* param)
 		{
 			printf("无法删除,目前点集为空\n");
 		}
-
-	}
-	else if (event == CV_EVENT_MOUSEWHEEL)
-	{
-
-	}
-	else
-	{
-
-	}
-}
-
-opened_map* findMap(const std::string& fname)
-{
-	for (opened_map f : opened_coor_files)
-	{
-		if (f.fname == fname)
-		{
-			return &f;
-		}
-	}
-	return nullptr;
-}
-
-void show_points()
-{
-	point_map& now_map = *now_map_p;
-	for (auto x : now_map)
-	{
-		for (auto y : x.second)
-		{
-			int x1 = x.first;
-			int y1 = y.first;
-			if (x1 < 0 || y1 < 0 || x1 >= img.cols || y1 >= img.rows)continue;
-			img.at<cv::Vec3b>(y1, x1)[0] = 255;
-			img.at<cv::Vec3b>(y1, x1)[1] = 255;
-			img.at<cv::Vec3b>(y1, x1)[2] = 255;
-		}
 	}
 }
 
 bool readImg(int idx)
 {
-	img = cv::imread(workDir + "/undistorted_images/" + filenames[idx]);
+	const char* img_name = scene.images[idx].name.c_str();
+	cv::Mat img = cv::imread(img_name);
 	if (img.empty())return false;
-	cv::destroyWindow(filenames[img_index].c_str());
+	cv::destroyWindow(scene.images[img_index].name.c_str());
 	img_index = idx;
-	std::string fname = workDir + "/image_coordinates/" + std::string(Util::getFileName(filenames[idx]).c_str()) + ".coor";
-
-	opened_map* mp = findMap(fname);
-	if (mp == nullptr)
-	{
-		FILE* coor_data = fopen(fname.c_str(), "rb");
-		if (coor_data == nullptr)
-		{
-			printf("无法打开coor文件\n");
-			return false;
-		}
-		if (opened_coor_files.size() >= max_count_of_opened_file)
-		{
-			opened_map temp = opened_coor_files.front();
-			delete temp.f_ptr;
-			opened_coor_files.pop_front();
-		}
-		point_map* newmap = new point_map();
-		now_map_p = newmap;
-		point_map& now_map = *now_map_p;
-		opened_coor_files.push_back(opened_map(fname, newmap));
-		now_map.clear();
-		while (!feof(coor_data))
-		{
-			char buf[20];
-			fread(buf, 20, 1, coor_data);
-			int* p = reinterpret_cast<int*>(buf);
-			int x = *p;
-			p++;
-			int y = *p;
-			p++;
-			float* k = reinterpret_cast<float*>(p);
-			Point3f point;
-			point.x = *k;
-			k++;
-			point.y = *k;
-			k++;
-			point.z = *k;
-			now_map[x][y] = point;
-		}
-		fclose(coor_data);
-	}
-	else
-	{
-		now_map_p = mp->f_ptr;
-	}
-	if (showPoints)show_points();
-	cv::namedWindow(filenames[idx].c_str(), CV_WINDOW_NORMAL);
-	cv::imshow(filenames[idx].c_str(), img);
-	cv::setMouseCallback(filenames[idx].c_str(), onMouse, nullptr);
+	cv::namedWindow(img_name, CV_WINDOW_NORMAL);
+	cv::imshow(img_name, img);
+	cv::setMouseCallback(img_name, onMouse);
 	return true;
 }
-
 
 bool write_to_dxf(const std::string& fileName)
 {
@@ -381,16 +230,18 @@ bool write_to_dxf(const std::string& fileName)
 	return true;
 }
 
+
 int main(int argc, char* argv[])
 {
 	workDir = argv[1];
-	showPoints = true;
-	if (workDir.size() == 0)
+	std::string tif_filename = argv[2];
+	if (workDir.length() == 0 || tif_filename.length() == 0)
 	{
-		MessageBoxA(nullptr, "重建路径错误或重建模型无效 ", "无法打开文件 ", MB_OK);
+		printf("输入错误!\n");
 		return -1;
 	}
 	FILE* origin_coor = fopen((workDir + "/local_frame_origin.txt").c_str(), "rt");
+	double og_x, og_y, og_z;
 	if (origin_coor == nullptr)
 	{
 		std::cout << "找不到坐标映射元数据local_frame_origin.txt, 默认使用原点作为计算点" << std::endl;
@@ -400,22 +251,34 @@ int main(int argc, char* argv[])
 	{
 		fscanf(origin_coor, "%lf\n%lf\n%lf", &og_x, &og_y, &og_z);
 	}
+	printf("DSM文件路径:%s\nSFM重建目录:%s\n开始读取文件，请稍后...", tif_filename.c_str(), workDir.c_str());
 
-	getFiles((workDir + "./image_coordinates").c_str(), filenames);
-
-	for (int i = 0; i < filenames.size(); i++)
+	if (!tiffData.read(tif_filename))
 	{
-		filenames[i] = filenames[i].substr(0, filenames[i].length() - 4) + "JPG";
-		std::cout << i << " : " << filenames[i] << std::endl;
+		return -1;
+	}
+	printf("读取的tiff数据 宽度：%d 高度：%d\n", tiffData.Width(), tiffData.Height());
+	tiffData.setOrigin(og_x, og_y, og_z);
+
+	scene = MVS::Scene(0);
+	if (!scene.Load(workDir + "\\SparseCloud.J3D", false))
+	{
+		printf("打开SparseCloud.J3D失败，请检查工程目录\n");
+		return -1;
 	}
 
-	std::cout << "以上是可用映射照片序号，请输入需要预览的图片序号(0 - " << filenames.size() - 1 << ")" << std::endl;
+	for (int i = 0; i < scene.images.size(); i++)
+	{
+		printf("%d : %s\n", i, scene.images[i].name.c_str());
+	}
+	std::cout << "以上是可用映射照片序号，请输入需要预览的图片序号(0 - " << scene.images.size() - 1 << ")" << std::endl;
 	std::cout << "鼠标左键选择目标点，并将坐标值添加到点集中" << std::endl;
 	std::cout << "鼠标右键可以删除上一个被添加到点集中的点" << std::endl;
-	std::cout << "键盘 -/+切换图片; s显示/隐藏可用点; p显示已选中的点集信息; o输出到dxf文件" << std::endl;
+	std::cout << "键盘 -/+切换图片; p显示已选中的点集信息; o输出到dxf文件" << std::endl;
 	int idx = 0;
 	std::cin >> idx;
-	if (idx <= 0 || idx >= filenames.size())idx = 0;
+	if (idx <= 0 || idx >= scene.images.size())idx = 0;
+
 	readImg(idx);
 	while (true)
 	{
@@ -424,19 +287,13 @@ int main(int argc, char* argv[])
 		{
 		case '-':
 		{
-			readImg(img_index ? img_index - 1 : filenames.size() - 1);
+			readImg(img_index ? img_index - 1 : scene.images.size() - 1);
 			break;
 		}
 		case '=':
 		case '+':
 		{
-			readImg(((filenames.size() - 1) == img_index) ? 0 : img_index + 1);
-			break;
-		}
-		case 's':
-		{
-			showPoints = !showPoints;
-			readImg(img_index);
+			readImg(((scene.images.size() - 1) == img_index) ? 0 : img_index + 1);
 			break;
 		}
 		case 'p':
@@ -445,7 +302,7 @@ int main(int argc, char* argv[])
 			for (int i = 0; i < picked_points.size(); i++)
 			{
 				SEACAVE::Point3d& point = picked_points[i];
-				printf("点号:%d\tlon = %lf\tlat = %lf\talt = %lf\n", i, point.x, point.y, point.z);
+				printf("点号:%d\tlon = %0.8lf\tlat = %0.8lf\talt = %0.8lf\n", i, point.x, point.y, point.z);
 			}
 			printf("--------------------------------------------------\n");
 			break;
@@ -459,7 +316,7 @@ int main(int argc, char* argv[])
 			}
 			if (write_to_dxf(workDir + "/picked_points.dxf"))
 			{
-				printf("已成功保存到文件picked_points.dxf");
+				printf("已成功保存到文件picked_points.dxf\n");
 			}
 			break;
 		}
