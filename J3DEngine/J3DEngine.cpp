@@ -18,7 +18,6 @@
 
 
 HWND m_hWnd;
-
 int STATE_RETURN;
 
 
@@ -831,8 +830,6 @@ int main()
 	_mkdir("C:\\ProgramData\\J3DEngine");
 	HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE);
 	DWORD mode;
-	srand(time(NULL));
-	int sz = rand() % 300;
 	GetConsoleMode(hStdin, &mode);
 	mode &= ~ENABLE_QUICK_EDIT_MODE; 
 	mode &= ~ENABLE_INSERT_MODE; 

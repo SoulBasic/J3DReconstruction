@@ -124,7 +124,10 @@ void onMouse(int event, int x, int y, int flags, void* param)
 			)
 		{
 			picked_points.push_back(point);
-			printf("添加成功,目前总点数为%d\t(lon = %10lf\tlat = %10lf\talt = %10lf)\n", picked_points.size(), point.x, point.y, point.z);
+			std::setiosflags(std::ios::fixed);
+			std::cout << std::setprecision(15) 
+				<< "添加成功,目前总点数为" << picked_points.size() 
+				<< "\t(lon = " << point.x << "\tlat = " << point.y << "\talt = " << point.z << ")" << std::endl;
 		}
 		else
 		{

@@ -574,8 +574,8 @@ void QT3DReconstruction::on_action_coor_triggered()
 }
 void QT3DReconstruction::on_action_import_BlocksExchange_triggered()
 {
-	QMessageBox::information(this, u8"导入其他SFM数据 ",
-		u8"请选择附带完整相机姿态(外方位元素以ECEF坐标系和旋转矩阵的形式保存)和连接点的SFM数据(Blocks Exchange XML)格式", QMessageBox::Ok, QMessageBox::Ok);
+	QMessageBox::information(this, u8"从ContextCapture导入SFM数据 ",
+		u8"请选择附带完整相机姿态(外方位元素以ECEF坐标系坐标点和旋转矩阵的形式保存)和连接点的SFM数据(Blocks Exchange XML)格式", QMessageBox::Ok, QMessageBox::Ok);
 	QString fileName = QFileDialog::getOpenFileName(NULL,
 		u8"导入SFM数据", ".",
 		"Blocks Exchange XML(*.xml);;All Files(*.*)");

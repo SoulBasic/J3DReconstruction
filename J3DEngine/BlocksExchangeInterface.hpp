@@ -51,16 +51,16 @@ void BlocksExchange2openMVG(const std::string& fileName, const std::string& work
 	std::string photoName = "";
 	xml_parser::read_xml(workDir + "\\" + fileName, pt);
 
-	auto SpatialReferenceSystems = pt.get_child("BlocksExchange.SpatialReferenceSystems.SRS");
-	for (auto pos = SpatialReferenceSystems.begin(); pos != SpatialReferenceSystems.end(); ++pos)
-	{
-		if ("<xmlattr>" == pos->first) {}
-		else if ("<xmlcomment>" == pos->first) {}
-		else
-		{
-			std::cout << pos->first << " " << pos->second.data() << std::endl;
-		}
-	}
+	//auto SpatialReferenceSystems = pt.get_child("BlocksExchange.SpatialReferenceSystems.SRS");
+	//for (auto pos = SpatialReferenceSystems.begin(); pos != SpatialReferenceSystems.end(); ++pos)
+	//{
+	//	if ("<xmlattr>" == pos->first) {}
+	//	else if ("<xmlcomment>" == pos->first) {}
+	//	else
+	//	{
+	//		std::cout << pos->first << " " << pos->second.data() << std::endl;
+	//	}
+	//}
 
 
 	auto Photogroups = pt.get_child("BlocksExchange.Block.Photogroups.Photogroup");

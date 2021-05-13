@@ -299,11 +299,11 @@ int MVSEngine::DensifyPointCloud(int num, char* cmd[])
 	std::unordered_map<std::string, int> nmap;
 	for (int i = 0; i < scene.images.size(); i++)
 	{
-		VERBOSE("%d : %s", i, scene.images[i].name.c_str());
 		nmap[scene.images[i].name.c_str()] = i;
 		std::string fname = Util::getFileName(scene.images[i].name).c_str();
 		fname = std::string(workDir.c_str()) + "image_coordinates/" + fname + ".coor";
 		files[i] = fopen(fname.c_str(), "wb");
+		VERBOSE("%d : %s", i, fname.c_str());
 	}
 	const auto& points = scene.pointcloud.points;
 	const auto& views = scene.pointcloud.pointViews;
