@@ -26,12 +26,12 @@
 #include "MVSEngine.h"
 #include "mvsviewer.h"
 #include "qevent.h"
-#include "Common.h"
 #include <boost/program_options.hpp>
-#include "Scene.h"
 #include <time.h>
 #include <qevent.h>
 #include "Jutil.h"
+#include "Common.h"
+#include "Scene.h"
 
 class QT3DReconstruction : public QMainWindow
 {
@@ -42,8 +42,7 @@ public:
 	~QT3DReconstruction();
 
 	bool openView(QString fileName);
-	bool openViewCompatibility(QString fileName, bool isOSG);
-	bool openViewCompatibility(QString fileName);
+	static bool openViewCompatibility(QString fileName);
 	bool converseType(QString fileNameSrc, QString fileNameDes);
 private slots:
 
@@ -83,8 +82,6 @@ private:
 	Dialog_addsensorwidth dlgasw;
 	Dialog_FullAuto dlgfa;
 	dialog_coor dlgcoor;
-	bool InitializeViewer(size_t argc, LPCTSTR* argv);
-	void FinalizeViewer();
 	QTimer* timer;
 	VIEWER::Scene* J3DViewer;
 	bool J3DViewerAva;

@@ -2,7 +2,6 @@
 #define _VIEWER_SCENE_H_
 
 #include "Window.h"
-#include "Global.h"
 
 namespace VIEWER {
 
@@ -31,8 +30,8 @@ namespace VIEWER {
 		static SEACAVE::Thread thread; // worker thread
 
 	public:
-		Scene();
-		~Scene();
+		__declspec(dllexport) Scene();
+		__declspec(dllexport) ~Scene();
 
 		void Empty();
 		void Release();
@@ -42,16 +41,16 @@ namespace VIEWER {
 		inline bool IsOpen() const { return IsValid() && !scene.IsEmpty(); }
 		inline bool IsOctreeValid() const { return !octPoints.IsEmpty() || !octMesh.IsEmpty(); }
 
-		bool Init(int width, int height, LPCTSTR windowName, LPCTSTR fileName = NULL, LPCTSTR meshFileName = NULL);
+		__declspec(dllexport) bool Init(int width, int height, LPCTSTR windowName, LPCTSTR fileName = NULL, LPCTSTR meshFileName = NULL);
 		bool Open(LPCTSTR fileName, LPCTSTR meshFileName = NULL);
-		bool Export(LPCTSTR fileName, LPCTSTR exportType = NULL, bool losslessTexture = false) const;
-		bool Export(LPCTSTR _fileName, LPCTSTR exportType, bool losslessTexture, bool b) const;
+		__declspec(dllexport) bool Export(LPCTSTR fileName, LPCTSTR exportType = NULL, bool losslessTexture = false) const;
+		__declspec(dllexport) bool Export(LPCTSTR _fileName, LPCTSTR exportType, bool losslessTexture, bool b) const;
 		void CompilePointCloud();
 		void CompileMesh();
 
 		void Draw();
 		void ProcessEvents();
-		void Loop();
+		__declspec(dllexport) void Loop();
 
 		void CastRay(const Ray3&, int);
 

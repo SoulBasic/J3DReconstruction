@@ -132,7 +132,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\openMVS\src;C:\openMVS\Boost\boost_1_67_0;C:\openMVS\Eigen;C:\openMVS\build\openCV;C:\openMVS\openCV\sources\include;C:\openMVS\openCV\sources\include\opencv;C:\openMVS\openCV\sources\modules\core\include;C:\openMVS\openCV\sources\modules\flann\include;C:\openMVS\openCV\sources\modules\imgproc\include;C:\openMVS\openCV\sources\modules\ml\include;C:\openMVS\openCV\sources\modules\objdetect\include;C:\openMVS\openCV_contrib\modules\phase_unwrapping\include;C:\openMVS\openCV\sources\modules\photo\include;C:\openMVS\openCV_contrib\modules\plot\include;C:\openMVS\openCV_contrib\modules\reg\include;C:\openMVS\openCV_contrib\modules\surface_matching\include;C:\openMVS\openCV\sources\modules\video\include;C:\openMVS\openCV_contrib\modules\xphoto\include;C:\openMVS\openCV\sources\modules\dnn\include;C:\openMVS\openCV_contrib\modules\fuzzy\include;C:\openMVS\openCV_contrib\modules\hfs\include;C:\openMVS\openCV\sources\modules\imgcodecs\include;C:\openMVS\openCV\sources\modules\shape\include;C:\openMVS\openCV\sources\modules\videoio\include;C:\openMVS\openCV_contrib\modules\xobjdetect\include;C:\openMVS\openCV\sources\modules\highgui\include;C:\openMVS\openCV\sources\modules\superres\include;C:\openMVS\openCV_contrib\modules\bioinspired\include;C:\openMVS\openCV_contrib\modules\dnn_objdetect\include;C:\openMVS\openCV_contrib\modules\dpm\include;C:\openMVS\openCV\sources\modules\features2d\include;C:\openMVS\openCV_contrib\modules\line_descriptor\include;C:\openMVS\openCV_contrib\modules\saliency\include;C:\openMVS\openCV_contrib\modules\text\include;C:\openMVS\openCV\sources\modules\calib3d\include;C:\openMVS\openCV_contrib\modules\ccalib\include;C:\openMVS\openCV_contrib\modules\datasets\include;C:\openMVS\openCV_contrib\modules\rgbd\include;C:\openMVS\openCV_contrib\modules\stereo\include;C:\openMVS\openCV_contrib\modules\structured_light\include;C:\openMVS\openCV_contrib\modules\tracking\include;C:\openMVS\openCV\sources\modules\videostab\include;C:\openMVS\openCV_contrib\modules\xfeatures2d\include;C:\openMVS\openCV_contrib\modules\ximgproc\include;C:\openMVS\openCV_contrib\modules\aruco\include;C:\openMVS\openCV_contrib\modules\bgsegm\include;C:\openMVS\openCV_contrib\modules\face\include;C:\openMVS\openCV_contrib\modules\optflow\include;C:\openMVS\openCV\sources\modules\stitching\include;C:\openMVS\openCV\sources\modules\world\include;C:\openMVS\openCV_contrib\modules\img_hash\include;C:\openMVS\openCV\sources\modules\ts\include;E:\OpenGL\glew-2.1.0\include;C:\Program Files (x86)\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\3rd_party\glew-2.1.0\include;C:\Program Files (x86)\GLFW\include;..\MVSEngine;C:\openMVS\Boost\boost_1_67_0;C:\openMVS\src;C:\openMVS\Eigen;C:\openMVS\build\openCV\install\include;..\3rd_party\OSG\include;..\3rd_party\libpng;..\J3DViewRender\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /bigobj /Zm170 /bigobj /Zm170</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
@@ -168,15 +168,15 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>C:\openMVS\build\openMVS\lib\vc15\x64\Release\MVS.lib;C:\openMVS\build\openMVS\lib\vc15\x64\Release\Math.lib;C:\openMVS\build\openMVS\lib\vc15\x64\Release\IO.lib;C:\openMVS\build\openMVS\lib\vc15\x64\Release\Common.lib;opengl32.lib;glu32.lib;E:\OpenGL\glew-2.1.0\lib\Release\x64\glew32.lib;C:\Program Files (x86)\GLFW\lib\glfw3.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_iostreams-vc141-mt-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_program_options-vc141-mt-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_system-vc141-mt-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_serialization-vc141-mt-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_regex-vc141-mt-x64-1_67.lib;C:\openMVS\build\openCV\lib\Release\opencv_world341.lib;C:\openMVS\build\openCV\lib\Release\opencv_img_hash341.lib;C:\openMVS\jpeg-9d\libjpeg.lib;C:\Program Files (x86)\Ceres\lib\ceres.lib;C:\openMVS\build\Google_Log\Release\glog.lib;C:\openMVS\build\Google_Flags\lib\Release\gflags_static.lib;shlwapi.lib;C:\openMVS\CGAL\auxiliary\gmp\lib\libmpfr-4.lib;C:\openMVS\CGAL\auxiliary\gmp\lib\libgmp-10.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:/openMVS/Boost/boost_1_67_0/lib64-msvc-14.1;C:/openMVS/Boost/boost_1_67_0/lib64-msvc-14.1/$(Configuration);C:\Program Files %28x86%29\CGAL\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>C:\openMVS\build\openMVS\lib\vc15\x64\Release\MVS.lib;C:\openMVS\build\openMVS\lib\vc15\x64\Release\Math.lib;C:\openMVS\build\openMVS\lib\vc15\x64\Release\IO.lib;C:\openMVS\build\openMVS\lib\vc15\x64\Release\Common.lib;odbc32.lib;odbccp32.lib;zlib.lib;libpng16.lib;OpenGL32.Lib;GlU32.Lib;..\3rd_party\\glew-2.1.0\lib\Release\x64\glew32.lib;C:\Program Files (x86)\GLFW\lib\glfw3.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_iostreams-vc141-mt-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_program_options-vc141-mt-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_system-vc141-mt-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_serialization-vc141-mt-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_regex-vc141-mt-x64-1_67.lib;C:\openMVS\build\openCV\lib\Release\opencv_world341.lib;C:\openMVS\build\openCV\lib\Release\opencv_img_hash341.lib;C:\openMVS\jpeg-9d\libjpeg.lib;C:\Program Files (x86)\Ceres\lib\ceres.lib;C:\openMVS\build\Google_Log\Release\glog.lib;C:\openMVS\build\Google_Flags\lib\Release\gflags_static.lib;shlwapi.lib;C:\openMVS\CGAL\auxiliary\gmp\lib\libmpfr-4.lib;C:\openMVS\CGAL\auxiliary\gmp\lib\libgmp-10.lib;J3DViewRender.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Program Files (x86)\Windows Kits\10\Lib\10.0.17763.0\um\x64;..\3rd_party\glew-2.1.0\lib\Release\x64;..\x64\Release;C:/openMVS/Boost/boost_1_67_0/lib64-msvc-14.1;C:/openMVS/Boost/boost_1_67_0/lib64-msvc-14.1/$(Configuration);C:\Program Files %28x86%29\CGAL\lib;..\3rd_party\OSG\lib;..\3rd_party\libpng;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64 /FORCE:MULTIPLE</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ImportLibrary>C:/openMVS/build/openMVS/bin/vc15/x64/Release/Viewer.lib</ImportLibrary>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <ProgramDataBaseFile>C:/openMVS/build/openMVS/bin/vc15/x64/Release/Viewer.pdb</ProgramDataBaseFile>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
@@ -418,22 +418,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="Common.h" />
-    <ClInclude Include="Global.h" />
-    <ClInclude Include="Image.h" />
-    <ClInclude Include="resource.h" />
-    <ClInclude Include="Scene.h" />
-    <ClInclude Include="Window.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="Common.cpp" />
-    <ClCompile Include="Global.cpp" />
-    <ClCompile Include="Image.cpp" />
-    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Viewer.cpp" />
-    <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Viewer.rc" />

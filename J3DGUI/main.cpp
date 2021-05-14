@@ -1,7 +1,7 @@
 
 #include "QT3DReconstruction.h"
 #include <QtWidgets/QApplication>
-
+#include <qstring.h>
 
 int main(int argc, char *argv[])
 {

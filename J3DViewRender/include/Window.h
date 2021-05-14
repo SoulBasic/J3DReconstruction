@@ -58,7 +58,7 @@ namespace VIEWER {
 		bool Init(int width, int height, LPCTSTR name);
 		void SetCamera(CameraPtr);
 		void SetName(LPCTSTR);
-		void SetVisible(bool);
+		__declspec(dllexport) void SetVisible(bool);
 		void Reset(uint32_t minViews = 2);
 
 		inline GLFWwindow* GetWindow() { return window; }
@@ -68,13 +68,13 @@ namespace VIEWER {
 
 		void Resize(int width, int height);
 		static void Resize(GLFWwindow* window, int width, int height);
-		void Key(int k, int scancode, int action, int mod);
+		__declspec(dllexport) void Key(int k, int scancode, int action, int mod);
 		static void Key(GLFWwindow* window, int k, int scancode, int action, int mod);
 		void MouseButton(int button, int action, int mods);
 		static void MouseButton(GLFWwindow* window, int button, int action, int mods);
 		void Scroll(double xoffset, double yoffset);
 		static void Scroll(GLFWwindow* window, double xoffset, double yoffset);
-		void Drop(int count, const char** paths);
+		__declspec(dllexport) void Drop(int count, const char** paths);
 		static void Drop(GLFWwindow* window, int count, const char** paths);
 
 		static void CursorPos(GLFWwindow* window, double x, double y);

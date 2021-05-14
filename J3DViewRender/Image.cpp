@@ -1,6 +1,7 @@
 
-#include "Common.h"
-#include "Image.h"
+
+#include "include/Common.h"
+#include "include/Image.h"
 
 using namespace VIEWER;
 

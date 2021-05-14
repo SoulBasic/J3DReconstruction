@@ -5,12 +5,11 @@
 #include "opencv2/highgui.hpp"
 #include "opencv2/opencv.hpp"
 #include <vector>
-#include <Windows.h>
-#include <direct.h>
 #include <cstdio>
 #include "dxflib/dl_dxf.h"
-#include "TiffData.h"
+#include "TiffData.hpp"
 #include <chrono>
+#include <Windows.h>
 using namespace MVS;
 
 std::string workDir;
@@ -21,53 +20,19 @@ std::vector<SEACAVE::Point3d> picked_points;
 #define NOW_TIME std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count()
 
 
-int getFiles(const char* path, std::vector<std::string>& arr)
-{
-	int num_of_img = 0;
-	intptr_t hFile = 0;
-	struct _finddata_t fileinfo;
-	char p[700] = { 0 };
-	strcpy(p, path);
-	strcat(p, "\\*");
-	char buf[256];
-	if ((hFile = _findfirst(p, &fileinfo)) != -1)
-	{
-		do
-		{
-			if ((fileinfo.attrib & _A_SUBDIR))
-			{
-				if (strcmp(fileinfo.name, ".") != 0 && strcmp(fileinfo.name, "..") != 0)
-					continue;
-			}
-			else
-			{
-
-				strcpy(buf, path);
-				strcat(buf, "\\");
-				strcat(buf, fileinfo.name);
-				struct stat st1;
-				stat(buf, &st1);
-				arr.push_back(fileinfo.name);
-			}
-		} while (_findnext(hFile, &fileinfo) == 0);
-		_findclose(hFile);
-	}
-	return num_of_img;
-}
-
 void onMouse(int event, int x, int y, int flags, void* param)
 {
 	if (event == CV_EVENT_LBUTTONUP)
 	{
 		time_t start_time = NOW_TIME;
-		auto p = tiffData.find(&scene.images[img_index], x, y);
+		auto p = tiffData.find(scene.images[img_index], x, y);
 		if (isnan(p.x) || isnan(p.y) || isnan(p.z))
 		{
-			printf("像点坐标:x=%d\ty=%d\t映射点坐标:lon=0.0\tlat=0.0\talt=0.0\n鼠标处无有效点,请重试\t映射用时:%dms\n", img_index, NOW_TIME - start_time, x, y);
+			printf("像点坐标:x=%d\ty=%d\t映射点坐标:lon=0.0\tlat=0.0\talt=0.0\n鼠标处无有效点,请重试\t映射用时:%dms\n\n", img_index, NOW_TIME - start_time, x, y);
 			return;
 		}
 		picked_points.push_back(p);
-		printf("像点坐标:x=%d\ty=%d\t映射点坐标:lon=%0.10lf\tlat=%0.10lf\talt=%0.10lf\n添加点成功, 目前总数为%d\t映射用时:%dms\n", x, y, p.x, p.y, p.z, picked_points.size(), NOW_TIME - start_time);
+		printf("像点坐标:x=%d\ty=%d\t映射点坐标:lon=%0.10lf\tlat=%0.10lf\talt=%0.10lf\n添加点成功, 目前总数为%d\t映射用时:%dms\n\n", x, y, p.x, p.y, p.z, picked_points.size(), NOW_TIME - start_time);
 	}
 	else if (event == CV_EVENT_RBUTTONUP)
 	{
@@ -91,6 +56,8 @@ bool readImg(int idx)
 	cv::destroyWindow(scene.images[img_index].name.c_str());
 	img_index = idx;
 	cv::namedWindow(img_name, CV_WINDOW_NORMAL);
+	cv::resizeWindow(img_name, GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN));
+	cv::moveWindow(img_name, 0, 0);
 	cv::imshow(img_name, img);
 	cv::setMouseCallback(img_name, onMouse);
 	return true;

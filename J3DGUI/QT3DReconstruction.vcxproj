@@ -167,7 +167,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <AdditionalOptions> /SAFESEH:NO /bigobj /Zm170 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories>..\3rd_party\glew-2.1.0\include;C:\Program Files (x86)\GLFW\include;..\MVSEngine;C:\openMVS\Boost\boost_1_67_0;C:\openMVS\src;C:\openMVS\Eigen;C:\openMVS\build\openCV\install\include;..\3rd_party\OSG\include;..\3rd_party\libpng;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\3rd_party\glew-2.1.0\include;C:\Program Files (x86)\GLFW\include;..\MVSEngine;C:\openMVS\Boost\boost_1_67_0;C:\openMVS\src;C:\openMVS\Eigen;C:\openMVS\build\openCV\install\include;..\3rd_party\OSG\include;..\3rd_party\libpng;..\J3DViewRender\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_NO_DEBUG;NDEBUG;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;_HAS_EXCEPTIONS=1;_USE_OPENMP;_USE_OPENGL;_USE_BOOST;_USE_EIGEN;_USE_NONFREE;_USE_FAST_FLOAT2INT;_USE_FAST_CBRT;_USE_SSE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>true</OpenMPSupport>
@@ -186,9 +186,10 @@
     </QtUic>
     <Link>
       <AdditionalLibraryDirectories>$(Qt_LIBPATH_);C:\Program Files (x86)\Windows Kits\10\Lib\10.0.17763.0\um\x64;..\3rd_party\glew-2.1.0\lib\Release\x64;..\x64\Release;C:/openMVS/Boost/boost_1_67_0/lib64-msvc-14.1;C:/openMVS/Boost/boost_1_67_0/lib64-msvc-14.1/$(Configuration);C:\Program Files %28x86%29\CGAL\lib;..\3rd_party\OSG\lib;..\3rd_party\libpng;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>$(Qt_LIBS_);C:\openMVS\build\openMVS\lib\vc15\x64\Release\MVS.lib;C:\openMVS\build\openMVS\lib\vc15\x64\Release\Math.lib;C:\openMVS\build\openMVS\lib\vc15\x64\Release\IO.lib;C:\openMVS\build\openMVS\lib\vc15\x64\Release\Common.lib;odbc32.lib;odbccp32.lib;zlib.lib;libpng16.lib;OpenGL32.Lib;GlU32.Lib;..\3rd_party\\glew-2.1.0\lib\Release\x64\glew32.lib;C:\Program Files (x86)\GLFW\lib\glfw3.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_iostreams-vc141-mt-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_program_options-vc141-mt-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_system-vc141-mt-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_serialization-vc141-mt-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_regex-vc141-mt-x64-1_67.lib;C:\openMVS\build\openCV\lib\Release\opencv_world341.lib;C:\openMVS\build\openCV\lib\Release\opencv_img_hash341.lib;C:\openMVS\jpeg-9d\libjpeg.lib;C:\Program Files (x86)\Ceres\lib\ceres.lib;C:\openMVS\build\Google_Log\Release\glog.lib;C:\openMVS\build\Google_Flags\lib\Release\gflags_static.lib;shlwapi.lib;C:\openMVS\CGAL\auxiliary\gmp\lib\libmpfr-4.lib;C:\openMVS\CGAL\auxiliary\gmp\lib\libgmp-10.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(Qt_LIBS_);C:\openMVS\build\openMVS\lib\vc15\x64\Release\MVS.lib;C:\openMVS\build\openMVS\lib\vc15\x64\Release\Math.lib;C:\openMVS\build\openMVS\lib\vc15\x64\Release\IO.lib;C:\openMVS\build\openMVS\lib\vc15\x64\Release\Common.lib;odbc32.lib;odbccp32.lib;zlib.lib;libpng16.lib;OpenGL32.Lib;GlU32.Lib;..\3rd_party\\glew-2.1.0\lib\Release\x64\glew32.lib;C:\Program Files (x86)\GLFW\lib\glfw3.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_iostreams-vc141-mt-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_program_options-vc141-mt-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_system-vc141-mt-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_serialization-vc141-mt-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_regex-vc141-mt-x64-1_67.lib;C:\openMVS\build\openCV\lib\Release\opencv_world341.lib;C:\openMVS\build\openCV\lib\Release\opencv_img_hash341.lib;C:\openMVS\jpeg-9d\libjpeg.lib;C:\Program Files (x86)\Ceres\lib\ceres.lib;C:\openMVS\build\Google_Log\Release\glog.lib;C:\openMVS\build\Google_Flags\lib\Release\gflags_static.lib;shlwapi.lib;C:\openMVS\CGAL\auxiliary\gmp\lib\libmpfr-4.lib;C:\openMVS\CGAL\auxiliary\gmp\lib\libgmp-10.lib;J3DViewRender.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions> /SAFESEH:NO /machine:x64 /FORCE:MULTIPLE %(AdditionalOptions)</AdditionalOptions>
-      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
@@ -221,8 +222,6 @@
   <ItemGroup>
     <ClCompile Include="dialog_coor.cpp" />
     <ClCompile Include="Jutil.cpp" />
-    <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="Window.cpp" />
     <QtRcc Include="QT3DReconstruction.qrc" />
     <QtUic Include="dialog_addsensorwidth.ui" />
     <QtUic Include="dialog_coor.ui" />
@@ -236,8 +235,6 @@
       <SubType>Designer</SubType>
     </QtUic>
     <QtMoc Include="QT3DReconstruction.h" />
-    <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="Common.cpp" />
     <ClCompile Include="dialog_addsensorwidth.cpp" />
     <ClCompile Include="dialog_densifypointcloud.cpp" />
     <ClCompile Include="dialog_fullauto.cpp" />
@@ -246,7 +243,6 @@
     <ClCompile Include="dialog_sfm.cpp" />
     <ClCompile Include="dialog_texturemesh.cpp" />
     <ClCompile Include="Global.cpp" />
-    <ClCompile Include="Image.cpp" />
     <ClCompile Include="mvsviewer.cpp" />
     <ClCompile Include="QT3DReconstruction.cpp" />
     <ClCompile Include="main.cpp" />
@@ -264,17 +260,12 @@
     <QtMoc Include="dialog_coor.h" />
     <ClInclude Include="Jutil.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="Scene.h" />
-    <ClInclude Include="Window.h" />
     <QtMoc Include="Dialog_ReconstructMesh.h" />
     <QtMoc Include="dialog_texturemesh.h" />
     <QtMoc Include="dialog_addsensorwidth.h" />
     <QtMoc Include="dialog_fullauto.h" />
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="Common.h" />
     <ClInclude Include="Global.h" />
     <QtMoc Include="mvsviewer.h" />
-    <ClInclude Include="Image.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="J3DGUI.rc" />

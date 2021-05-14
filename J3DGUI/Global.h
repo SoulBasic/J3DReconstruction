@@ -77,6 +77,4 @@ public:
 	static int processState;
 	static QString processETA;
 	static bool getProcessMsg();
-	static bool CheckViewerMsg();
-	static void* dlg;
 };

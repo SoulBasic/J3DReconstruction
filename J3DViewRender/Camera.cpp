@@ -1,5 +1,5 @@
-#include "Common.h"
-#include "Camera.h"
+#include "include/Common.h"
+#include "include/Camera.h"
 
 using namespace VIEWER;
 

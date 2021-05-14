@@ -27,9 +27,6 @@
     <ClCompile Include="dxflib\dl_writer_ascii.cpp">
       <Filter>dxflib</Filter>
     </ClCompile>
-    <ClCompile Include="TiffData.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
@@ -68,7 +65,7 @@
     <ClInclude Include="dxflib\dl_writer_ascii.h">
       <Filter>dxflib</Filter>
     </ClInclude>
-    <ClInclude Include="TiffData.h">
+    <ClInclude Include="TiffData.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

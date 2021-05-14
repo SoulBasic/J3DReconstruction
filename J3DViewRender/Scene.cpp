@@ -1,11 +1,17 @@
 
 
-#include "Common.h"
-#include "Scene.h"
+#include "include/Common.h"
+#include "include/Scene.h"
 
 using namespace VIEWER;
 
+
+// D E F I N E S ///////////////////////////////////////////////////
+
 #define IMAGE_MAX_RESOLUTION 1024
+
+
+// S T R U C T S ///////////////////////////////////////////////////
 
 struct IndexDist {
 	IDX idx;
@@ -270,7 +276,7 @@ bool Scene::Init(int width, int height, LPCTSTR windowName, LPCTSTR fileName, LP
 		window.SetCamera(CameraPtr(new Camera()));
 
 	window.SetVisible(false);
-	Global::sce = (void*)this;
+
 	return true;
 }
 bool Scene::Open(LPCTSTR fileName, LPCTSTR meshFileName)
@@ -365,6 +371,25 @@ bool Scene::Export(LPCTSTR _fileName, LPCTSTR exportType, bool losslessTexture) 
 #endif
 	return (bPoints || bMesh);
 }
+
+bool Scene::Export(LPCTSTR _fileName, LPCTSTR exportType, bool losslessTexture, bool b) const
+{
+	if (!IsOpen())
+		return false;
+	ASSERT(!sceneName.IsEmpty());
+	String lastFileName;
+	const String fileName(_fileName != NULL ? String(_fileName) : sceneName);
+	const String baseFileName(Util::getFileFullName(fileName));
+	const bool bPoints(scene.pointcloud.Save(lastFileName = (baseFileName + _T(".ply"))));
+	const bool bMesh(scene.mesh.Save(lastFileName = (baseFileName + (exportType ? exportType : (Util::getFileExt(fileName) == _T(".obj") ? _T(".obj") : _T(".ply")))), true, losslessTexture));
+#if TD_VERBOSE != TD_VERBOSE_OFF
+	if (VERBOSITY_LEVEL > 2 && (bPoints || bMesh))
+		scene.ExportCamerasMLP(Util::getFileFullName(lastFileName) + _T(".mlp"), lastFileName);
+#endif
+	return (bPoints || bMesh);
+}
+
+
 
 void Scene::CompilePointCloud()
 {
@@ -558,15 +583,11 @@ void Scene::ProcessEvents()
 
 void Scene::Loop()
 {
-
-	while (!glfwWindowShouldClose(window.GetWindow())) {
-		//if (GetMessage(&msg, NULL, 0, 0) != -1)
-		//{
-
-		//}
+	while (!glfwWindowShouldClose(window.GetWindow()) && !shouldClose) {
 		ProcessEvents();
 		Draw();
 	}
+	Release();
 }
 
 
@@ -652,110 +673,4 @@ void Scene::CastRay(const Ray3& ray, int action)
 }
 
 
-
-int Scene::Messsages() {
-	while (msg.message != WM_QUIT) { //while we do not close our application
-		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
-		}
-		Sleep(1);
-	}
-	UninstallHook(); //if we close, let's uninstall our hook
-	return (int)msg.wParam; //return the messages
-}
-void Scene::InstallHook() {
-	/*
-	SetWindowHookEx(
-	WM_MOUSE_LL = mouse low level hook type,
-	MyMouseCallback = our callback function that will deal with system messages about mouse
-	NULL, 0);
-
-	c++ note: we can check the return SetWindowsHookEx like this because:
-	If it return NULL, a NULL value is 0 and 0 is false.
-	*/
-	if (!(keyboardhook == SetWindowsHookEx(WH_KEYBOARD_LL, MyKeyBoardCallback, NULL, 0)))
-	{
-		//printf_s("Error: %x \n", GetLastError());
-	}
-}
-
-void Scene::UninstallHook() {
-	/*
-	uninstall our hook using the hook handle
-	*/
-	UnhookWindowsHookEx(hook);
-	UnhookWindowsHookEx(keyboardhook);
-}
-
-
-LRESULT WINAPI MyKeyBoardCallback(int nCode, WPARAM wParam, LPARAM lParam)
-{
-	KBDLLHOOKSTRUCT* pKeyStruct = (KBDLLHOOKSTRUCT*)lParam;
-
-	if (nCode == 0)
-	{
-
-
-		switch (wParam)
-		{
-		case WM_KEYUP:
-		{
-			if (!pKeyStruct)
-			{
-				break;
-			}
-
-			switch (pKeyStruct->vkCode)
-			{
-			case GLFW_KEY_T://T 
-			{
-				((Scene*)Global::sce)->window.Key(GLFW_KEY_T, 0, GLFW_RELEASE, GLFW_MOD_SUPER);
-				break;
-			}
-			case GLFW_KEY_M://M
-			{
-				((Scene*)Global::sce)->window.Key(GLFW_KEY_M, 0, GLFW_RELEASE, GLFW_MOD_SUPER);
-				break;
-			}
-			case GLFW_KEY_C://C
-			{
-				((Scene*)Global::sce)->window.Key(GLFW_KEY_C, 0, GLFW_RELEASE, GLFW_MOD_SUPER);
-				break;
-			}
-			case GLFW_KEY_P://P
-			{
-				((Scene*)Global::sce)->window.Key(GLFW_KEY_P, 0, GLFW_RELEASE, GLFW_MOD_SUPER);
-				break;
-			}
-			case GLFW_KEY_A://A
-			{
-				((Scene*)Global::sce)->window.Key(GLFW_KEY_UP, 0, GLFW_RELEASE, GLFW_MOD_SUPER);
-				break;
-			}
-			case GLFW_KEY_S://S
-			{
-				((Scene*)Global::sce)->window.Key(GLFW_KEY_DOWN, 0, GLFW_RELEASE, GLFW_MOD_SUPER);
-				break;
-			}
-			case GLFW_KEY_ESCAPE://esc
-			{
-				((Scene*)Global::sce)->window.Key(GLFW_KEY_ESCAPE, 0, GLFW_RELEASE, GLFW_MOD_SUPER);
-				break;
-			}
-			}
-
-		}break;
-
-
-
-		case WM_SYSKEYDOWN: {
-			printf_s("Not Sys Key\n");
-		}break;
-		}
-
-
-	}
-	return CallNextHookEx(((Scene*)Global::sce)->keyboardhook, nCode, wParam, lParam);
-}
 /*----------------------------------------------------------------*/

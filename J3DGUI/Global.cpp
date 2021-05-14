@@ -24,7 +24,6 @@ bool Global::autoTasking = false;
 int Global::process = PROCESSWORKING;
 int Global::processProject = 0;
 int Global::processState = 0;
-void* Global::dlg = nullptr;
 
 void Global::connectEngine()
 {
@@ -103,25 +102,6 @@ bool Global::getProcessMsg()
 	}
 	else
 		return false;
-}
-
-
-bool Global::CheckViewerMsg()
-{
-	QFile Processcache("C:\\ProgramData\\J3DEngine\\ViewerCache.tmp");
-	if (Processcache.open(QIODevice::ReadOnly | QIODevice::Text))
-	{
-		QByteArray buf = Processcache.readLine();
-		QString str(buf);
-		time_t tm = time(NULL);
-		if (str.toLong() > 1) {
-			return true;
-		}
-
-	}
-	return false;
-
-
 }
 
 

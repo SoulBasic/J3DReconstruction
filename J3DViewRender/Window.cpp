@@ -1,10 +1,9 @@
 
 
-#include "Common.h"
-#include "Window.h"
+#include "include/Common.h"
+#include "include/Window.h"
 
 using namespace VIEWER;
-
 
 Window::WindowsMap Window::g_mapWindows;
 
@@ -164,22 +163,22 @@ void Window::Key(int k, int /*scancode*/, int action, int mod)
 			}
 		}
 		break;
-		//case GLFW_KEY_LEFT:
-		//	if (action != GLFW_RELEASE) {
-		//		camera->prevCamID = camera->currentCamID;
-		//		camera->currentCamID--;
-		//		if (camera->currentCamID < NO_ID && camera->currentCamID >= camera->maxCamID)
-		//			camera->currentCamID = camera->maxCamID-1;
-		//	}
-		//	break;
-		//case GLFW_KEY_RIGHT:
-		//	if (action != GLFW_RELEASE) {
-		//		camera->prevCamID = camera->currentCamID;
-		//		camera->currentCamID++;
-		//		if (camera->currentCamID >= camera->maxCamID)
-		//			camera->currentCamID = NO_ID;
-		//	}
-		//	break;
+		case GLFW_KEY_LEFT:
+			if (action == GLFW_RELEASE) {
+				camera->prevCamID = camera->currentCamID;
+				camera->currentCamID--;
+				if (camera->currentCamID < NO_ID && camera->currentCamID >= camera->maxCamID)
+					camera->currentCamID = camera->maxCamID-1;
+			}
+			break;
+		case GLFW_KEY_RIGHT:
+			if (action == GLFW_RELEASE) {
+				camera->prevCamID = camera->currentCamID;
+				camera->currentCamID++;
+				if (camera->currentCamID >= camera->maxCamID)
+					camera->currentCamID = NO_ID;
+			}
+			break;
 		//case GLFW_KEY_E:
 		//	if (action == GLFW_RELEASE && clbkExportScene != NULL)
 		//		clbkExportScene(NULL, NULL, false);
@@ -220,26 +219,26 @@ void Window::Key(int k, int /*scancode*/, int action, int mod)
 		if (clbkCompilePointCloud != NULL)
 			clbkCompilePointCloud();
 		break;
-		//case GLFW_KEY_KP_SUBTRACT:
-		//	if (action == GLFW_RELEASE) {
-		//		if (mod & GLFW_MOD_CONTROL)
-		//			camera->SetFOV(MAXF(camera->fov-5, 5.0));
-		//		else if (mod & GLFW_MOD_SHIFT)
-		//			camera->scaleF *= 0.9f;
-		//		else
-		//			cameraBlend = MAXF(cameraBlend-0.1f, 0.f);
-		//	}
-		//	break;
-		//case GLFW_KEY_KP_ADD:
-		//	if (action == GLFW_RELEASE) {
-		//		if (mod & GLFW_MOD_CONTROL)
-		//			camera->SetFOV(camera->fov+5);
-		//		else if (mod & GLFW_MOD_SHIFT)
-		//			camera->scaleF *= 1.11f;
-		//		else
-		//			cameraBlend = MINF(cameraBlend+0.1f, 1.f);
-		//	}
-		//	break;
+		case GLFW_KEY_KP_SUBTRACT:
+			if (action == GLFW_RELEASE) {
+				if (mod & GLFW_MOD_CONTROL)
+					camera->SetFOV(MAXF(camera->fov-5, 5.0));
+				else if (mod & GLFW_MOD_SHIFT)
+					camera->scaleF *= 0.9f;
+				else
+					cameraBlend = MAXF(cameraBlend-0.1f, 0.f);
+			}
+			break;
+		case GLFW_KEY_KP_ADD:
+			if (action == GLFW_RELEASE) {
+				if (mod & GLFW_MOD_CONTROL)
+					camera->SetFOV(camera->fov+5);
+				else if (mod & GLFW_MOD_SHIFT)
+					camera->scaleF *= 1.11f;
+				else
+					cameraBlend = MINF(cameraBlend+0.1f, 1.f);
+			}
+			break;
 	}
 }
 void Window::Key(GLFWwindow* window, int k, int scancode, int action, int mod)

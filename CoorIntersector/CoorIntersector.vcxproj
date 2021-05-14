@@ -22,7 +22,6 @@
     <ClCompile Include="CoorIntersector.cpp" />
     <ClCompile Include="dxflib\dl_dxf.cpp" />
     <ClCompile Include="dxflib\dl_writer_ascii.cpp" />
-    <ClCompile Include="TiffData.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dxflib\dl_attributes.h" />
@@ -37,7 +36,7 @@
     <ClInclude Include="dxflib\dl_writer.h" />
     <ClInclude Include="dxflib\dl_writer_ascii.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="TiffData.h" />
+    <ClInclude Include="TiffData.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="CoorIntersector.rc" />

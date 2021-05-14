@@ -101,9 +101,7 @@ void QT3DReconstruction::timerSlot()
 				QString fileName = Global::sfmOutputDir + "/SparseCloud.J3D";
 				if (fileName == "")
 				{
-					QMessageBox::information(NULL, u8"失败", u8"打开J3D文件失败，请检查路径是否正确 ", QMessageBox::Ok, QMessageBox::Ok);
 					return;
-
 				}
 				if (J3DViewerAva)
 				{
@@ -122,9 +120,7 @@ void QT3DReconstruction::timerSlot()
 				QString fileName = Global::densifyWorkingDir + "/DenseCloud.J3D";
 				if (fileName == "")
 				{
-					QMessageBox::information(NULL, u8"失败", u8"打开J3D文件失败，请检查路径是否正确 ", QMessageBox::Ok, QMessageBox::Ok);
 					return;
-
 				}
 				if (J3DViewerAva)
 				{
@@ -142,9 +138,7 @@ void QT3DReconstruction::timerSlot()
 				QString fileName = Global::reconstructMeshWorkingDir + "/TIN_Mesh.J3D";
 				if (fileName == "")
 				{
-					QMessageBox::information(NULL, u8"失败", u8"打开J3D文件失败，请检查路径是否正确 ", QMessageBox::Ok, QMessageBox::Ok);
 					return;
-
 				}
 				if (J3DViewerAva)
 				{
@@ -162,9 +156,7 @@ void QT3DReconstruction::timerSlot()
 				QString fileName = Global::reconstructMeshWorkingDir + "/TEXTURE_Mesh.J3D";
 				if (fileName == "")
 				{
-					QMessageBox::information(NULL, u8"失败", u8"打开J3D文件失败，请检查路径是否正确 ", QMessageBox::Ok, QMessageBox::Ok);
 					return;
-
 				}
 				if (J3DViewerAva)
 				{
@@ -293,11 +285,7 @@ void QT3DReconstruction::on_actionopen_mvs_file_triggered()
 {
 	QString fileName = QFileDialog::getOpenFileName(NULL, "ViewJ3D", ".",
 		"J3D Model Format(*.J3D);;Stanford Polygon File Format(*.ply);;Alias Wavefront Object(*.obj);;All Files(*.*)");
-	if (fileName == "")
-	{
-		QMessageBox::information(NULL, u8"失败", u8"打开J3D文件失败，请检查路径是否正确 ", QMessageBox::Ok, QMessageBox::Ok);
-		return;
-	}
+	if (fileName == "") return;
 	J3DFile = Jutil::SparseFileName(fileName.toStdString());
 	if (J3DViewerAva == false)
 	{
@@ -310,8 +298,6 @@ void QT3DReconstruction::on_actionopen_mvs_file_triggered()
 	
 	J3DViewer->window.Drop(1, path);
 }
-
-
 
 bool QT3DReconstruction::openView(QString fileName)
 {
@@ -340,23 +326,6 @@ bool QT3DReconstruction::openView(QString fileName)
 }
 
 
-bool QT3DReconstruction::InitializeViewer(size_t argc, LPCTSTR* argv)
-{
-	//OPEN_LOG();
-	//OPEN_LOGCONSOLE();
-	//Util::LogBuild();
-	//LOG(_T("Command line:%s"), Util::CommandLineToString(argc, argv).c_str());
-	LOG(_T("J3D Viewer 初始化完成"));
-	LOG(_T("读取文件中..."));
-	return true;
-}
-
-void QT3DReconstruction::FinalizeViewer()
-{
-	//CLOSE_LOGCONSOLE();
-	//CLOSE_LOG();
-}
-
 void QT3DReconstruction::on_action_fullauto_triggered()
 {
 	dlgfa.exec();
@@ -367,85 +336,59 @@ void QT3DReconstruction::on_action_2_triggered()
 	QString fileName = QFileDialog::getOpenFileName(NULL,
 		"ViewJ3D", ".",
 		"J3D Model Format(*.J3D);;Stanford Polygon File Format(*.ply);;Alias Wavefront Object(*.obj);;OpenSceneGraph(*.osg);;OpenSceneGraph Binary(*.osgb);;All Files(*.*)");
-	if (fileName == "")
-	{
-		QMessageBox::information(NULL, u8"失败", u8"打开J3D文件失败，请检查路径是否正确 ", QMessageBox::Ok, QMessageBox::Ok);
-		return;
+	if (fileName == "") return;
 
-	}
-	string ext = Jutil::getExtentionName(fileName.toStdString());
-	if ("osgb" == ext || "osg" == ext)
-	{
-		openViewCompatibility(fileName, true);
-		return;
-	}
 	openViewCompatibility(fileName);
 }
 
+
 bool QT3DReconstruction::openViewCompatibility(QString fileName)
 {
-	QString cmd = "J3DViewer.exe -k 2324 -i " + fileName;
-	STARTUPINFO si = { sizeof(si) };
-	PROCESS_INFORMATION pi;
-	si.dwFlags = STARTF_USESHOWWINDOW;
-	si.wShowWindow = true;
-	QFile Processcache("C:\\ProgramData\\J3DEngine\\ViewerCache.tmp");
-	if (!Processcache.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate))
+	string ext = Jutil::getExtentionName(fileName.toStdString());
+	if ("osgb" == ext || "osg" == ext)
 	{
-		QMessageBox::information(NULL, u8"失败", u8"打开缓存文件失败，请检查权限，或使用管理员身份运行 ", QMessageBox::Ok, QMessageBox::Ok);
-		return false;
+		QString cmd = "OSGViewer.exe " + fileName;
+		STARTUPINFO si = { sizeof(si) };
+		PROCESS_INFORMATION pi;
+		si.dwFlags = STARTF_USESHOWWINDOW;
+		si.wShowWindow = true;
+
+		if (!CreateProcess(
+			NULL,
+			(LPSTR)cmd.toStdString().c_str(),
+			NULL,
+			NULL,
+			FALSE,
+			CREATE_NEW_CONSOLE,
+			NULL,
+			NULL, &si, &pi))
+		{
+			QMessageBox::information(NULL, u8"失败", u8"打开文件失败，Viewer程序文件不完整 ", QMessageBox::Ok, QMessageBox::Ok);
+			return false;
+		}
 	}
-	Processcache.write("1");
-	Processcache.close();
-	if (!CreateProcess(
-		NULL,
-		(LPSTR)cmd.toStdString().c_str(),
-		NULL,
-		NULL,
-		FALSE,
-		CREATE_NEW_CONSOLE,
-		NULL,
-		NULL, &si, &pi))
+	else
 	{
-		QMessageBox::information(NULL, u8"失败", u8"打开文件失败，Viewer程序文件不完整 ", QMessageBox::Ok, QMessageBox::Ok);
-		return false;
-	}
-	time_t tm = time(NULL);
-	while (!Global::CheckViewerMsg()) {
-		if (time(NULL) - tm > 60) {
-			QMessageBox::information(NULL, u8"失败", u8"打开文件失败，请尝试用管理员身份运行软件 ", QMessageBox::Ok, QMessageBox::Ok);
-			WinExec("taskkill /f /im J3DViewer.exe", SW_HIDE);
+		QString cmd = "J3DViewer.exe " + fileName;
+		STARTUPINFO si = { sizeof(si) };
+		PROCESS_INFORMATION pi;
+		si.dwFlags = STARTF_USESHOWWINDOW;
+		si.wShowWindow = true;
+		if (!CreateProcess(
+			NULL,
+			(LPSTR)cmd.toStdString().c_str(),
+			NULL,
+			NULL,
+			FALSE,
+			CREATE_NEW_CONSOLE,
+			NULL,
+			NULL, &si, &pi))
+		{
+			QMessageBox::information(NULL, u8"失败", u8"打开文件失败，Viewer程序文件不完整 ", QMessageBox::Ok, QMessageBox::Ok);
 			return false;
 		}
 	}
 	return true;
-}
-
-bool QT3DReconstruction::openViewCompatibility(QString fileName, bool isOSG)
-{
-	if (false == isOSG)return false;
-
-	QString cmd = "OSGViewer.exe " + fileName;
-	STARTUPINFO si = { sizeof(si) };
-	PROCESS_INFORMATION pi;
-	si.dwFlags = STARTF_USESHOWWINDOW;
-	si.wShowWindow = true;
-
-	if (!CreateProcess(
-		NULL,
-		(LPSTR)cmd.toStdString().c_str(),
-		NULL,
-		NULL,
-		FALSE,
-		CREATE_NEW_CONSOLE,
-		NULL,
-		NULL, &si, &pi))
-	{
-		QMessageBox::information(NULL, u8"失败", u8"打开文件失败，Viewer程序文件不完整 ", QMessageBox::Ok, QMessageBox::Ok);
-		return false;
-	}
-	return true;
-
 }
 
 void QT3DReconstruction::closeEvent(QCloseEvent *event)
