@@ -78,7 +78,6 @@ bool Global::getProcessMsg()
 		Global::process = str.toInt();
 		buf = Processcache.readLine();
 		str = buf;
-		//qDebug("%s  = %d ", str,buf.size());
 		if (buf.size() == 21 && str.mid(0, 2) == "Es") {
 			Global::processProject = DENSE;
 		}
@@ -126,7 +125,6 @@ int Global::getFiles(const char* path, std::vector<std::string>& arr, bool fullN
 			}
 			else
 			{
-
 				strcpy(buf, path);
 				strcat(buf, "\\");
 				strcat(buf, fileinfo.name);

@@ -1,8 +1,6 @@
 #pragma comment( linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"" )
 #include "Common.h"
 #include "Scene.h"
-
-
 using namespace VIEWER;
 int main(int argc, char* argv[])
 {
@@ -15,4 +13,3 @@ int main(int argc, char* argv[])
 	J3DViewer->Loop();
 	return 0;
 }
-/*----------------------------------------------------------------*/

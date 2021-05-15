@@ -49,7 +49,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 
 	switch (msg)
 	{
-	case CMD_MATCHFEATURES: 
+	case CMD_MATCHFEATURES:
 	{
 		Global::process = PROCESSWORKING;
 		Global::saveProcess();
@@ -163,7 +163,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		break;
 	}
 
-	case CMD_SFMANDSFP: 
+	case CMD_SFMANDSFP:
 	{
 		Global::process = PROCESSWORKING;
 		Global::saveProcess();
@@ -271,7 +271,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		break;
 	}
 
-	case CMD_EXPORTDENSECLOUD: 
+	case CMD_EXPORTDENSECLOUD:
 	{
 		Global::process = PROCESSWORKING;
 		Global::saveProcess();
@@ -313,7 +313,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		break;
 	}
 
-	case CMD_RECONSTRUCTMESH: 
+	case CMD_RECONSTRUCTMESH:
 	{
 		Global::process = PROCESSWORKING;
 		Global::saveProcess();
@@ -371,7 +371,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		break;
 	}
 
-	case CMD_TEXTUREMESH: 
+	case CMD_TEXTUREMESH:
 	{
 		Global::process = PROCESSWORKING;
 		Global::saveProcess();
@@ -418,7 +418,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		cmd[8] = (char*)exportFormat.data();
 		int status = MVSEngine::TextureMesh(9, cmd);
 
-		if (status == EXIT_SUCCESS) 
+		if (status == EXIT_SUCCESS)
 		{
 			if (isOsgb)
 			{
@@ -427,7 +427,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 			}
 			Global::process = PROCESSCLOSE;
 		}
-		else 
+		else
 		{
 			Global::process = PROCESSWORKING;
 		}
@@ -837,8 +837,8 @@ int main()
 	HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE);
 	DWORD mode;
 	GetConsoleMode(hStdin, &mode);
-	mode &= ~ENABLE_QUICK_EDIT_MODE; 
-	mode &= ~ENABLE_INSERT_MODE; 
+	mode &= ~ENABLE_QUICK_EDIT_MODE;
+	mode &= ~ENABLE_INSERT_MODE;
 	mode &= ~ENABLE_MOUSE_INPUT;
 	SetConsoleMode(hStdin, mode);
 	SetConsoleTitle("J3DEngine");

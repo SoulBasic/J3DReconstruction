@@ -11,10 +11,8 @@ QT3DReconstruction::QT3DReconstruction(QWidget *parent)
 	ui.setupUi(this);
 
 	timer = new QTimer(this);
-
 	connect(timer, SIGNAL(timeout()), this, SLOT(timerSlot()));
-
-	timer->start(500); 
+	timer->start(500);
 	setWindowFlags(windowFlags()& ~Qt::WindowMaximizeButtonHint);
 	setFixedSize(this->width(), this->height());
 	J3DViewer = nullptr;
@@ -31,35 +29,19 @@ QT3DReconstruction::~QT3DReconstruction()
 }
 
 
-void QT3DReconstruction::on_actionMatchFeature_triggered()
-{
-	dlgmf.exec();
-}
+void QT3DReconstruction::on_actionMatchFeature_triggered() { dlgmf.exec(); }
 
-void QT3DReconstruction::on_actionSFM_triggered()
-{
-	dlgsfm.exec();
-}
+void QT3DReconstruction::on_actionSFM_triggered() { dlgsfm.exec(); }
 
 
-void QT3DReconstruction::on_action_addSensorWidth_triggered()
-{
-	dlgasw.exec();
-}
+void QT3DReconstruction::on_action_addSensorWidth_triggered() { dlgasw.exec(); }
 
-void QT3DReconstruction::on_actionDenseCloud_triggered()
-{
-	dlgdense.exec();
-}
+void QT3DReconstruction::on_actionDenseCloud_triggered() { dlgdense.exec(); }
 
-void QT3DReconstruction::on_action_reconstrctMesh_triggered()
-{
-	dlgrm.exec();
-}
+void QT3DReconstruction::on_action_reconstrctMesh_triggered() { dlgrm.exec(); }
 
 void QT3DReconstruction::timerSlot()
 {
-
 	if (Global::GetProcessidFromName("J3DEngine.exe") != 0)
 	{
 		Global::connectEngine();
@@ -265,17 +247,12 @@ void QT3DReconstruction::timerSlot()
 			}
 
 			}
-
-
 		}
 	}
 }
 
 
-void QT3DReconstruction::on_action_triggered() //textureMesh
-{
-	dlgtm.exec();
-}
+void QT3DReconstruction::on_action_triggered() { dlgtm.exec(); }//textureMesh
 
 void QT3DReconstruction::on_actionopen_mvs_file_triggered()
 {
@@ -291,7 +268,7 @@ void QT3DReconstruction::on_actionopen_mvs_file_triggered()
 	const char* path[2];
 	path[0] = fileName.toStdString().c_str();
 	path[1] = NULL;
-	
+
 	J3DViewer->window.Drop(1, path);
 }
 
@@ -321,11 +298,7 @@ bool QT3DReconstruction::openView(QString fileName)
 	return true;
 }
 
-
-void QT3DReconstruction::on_action_fullauto_triggered()
-{
-	dlgfa.exec();
-}
+void QT3DReconstruction::on_action_fullauto_triggered() { dlgfa.exec(); }
 
 void QT3DReconstruction::on_action_2_triggered()
 {
@@ -333,7 +306,6 @@ void QT3DReconstruction::on_action_2_triggered()
 		"打开J3D模型文件", ".",
 		"J3D Model Format(*.J3D);;Stanford Polygon File Format(*.ply);;Alias Wavefront Object(*.obj);;OpenSceneGraph(*.osg);;OpenSceneGraph Binary(*.osgb);;All Files(*.*)");
 	if (fileName == "") return;
-
 	openViewCompatibility(fileName);
 }
 
@@ -474,7 +446,7 @@ void QT3DReconstruction::on_pushButton_export_clicked()
 		QMessageBox::information(NULL, u8"失败", u8"请先加载J3D模型 ", QMessageBox::Ok, QMessageBox::Ok);
 		return;
 	}
-	
+
 	std::string type = "." + ui.comboBox->currentText().toStdString();
 	bool isOsgb = false;
 	bool isGltf = false;
@@ -490,7 +462,7 @@ void QT3DReconstruction::on_pushButton_export_clicked()
 	}
 
 
-	std::string temp = J3DFile.getDir() + "/"+ J3DFile.getFrontName() + "_export" + type;
+	std::string temp = J3DFile.getDir() + "/" + J3DFile.getFrontName() + "_export" + type;
 	J3DViewer->Export(temp.c_str(), type.c_str(), false, true);
 
 	if (isOsgb)
@@ -513,7 +485,7 @@ void QT3DReconstruction::on_pushButton_export_clicked()
 
 bool QT3DReconstruction::converseType(QString fileNameSrc, QString fileNameDes)
 {
-	QString cmd = "osgcv.exe " + fileNameSrc + " "+ fileNameDes;
+	QString cmd = "osgcv.exe " + fileNameSrc + " " + fileNameDes;
 	::system(cmd.toStdString().c_str());
 	return true;
 }

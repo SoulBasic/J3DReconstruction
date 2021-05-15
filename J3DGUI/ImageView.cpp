@@ -1,7 +1,7 @@
 #include "ImageView.h"
 
 
-ImageView::ImageView(QWidget *parent):QWidget(parent), image_index(0), right_button_menu(nullptr)
+ImageView::ImageView(QWidget *parent) :QWidget(parent), image_index(0), right_button_menu(nullptr)
 {
 	this->setAttribute(Qt::WA_StyledBackground, true);
 	this->setStyleSheet("background-color: rgb(230,230,250)");
@@ -10,7 +10,7 @@ ImageView::ImageView(QWidget *parent):QWidget(parent), image_index(0), right_but
 
 ImageView::~ImageView()
 {
-
+	delete right_button_menu;
 }
 
 void ImageView::contextMenuEvent(QContextMenuEvent *event)
@@ -22,9 +22,9 @@ void ImageView::contextMenuEvent(QContextMenuEvent *event)
 	now_image_pos.setY(y);
 	pos = this->mapToGlobal(pos);
 	now_pos = pos;
-	
+
 	_parent->printMsg(u8"选中像点坐标(" + QString::number(now_image_pos.x()) + u8"," + QString::number(now_image_pos.y()) + u8")");
-	
+
 	if (right_button_menu != nullptr)delete right_button_menu;
 	right_button_menu = new QMenu(this);
 	QAction *presetAction = new QAction(u8"映射点");
@@ -66,7 +66,6 @@ void ImageView::mousePressEvent(QMouseEvent *event)
 		m_OldPos = event->pos();
 		m_Pressed = true;
 	}
-
 }
 
 void ImageView::mouseMoveEvent(QMouseEvent *event)
@@ -93,7 +92,6 @@ void ImageView::mouseReleaseEvent(QMouseEvent *event)
 		m_Pressed = false;
 		this->setCursor(Qt::ArrowCursor);
 	}
-
 }
 
 void ImageView::loadImage(QString fileName, int index)
@@ -138,7 +136,5 @@ void ImageView::intersectPoint()
 		_parent->printMsg(u8"正在计算交会点,请稍候...");
 		_parent->onIntersection(now_image_pos.x(), now_image_pos.y(), image_index, now_pos);
 	}
-
-
 }
 

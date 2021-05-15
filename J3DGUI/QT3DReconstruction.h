@@ -56,20 +56,20 @@ private slots:
 	void on_action_triggered();
 	void on_actionopen_mvs_file_triggered();
 	void on_action_fullauto_triggered();
-    void on_action_2_triggered();
-    void on_pushButton_camera_clicked();
-    void on_pushButton_pointcloud_clicked();
-    void on_pushButton_mesh_clicked();
-    void on_pushButton_texture_clicked();
-    void on_pushButton_pointplus_clicked();
-    void on_pushButton_pointsub_clicked();
-    void on_pushButton_pointnumplus_clicked();
-    void on_pushButton_pointnumsub_clicked();
-    void on_pushButton_viewportplus_clicked();
-    void on_pushButton_viewportsub_clicked();
-    void on_pushButton_export_clicked();
+	void on_action_2_triggered();
+	void on_pushButton_camera_clicked();
+	void on_pushButton_pointcloud_clicked();
+	void on_pushButton_mesh_clicked();
+	void on_pushButton_texture_clicked();
+	void on_pushButton_pointplus_clicked();
+	void on_pushButton_pointsub_clicked();
+	void on_pushButton_pointnumplus_clicked();
+	void on_pushButton_pointnumsub_clicked();
+	void on_pushButton_viewportplus_clicked();
+	void on_pushButton_viewportsub_clicked();
+	void on_pushButton_export_clicked();
 	void on_action_coor_triggered();
-    void on_action_import_BlocksExchange_triggered();
+	void on_action_import_BlocksExchange_triggered();
 
 private:
 

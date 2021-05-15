@@ -36,6 +36,8 @@ public:
 	void intersectPoint(int x, int y, int image_index);
 	void onIntersection(int x, int y, int image_index, QPoint& now_pos);
 	void addPoint(double x, double y, double z);
+protected:
+	void resizeEvent(QResizeEvent *event);
 private slots:
 	void on_toolButton_imageDir_clicked();
 	void on_toolButton_dsmDir_clicked();

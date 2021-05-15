@@ -17,23 +17,23 @@
 #include <qfiledialog.h>
 #include "Global.h"
 namespace Ui {
-class dialog_coor;
+	class dialog_coor;
 }
 
 class dialog_coor : public QDialog
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    explicit dialog_coor(QWidget *parent = nullptr);
-    ~dialog_coor();
+	explicit dialog_coor(QWidget *parent = nullptr);
+	~dialog_coor();
 
 private slots:
 	void on_button_ok_clicked();
 	void on_pushButton_browseOutputDir_clicked();
 	void on_pushButton_browseTiffDir_clicked();
 private:
-    Ui::dialog_coor *ui;
+	Ui::dialog_coor *ui;
 };
 
 #endif // DIALOG_COOR_H

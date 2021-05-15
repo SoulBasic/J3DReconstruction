@@ -15,6 +15,8 @@ Dialog_CoorIntersector::Dialog_CoorIntersector(QWidget *parent) :
 	picked_points_menu(nullptr)
 {
 	ui->setupUi(this);
+	setWindowFlags(windowFlags() | Qt::WindowMaximizeButtonHint | Qt::WindowMinimizeButtonHint);
+	setMinimumSize(800, 600);
 	dlg_point_info.setP(this);
 	ui->listView_picked_points->setContextMenuPolicy(Qt::CustomContextMenu);
 	connect(ui->listView_picked_points, SIGNAL(customContextMenuRequested(const QPoint&)),
@@ -28,6 +30,7 @@ Dialog_CoorIntersector::~Dialog_CoorIntersector()
 	delete ui;
 	delete tiffData;
 	delete scene;
+	delete picked_points_menu;
 }
 
 void Dialog_CoorIntersector::printMsg(const QString & msg)
@@ -67,6 +70,12 @@ void Dialog_CoorIntersector::addPoint(double x, double y, double z)
 	printMsg(u8"添加点成功");
 }
 
+void Dialog_CoorIntersector::resizeEvent(QResizeEvent * event)
+{
+	this->ui->image_viewer->resize(this->width() - 320, this->height() - 100);
+	this->ui->listView_picked_points->resize(291, this->height() - 480);
+}
+
 
 void Dialog_CoorIntersector::intersectPoint(int x, int y, int image_index)
 {
@@ -88,13 +97,13 @@ void Dialog_CoorIntersector::intersectPoint(int x, int y, int image_index)
 void Dialog_CoorIntersector::on_toolButton_imageDir_clicked()
 {
 	workDir = QFileDialog::getExistingDirectory(this, u8"浏览重建路径 ", "", NULL);
+	if (workDir.isEmpty())return;
 	ui->lineEdit_imageDir->setText(workDir);
 	if (!scene->IsEmpty())
 	{
 		delete scene;
 		scene = new MVS::Scene(0);
 	}
-
 	std::thread(&Dialog_CoorIntersector::clear_sfm_file, this).detach();
 
 	if (!scene->Load((workDir + "/SparseCloud.J3D").toStdString(), false))
@@ -138,10 +147,7 @@ void Dialog_CoorIntersector::on_toolButton_dsmDir_clicked()
 	QString fileName = QFileDialog::getOpenFileName(NULL,
 		u8"选择DSM文件", ".",
 		"Tag Image File Format(*.tif);;All Files(*.*)");
-	if (fileName == "")
-	{
-		return;
-	}
+	if (fileName.isEmpty())return;
 	ui->lineEdit_dsmDir->setText(fileName);
 	if (!tiffData->isEmpty())
 	{
@@ -193,6 +199,7 @@ void Dialog_CoorIntersector::on_pushButton_outputDXF_clicked()
 	QString fileName = QFileDialog::getSaveFileName(NULL,
 		u8"选择输出位置", ".",
 		"Autodesk Drawing Exchange Format(*.dxf);;All Files(*.*)");
+	if (fileName.isEmpty())return;
 	if (!write_to_dxf(fileName.toStdString()))
 	{
 		printMsg(u8"无法输出到目标路径，请检查路径或使用管理员权限重试");
@@ -234,7 +241,7 @@ bool Dialog_CoorIntersector::write_to_dxf(const std::string & fileName)
 	DL_Dxf* dxf = new DL_Dxf();
 	DL_Codes::version exportVersion = DL_Codes::AC1015;
 	DL_WriterA* dw = dxf->out(fileName.c_str(), exportVersion);
-	if (dw == NULL) 
+	if (dw == NULL)
 	{
 		return false;
 	}

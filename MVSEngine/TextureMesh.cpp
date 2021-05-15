@@ -173,7 +173,7 @@ int MVSEngine::TextureMesh(int num, char* cmd[])
 	LPCTSTR* argv = (LPCTSTR*)cmd;
 	if (!Initialize_TextureMesh(argc, argv))
 		return EXIT_FAILURE;
-	
+
 	Scene scene(OPT_TextureMesh::nMaxThreads);
 	// load and texture the mesh
 	if (!scene.Load(MAKE_PATH_SAFE(OPT_TextureMesh::strInputFileName)))

@@ -134,7 +134,7 @@ namespace Jutil
 	{
 		int len = str.length();
 		auto cstr = str.c_str();
-		for (int i = 0; i <= len; i++,cstr++)
+		for (int i = 0; i <= len; i++, cstr++)
 		{
 			std::cout << std::bitset<8>(*cstr) << " ";
 		}

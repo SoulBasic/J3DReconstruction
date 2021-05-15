@@ -205,9 +205,9 @@ bool exportToSparse(
 		std::sort(
 			views.begin(), views.end(),
 			[](const MVS::Interface::Vertex::View& view0, const MVS::Interface::Vertex::View& view1)
-			{
-				return view0.imageID < view1.imageID;
-			}
+		{
+			return view0.imageID < view1.imageID;
+		}
 		);
 		vert.X = landmark.X.cast<float>();
 		scene.vertices.push_back(vert);
