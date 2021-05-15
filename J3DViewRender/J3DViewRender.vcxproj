@@ -163,6 +163,7 @@
     <ClInclude Include="include\Image.h" />
     <ClInclude Include="include\Scene.h" />
     <ClInclude Include="include\Window.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
@@ -171,6 +172,9 @@
     <ClCompile Include="J3DViewRender.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Window.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="J3DViewRender.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

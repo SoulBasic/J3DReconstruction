@@ -785,9 +785,15 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		}
 		getline(cmdCache, inputFileName);
 		getline(cmdCache, workDir);
-		BlocksExchange2openMVG(inputFileName, workDir);
+		int STATE_RETURN = BlocksExchange2openMVG(inputFileName, workDir);
+		if (STATE_RETURN == false)
+		{
+			printf("导入Blocks Exchange文件失败!\n");
+			Global::process = PROCESSERROR;
+			break;
+		}
 		Sleep(1000);
-		printf("进行SFM数据精细化\n");
+		printf("进行SFM坐标数据精细化\n");
 		STATE_RETURN = ConvertCoorsToOrigin
 		(
 			workDir + "/sfm_data.bin",
@@ -795,12 +801,12 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		);
 		if (STATE_RETURN == EXIT_FAILURE)
 		{
-			printf("SFM数据精细化失败\n");
+			printf("SFM坐标数据精细化失败\n");
 			Global::process = PROCESSERROR;
 			break;
 		}
 		printf("进行稀疏点云输出\n");
-		int STATE_RETURN = ExportSparseCloud
+		STATE_RETURN = ExportSparseCloud
 		(
 			workDir + "/sfm_data_local.bin",
 			workDir + "/SparseCloud.J3D",
@@ -814,7 +820,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 			break;
 		}
 		printf("成功输出到文件SparseCloud.J3D\n");
-		printf("导入数据完成，之后可以继续使用MVS引擎进行模型重建工作\n");
+		printf("导入数据完成，之后可以继续使用J3D程序进行模型重建或坐标映射工作\n");
 		printf("\n任务完成\n");
 		Global::process = PROCESSCLOSE;
 		break;
