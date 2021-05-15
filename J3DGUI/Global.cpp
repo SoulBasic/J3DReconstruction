@@ -21,6 +21,7 @@ QString Global::importWorkingDir = "";
 QString Global::processETA = "";
 bool Global::tasking = false;
 bool Global::autoTasking = false;
+bool Global::intersecting = false;
 int Global::process = PROCESSWORKING;
 int Global::processProject = 0;
 int Global::processState = 0;
@@ -105,3 +106,36 @@ bool Global::getProcessMsg()
 }
 
 
+int Global::getFiles(const char* path, std::vector<std::string>& arr, bool fullName)
+{
+	arr.clear();
+	intptr_t hFile = 0;
+	struct _finddata_t fileinfo;
+	char p[700] = { 0 };
+	strcpy(p, path);
+	strcat(p, "\\*");
+	char buf[256];
+	if ((hFile = _findfirst(p, &fileinfo)) != -1)
+	{
+		do
+		{
+			if ((fileinfo.attrib & _A_SUBDIR))
+			{
+				if (strcmp(fileinfo.name, ".") != 0 && strcmp(fileinfo.name, "..") != 0)
+					continue;
+			}
+			else
+			{
+
+				strcpy(buf, path);
+				strcat(buf, "\\");
+				strcat(buf, fileinfo.name);
+				struct stat st1;
+				stat(buf, &st1);
+				arr.push_back(fullName ? buf : fileinfo.name);
+			}
+		} while (_findnext(hFile, &fileinfo) == 0);
+		_findclose(hFile);
+	}
+	return arr.size();
+}

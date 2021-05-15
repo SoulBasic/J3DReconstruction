@@ -109,7 +109,7 @@ bool exportToSparse(
 	}
 
 	C_Progress_display my_progress_bar_images(sfm_data.views.size(),
-		std::cout, "\n- 矫正畸变 -\n");
+		std::cout, "\n- 输出镜头畸变矫正后的像片 -\n");
 	std::atomic<bool> bOk(true);
 #ifdef OPENMVG_USE_OPENMP
 	const unsigned int nb_max_thread = (iNumThreads > 0) ? iNumThreads : omp_get_max_threads();

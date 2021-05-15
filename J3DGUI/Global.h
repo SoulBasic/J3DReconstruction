@@ -7,6 +7,7 @@
 #include <tlhelp32.h>
 #include <qdebug.h>
 #include <time.h>
+#include <io.h>
 
 
 //#define SUPPORT_GLTF //支持GLTF输出，需安装obj2gltf插件，用于cesium显示
@@ -46,7 +47,6 @@
 #define KEYMSG_UPSHIFT 2327
 #define KEYMSG_DOWNSHIFT 2328
 
-
 class Global
 {
 public:
@@ -77,4 +77,6 @@ public:
 	static int processState;
 	static QString processETA;
 	static bool getProcessMsg();
+	static bool intersecting;
+	static int getFiles(const char* path, std::vector<std::string>& arr, bool fullName = false);
 };

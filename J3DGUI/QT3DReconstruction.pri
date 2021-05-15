@@ -13,6 +13,7 @@ HEADERS += ./Global.h \
     $$PWD/dialog_coor.h \
     $$PWD/dialog_coorintersector.h \
     $$PWD/dialog_fullauto.h \
+    $$PWD/dialog_pointinfo.h \
     $$PWD/dialog_texturemesh.h \
     $$PWD/j3dviewer.h \
     $$PWD/mvsviewer.h \
@@ -26,6 +27,7 @@ SOURCES += ./dialog_densifypointcloud.cpp \
     $$PWD/dialog_coor.cpp \
     $$PWD/dialog_coorintersector.cpp \
     $$PWD/dialog_fullauto.cpp \
+    $$PWD/dialog_pointinfo.cpp \
     $$PWD/dialog_texturemesh.cpp \
     $$PWD/j3dviewer.cpp \
     $$PWD/mvsviewer.cpp \
@@ -39,6 +41,7 @@ FORMS += ./dialog_densifypointcloud.ui \
     $$PWD/dialog_coor.ui \
     $$PWD/dialog_coorintersector.ui \
     $$PWD/dialog_fullauto.ui \
+    $$PWD/dialog_pointinfo.ui \
     $$PWD/dialog_reconstructmesh.ui \
     $$PWD/dialog_texturemesh.ui \
     ./Dialog_MatchFeature.ui \

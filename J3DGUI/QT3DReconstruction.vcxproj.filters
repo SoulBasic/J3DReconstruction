@@ -25,6 +25,9 @@
     <Filter Include="Cmake Rules">
       <UniqueIdentifier>{4a6fbe7b-c248-4a7a-922f-4b3480482f08}</UniqueIdentifier>
     </Filter>
+    <Filter Include="dxflib">
+      <UniqueIdentifier>{6425b121-f300-4b68-a66a-a90bc8db646d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="dialog_densifypointcloud.ui">
@@ -54,6 +57,12 @@
     <QtMoc Include="dialog_coor.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtUic Include="dialog_coorintersector.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="dialog_pointinfo.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -95,6 +104,21 @@
     <ClCompile Include="QT3DReconstruction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="dialog_coorintersector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dxflib\dl_dxf.cpp">
+      <Filter>dxflib</Filter>
+    </ClCompile>
+    <ClCompile Include="dxflib\dl_writer_ascii.cpp">
+      <Filter>dxflib</Filter>
+    </ClCompile>
+    <ClCompile Include="dialog_pointinfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="dialog_densifypointcloud.h">
@@ -109,6 +133,15 @@
     <QtMoc Include="QT3DReconstruction.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="dialog_coorintersector.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="ImageView.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="dialog_pointinfo.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Global.h">
@@ -118,6 +151,42 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dxflib\dl_attributes.h">
+      <Filter>dxflib</Filter>
+    </ClInclude>
+    <ClInclude Include="dxflib\dl_codes.h">
+      <Filter>dxflib</Filter>
+    </ClInclude>
+    <ClInclude Include="dxflib\dl_creationadapter.h">
+      <Filter>dxflib</Filter>
+    </ClInclude>
+    <ClInclude Include="dxflib\dl_creationinterface.h">
+      <Filter>dxflib</Filter>
+    </ClInclude>
+    <ClInclude Include="dxflib\dl_dxf.h">
+      <Filter>dxflib</Filter>
+    </ClInclude>
+    <ClInclude Include="dxflib\dl_entities.h">
+      <Filter>dxflib</Filter>
+    </ClInclude>
+    <ClInclude Include="dxflib\dl_exception.h">
+      <Filter>dxflib</Filter>
+    </ClInclude>
+    <ClInclude Include="dxflib\dl_extrusion.h">
+      <Filter>dxflib</Filter>
+    </ClInclude>
+    <ClInclude Include="dxflib\dl_global.h">
+      <Filter>dxflib</Filter>
+    </ClInclude>
+    <ClInclude Include="dxflib\dl_writer.h">
+      <Filter>dxflib</Filter>
+    </ClInclude>
+    <ClInclude Include="dxflib\dl_writer_ascii.h">
+      <Filter>dxflib</Filter>
+    </ClInclude>
+    <ClInclude Include="TiffData.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

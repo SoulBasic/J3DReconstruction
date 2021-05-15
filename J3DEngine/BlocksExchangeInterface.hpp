@@ -169,58 +169,64 @@ void BlocksExchange2openMVG(const std::string& fileName, const std::string& work
 	}
 
 
-	auto TiePoints = pt.get_child("BlocksExchange.Block.TiePoints");
-	for (auto pos = TiePoints.begin(); pos != TiePoints.end(); ++pos)
+	try
 	{
-		if (pos->first == "TiePoint")
+		auto TiePoints = pt.get_child("BlocksExchange.Block.TiePoints");
+		for (auto pos = TiePoints.begin(); pos != TiePoints.end(); ++pos)
 		{
-			Landmark l;
-			auto& obs = l.obs;
-			double x, y, z, r, g, b;
-			auto TiePoint = pos->second.get_child("");
-			for (auto pos1 = TiePoint.begin(); pos1 != TiePoint.end(); ++pos1)
+			if (pos->first == "TiePoint")
 			{
-				if (pos1->first == "Position")
+				Landmark l;
+				auto& obs = l.obs;
+				double x, y, z, r, g, b;
+				auto TiePoint = pos->second.get_child("");
+				for (auto pos1 = TiePoint.begin(); pos1 != TiePoint.end(); ++pos1)
 				{
-					auto Position = pos1->second.get_child("");
-					for (auto pos2 = Position.begin(); pos2 != Position.end(); ++pos2)
+					if (pos1->first == "Position")
 					{
-						if (pos2->first == "x")x = atof(pos2->second.data().c_str());
-						else if (pos2->first == "y")y = atof(pos2->second.data().c_str());
-						else if (pos2->first == "z")z = atof(pos2->second.data().c_str());
+						auto Position = pos1->second.get_child("");
+						for (auto pos2 = Position.begin(); pos2 != Position.end(); ++pos2)
+						{
+							if (pos2->first == "x")x = atof(pos2->second.data().c_str());
+							else if (pos2->first == "y")y = atof(pos2->second.data().c_str());
+							else if (pos2->first == "z")z = atof(pos2->second.data().c_str());
+						}
 					}
-				}
-				else if (pos1->first == "Color")
-				{
-					auto Color = pos1->second.get_child("");
-					for (auto pos2 = Color.begin(); pos2 != Color.end(); ++pos2)
+					else if (pos1->first == "Color")
 					{
-						if (pos2->first == "Red")r = atof(pos2->second.data().c_str());
-						else if (pos2->first == "Green")g = atof(pos2->second.data().c_str());
-						else if (pos2->first == "Blue")b = atof(pos2->second.data().c_str());
+						auto Color = pos1->second.get_child("");
+						for (auto pos2 = Color.begin(); pos2 != Color.end(); ++pos2)
+						{
+							if (pos2->first == "Red")r = atof(pos2->second.data().c_str());
+							else if (pos2->first == "Green")g = atof(pos2->second.data().c_str());
+							else if (pos2->first == "Blue")b = atof(pos2->second.data().c_str());
+						}
 					}
-				}
-				else if (pos1->first == "Measurement")
-				{
-					int pid = -1;
-					double px, py;
-					auto Measurement = pos1->second.get_child("");
-					for (auto pos2 = Measurement.begin(); pos2 != Measurement.end(); ++pos2)
+					else if (pos1->first == "Measurement")
 					{
-						if (pos2->first == "PhotoId")pid = atoi(pos2->second.data().c_str());
-						else if (pos2->first == "x")px = atof(pos2->second.data().c_str());
-						else if (pos2->first == "y")py = atof(pos2->second.data().c_str());
-					}
-					Observation ob(openMVG::Vec2{ px,py }, openMVG::UndefinedIndexT);
-					obs[pid] = ob;
+						int pid = -1;
+						double px, py;
+						auto Measurement = pos1->second.get_child("");
+						for (auto pos2 = Measurement.begin(); pos2 != Measurement.end(); ++pos2)
+						{
+							if (pos2->first == "PhotoId")pid = atoi(pos2->second.data().c_str());
+							else if (pos2->first == "x")px = atof(pos2->second.data().c_str());
+							else if (pos2->first == "y")py = atof(pos2->second.data().c_str());
+						}
+						Observation ob(openMVG::Vec2{ px,py }, openMVG::UndefinedIndexT);
+						obs[pid] = ob;
 
+					}
 				}
+				l.X = openMVG::Vec3(x, y, z);
+				structure[structure.size()] = l;
 			}
-			l.X = openMVG::Vec3(x, y, z);
-			structure[structure.size()] = l;
 		}
 	}
-
+	catch (ptree_bad_path& bp)
+	{
+		printf("警告:xml中无有效连接点，后续J3D数据仅可用于坐标映射，无法用于MVS引擎的重建任务\n");
+	}
 
 	printf("一共成功导入 相机 = %d 姿态 = %d 像片 = %d 连接点 = %d\n", sfm_data.intrinsics.size(), sfm_data.poses.size(), sfm_data.views.size(), sfm_data.structure.size());
 	sfm_data.s_root_path = getFileDir(photoName);

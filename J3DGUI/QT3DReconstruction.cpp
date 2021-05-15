@@ -1,4 +1,7 @@
 #include "QT3DReconstruction.h"
+#include <Windows.h>
+
+
 
 using namespace std;
 
@@ -16,6 +19,7 @@ QT3DReconstruction::QT3DReconstruction(QWidget *parent)
 	setFixedSize(this->width(), this->height());
 	J3DViewer = nullptr;
 	J3DViewerAva = false;
+	this->setAttribute(Qt::WA_DeleteOnClose);
 }
 
 
@@ -37,13 +41,6 @@ void QT3DReconstruction::on_actionSFM_triggered()
 	dlgsfm.exec();
 }
 
-
-
-
-void QT3DReconstruction::on_action_viewMVS_triggered()
-{
-
-}
 
 void QT3DReconstruction::on_action_addSensorWidth_triggered()
 {
@@ -89,7 +86,6 @@ void QT3DReconstruction::timerSlot()
 	if (Global::tasking)
 	{
 		Global::getProcessMsg();
-		qDebug("%d %d %d", Global::process, Global::processProject, Global::processState);
 		if (Global::process == PROCESSCLOSE)
 		{
 			ifstream cmdCache;
@@ -334,7 +330,7 @@ void QT3DReconstruction::on_action_fullauto_triggered()
 void QT3DReconstruction::on_action_2_triggered()
 {
 	QString fileName = QFileDialog::getOpenFileName(NULL,
-		"ViewJ3D", ".",
+		"打开J3D模型文件", ".",
 		"J3D Model Format(*.J3D);;Stanford Polygon File Format(*.ply);;Alias Wavefront Object(*.obj);;OpenSceneGraph(*.osg);;OpenSceneGraph Binary(*.osgb);;All Files(*.*)");
 	if (fileName == "") return;
 
@@ -393,9 +389,21 @@ bool QT3DReconstruction::openViewCompatibility(QString fileName)
 
 void QT3DReconstruction::closeEvent(QCloseEvent *event)
 {
-	this->setAttribute(Qt::WA_DeleteOnClose);
 	WinExec("taskkill /f /im OSGViewer.exe", SW_HIDE);
 	WinExec("taskkill /f /im J3DViewer.exe", SW_HIDE);
+	if (Global::intersecting)
+	{
+		if (QMessageBox::Yes == QMessageBox::warning(&dlgci, u8"退出坐标映射", QString(u8"关闭窗口后已加载以及未保存的数据都会丢失,您确认要关闭窗口吗?"), QMessageBox::Yes | QMessageBox::No))
+		{
+			event->accept();
+
+		}
+		else
+		{
+			event->ignore();
+			return;
+		}
+	}
 	QMainWindow::closeEvent(event);
 }
 
@@ -513,7 +521,9 @@ bool QT3DReconstruction::converseType(QString fileNameSrc, QString fileNameDes)
 
 void QT3DReconstruction::on_action_coor_triggered()
 {
-	dlgcoor.exec();
+	//dlgcoor.exec();
+	Global::intersecting = true;
+	dlgci.show();
 }
 void QT3DReconstruction::on_action_import_BlocksExchange_triggered()
 {

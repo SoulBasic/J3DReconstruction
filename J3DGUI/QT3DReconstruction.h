@@ -10,6 +10,7 @@
 #include "dialog_addsensorwidth.h"
 #include "dialog_fullauto.h"
 #include "dialog_coor.h"
+#include "dialog_coorintersector.h"
 #include <iostream>
 #include "qfiledialog.h"
 #include "qmessagebox.h"
@@ -48,7 +49,6 @@ private slots:
 
 	void on_actionMatchFeature_triggered();
 	void on_actionSFM_triggered();
-	void on_action_viewMVS_triggered();
 	void on_action_addSensorWidth_triggered();
 	void on_actionDenseCloud_triggered();
 	void timerSlot();
@@ -82,6 +82,7 @@ private:
 	Dialog_addsensorwidth dlgasw;
 	Dialog_FullAuto dlgfa;
 	dialog_coor dlgcoor;
+	Dialog_CoorIntersector dlgci;
 	QTimer* timer;
 	VIEWER::Scene* J3DViewer;
 	bool J3DViewerAva;
