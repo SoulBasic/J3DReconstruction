@@ -81,7 +81,7 @@ LIBJPEG（jpeg-9d）
 
 GLFW（glfw-3.3.2）
 
-以下的三方库在项目3rd_party目录中附带，无需自行编译安装
+以下的三方库在项目3rd_party或项目目录中附带，无需自行编译安装
 
 OpenSceneGragh（osg 3.4.1）
 
@@ -89,7 +89,7 @@ LIBPNG（libpng 1.6.37）
 
 GLEW（glew-2.1.0）
 
-
+GDAL（gdal-2.0.3）
 
 
 
@@ -99,9 +99,9 @@ Windows下构建过程：
 
 2.fork并pull本项目到本地，然后在vs中打开本项目代码，（由于需要用到qt，请在vs中下载qt拓展，并配置好相关编译器（我用的是msvc2017_64））
 
-3.检查所有项目（J3DEngine、J3DGUI、J3DMVSEngine、Viewer、CoorIntersector）的项目属性，并检查各个三方库的include目录（C++-常规-附加包含目录）、lib目录（链接器-常规-附加库目录）（链接器-输入-附加依赖项）是否正确（我的三方库统一安装在C:\openMVS下，如果不是安装于此，需要进行相关的修改）
+3.检查所有项目（J3DEngine、J3DGUI、J3DMVSEngine、Viewer、J3DViewRender）的项目属性，并检查各个三方库的include目录（C++-常规-附加包含目录）、lib目录（链接器-常规-附加库目录）（链接器-输入-附加依赖项）是否正确（我的三方库统一安装在C:\openMVS下，如果不是安装于此，需要进行相关的修改）
 
-4.按照J3DMVSEngine、Viewer、CoorIntersector、J3DEngine、J3DGUI的顺序，生成各个项目。
+4.按照J3DMVSEngine、J3DViewRender、Viewer、J3DEngine、J3DGUI的顺序，生成各个项目。
 
 
 
@@ -116,6 +116,10 @@ Windows下构建过程：
 ​				[https://github.com/cdcseacave/openMVS/wiki]()
 
 ​				[https://github.com/openMVG/openMVG/wiki]()
+
+
+
+##### SFM及MVS重建模块：
 
 将源图片放在一个文件夹里
 若是相机型号比较冷门，需要在文件-添加相机参数中添加相机的几项参数（这个参数可以参考下图去图片元数据中获取，若没有元数据或不齐全，可以去google一下对应相机的具体参数，程序是通过以下公式进行粗略计算的）
@@ -138,9 +142,9 @@ $$
 
 
 
- 然后在程序中中选择全自动三维重建选项，（若提示无缓存访问权限，请用管理员身份运行）填写源图片路径以及其他参数，确认后即可跟随管道完成重建任务，最终可在J3DGUI程序中可视化查看结果
+ 然后在程序中中选择全自动三维重建选项，（若提示无缓存访问权限，请用管理员身份运行）填写源图片路径、输出重建结果路径以及其他参数，确认后即可跟随管道完成重建任务，最终可在J3DGUI程序中可视化查看结果
 
-**（若是全自动出现程序未响应或者其他错误，可以尝试分步进行）**
+**（若是全自动出现程序未响应或者其他错误，可以尝试分步进行，目前发现偶尔在win7遇到这样的问题）**
 
 
 
@@ -165,11 +169,23 @@ $$
 渲染网格：M键
 渲染纹理：T键
 
-
-
 viewer和convert工具可直接使用OSG库中的osgviewer.exe和osgconv.exe替换程序所需的OSGViewer.exe和osgcv.exe
 
 （或者本项目Release包中也有相应二进制文件可直接使用）
+
+
+
+##### 坐标映射模块：
+
+​	从J3DGUI的**文件-坐标映射**打开，选择完整运行SFM引擎中的步骤后的目录（即含有SparseCloud.J3D文件的重建结果目录），以及目标地形DSM数据（需使用三方软件生成，如CC或photoscan等）。
+
+注意：需要SFM重建数据和DSM数据的地理参考相同（J3D的SFM引擎默认使用ECEF坐标系），如果无法获取ECEF坐标系下的DSM数据，则可以使用J3DGUI中 **分步三维重建-导入其他SFM数据**中的功能，导入其他软件生成的Blocks Exchange XML格式的SFM数据，只需保证生成XML数据时使用的地理参考和DSM数据相同即可。
+
+导入后可以选择可用的影像，在影像上右键选择像点，即可映射对应点的地理坐标，并保存到点集，可将点集输出为dxf格式在Auto CAD等软件中预览。
+
+![坐标映射功能](images/intersector.jpg)
+
+
 
 
 
