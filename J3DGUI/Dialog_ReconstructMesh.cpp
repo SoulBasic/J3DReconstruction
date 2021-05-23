@@ -38,7 +38,7 @@ void Dialog_ReconstructMesh::on_btn_OK_clicked()
 	Global::reconstructMeshInputDir = ui->lineEdit_inputDir->text() + "/DenseCloud.J3D";
 	Global::reconstructMeshOutputDir = ui->lineEdit_OutputDir->text() + "/TIN_Mesh.J3D";
 	Global::reconstructMeshWorkingDir = ui->lineEdit_OutputDir->text();
-
+	auto refineDir = Global::reconstructMeshWorkingDir + "/TIN_Mesh_Refine.J3D";
 	_mkdir("C:\\ProgramData\\J3DEngine");
 
 	QFile cmdcache("C:\\ProgramData\\J3DEngine\\cmdCache.tmp");
@@ -52,6 +52,8 @@ void Dialog_ReconstructMesh::on_btn_OK_clicked()
 		cmdcache.write(Global::reconstructMeshWorkingDir.toUtf8());
 		cmdcache.write("\n");
 		cmdcache.write(Global::reconstructMeshOutputDir.toUtf8());
+		cmdcache.write("\n");
+		cmdcache.write(refineDir.toUtf8());
 		cmdcache.write("\n");
 		cmdcache.close();
 		QMessageBox::information(NULL, u8"完成", u8"配置完成 ", QMessageBox::Yes, NULL);

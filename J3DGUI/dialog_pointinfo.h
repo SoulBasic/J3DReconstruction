@@ -1,6 +1,7 @@
 #ifndef DIALOG_POINTINFO_H
 #define DIALOG_POINTINFO_H
 #include <QDialog>
+#include <qstring.h>
 namespace Ui {
 	class Dialog_PointInfo;
 }
@@ -12,8 +13,7 @@ class Dialog_PointInfo : public QDialog
 public:
 	explicit Dialog_PointInfo(QWidget *parent = nullptr);
 	~Dialog_PointInfo();
-	void setX(int x);
-	void setY(int y);
+	void setNote(const QString& str);
 	void setXi(double x);
 	void setYi(double y);
 	void setZi(double z);

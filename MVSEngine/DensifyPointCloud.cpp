@@ -291,48 +291,6 @@ int MVSEngine::DensifyPointCloud(int num, char* cmd[])
 		scene.ExportCamerasMLP(baseFileName + _T(".mlp"), baseFileName + _T(".ply"));
 #endif
 
-	VERBOSE("图像坐标映射文件生成中: ");
-	//save coordinates files
-	auto workDir = MAKE_PATH_SAFE(Util::getFilePath(OPT::strInputFileName));
-	_mkdir((workDir + "image_coordinates").c_str());
-	std::vector<FILE*> files(scene.images.size(), nullptr);
-	std::unordered_map<std::string, int> nmap;
-	for (int i = 0; i < scene.images.size(); i++)
-	{
-		nmap[scene.images[i].name.c_str()] = i;
-		std::string fname = Util::getFileName(scene.images[i].name).c_str();
-		fname = std::string(workDir.c_str()) + "image_coordinates/" + fname + ".coor";
-		files[i] = fopen(fname.c_str(), "wb");
-		VERBOSE("%d : %s", i, fname.c_str());
-	}
-	const auto& points = scene.pointcloud.points;
-	const auto& views = scene.pointcloud.pointViews;
-	char buf[20];
-	for (int i = 0; i < points.size(); i++)
-	{
-		auto point = points[i];
-		auto view = views[i];
-		for (MVS::PointCloud::View idxImage : view) {
-			const MVS::Image& imageData = scene.images[idxImage];
-			const Point2 x(imageData.camera.TransformPointW2I(Cast<REAL>(points[i])));
-			int x1 = x.x * 2;
-			int y1 = x.y * 2;
-			int* p = reinterpret_cast<int*>(buf);
-			*p = x1;
-			p++;
-			*p = y1;
-			p++;
-			float* k = reinterpret_cast<float*>(p);
-			*k = point.x;
-			k++;
-			*k = point.y;
-			k++;
-			*k = point.z;
-			fwrite(buf, 20, 1, files[nmap[imageData.name.c_str()]]);
-		}
-	}
-	fcloseall();
-
 	MVSEngine::Finalize_Dense();
 	cleanCacheFiles(cmd[4]);
 	return EXIT_SUCCESS;

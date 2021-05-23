@@ -150,8 +150,9 @@ void Dialog_FullAuto::on_btn_OK_clicked()
 	reconstructMeshInputDir = ui->lineEdit_OutputDir->text() + "/DenseCloud.J3D";
 	reconstructMeshOutputDir = ui->lineEdit_OutputDir->text() + "/TIN_Mesh.J3D";
 	reconstructMeshWorkingDir = ui->lineEdit_OutputDir->text();
+	auto refineDir = reconstructMeshWorkingDir + "/TIN_Mesh_Refine.J3D";
 
-	textureMeshInputDir = ui->lineEdit_OutputDir->text() + "/TIN_Mesh.J3D";
+	textureMeshInputDir = ui->lineEdit_OutputDir->text() + "/TIN_Mesh_Refine.J3D";
 	textureMeshOutputDir = ui->lineEdit_OutputDir->text() + "/TEXTURE_Mesh.J3D";
 	textureMeshWorkingDir = ui->lineEdit_OutputDir->text();
 
@@ -208,6 +209,8 @@ void Dialog_FullAuto::on_btn_OK_clicked()
 		cmdcache.write(reconstructMeshWorkingDir.toUtf8());
 		cmdcache.write("\n");
 		cmdcache.write(reconstructMeshOutputDir.toUtf8());
+		cmdcache.write("\n");
+		cmdcache.write(refineDir.toUtf8());
 		cmdcache.write("\n");
 		head = "texturemesh\n";
 		cmdcache.write(head.toUtf8());

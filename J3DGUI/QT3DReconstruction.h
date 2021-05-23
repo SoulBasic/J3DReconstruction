@@ -9,7 +9,6 @@
 #include "dialog_texturemesh.h"
 #include "dialog_addsensorwidth.h"
 #include "dialog_fullauto.h"
-#include "dialog_coor.h"
 #include "dialog_coorintersector.h"
 #include <iostream>
 #include "qfiledialog.h"
@@ -81,7 +80,6 @@ private:
 	Dialog_TextureMesh dlgtm;
 	Dialog_addsensorwidth dlgasw;
 	Dialog_FullAuto dlgfa;
-	dialog_coor dlgcoor;
 	Dialog_CoorIntersector dlgci;
 	QTimer* timer;
 	VIEWER::Scene* J3DViewer;

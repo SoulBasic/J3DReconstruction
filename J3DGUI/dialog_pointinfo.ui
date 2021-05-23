@@ -95,56 +95,17 @@
     <string>当前映射点信息</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_5">
+  <widget class="QLineEdit" name="lineEdit_note">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>50</y>
-     <width>21</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Y：</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_x">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>50</y>
-     <width>41</width>
+     <x>50</x>
+     <y>60</y>
+     <width>111</width>
      <height>20</height>
     </rect>
    </property>
    <property name="readOnly">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_6">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>50</y>
-     <width>20</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>X：</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_y">
-   <property name="geometry">
-    <rect>
-     <x>120</x>
-     <y>50</y>
-     <width>41</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="readOnly">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
   </widget>
   <widget class="QLabel" name="label_7">
@@ -152,12 +113,12 @@
     <rect>
      <x>10</x>
      <y>30</y>
-     <width>71</width>
-     <height>20</height>
+     <width>81</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
-    <string>像点坐标：</string>
+    <string>映射点名称：</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_xyzi">
@@ -165,8 +126,8 @@
     <rect>
      <x>10</x>
      <y>80</y>
-     <width>71</width>
-     <height>20</height>
+     <width>81</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">

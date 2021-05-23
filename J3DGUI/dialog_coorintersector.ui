@@ -22,17 +22,17 @@
     <rect>
      <x>10</x>
      <y>90</y>
-     <width>290</width>
-     <height>350</height>
+     <width>340</width>
+     <height>300</height>
     </rect>
    </property>
   </widget>
   <widget class="ImageView" name="image_viewer" native="true">
    <property name="geometry">
     <rect>
-     <x>310</x>
+     <x>358</x>
      <y>90</y>
-     <width>1280</width>
+     <width>1240</width>
      <height>800</height>
     </rect>
    </property>
@@ -67,9 +67,9 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>470</y>
-     <width>291</width>
-     <height>420</height>
+     <y>420</y>
+     <width>340</width>
+     <height>470</height>
     </rect>
    </property>
   </widget>
@@ -103,7 +103,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>440</y>
+     <y>390</y>
      <width>81</width>
      <height>31</height>
     </rect>
@@ -212,7 +212,7 @@
    <property name="geometry">
     <rect>
      <x>90</x>
-     <y>440</y>
+     <y>390</y>
      <width>111</width>
      <height>31</height>
     </rect>

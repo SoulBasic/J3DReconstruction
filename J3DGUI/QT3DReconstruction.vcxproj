@@ -221,7 +221,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="dialog_coor.cpp" />
     <ClCompile Include="dialog_coorintersector.cpp" />
     <ClCompile Include="dialog_pointinfo.cpp" />
     <ClCompile Include="dxflib\dl_dxf.cpp" />
@@ -230,7 +229,6 @@
     <ClCompile Include="Jutil.cpp" />
     <QtRcc Include="QT3DReconstruction.qrc" />
     <QtUic Include="dialog_addsensorwidth.ui" />
-    <QtUic Include="dialog_coor.ui" />
     <QtUic Include="dialog_coorintersector.ui" />
     <QtUic Include="dialog_densifypointcloud.ui" />
     <QtUic Include="dialog_fullauto.ui" />
@@ -267,7 +265,6 @@
   <ItemGroup>
     <QtMoc Include="dialog_pointinfo.h" />
     <ClInclude Include="TiffData.hpp" />
-    <QtMoc Include="dialog_coor.h" />
     <QtMoc Include="dialog_coorintersector.h" />
     <QtMoc Include="ImageView.h" />
     <ClInclude Include="dxflib\dl_attributes.h" />

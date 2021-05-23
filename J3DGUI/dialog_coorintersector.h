@@ -20,6 +20,17 @@
 #include "dxflib/dl_dxf.h"
 #include <qmenu.h>
 #include <qevent.h>
+#include <qtextcodec.h>
+struct JPoint3d
+{
+	QString note;
+	double x;
+	double y;
+	double z;
+	JPoint3d(const QString& n, double a, double b, double c):note(n),x(a),y(b),z(c){}
+	JPoint3d():note(""), x(0), y(0), z(0) {}
+};
+
 
 namespace Ui {
 	class Dialog_CoorIntersector;
@@ -35,7 +46,7 @@ public:
 	void printMsg(const QString& msg);
 	void intersectPoint(int x, int y, int image_index);
 	void onIntersection(int x, int y, int image_index, QPoint& now_pos);
-	void addPoint(double x, double y, double z);
+	void addPoint(double x, double y, double z, const QString& note);
 protected:
 	void resizeEvent(QResizeEvent *event);
 private slots:
@@ -56,7 +67,7 @@ private:
 	TiffData* tiffData;
 	MVS::Scene* scene;
 	Ui::Dialog_CoorIntersector *ui;
-	std::vector<SEACAVE::Point3d> picked_points;
+	std::vector<JPoint3d> picked_points;
 	Dialog_PointInfo dlg_point_info;
 	bool have_DSM_data;
 	QMenu* picked_points_menu;

@@ -46,15 +46,15 @@ void Dialog_CoorIntersector::onIntersection(int x, int y, int image_index, QPoin
 		printMsg(u8"无有效DSM数据,请先加载");
 		return;
 	}
-	dlg_point_info.setX(x);
-	dlg_point_info.setY(y);
+	dlg_point_info.setNote(QString::number(picked_points.size() + 1));
 	dlg_point_info.clearXYZi();
 	dlg_point_info.setGeometry(now_pos.x(), now_pos.y() - dlg_point_info.height(), dlg_point_info.width(), dlg_point_info.height());
+	dlg_point_info.update();
 	dlg_point_info.show();
 	std::thread(&Dialog_CoorIntersector::intersectPoint, this, x, y, image_index).detach();
 }
 
-void Dialog_CoorIntersector::addPoint(double x, double y, double z)
+void Dialog_CoorIntersector::addPoint(double x, double y, double z, const QString& note)
 {
 	if (isnan(x) || isnan(y) || isnan(z))
 	{
@@ -63,17 +63,17 @@ void Dialog_CoorIntersector::addPoint(double x, double y, double z)
 	}
 	auto sl = picked_points_model->stringList();
 	QString str;
-	str.sprintf("%d: (%0.3lf, %0.3lf, %0.8lf)", sl.size() + 1, x, y, z);
+	str.sprintf("%s : (%0.3lf, %0.3lf, %0.8lf)", note.toStdString().c_str(), x, y, z);
 	sl << str;
 	picked_points_model->setStringList(sl);
-	picked_points.push_back(SEACAVE::Point3d{ x,y,z });
+	picked_points.push_back(JPoint3d(note, x, y, z));
 	printMsg(u8"添加点成功");
 }
 
 void Dialog_CoorIntersector::resizeEvent(QResizeEvent * event)
 {
 	this->ui->image_viewer->resize(this->width() - 320, this->height() - 100);
-	this->ui->listView_picked_points->resize(291, this->height() - 480);
+	this->ui->listView_picked_points->resize(340, this->height() - 430);
 }
 
 
@@ -105,11 +105,17 @@ void Dialog_CoorIntersector::on_toolButton_imageDir_clicked()
 		scene = new MVS::Scene(0);
 	}
 	std::thread(&Dialog_CoorIntersector::clear_sfm_file, this).detach();
-
+	QFile file(workDir + "/SparseCloud.J3D");
+	if (!file.exists())
+	{
+		printMsg(u8"重建数据文件(SparseCloud.J3D)不存在，请检查路径");
+		return;
+	}
+	file.close();
 	if (!scene->Load((workDir + "/SparseCloud.J3D").toStdString(), false))
 	{
-		QMessageBox::critical(this, u8"错误 ", u8"重建数据文件(SparseCloud.J3D)不存在，请检查路径", QMessageBox::Ok, QMessageBox::Ok);
-		printMsg(u8"重建数据文件(SparseCloud.J3D)不存在，请检查路径");
+		QMessageBox::critical(this, u8"错误 ", u8"无法打开J3D文件，无法找到源图片或者J3D文件不完整", QMessageBox::Ok, QMessageBox::Ok);
+		printMsg(u8"无法打开J3D文件，无法找到源图片或者J3D文件不完整");
 		return;
 	}
 	printMsg(u8"读取完成,总共读取到 " + QString(to_string(scene->images.size()).c_str()).toUtf8() + u8" 组姿态数据");
@@ -188,7 +194,7 @@ void Dialog_CoorIntersector::on_delete_point_clicked()
 	{
 		auto& p = picked_points[i];
 		QString str;
-		str.sprintf("%d: (%lf,%lf,%lf)", i + 1, p.x, p.y, p.z);
+		str.sprintf("%s: (%0.3lf, %0.3lf, %0.8lf)", p.note.toStdString().c_str(), p.x, p.y, p.z);
 		sl << str;
 	}
 	picked_points_model->setStringList(sl);
@@ -334,6 +340,7 @@ bool Dialog_CoorIntersector::write_to_dxf(const std::string & fileName)
 	for (int i = 0; i < len; i++)
 		sum += pow(picked_points[i].y - avg, 2);
 	double gap = sqrt(sum / len) / 20;
+	auto codec = QTextCodec::codecForName("gb2312");
 	for (int i = 0; i < picked_points.size(); i++)
 	{
 		auto& point = picked_points[i];
@@ -343,12 +350,11 @@ bool Dialog_CoorIntersector::write_to_dxf(const std::string & fileName)
 				point.y,
 				point.z),
 			DL_Attributes("mainlayer", 255, -1, "BYLAYER", 1.0));
-
 		dxf->writeText(*dw, DL_TextData(point.x, point.y + gap, point.z,
 			0.0, 0.0, 0.0,
 			gap, 0,
 			0, 0, 0,
-			std::to_string(i + 1),
+			codec->fromUnicode(point.note).toStdString(),
 			"Standard",
 			0),
 			DL_Attributes("textlayer", 255, -1, "BYLAYER", 1.0)

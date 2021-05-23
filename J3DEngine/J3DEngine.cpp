@@ -317,7 +317,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 	{
 		Global::process = PROCESSWORKING;
 		Global::saveProcess();
-		std::string reconstructMeshInputDir, reconstructMeshOutputDir, reconstructMeshWorkingDir;
+		std::string reconstructMeshInputDir, reconstructMeshOutputDir, reconstructMeshWorkingDir, refineMeshWorkingDir;
 		printf("\n»ŒŒÒ∫ÙΩ–£∫RECONSTRUCTMESH \n\n");
 		ifstream cmdCache;
 		cmdCache.open(("C:\\ProgramData\\J3DEngine\\cmdCache.tmp"), ios::in | ios::_Nocreate);
@@ -339,6 +339,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		getline(cmdCache, reconstructMeshInputDir);
 		getline(cmdCache, reconstructMeshWorkingDir);
 		getline(cmdCache, reconstructMeshOutputDir);
+		getline(cmdCache, refineMeshWorkingDir);
 		cmdCache.close();
 		char* cmd[9];
 		char t[200];
@@ -347,7 +348,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		cmd[1] = "-i";
 		cmd[2] = (char*)reconstructMeshInputDir.data();
 		cmd[3] = "-d";
-		cmd[4] = "4";
+		cmd[4] = "2.5";
 		cmd[5] = "-o";
 		cmd[6] = (char*)reconstructMeshOutputDir.data();
 		cmd[7] = "-w";
@@ -362,9 +363,9 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		cmd[1] = "-i";
 		cmd[2] = (char*)reconstructMeshOutputDir.data();
 		cmd[3] = "--resolution-level";
-		cmd[4] = "2";
+		cmd[4] = "0";
 		cmd[5] = "-o";
-		cmd[6] = (char*)reconstructMeshOutputDir.data();
+		cmd[6] = (char*)refineMeshWorkingDir.data();
 		cmd[7] = "-w";
 		cmd[8] = (char*)reconstructMeshWorkingDir.data();
 		Global::process = !MVSEngine::RefineMesh(9, cmd);
@@ -458,7 +459,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 
 		std::string densifyInputDir, densifyOutputDir, densifyWorkingDir;
 
-		std::string reconstructMeshInputDir, reconstructMeshOutputDir, reconstructMeshWorkingDir;
+		std::string reconstructMeshInputDir, reconstructMeshOutputDir, reconstructMeshWorkingDir, refineMeshWorkingDir;
 
 		std::string textureMeshInputDir, textureMeshOutputDir, textureMeshWorkingDir, exportFormat;
 
@@ -545,6 +546,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		getline(cmdCache, reconstructMeshInputDir);
 		getline(cmdCache, reconstructMeshWorkingDir);
 		getline(cmdCache, reconstructMeshOutputDir);
+		getline(cmdCache, refineMeshWorkingDir);
 		getline(cmdCache, temp);
 		if (temp != "texturemesh")
 		{
@@ -700,7 +702,7 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		cmd1[1] = "-i";
 		cmd1[2] = (char*)reconstructMeshInputDir.data();
 		cmd1[3] = "-d";
-		cmd1[4] = "4";
+		cmd1[4] = "2.5";
 		cmd1[5] = "-o";
 		cmd1[6] = (char*)reconstructMeshOutputDir.data();
 		cmd1[7] = "-w";
@@ -716,10 +718,10 @@ void MsgProc(UINT msg, WPARAM wp, LPARAM lp)
 		cmd1[1] = "-i";
 		cmd1[2] = (char*)reconstructMeshOutputDir.data();
 		cmd1[3] = "--resolution-level";
-		cmd1[4] = "2";
+		cmd1[4] = "0";
 		cmd1[5] = "-o";
-		cmd1[6] = (char*)reconstructMeshOutputDir.data();
-		cmd1[7] = "-w";
+		cmd1[6] = (char*)refineMeshWorkingDir.data();
+		cmd1[7] = "-w"; 
 		cmd1[8] = (char*)reconstructMeshWorkingDir.data();
 		STATE_RETURN = MVSEngine::RefineMesh(9, cmd1);
 		if (STATE_RETURN != EXIT_SUCCESS) {
