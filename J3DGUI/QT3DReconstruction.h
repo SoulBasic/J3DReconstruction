@@ -23,7 +23,6 @@
 #include <qtimer.h>
 #include <qinputdialog.h>
 #include <fstream>
-#include "MVSEngine.h"
 #include "mvsviewer.h"
 #include "qevent.h"
 #include <boost/program_options.hpp>

@@ -82,7 +82,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\openMVS\src;C:\openMVS\Boost\boost_1_67_0;C:\openMVS\Eigen;C:\openMVS\build\openCV;C:\openMVS\openCV\sources\include;C:\openMVS\openCV\sources\include\opencv;C:\openMVS\openCV\sources\modules\core\include;C:\openMVS\openCV\sources\modules\flann\include;C:\openMVS\openCV\sources\modules\imgproc\include;C:\openMVS\openCV\sources\modules\ml\include;C:\openMVS\openCV\sources\modules\objdetect\include;C:\openMVS\openCV_contrib\modules\phase_unwrapping\include;C:\openMVS\openCV\sources\modules\photo\include;C:\openMVS\openCV_contrib\modules\plot\include;C:\openMVS\openCV_contrib\modules\reg\include;C:\openMVS\openCV_contrib\modules\surface_matching\include;C:\openMVS\openCV\sources\modules\video\include;C:\openMVS\openCV_contrib\modules\xphoto\include;C:\openMVS\openCV\sources\modules\dnn\include;C:\openMVS\openCV_contrib\modules\fuzzy\include;C:\openMVS\openCV_contrib\modules\hfs\include;C:\openMVS\openCV\sources\modules\imgcodecs\include;C:\openMVS\openCV\sources\modules\shape\include;C:\openMVS\openCV\sources\modules\videoio\include;C:\openMVS\openCV_contrib\modules\xobjdetect\include;C:\openMVS\openCV\sources\modules\highgui\include;C:\openMVS\openCV\sources\modules\superres\include;C:\openMVS\openCV_contrib\modules\bioinspired\include;C:\openMVS\openCV_contrib\modules\dnn_objdetect\include;C:\openMVS\openCV_contrib\modules\dpm\include;C:\openMVS\openCV\sources\modules\features2d\include;C:\openMVS\openCV_contrib\modules\line_descriptor\include;C:\openMVS\openCV_contrib\modules\saliency\include;C:\openMVS\openCV_contrib\modules\text\include;C:\openMVS\openCV\sources\modules\calib3d\include;C:\openMVS\openCV_contrib\modules\ccalib\include;C:\openMVS\openCV_contrib\modules\datasets\include;C:\openMVS\openCV_contrib\modules\rgbd\include;C:\openMVS\openCV_contrib\modules\stereo\include;C:\openMVS\openCV_contrib\modules\structured_light\include;C:\openMVS\openCV_contrib\modules\tracking\include;C:\openMVS\openCV\sources\modules\videostab\include;C:\openMVS\openCV_contrib\modules\xfeatures2d\include;C:\openMVS\openCV_contrib\modules\ximgproc\include;C:\openMVS\openCV_contrib\modules\aruco\include;C:\openMVS\openCV_contrib\modules\bgsegm\include;C:\openMVS\openCV_contrib\modules\face\include;C:\openMVS\openCV_contrib\modules\optflow\include;C:\openMVS\openCV\sources\modules\stitching\include;C:\openMVS\openCV\sources\modules\world\include;C:\openMVS\openCV_contrib\modules\img_hash\include;C:\openMVS\openCV\sources\modules\ts\include;E:\OpenGL\glew-2.1.0\include;C:\Program Files (x86)\GLFW\include;..\J3DViewRender\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\J3DViewRender\include;C:\openMVS\src;..\3rd_party\glfw3\GLFW\include;..\3rd_party\glew-2.1.0\include;C:\openMVS\Boost\boost_1_67_0;C:\openMVS\Eigen;C:\openMVS\build\openCV\install\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /bigobj /Zm170 /bigobj /Zm170</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -117,8 +117,8 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>C:\openMVS\build\openMVS\lib\vc15\x64\Debug\MVS.lib;opengl32.lib;glu32.lib;E:\OpenGL\glew-2.1.0\lib\Release\x64\glew32.lib;C:\Program Files (x86)\GLFW\lib\glfw3.lib;C:\openMVS\build\openMVS\lib\vc15\x64\Debug\Math.lib;C:\openMVS\build\openMVS\lib\vc15\x64\Debug\IO.lib;C:\openMVS\build\openMVS\lib\vc15\x64\Debug\Common.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_iostreams-vc141-mt-gd-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_program_options-vc141-mt-gd-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_system-vc141-mt-gd-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_serialization-vc141-mt-gd-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_regex-vc141-mt-gd-x64-1_67.lib;C:\openMVS\build\openCV\lib\Debug\opencv_world341d.lib;C:\openMVS\build\openCV\lib\Debug\opencv_img_hash341d.lib;C:\openMVS\jpeg-9d\libjpeg.lib;C:\openMVS\build\Ceres\lib\Debug\ceres-debug.lib;C:\openMVS\build\Google_Log\Debug\glog.lib;C:\openMVS\build\Google_Flags\lib\Debug\gflags_static.lib;shlwapi.lib;C:\openMVS\CGAL\auxiliary\gmp\lib\libmpfr-4.lib;C:\openMVS\CGAL\auxiliary\gmp\lib\libgmp-10.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;J3DViewRender.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:/openMVS/Boost/boost_1_67_0/lib64-msvc-14.1;C:/openMVS/Boost/boost_1_67_0/lib64-msvc-14.1/$(Configuration);C:\Program Files %28x86%29\CGAL\lib;..\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>J3DViewRender.lib;Common.lib;MVS.lib;IO.lib;Math.lib;opencv_world341d.lib;opencv_img_hash341d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\x64\Debug;C:\openMVS\build\openMVS\lib\vc15\x64\Debug;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1;C:\openMVS\build\openCV\install\x64\vc15\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64 /FORCE:MULTIPLE</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -132,7 +132,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>..\3rd_party\glew-2.1.0\include;C:\Program Files (x86)\GLFW\include;..\MVSEngine;C:\openMVS\Boost\boost_1_67_0;C:\openMVS\src;C:\openMVS\Eigen;C:\openMVS\build\openCV\install\include;..\3rd_party\OSG\include;..\3rd_party\libpng;..\J3DViewRender\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\J3DViewRender\include;C:\openMVS\src;..\3rd_party\glfw3\GLFW\include;..\3rd_party\glew-2.1.0\include;C:\openMVS\Boost\boost_1_67_0;C:\openMVS\Eigen;C:\openMVS\build\openCV\install\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /bigobj /Zm170 /bigobj /Zm170</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
@@ -168,8 +168,8 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>C:\openMVS\build\openMVS\lib\vc15\x64\Release\MVS.lib;C:\openMVS\build\openMVS\lib\vc15\x64\Release\Math.lib;C:\openMVS\build\openMVS\lib\vc15\x64\Release\IO.lib;C:\openMVS\build\openMVS\lib\vc15\x64\Release\Common.lib;odbc32.lib;odbccp32.lib;zlib.lib;libpng16.lib;OpenGL32.Lib;GlU32.Lib;..\3rd_party\\glew-2.1.0\lib\Release\x64\glew32.lib;C:\Program Files (x86)\GLFW\lib\glfw3.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_iostreams-vc141-mt-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_program_options-vc141-mt-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_system-vc141-mt-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_serialization-vc141-mt-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\boost_regex-vc141-mt-x64-1_67.lib;C:\openMVS\build\openCV\lib\Release\opencv_world341.lib;C:\openMVS\build\openCV\lib\Release\opencv_img_hash341.lib;C:\openMVS\jpeg-9d\libjpeg.lib;C:\Program Files (x86)\Ceres\lib\ceres.lib;C:\openMVS\build\Google_Log\Release\glog.lib;C:\openMVS\build\Google_Flags\lib\Release\gflags_static.lib;shlwapi.lib;C:\openMVS\CGAL\auxiliary\gmp\lib\libmpfr-4.lib;C:\openMVS\CGAL\auxiliary\gmp\lib\libgmp-10.lib;J3DViewRender.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\Program Files (x86)\Windows Kits\10\Lib\10.0.17763.0\um\x64;..\3rd_party\glew-2.1.0\lib\Release\x64;..\x64\Release;C:/openMVS/Boost/boost_1_67_0/lib64-msvc-14.1;C:/openMVS/Boost/boost_1_67_0/lib64-msvc-14.1/$(Configuration);C:\Program Files %28x86%29\CGAL\lib;..\3rd_party\OSG\lib;..\3rd_party\libpng;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>J3DViewRender.lib;Common.lib;MVS.lib;IO.lib;Math.lib;opencv_world341.lib;opencv_img_hash341.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\x64\Release;C:\openMVS\build\openMVS\lib\vc15\x64\Release;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1;C:\openMVS\build\openCV\install\x64\vc15\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64 /FORCE:MULTIPLE</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -281,134 +281,6 @@
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <CustomBuild Include="C:\openMVS\build\openMVS\CMakeFiles\2380bda70809fc05df5a494dc6e05e0c\Viewer_CXX_prefix.hxx.rule">
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Generating CXX prefix header C:\openMVS\build\openMVS\apps\Viewer\$(Platform)\$(Configuration)\cotire\Viewer_CXX_prefix.hxx</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-cd C:\openMVS\build\openMVS
-if %errorlevel% neq 0 goto :cmEnd
-C:
-if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -DCOTIRE_BUILD_TYPE:STRING=Debug -P C:/openMVS/src/build/Cotire.cmake combine C:/openMVS/build/openMVS/apps/Viewer/Viewer_CXX_Cotire.cmake C:/openMVS/build/openMVS/apps/Viewer/$(Platform)/$(Configuration)/cotire/Viewer_CXX_prefix.hxx C:/openMVS/src/apps/Viewer/Common.h
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\openMVS\src\apps\Viewer\Common.h;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\openMVS\build\openMVS\apps\Viewer\$(Platform)\$(Configuration)\cotire\Viewer_CXX_prefix.hxx</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Generating CXX prefix header C:\openMVS\build\openMVS\apps\Viewer\$(Platform)\$(Configuration)\cotire\Viewer_CXX_prefix.hxx</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
-cd C:\openMVS\build\openMVS
-if %errorlevel% neq 0 goto :cmEnd
-C:
-if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -DCOTIRE_BUILD_TYPE:STRING=Release -P C:/openMVS/src/build/Cotire.cmake combine C:/openMVS/build/openMVS/apps/Viewer/Viewer_CXX_Cotire.cmake C:/openMVS/build/openMVS/apps/Viewer/$(Platform)/$(Configuration)/cotire/Viewer_CXX_prefix.hxx C:/openMVS/src/apps/Viewer/Common.h
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\openMVS\src\apps\Viewer\Common.h;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\openMVS\build\openMVS\apps\Viewer\$(Platform)\$(Configuration)\cotire\Viewer_CXX_prefix.hxx</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Generating CXX prefix header C:\openMVS\build\openMVS\apps\Viewer\$(Platform)\$(Configuration)\cotire\Viewer_CXX_prefix.hxx</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
-cd C:\openMVS\build\openMVS
-if %errorlevel% neq 0 goto :cmEnd
-C:
-if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -DCOTIRE_BUILD_TYPE:STRING=MinSizeRel -P C:/openMVS/src/build/Cotire.cmake combine C:/openMVS/build/openMVS/apps/Viewer/Viewer_CXX_Cotire.cmake C:/openMVS/build/openMVS/apps/Viewer/$(Platform)/$(Configuration)/cotire/Viewer_CXX_prefix.hxx C:/openMVS/src/apps/Viewer/Common.h
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\openMVS\src\apps\Viewer\Common.h;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\openMVS\build\openMVS\apps\Viewer\$(Platform)\$(Configuration)\cotire\Viewer_CXX_prefix.hxx</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Generating CXX prefix header C:\openMVS\build\openMVS\apps\Viewer\$(Platform)\$(Configuration)\cotire\Viewer_CXX_prefix.hxx</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
-cd C:\openMVS\build\openMVS
-if %errorlevel% neq 0 goto :cmEnd
-C:
-if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -DCOTIRE_BUILD_TYPE:STRING=RelWithDebInfo -P C:/openMVS/src/build/Cotire.cmake combine C:/openMVS/build/openMVS/apps/Viewer/Viewer_CXX_Cotire.cmake C:/openMVS/build/openMVS/apps/Viewer/$(Platform)/$(Configuration)/cotire/Viewer_CXX_prefix.hxx C:/openMVS/src/apps/Viewer/Common.h
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\openMVS\src\apps\Viewer\Common.h;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\openMVS\build\openMVS\apps\Viewer\$(Platform)\$(Configuration)\cotire\Viewer_CXX_prefix.hxx</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
-    </CustomBuild>
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="C:\openMVS\src\apps\Viewer\CMakeLists.txt">
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/openMVS/src/apps/Viewer/CMakeLists.txt</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/openMVS/src -BC:/openMVS/build/openMVS --check-stamp-file C:/openMVS/build/openMVS/apps/Viewer/CMakeFiles/generate.stamp
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files (x86)\GLFW\lib\cmake\glfw3\glfw3Config.cmake;C:\Program Files (x86)\GLFW\lib\cmake\glfw3\glfw3ConfigVersion.cmake;C:\Program Files (x86)\GLFW\lib\cmake\glfw3\glfw3Targets-debug.cmake;C:\Program Files (x86)\GLFW\lib\cmake\glfw3\glfw3Targets-release.cmake;C:\Program Files (x86)\GLFW\lib\cmake\glfw3\glfw3Targets.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\FindGLEW.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\SelectLibraryConfigurations.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\openMVS\build\openMVS\apps\Viewer\CMakeFiles\generate.stamp</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/openMVS/src/apps/Viewer/CMakeLists.txt</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/openMVS/src -BC:/openMVS/build/openMVS --check-stamp-file C:/openMVS/build/openMVS/apps/Viewer/CMakeFiles/generate.stamp
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files (x86)\GLFW\lib\cmake\glfw3\glfw3Config.cmake;C:\Program Files (x86)\GLFW\lib\cmake\glfw3\glfw3ConfigVersion.cmake;C:\Program Files (x86)\GLFW\lib\cmake\glfw3\glfw3Targets-debug.cmake;C:\Program Files (x86)\GLFW\lib\cmake\glfw3\glfw3Targets-release.cmake;C:\Program Files (x86)\GLFW\lib\cmake\glfw3\glfw3Targets.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\FindGLEW.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\SelectLibraryConfigurations.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\openMVS\build\openMVS\apps\Viewer\CMakeFiles\generate.stamp</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/openMVS/src/apps/Viewer/CMakeLists.txt</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/openMVS/src -BC:/openMVS/build/openMVS --check-stamp-file C:/openMVS/build/openMVS/apps/Viewer/CMakeFiles/generate.stamp
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files (x86)\GLFW\lib\cmake\glfw3\glfw3Config.cmake;C:\Program Files (x86)\GLFW\lib\cmake\glfw3\glfw3ConfigVersion.cmake;C:\Program Files (x86)\GLFW\lib\cmake\glfw3\glfw3Targets-debug.cmake;C:\Program Files (x86)\GLFW\lib\cmake\glfw3\glfw3Targets-release.cmake;C:\Program Files (x86)\GLFW\lib\cmake\glfw3\glfw3Targets.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\FindGLEW.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\SelectLibraryConfigurations.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\openMVS\build\openMVS\apps\Viewer\CMakeFiles\generate.stamp</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/openMVS/src/apps/Viewer/CMakeLists.txt</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/openMVS/src -BC:/openMVS/build/openMVS --check-stamp-file C:/openMVS/build/openMVS/apps/Viewer/CMakeFiles/generate.stamp
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files (x86)\GLFW\lib\cmake\glfw3\glfw3Config.cmake;C:\Program Files (x86)\GLFW\lib\cmake\glfw3\glfw3ConfigVersion.cmake;C:\Program Files (x86)\GLFW\lib\cmake\glfw3\glfw3Targets-debug.cmake;C:\Program Files (x86)\GLFW\lib\cmake\glfw3\glfw3Targets-release.cmake;C:\Program Files (x86)\GLFW\lib\cmake\glfw3\glfw3Targets.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\FindGLEW.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\SelectLibraryConfigurations.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\openMVS\build\openMVS\apps\Viewer\CMakeFiles\generate.stamp</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
-    </CustomBuild>
-  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="C:\openMVS\build\openMVS\ZERO_CHECK.vcxproj">
       <Project>{43CB7236-DE9B-395F-A869-D014A47D82B7}</Project>

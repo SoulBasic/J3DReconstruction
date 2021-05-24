@@ -30,6 +30,41 @@ namespace OPT {
 	boost::program_options::variables_map vm;
 } // namespace OPT
 
+int getFiles(const char* path, std::vector<std::string>& arr)
+{
+	int num_of_img = 0;
+	intptr_t hFile = 0;
+	struct _finddata_t fileinfo;
+	char p[700] = { 0 };
+	strcpy(p, path);
+	strcat(p, "\\*");
+	char buf[256];
+	if ((hFile = _findfirst(p, &fileinfo)) != -1)
+	{
+		do
+		{
+			if ((fileinfo.attrib & _A_SUBDIR))
+			{
+				if (strcmp(fileinfo.name, ".") != 0 && strcmp(fileinfo.name, "..") != 0)
+					continue;
+			}
+			else
+			{
+
+				strcpy(buf, path);
+				strcat(buf, "\\");
+				strcat(buf, fileinfo.name);
+				struct stat st1;
+				stat(buf, &st1);
+				arr.push_back(buf);
+			}
+		} while (_findnext(hFile, &fileinfo) == 0);
+		_findclose(hFile);
+	}
+	return num_of_img;
+}
+
+
 // Initialize_Dense and parse the command line parameters
 bool MVSEngine::Initialize_Dense(size_t argc, LPCTSTR* argv)
 {
@@ -189,7 +224,7 @@ void MVSEngine::Finalize_Dense()
 void cleanCacheFiles(const std::string& workDir)
 {
 	std::vector<std::string> fileNames;
-	MVSEngine::getFiles(workDir.c_str(), fileNames);
+	getFiles(workDir.c_str(), fileNames);
 	for (int i = 0; i < fileNames.size(); i++)
 	{
 		std::string& fn = fileNames[i];

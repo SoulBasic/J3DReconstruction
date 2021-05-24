@@ -127,8 +127,8 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:/openMVS/Boost/boost_1_67_0/lib64-msvc-14.1;C:/openMVS/Boost/boost_1_67_0/lib64-msvc-14.1/$(Configuration);C:\Program Files %28x86%29\CGAL\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>C:\openMVS\build\openMVS\lib\vc15\x64\Debug\MVS.lib;C:\openMVS\build\openMVS\lib\vc15\x64\Debug\Math.lib;C:\openMVS\build\openMVS\lib\vc15\x64\Debug\IO.lib;C:\openMVS\build\openMVS\lib\vc15\x64\Debug\Common.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\libboost_iostreams-vc141-mt-gd-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\libboost_program_options-vc141-mt-gd-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\libboost_system-vc141-mt-gd-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\libboost_serialization-vc141-mt-gd-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\libboost_regex-vc141-mt-gd-x64-1_67.lib;C:\openMVS\build\openCV\lib\Debug\opencv_world341d.lib;C:\openMVS\build\openCV\lib\Debug\opencv_img_hash341d.lib;C:\openMVS\jpeg-9d\libjpeg.lib;C:\openMVS\build\Ceres\lib\Debug\ceres-debug.lib;C:\openMVS\build\Google_Log\Debug\glog.lib;C:\openMVS\build\Google_Flags\lib\Debug\gflags_static.lib;shlwapi.lib;C:\openMVS\CGAL\auxiliary\gmp\lib\libmpfr-4.lib;C:\openMVS\CGAL\auxiliary\gmp\lib\libgmp-10.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:/openMVS/Boost/boost_1_67_0/lib64-msvc-14.1;C:\openMVS\build\openMVS\lib\vc15\x64\Debug;C:\openMVS\build\openCV\install\x64\vc15\lib;C:\openMVS\jpeg-9d;C:\openMVS\CGAL\auxiliary\gmp\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>MVS.lib;Math.lib;IO.lib;Common.lib;libjpeg.lib;opencv_world341d.lib;opencv_img_hash341d.lib;libmpfr-4.lib;libgmp-10.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64 /FORCE:MULTIPLE</AdditionalOptions>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
     </Link>
@@ -167,7 +167,7 @@
       </SDLCheck>
       <PreprocessorDefinitions>_CONSOLE;WIN32;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;NDEBUG;_WIN32;_HAS_EXCEPTIONS=1;_USE_OPENMP;_USE_OPENGL;_USE_BOOST;_USE_EIGEN;_USE_NONFREE;_USE_FAST_FLOAT2INT;_USE_FAST_CBRT;_USE_SSE;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>false</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\openMVS\src;C:\openMVS\Boost\boost_1_67_0;C:\openMVS\Eigen;C:\openMVS\build\openCV\install\include;C:\openMVS\openCV\sources\include;C:\openMVS\openCV\sources\include\opencv;C:\openMVS\openCV\sources\modules;..\3rd_party\\glew-2.1.0\include;C:\Program Files (x86)\GLFW\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\openMVS\src;C:\openMVS\Boost\boost_1_67_0;C:\openMVS\Eigen;C:\openMVS\build\openCV\install\include</AdditionalIncludeDirectories>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <AdditionalOptions>/bigobj /Zm170 %(AdditionalOptions)</AdditionalOptions>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -180,8 +180,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:/openMVS/Boost/boost_1_67_0/lib64-msvc-14.1;C:/openMVS/Boost/boost_1_67_0/lib64-msvc-14.1/$(Configuration);C:\Program Files %28x86%29\CGAL\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>C:\openMVS\build\openMVS\lib\vc15\x64\Release\MVS.lib;C:\openMVS\build\openMVS\lib\vc15\x64\Release\Math.lib;C:\openMVS\build\openMVS\lib\vc15\x64\Release\IO.lib;C:\openMVS\build\openMVS\lib\vc15\x64\Release\Common.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\libboost_iostreams-vc141-mt-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\libboost_program_options-vc141-mt-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\libboost_system-vc141-mt-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\libboost_serialization-vc141-mt-x64-1_67.lib;C:\openMVS\Boost\boost_1_67_0\lib64-msvc-14.1\libboost_regex-vc141-mt-x64-1_67.lib;C:\openMVS\build\openCV\lib\Release\opencv_world341.lib;C:\openMVS\build\openCV\lib\Release\opencv_img_hash341.lib;C:\openMVS\jpeg-9d\libjpeg.lib;C:\Program Files (x86)\Ceres\lib\ceres.lib;C:\openMVS\build\Google_Log\Release\glog.lib;C:\openMVS\build\Google_Flags\lib\Release\gflags_static.lib;shlwapi.lib;C:\openMVS\CGAL\auxiliary\gmp\lib\libmpfr-4.lib;C:\openMVS\CGAL\auxiliary\gmp\lib\libgmp-10.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;opengl32.lib;glu32.lib;..\3rd_party\glew-2.1.0\lib\Release\x64\glew32.lib;C:\Program Files (x86)\GLFW\lib\glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:/openMVS/Boost/boost_1_67_0/lib64-msvc-14.1;C:\openMVS\build\openMVS\lib\vc15\x64\Release;C:\openMVS\build\openCV\install\x64\vc15\lib;C:\openMVS\jpeg-9d;C:\openMVS\CGAL\auxiliary\gmp\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>MVS.lib;Math.lib;IO.lib;Common.lib;libjpeg.lib;opencv_world341.lib;opencv_img_hash341.lib;libmpfr-4.lib;libgmp-10.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64 /FORCE:MULTIPLE</AdditionalOptions>
     </Link>
