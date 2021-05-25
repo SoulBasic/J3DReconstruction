@@ -269,16 +269,6 @@
       <string>obj</string>
      </property>
     </item>
-    <item>
-     <property name="text">
-      <string>osgb</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>gltf</string>
-     </property>
-    </item>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>

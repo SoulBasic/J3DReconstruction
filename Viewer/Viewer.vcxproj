@@ -23,7 +23,7 @@
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
     <Keyword>Win32Proj</Keyword>
     <Platform>x64</Platform>
-    <ProjectName>Viewer</ProjectName>
+    <ProjectName>J3DViewer</ProjectName>
     <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -82,7 +82,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>..\J3DViewRender\include;C:\openMVS\src;..\3rd_party\glfw3\GLFW\include;..\3rd_party\glew-2.1.0\include;C:\openMVS\Boost\boost_1_67_0;C:\openMVS\Eigen;C:\openMVS\build\openCV\install\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\J3DViewRender\include;C:\openMVS\src;C:\openMVS\glfw3\GLFW\include;C:\openMVS\glew-2.1.0\include;C:\openMVS\Boost\boost_1_67_0;C:\openMVS\Eigen;C:\openMVS\build\openCV\install\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /bigobj /Zm170 /bigobj /Zm170</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -132,7 +132,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>..\J3DViewRender\include;C:\openMVS\src;..\3rd_party\glfw3\GLFW\include;..\3rd_party\glew-2.1.0\include;C:\openMVS\Boost\boost_1_67_0;C:\openMVS\Eigen;C:\openMVS\build\openCV\install\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\J3DViewRender\include;C:\openMVS\src;C:\openMVS\glfw3\GLFW\include;C:\openMVS\glew-2.1.0\include;C:\openMVS\Boost\boost_1_67_0;C:\openMVS\Eigen;C:\openMVS\build\openCV\install\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /bigobj /Zm170 /bigobj /Zm170</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
@@ -152,8 +152,7 @@
       <WholeProgramOptimization>true</WholeProgramOptimization>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;NDEBUG;_WIN32;_HAS_EXCEPTIONS=1;_USE_OPENMP;_USE_OPENGL;_USE_BOOST;_USE_EIGEN;_USE_NONFREE;_USE_FAST_FLOAT2INT;_USE_FAST_CBRT;_USE_SSE;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
-      <DebugInformationFormat>
-      </DebugInformationFormat>
+      <DebugInformationFormat>None</DebugInformationFormat>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;NDEBUG;_WIN32;_HAS_EXCEPTIONS=1;_USE_OPENMP;_USE_OPENGL;_USE_BOOST;_USE_EIGEN;_USE_NONFREE;_USE_FAST_FLOAT2INT;_USE_FAST_CBRT;_USE_SSE;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>

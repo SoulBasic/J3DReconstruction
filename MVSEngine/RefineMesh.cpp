@@ -2,16 +2,8 @@
 #include "libs/MVS/Scene.h"
 #include <boost/program_options.hpp>
 #include "MVSEngine.h"
-
 using namespace MVS;
-
-
-// D E F I N E S ///////////////////////////////////////////////////
-
 #define APPNAME _T("RefineMesh")
-
-
-// S T R U C T S ///////////////////////////////////////////////////
 
 namespace OPT_RefineMesh {
 	String strInputFileName;

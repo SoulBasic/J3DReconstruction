@@ -1,20 +1,14 @@
-
 #include "libs/MVS/Common.h"
 #include "libs/MVS/Scene.h"
 #include <boost/program_options.hpp>
 #include "MVSEngine.h"
 
 using namespace MVS;
-
-
-
 #define APPNAME _T("ReconstructMesh")
 
 #ifdef _USE_OPENMP
 #define RECMESH_USE_OPENMP
 #endif
-
-
 
 namespace OPT_ReconstructMesh {
 	String strInputFileName;

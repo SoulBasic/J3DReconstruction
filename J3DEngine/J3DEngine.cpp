@@ -857,7 +857,7 @@ int main()
 	}
 	::system("cls");
 	printf("\n-----------------------------------\n");
-	printf("        欢迎使用J3DEngine V2.0        \n");
+	printf("        欢迎使用J3DEngine V2.3        \n");
 	printf("            程序初始化成功             \n");
 	printf("        请使用J3DGUI程序发起指令       \n");
 	printf("     @Basic All rights reserved    \n");

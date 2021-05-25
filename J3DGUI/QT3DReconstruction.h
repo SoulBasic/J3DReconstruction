@@ -28,6 +28,7 @@
 #include <boost/program_options.hpp>
 #include <time.h>
 #include <qevent.h>
+#include <thread>
 #include "Jutil.h"
 #include "Common.h"
 #include "Scene.h"
@@ -85,6 +86,10 @@ private:
 	bool J3DViewerAva;
 	Jutil::SparseFileName J3DFile;
 	void closeEvent(QCloseEvent *event);
+	void init_thread()
+	{
+		emit(this->ui.actionopen_mvs_file->triggered());
+	}
 protected:
 
 };

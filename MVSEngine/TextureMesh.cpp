@@ -3,11 +3,7 @@
 #include <boost/program_options.hpp>
 #include "MVSEngine.h"
 using namespace MVS;
-// D E F I N E S ///////////////////////////////////////////////////
 #define APPNAME _T("TextureMesh")
-
-// S T R U C T S ///////////////////////////////////////////////////
-
 namespace OPT_TextureMesh {
 	String strInputFileName;
 	String strOutputFileName;
@@ -118,9 +114,6 @@ bool MVSEngine::Initialize_TextureMesh(size_t argc, LPCTSTR* argv)
 
 	OPEN_LOGFILE(MAKE_PATH(APPNAME _T("-") + Util::getUniqueName(0) + _T(".log")).c_str());
 
-
-	//Util::LogBuild();
-	//LOG(_T("Command line:%s"), Util::CommandLineToString(argc, argv).c_str());
 
 	// validate input
 	Util::ensureValidPath(OPT_TextureMesh::strInputFileName);

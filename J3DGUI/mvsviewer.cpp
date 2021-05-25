@@ -11,7 +11,7 @@ mvsviewer::mvsviewer(int i, QWidget *parent)
 	: QWidget(parent)
 {
 	i++;
-	WId wid = (WId)FindWindow("GLFW30", "J3D Viewer");
+	WId wid = (WId)FindWindowA("GLFW30", "J3D Viewer");
 	QWindow*m_window;
 	m_window = QWindow::fromWinId(wid);
 	m_window->setFlags(m_window->flags() | Qt::CustomizeWindowHint | Qt::WindowTitleHint);

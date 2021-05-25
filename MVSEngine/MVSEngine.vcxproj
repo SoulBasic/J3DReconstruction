@@ -173,7 +173,7 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>true</OpenMPSupport>
       <LanguageStandard>stdcpp14</LanguageStandard>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DebugInformationFormat>None</DebugInformationFormat>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

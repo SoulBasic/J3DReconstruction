@@ -181,7 +181,7 @@
       <CompileAs>CompileAsCpp</CompileAs>
       <UseFullPaths>false</UseFullPaths>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DebugInformationFormat>None</DebugInformationFormat>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

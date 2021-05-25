@@ -349,7 +349,6 @@ bool Scene::Open(LPCTSTR fileName, LPCTSTR meshFileName)
 	// init camera
 	window.SetCamera(CameraPtr(new Camera(bounds)));
 	window.camera->maxCamID = images.size();
-	//window.SetName(String::FormatString((name + _T(": %s")).c_str(), Util::getFileName(fileName).c_str()));
 	window.Reset(MINF(2u, images.size()));
 	return true;
 }
@@ -583,7 +582,8 @@ void Scene::ProcessEvents()
 
 void Scene::Loop()
 {
-	while (!glfwWindowShouldClose(window.GetWindow()) && !shouldClose) {
+	std::this_thread::sleep_for(std::chrono::milliseconds(500));
+	while (!glfwWindowShouldClose(window.GetWindow())) {
 		ProcessEvents();
 		Draw();
 	}

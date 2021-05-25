@@ -9,7 +9,6 @@ int main(int argc, char* argv[])
 	if (!J3DViewer->Init(1361, 661, "J3D Viewer", argv[1]))
 		return -1;
 	J3DViewer->window.SetVisible(true);
-	J3DViewer->shouldClose = false;
 	J3DViewer->Loop();
 	return 0;
 }

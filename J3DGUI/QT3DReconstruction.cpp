@@ -1,5 +1,4 @@
 #include "QT3DReconstruction.h"
-#include <Windows.h>
 
 
 
@@ -18,6 +17,14 @@ QT3DReconstruction::QT3DReconstruction(QWidget *parent)
 	J3DViewer = nullptr;
 	J3DViewerAva = false;
 	this->setAttribute(Qt::WA_DeleteOnClose);
+	
+#ifdef SUPPORT_OSG
+	ui.comboBox->addItem("osgb");
+#endif
+#ifdef SUPPORT_GLTF
+	ui.comboBox->addItem("gltf");
+#endif
+	std::thread(&QT3DReconstruction::init_thread, this).detach();
 }
 
 
@@ -27,7 +34,6 @@ QT3DReconstruction::~QT3DReconstruction()
 	delete timer;
 	delete J3DViewer;
 }
-
 
 void QT3DReconstruction::on_actionMatchFeature_triggered() { dlgmf.exec(); }
 
@@ -256,6 +262,11 @@ void QT3DReconstruction::on_action_triggered() { dlgtm.exec(); }//textureMesh
 
 void QT3DReconstruction::on_actionopen_mvs_file_triggered()
 {
+	if (J3DViewer == nullptr)
+	{
+		openView("default.ply");
+		return;
+	}
 	QString fileName = QFileDialog::getOpenFileName(NULL, "ViewJ3D", ".",
 		"J3D Model Format(*.J3D);;Stanford Polygon File Format(*.ply);;Alias Wavefront Object(*.obj);;All Files(*.*)");
 	if (fileName == "") return;
@@ -274,24 +285,22 @@ void QT3DReconstruction::on_actionopen_mvs_file_triggered()
 
 bool QT3DReconstruction::openView(QString fileName)
 {
-
+	printf("ov\n");
 	J3DViewer = new VIEWER::Scene();
 	// create viewer
 	if (!J3DViewer->Init(1361, 661, _T("J3D Viewer"),
 		fileName.toStdString().c_str(),
 		NULL))
 		return false;
-
-	//置子窗口
-	Sleep(1000);
+	////置子窗口
 	delete this->ui.widget;
-	this->ui.widget = new mvsviewer(1, this->ui.centralWidget);
-	this->ui.widget->setObjectName(QString::fromUtf8("widget"));
-	this->ui.widget->setGeometry(QRect(10, 70, 1361, 661));
-	this->ui.widget->show();
-
+	ui.widget = new mvsviewer(1, this->ui.centralWidget);
+	ui.widget->setObjectName(QString::fromUtf8("widget"));
+	ui.widget->setGeometry(QRect(10, 70, 1361, 661));
+	ui.widget->show();
+	ui.widget->update();
 	J3DViewer->window.SetVisible(true);
-
+	
 	// enter viewer loop
 	J3DViewerAva = true;
 	J3DViewer->Loop();
@@ -303,7 +312,7 @@ void QT3DReconstruction::on_action_fullauto_triggered() { dlgfa.exec(); }
 void QT3DReconstruction::on_action_2_triggered()
 {
 	QString fileName = QFileDialog::getOpenFileName(NULL,
-		"打开J3D模型文件", ".",
+		u8"打开模型文件", ".",
 		"J3D Model Format(*.J3D);;Stanford Polygon File Format(*.ply);;Alias Wavefront Object(*.obj);;OpenSceneGraph(*.osg);;OpenSceneGraph Binary(*.osgb);;All Files(*.*)");
 	if (fileName == "") return;
 	openViewCompatibility(fileName);
@@ -331,7 +340,7 @@ bool QT3DReconstruction::openViewCompatibility(QString fileName)
 			NULL,
 			NULL, &si, &pi))
 		{
-			QMessageBox::information(NULL, u8"失败", u8"打开文件失败，Viewer程序文件不完整 ", QMessageBox::Ok, QMessageBox::Ok);
+			QMessageBox::information(NULL, u8"失败", u8"打开文件失败，找不到OSGViewer ", QMessageBox::Ok, QMessageBox::Ok);
 			return false;
 		}
 	}
@@ -352,12 +361,14 @@ bool QT3DReconstruction::openViewCompatibility(QString fileName)
 			NULL,
 			NULL, &si, &pi))
 		{
-			QMessageBox::information(NULL, u8"失败", u8"打开文件失败，Viewer程序文件不完整 ", QMessageBox::Ok, QMessageBox::Ok);
+			QMessageBox::information(NULL, u8"失败", u8"打开文件失败，J3D Viewer程序文件不完整 ", QMessageBox::Ok, QMessageBox::Ok);
 			return false;
 		}
 	}
 	return true;
 }
+
+
 
 void QT3DReconstruction::closeEvent(QCloseEvent *event)
 {
@@ -470,14 +481,13 @@ void QT3DReconstruction::on_pushButton_export_clicked()
 		std::string temp1 = J3DFile.getDir() + "/" + J3DFile.getFrontName() + "_export.osgb";
 		converseType(temp.c_str(), temp1.c_str());
 	}
-#ifdef SUPPORT_GLTF
+
 	if (isGltf)
 	{
 		std::string temp1 = J3DFile.getDir() + "/" + J3DFile.getFrontName() + "_export.gltf";
 		QString cmd = "obj2gltf -i " + QString(temp.c_str()) + " -o " + QString(temp1.c_str());
 		::system(cmd.toStdString().c_str());
 	}
-#endif // SUPPORT_GLTF
 	QMessageBox::information(NULL, u8"完成", u8"成功输出文件", QMessageBox::Ok, QMessageBox::Ok);
 }
 

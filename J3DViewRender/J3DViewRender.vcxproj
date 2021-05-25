@@ -93,15 +93,16 @@
       <PreprocessorDefinitions>NDEBUG;_LIB;WIN32;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;_WIN32;_HAS_EXCEPTIONS=1;_USE_OPENMP;_USE_OPENGL;_USE_BOOST;_USE_EIGEN;_USE_NONFREE;_USE_FAST_FLOAT2INT;_USE_FAST_CBRT;_USE_SSE;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>false</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>C:\openMVS\src;C:\openMVS\Boost\boost_1_67_0;C:\openMVS\build\openCV\install\include;C:\openMVS\Eigen;..\3rd_party\glfw3\GLFW\include;..\3rd_party\glew-2.1.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\openMVS\src;C:\openMVS\Boost\boost_1_67_0;C:\openMVS\build\openCV\install\include;C:\openMVS\Eigen;C:\openMVS\glfw3\GLFW\include;C:\openMVS\glew-2.1.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /bigobj /Zm170 /bigobj /Zm170</AdditionalOptions>
+      <DebugInformationFormat>None</DebugInformationFormat>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:/openMVS/Boost/boost_1_67_0/lib64-msvc-14.1;C:\openMVS\build\openMVS\lib\vc15\x64\Release;C:\openMVS\build\openCV\install\x64\vc15\lib;C:\openMVS\jpeg-9d;..\3rd_party\glew-2.1.0\lib\Release\x64;..\3rd_party\glfw3\GLFW\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:/openMVS/Boost/boost_1_67_0/lib64-msvc-14.1;C:\openMVS\build\openMVS\lib\vc15\x64\Release;C:\openMVS\build\openCV\install\x64\vc15\lib;C:\openMVS\jpeg-9d;C:\openMVS\glew-2.1.0\lib\Release\x64;C:\openMVS\glfw3\GLFW\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>MVS.lib;Math.lib;IO.lib;Common.lib;glew32.lib;glfw3.lib;opencv_world341.lib;opencv_img_hash341.lib;libjpeg.lib;opengl32.lib;glu32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64 /FORCE:MULTIPLE</AdditionalOptions>
     </Link>
@@ -130,12 +131,12 @@
       <PreprocessorDefinitions>_LIB;WIN32;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;_WIN32;_HAS_EXCEPTIONS=1;_USE_OPENMP;_USE_OPENGL;_USE_BOOST;_USE_EIGEN;_USE_NONFREE;_USE_FAST_FLOAT2INT;_USE_FAST_CBRT;_USE_SSE;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>false</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>C:\openMVS\src;C:\openMVS\Boost\boost_1_67_0;C:\openMVS\build\openCV\install\include;C:\openMVS\Eigen;..\3rd_party\glfw3\GLFW\include;..\3rd_party\glew-2.1.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\openMVS\src;C:\openMVS\Boost\boost_1_67_0;C:\openMVS\build\openCV\install\include;C:\openMVS\Eigen;C:\openMVS\glfw3\GLFW\include;C:\openMVS\glew-2.1.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:/openMVS/Boost/boost_1_67_0/lib64-msvc-14.1;C:\openMVS\build\openMVS\lib\vc15\x64\Debug;C:\openMVS\build\openCV\install\x64\vc15\lib;C:\openMVS\jpeg-9d;..\3rd_party\glew-2.1.0\lib\Release\x64;..\3rd_party\glfw3\GLFW\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:/openMVS/Boost/boost_1_67_0/lib64-msvc-14.1;C:\openMVS\build\openMVS\lib\vc15\x64\Debug;C:\openMVS\build\openCV\install\x64\vc15\lib;C:\openMVS\jpeg-9d;C:\openMVS\glew-2.1.0\lib\Release\x64;C:\openMVS\glfw3\GLFW\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>MVS.lib;Math.lib;IO.lib;Common.lib;glew32.lib;glfw3.lib;opencv_world341d.lib;opencv_img_hash341d.lib;libjpeg.lib;opengl32.lib;glu32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>

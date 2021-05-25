@@ -6,15 +6,7 @@
 #include <direct.h>
 #include <cstdio>
 using namespace MVS;
-
-
-// D E F I N E S ///////////////////////////////////////////////////
-
 #define APPNAME _T("DensifyPointCloud")
-
-
-// S T R U C T S ///////////////////////////////////////////////////
-
 namespace OPT {
 	String strInputFileName;
 	String strOutputFileName;
