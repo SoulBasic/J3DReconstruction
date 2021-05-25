@@ -6,6 +6,9 @@ Dialog_TextureMesh::Dialog_TextureMesh(QWidget *parent) :
 	ui(new Ui::Dialog_TextureMesh)
 {
 	ui->setupUi(this);
+#ifdef SUPPORT_OSG
+	ui->comboBox->addItem("osgb");
+#endif
 }
 
 Dialog_TextureMesh::~Dialog_TextureMesh()

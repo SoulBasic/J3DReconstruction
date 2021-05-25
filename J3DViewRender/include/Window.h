@@ -75,6 +75,7 @@ namespace VIEWER {
 		void Scroll(double xoffset, double yoffset);
 		static void Scroll(GLFWwindow* window, double xoffset, double yoffset);
 		__declspec(dllexport) void Drop(int count, const char** paths);
+		__declspec(dllexport) void NewModel(const std::string& fn);
 		static void Drop(GLFWwindow* window, int count, const char** paths);
 
 		static void CursorPos(GLFWwindow* window, double x, double y);

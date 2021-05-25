@@ -157,6 +157,7 @@ public:
 			if (!scene.pointcloud.IsEmpty()) {
 				Scene::OctreePoints octPoints(scene.pointcloud.points);
 				pScene->octPoints.Swap(octPoints);
+				pScene->octMesh.Release();
 			}
 		return true;
 	}
@@ -297,11 +298,9 @@ bool Scene::Open(LPCTSTR fileName, LPCTSTR meshFileName)
 	}
 	if (scene.IsEmpty())
 		return false;
-
-#if 1
 	// create octree structure used to accelerate selection functionality
 	events.AddEvent(new EVTComputeOctree(this));
-#endif
+
 
 	// init scene
 	AABB3d bounds(true);

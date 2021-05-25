@@ -275,7 +275,7 @@ void Window::MouseButton(GLFWwindow* window, int button, int action, int mods)
 
 void Window::Scroll(double /*xoffset*/, double yoffset)
 {
-	camera->dist *= (yoffset > 0 ? POW(1.11, yoffset) : POW(0.9, -yoffset));
+	camera->dist *= (yoffset <= 0 ? POW(1.11, -yoffset) : POW(0.9, yoffset));
 }
 void Window::Scroll(GLFWwindow* window, double xoffset, double yoffset)
 {
@@ -284,7 +284,8 @@ void Window::Scroll(GLFWwindow* window, double xoffset, double yoffset)
 
 void Window::Drop(int count, const char** paths)
 {
-	if (clbkOpenScene && count > 0) {
+	if (clbkOpenScene && count > 0) 
+	{
 		SetVisible(false);
 		String fileName(paths[0]);
 		Util::ensureUnifySlash(fileName);
@@ -299,6 +300,19 @@ void Window::Drop(int count, const char** paths)
 		SetVisible(true);
 	}
 }
+
+void Window::NewModel(const std::string& fn)
+{
+	if (clbkOpenScene)
+	{
+		SetVisible(false);
+		String fileName(fn);
+		Util::ensureUnifySlash(fileName);
+		clbkOpenScene(fileName, NULL);
+		SetVisible(true);
+	}
+}
+
 void Window::Drop(GLFWwindow* window, int count, const char** paths)
 {
 	g_mapWindows[window]->Drop(count, paths);

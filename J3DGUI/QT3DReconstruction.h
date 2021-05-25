@@ -29,6 +29,7 @@
 #include <time.h>
 #include <qevent.h>
 #include <thread>
+#include <qtextcodec.h>
 #include "Jutil.h"
 #include "Common.h"
 #include "Scene.h"

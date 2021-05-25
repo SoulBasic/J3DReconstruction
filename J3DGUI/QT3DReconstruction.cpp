@@ -80,54 +80,31 @@ void QT3DReconstruction::timerSlot()
 			cmdCache.open(("C:\\ProgramData\\J3DEngine\\cmdCache.tmp"), ios::in | ios::_Nocreate);
 			std::string temp;
 			getline(cmdCache, temp);
+			QString fileName = "";
 			if (temp == "sfmandsfp" || temp == "importfromblocksexchange")
 			{
-				QString fileName = Global::sfmOutputDir + "/SparseCloud.J3D";
-				if (fileName == "")
-				{
-					return;
-				}
-				if (J3DViewerAva)
-				{
-					const char* path[2];
-					path[0] = fileName.toStdString().c_str();
-					path[1] = NULL;
-					J3DViewer->window.Drop(1, path);
-				}
-				else
-				{
-					openViewCompatibility(fileName);
-				}
-
+				fileName = Global::sfmOutputDir + "/SparseCloud.J3D";
 			}
-			else if (temp == "densifypointcloud") {
-				QString fileName = Global::densifyWorkingDir + "/DenseCloud.J3D";
-				if (fileName == "")
-				{
-					return;
-				}
-				if (J3DViewerAva)
-				{
-					const char* path[2];
-					path[0] = fileName.toStdString().c_str();
-					path[1] = NULL;
-					J3DViewer->window.Drop(1, path);
-				}
-				else
-				{
-					openViewCompatibility(fileName);
-				}
+			else if (temp == "densifypointcloud") 
+			{
+				fileName = Global::densifyWorkingDir + "/DenseCloud.J3D";
 			}
-			else if (temp == "reconstructmesh") {
-				QString fileName = Global::reconstructMeshWorkingDir + "/TIN_Mesh.J3D";
-				if (fileName == "")
-				{
-					return;
-				}
+			else if (temp == "reconstructmesh") 
+			{
+				fileName = Global::reconstructMeshWorkingDir + "/TIN_Mesh_Refine.J3D";
+			}
+			else if (temp == "texturemesh") 
+			{
+				fileName = Global::reconstructMeshWorkingDir + "/TEXTURE_Mesh.J3D";
+			}
+			QMessageBox::information(NULL, u8"完成", u8"任务完成! ", QMessageBox::Ok | QMessageBox::Cancel, QMessageBox::Ok);
+			if (!fileName.isEmpty())
+			{
 				if (J3DViewerAva)
 				{
 					const char* path[2];
-					path[0] = fileName.toStdString().c_str();
+					auto codec = QTextCodec::codecForName("gb2312");
+					path[0] = codec->fromUnicode(fileName).toStdString().c_str();
 					path[1] = NULL;
 					J3DViewer->window.Drop(1, path);
 				}
@@ -136,25 +113,6 @@ void QT3DReconstruction::timerSlot()
 					openViewCompatibility(fileName);
 				}
 			}
-			else if (temp == "texturemesh") {
-				QString fileName = Global::reconstructMeshWorkingDir + "/TEXTURE_Mesh.J3D";
-				if (fileName == "")
-				{
-					return;
-				}
-				if (J3DViewerAva)
-				{
-					const char* path[2];
-					path[0] = fileName.toStdString().c_str();
-					path[1] = NULL;
-					J3DViewer->window.Drop(1, path);
-				}
-				else
-				{
-					openViewCompatibility(fileName);
-				}
-			}
-			QMessageBox::information(NULL, u8"完成", u8"任务完成！ ", QMessageBox::Ok, QMessageBox::Ok);
 			Global::tasking = false;
 			ui.label_process->setText(u8"等待任务 ");
 			ui.progressBar->setValue(0);
@@ -277,15 +235,12 @@ void QT3DReconstruction::on_actionopen_mvs_file_triggered()
 		return;
 	}
 	const char* path[2];
-	path[0] = fileName.toStdString().c_str();
-	path[1] = NULL;
-
-	J3DViewer->window.Drop(1, path);
+	auto codec = QTextCodec::codecForName("gb2312");
+	J3DViewer->window.NewModel(codec->fromUnicode(fileName).toStdString());
 }
 
 bool QT3DReconstruction::openView(QString fileName)
 {
-	printf("ov\n");
 	J3DViewer = new VIEWER::Scene();
 	// create viewer
 	if (!J3DViewer->Init(1361, 661, _T("J3D Viewer"),
