@@ -301,12 +301,13 @@
      <addaction name="action"/>
     </widget>
     <addaction name="menuSFM_Engine"/>
-    <addaction name="menuMVS_Engine"/>
     <addaction name="action_import_BlocksExchange"/>
+    <addaction name="separator"/>
+    <addaction name="menuMVS_Engine"/>
    </widget>
    <widget class="QMenu" name="menu_3">
     <property name="title">
-     <string>文件</string>
+     <string>可视化模块</string>
     </property>
     <addaction name="actionopen_mvs_file"/>
     <addaction name="action_2"/>

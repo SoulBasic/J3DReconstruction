@@ -8,7 +8,6 @@ QT3DReconstruction::QT3DReconstruction(QWidget *parent)
 	: QMainWindow(parent)
 {
 	ui.setupUi(this);
-
 	timer = new QTimer(this);
 	connect(timer, SIGNAL(timeout()), this, SLOT(timerSlot()));
 	timer->start(500);
@@ -97,16 +96,13 @@ void QT3DReconstruction::timerSlot()
 			{
 				fileName = Global::reconstructMeshWorkingDir + "/TEXTURE_Mesh.J3D";
 			}
-			QMessageBox::information(NULL, u8"完成", u8"任务完成! ", QMessageBox::Ok | QMessageBox::Cancel, QMessageBox::Ok);
+			QMessageBox::information(this, u8"完成", u8"任务完成! ", QMessageBox::Ok, QMessageBox::Ok);
 			if (!fileName.isEmpty())
 			{
 				if (J3DViewerAva)
 				{
-					const char* path[2];
 					auto codec = QTextCodec::codecForName("gb2312");
-					path[0] = codec->fromUnicode(fileName).toStdString().c_str();
-					path[1] = NULL;
-					J3DViewer->window.Drop(1, path);
+					J3DViewer->window.NewModel(codec->fromUnicode(fileName).toStdString());
 				}
 				else
 				{
@@ -234,7 +230,6 @@ void QT3DReconstruction::on_actionopen_mvs_file_triggered()
 		openView(fileName);
 		return;
 	}
-	const char* path[2];
 	auto codec = QTextCodec::codecForName("gb2312");
 	J3DViewer->window.NewModel(codec->fromUnicode(fileName).toStdString());
 }
