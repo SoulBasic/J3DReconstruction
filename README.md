@@ -18,6 +18,7 @@
 由于windows下配置相关三方库的操作步骤较为繁琐，如果同学恰巧和我一样也是用的msvc2017_64的编译器（**vs2017**或者是带有**v141平台工具集的vs2019**），那么可以使用我上传的二进制依赖库，来快速进行环境的配置，我也简单做了一个小视频，来帮助大家快速地部署生成项目
 
 视频地址：[https://www.bilibili.com/video/BV1p5411g7Ht/](https://www.bilibili.com/video/BV1p5411g7Ht/)
+
 二进制依赖库包地址链接：[https://pan.baidu.com/s/1ZEh6Ts7V4JAAb15y5r89RQ](https://pan.baidu.com/s/1ZEh6Ts7V4JAAb15y5r89RQ) 提取码：40zz
 
 
