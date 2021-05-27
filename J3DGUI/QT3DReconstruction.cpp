@@ -83,18 +83,22 @@ void QT3DReconstruction::timerSlot()
 			if (temp == "sfmandsfp" || temp == "importfromblocksexchange")
 			{
 				fileName = Global::sfmOutputDir + "/SparseCloud.J3D";
+				J3DFile = Jutil::SparseFileName(fileName.toStdString());
 			}
 			else if (temp == "densifypointcloud") 
 			{
 				fileName = Global::densifyWorkingDir + "/DenseCloud.J3D";
+				J3DFile = Jutil::SparseFileName(fileName.toStdString());
 			}
 			else if (temp == "reconstructmesh") 
 			{
 				fileName = Global::reconstructMeshWorkingDir + "/TIN_Mesh_Refine.J3D";
+				J3DFile = Jutil::SparseFileName(fileName.toStdString());
 			}
 			else if (temp == "texturemesh") 
 			{
 				fileName = Global::reconstructMeshWorkingDir + "/TEXTURE_Mesh.J3D";
+				J3DFile = Jutil::SparseFileName(fileName.toStdString());
 			}
 			QMessageBox::information(this, u8"完成", u8"任务完成! ", QMessageBox::Ok, QMessageBox::Ok);
 			if (!fileName.isEmpty())
@@ -219,6 +223,7 @@ void QT3DReconstruction::on_actionopen_mvs_file_triggered()
 	if (J3DViewer == nullptr)
 	{
 		openView("default.ply");
+		J3DFile = Jutil::SparseFileName("default.ply");
 		return;
 	}
 	QString fileName = QFileDialog::getOpenFileName(NULL, "ViewJ3D", ".",
@@ -422,7 +427,11 @@ void QT3DReconstruction::on_pushButton_export_clicked()
 		isGltf = true;
 	}
 
-
+	if (J3DFile.getDir().empty())
+	{
+		QMessageBox::information(NULL, u8"错误", u8"暂时无法输出成其他格式", QMessageBox::Ok, QMessageBox::Ok);
+		return;
+	}
 	std::string temp = J3DFile.getDir() + "/" + J3DFile.getFrontName() + "_export" + type;
 	J3DViewer->Export(temp.c_str(), type.c_str(), false, true);
 
