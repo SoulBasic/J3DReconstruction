@@ -9,7 +9,7 @@
 #include <time.h>
 #include <io.h>
 
-//#define SUPPORT_OSG //支持打开和转换OSG文件，需要存在osgviewer.exe、osgcv.exe和相关osg库dll文件
+//#define SUPPORT_OSG //支持打开和转换OSG文件，需要存在osgviewer.exe、osgconv.exe和相关osg库dll文件
 //#define SUPPORT_GLTF //支持GLTF输出，需安装obj2gltf插件，用于cesium显示
 
 #define CMD_FULLAUTO 100

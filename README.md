@@ -17,11 +17,8 @@
 
 由于windows下配置相关三方库的操作步骤较为繁琐，如果同学恰巧和我一样也是用的msvc2017_64的编译器（**vs2017**或者是带有**v141平台工具集的vs2019**），那么可以使用我上传的二进制依赖库，来快速进行环境的配置，我也简单做了一个小视频，来帮助大家快速地部署生成项目
 
-视频地址：https://www.bilibili.com/video/BV1p5411g7Ht/
-
-二进制依赖库包地址链接：https://pan.baidu.com/s/1ZEh6Ts7V4JAAb15y5r89RQ 提取码：40zz 
-
-
+视频地址：[https://www.bilibili.com/video/BV1p5411g7Ht/](https://www.bilibili.com/video/BV1p5411g7Ht/)
+二进制依赖库包地址链接：[https://pan.baidu.com/s/1ZEh6Ts7V4JAAb15y5r89RQ](https://pan.baidu.com/s/1ZEh6Ts7V4JAAb15y5r89RQ) 提取码：40zz
 
 
 ### 功能
@@ -122,6 +119,9 @@ GDAL（gdal-2.0.3）
 
 ##### SFM及MVS重建模块：
 
+这里使用一组照片作为例子
+（照片来源：[https://www1.maths.lth.se/matematiklth/personal/calle/dataset/dataset.html](https://www1.maths.lth.se/matematiklth/personal/calle/dataset/dataset.html)）
+
 将源图片放在一个文件夹里
 若是相机型号比较冷门，需要在文件-添加相机参数中添加相机的几项参数（这个参数可以参考下图去图片元数据中获取，若没有元数据或不齐全，可以去google一下对应相机的具体参数，程序是通过以下公式进行粗略计算的）
 $$
@@ -170,11 +170,7 @@ $$
 渲染网格：M键
 渲染纹理：T键
 
-viewer和convert工具可直接使用OSG库中的osgviewer.exe和osgconv.exe替换程序所需的OSGViewer.exe和osgcv.exe
-
-（或者本项目Release包中也有相应二进制文件可直接使用）
-
-
+如果需要预览或查看osg或osgb格式模型，则需要在软件路径下含有OSG库中的osgviewer.exe和osgconv.exe
 
 ##### 坐标映射模块：
 

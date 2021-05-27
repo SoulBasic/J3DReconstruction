@@ -454,7 +454,7 @@ void QT3DReconstruction::on_pushButton_export_clicked()
 
 bool QT3DReconstruction::converseType(QString fileNameSrc, QString fileNameDes)
 {
-	QString cmd = "osgcv.exe " + fileNameSrc + " " + fileNameDes;
+	QString cmd = "osgconv.exe " + fileNameSrc + " " + fileNameDes;
 	::system(cmd.toStdString().c_str());
 	return true;
 }
