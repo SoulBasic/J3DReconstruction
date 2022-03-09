@@ -72,7 +72,7 @@ public:
 	static bool tasking;
 	static bool autoTasking;
 	static void connectEngine();
-	static DWORD GetProcessidFromName(char* name);
+	static DWORD GetProcessidFromName(const char* name);
 	static int process;
 	static int processProject;
 	static int processState;

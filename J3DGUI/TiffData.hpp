@@ -83,20 +83,9 @@ public:
 		min_distance = DBL_MAX;
 		ret_point.x = ret_point.y = ret_point.z = NAN;
 		int thread_task = height / thread_num;
-		running_thread = thread_num;
 		double x1 = static_cast<double>(x);
 		double y1 = static_cast<double>(y);
-		for (int i = 0; i < thread_num; i++)
-		{
-			int low = i * thread_task;
-			int high = low + thread_task;
-			if (high > height)high = height;
-			std::thread(&TiffData::find_thread, this, img, low, high, x1, y1).detach();
-		}
-		while (running_thread > 0)
-		{
-			std::this_thread::sleep_for(std::chrono::microseconds(120));
-		}
+		find_intersect_point(img, 0, width, x1, y1);
 		return ret_point;
 	}
 
@@ -201,42 +190,37 @@ public:
 
 
 
-	static void find_thread(TiffData* tiffData, MVS::Image& img, int low, int high, double x, double y)
+	void find_intersect_point(MVS::Image& img, int low, int high, double x, double y)
 	{
 		auto& cam = img.camera;
 		double lon, lat;
-		TIFFBYTE* altData = tiffData->alt_data + tiffData->width * low;
+		TIFFBYTE* altData = alt_data + width * low;
 		SEACAVE::Point3d point;
 		SEACAVE::Point3d localized_point;
 		SEACAVE::Point2d img_point;
 		TIFFBYTE elevation;
-		std::unique_lock<std::mutex> lock(tiffData->_mtx);
-		lock.unlock();
 		for (int i = low; i < high; i++)
 		{
-			for (int j = 0; j < tiffData->width; j++)
+			for (int j = 0; j < width; j++)
 			{
 				elevation = *altData++;
 				if (elevation + FLT_MAX < 1e-5)continue;
-				lon = tiffData->trans[0] + j * tiffData->trans[1];
-				lat = tiffData->trans[3] + i * tiffData->trans[5];
+				lon = trans[0] + j * trans[1];
+				lat = trans[3] + i * trans[5];
 				point = SEACAVE::Point3d{ lon ,lat ,elevation };
-				localized_point = tiffData->localize(point);
-				img_point = tiffData->get_image_point(localized_point, cam);
+				localized_point = localize(point);
+				img_point = get_image_point(localized_point, cam);
 				if (std::abs(img_point.x - x) < 1 && std::abs(img_point.y - y) < 1)
 				{
-					auto distance = tiffData->get_point_distance(localized_point, cam);
-					lock.lock();
-					if (distance < tiffData->min_distance)
+					auto distance = get_point_distance(localized_point, cam);
+					if (distance < min_distance)
 					{
-						tiffData->ret_point = point;
-						tiffData->min_distance = distance;
+						ret_point = point;
+						min_distance = distance;
 					}
-					lock.unlock();
 				}
 			}
 		}
-		tiffData->running_thread--;
 	}
 private:
 	int width;
@@ -248,8 +232,6 @@ private:
 	double og_z;
 	double min_distance;
 	SEACAVE::Point3d ret_point;
-	std::mutex _mtx;
-	std::atomic_int running_thread;
 	int thread_num;
 	inline SEACAVE::Point3d localize(const SEACAVE::Point3d& p) { return SEACAVE::Point3d{ p.x - og_x, p.y - og_y, p.z - og_z }; }
 	inline SEACAVE::Point2d get_image_point(const SEACAVE::Point3d& point, Camera& cam) { return cam.TransformPointW2I(point); }

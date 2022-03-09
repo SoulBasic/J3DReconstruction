@@ -43,7 +43,7 @@ void Global::connectEngine()
 	return;
 }
 
-DWORD Global::GetProcessidFromName(char* name)
+DWORD Global::GetProcessidFromName(const char* name)
 {
 	PROCESSENTRY32 pe;
 	DWORD id = 0;
