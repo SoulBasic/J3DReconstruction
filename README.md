@@ -20,6 +20,7 @@
 视频地址：[https://www.bilibili.com/video/BV1p5411g7Ht/](https://www.bilibili.com/video/BV1p5411g7Ht/)
 
 二进制依赖库包地址链接：[https://pan.baidu.com/s/1ZEh6Ts7V4JAAb15y5r89RQ](https://pan.baidu.com/s/1ZEh6Ts7V4JAAb15y5r89RQ) 提取码：40zz
+（2022.03.24）因msvc2017编译器升级，使隐式转换的条件更苛刻，会导致使用二进制依赖库的小伙伴编译不过，提示无法将参数 1 从“SEACAVE::String”转换为“SEACAVE::String &，解决方案可以参考https://github.com/SoulBasic/J3DReconstruction/issues/2
 
 
 ### 功能
